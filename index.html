@@ -7,55 +7,138 @@
 <title>Trackly</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 rx=%2716%27 fill=%27%231DAA8A%27/%3E%3Ctext x=%2732%27 y=%2745%27 font-size=%2740%27 font-weight=%27bold%27 font-family=%27Arial%27 text-anchor=%27middle%27 fill=%27white%27%3ET%3C/text%3E%3Ccircle cx=%2750%27 cy=%2714%27 r=%276%27 fill=%27%23E58A12%27/%3E%3C/svg%3E">
 <meta name="theme-color" content="#1B2A5A">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
 <style>
-  :root{--navy:#1B2A5A;--teal:#1DAA8A;--bg:#f4f6fb;--card:#fff;--line:#e3e7f0;--muted:#6b7490;--bad:#c0392b}
+  :root{
+    --navy:#1B2A5A; --teal:#1DAA8A; --gold:#D4860A; --slate:#64748B;
+    --bg:#F2F4FA; --card:#fff; --line:#E3E7F1; --muted:#6B7490; --bad:#C0392B;
+    --font:"Plus Jakarta Sans",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  }
   *{box-sizing:border-box}
-  body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--navy)}
-  header{background:var(--navy);color:#fff;padding:14px 16px;display:flex;align-items:center;justify-content:space-between}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0;font-family:var(--font);background:var(--bg);color:var(--navy);line-height:1.45}
+  button{font-family:inherit}
+  :focus-visible{outline:3px solid #7FD6C2;outline-offset:2px}
+
+  /* ---------- header ---------- */
+  header{background:var(--navy);color:#fff;padding:12px 14px;display:flex;align-items:center;justify-content:space-between;gap:8px}
   .brand{display:flex;align-items:center;gap:12px;min-width:0}
   .brand .lg{position:relative;width:46px;height:46px;border-radius:13px;background:var(--teal);color:#fff;font-weight:800;font-size:28px;line-height:46px;text-align:center;flex:none}
   .brand .lg:after{content:"";position:absolute;top:7px;right:7px;width:9px;height:9px;border-radius:50%;background:#E58A12}
   .brand .wm{font-size:21px;font-weight:800;letter-spacing:4px;line-height:1;color:#fff}
   .brand .wm i{font-style:normal;color:#D9951A}
-  .brand .tg{font-size:10px;color:#8E9BC6;margin-top:6px;letter-spacing:.4px;line-height:1.2}
-  .langs{display:flex;flex:none;gap:0}
-  header{padding:12px 14px;gap:8px}
-  .brand .tg{white-space:nowrap;font-size:9.5px;letter-spacing:.3px}
-  .langs button{padding:4px 7px!important;margin-left:4px!important}
-  footer a{color:var(--teal);font-weight:600;text-decoration:none}
-  footer a:hover{text-decoration:underline}
-  .langs button{background:transparent;border:1px solid #ffffff55;color:#fff;border-radius:6px;padding:4px 9px;margin-left:6px;font-size:13px;cursor:pointer}
+  .brand .tg{font-size:9.5px;color:#8E9BC6;margin-top:6px;letter-spacing:.3px;line-height:1.2;white-space:nowrap}
+  .langs{display:flex;flex:none}
+  .langs button{background:transparent;border:1px solid #ffffff55;color:#fff;border-radius:7px;padding:4px 7px;margin-left:4px;font-size:13px;font-weight:600;cursor:pointer}
   .langs button.on{background:var(--teal);border-color:var(--teal)}
-  main{max-width:520px;margin:0 auto;padding:16px}
-  .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin-bottom:14px}
-  h1{font-size:20px;margin:0 0 4px}
-  h2{font-size:15px;margin:0 0 10px}
-  .muted{color:var(--muted);font-size:14px}
-  .note{background:#e8f7f2;border:1px solid #bfe9dd;border-radius:8px;padding:10px 12px;font-size:14px;margin-bottom:12px}
-  .seg{display:flex;background:#eef1f8;border-radius:10px;padding:3px;margin-bottom:12px}
-  .seg button{flex:1;border:0;background:transparent;padding:9px;border-radius:8px;font-size:14px;color:var(--navy);cursor:pointer}
-  .seg button.on{background:#fff;font-weight:700;box-shadow:0 1px 3px #0001}
-  .plan{display:block;border:2px solid var(--line);border-radius:10px;padding:12px;margin-bottom:10px;cursor:pointer}
-  .plan.on{border-color:var(--teal);background:#f3fbf8}
-  .plan input{display:none}
-  .plan .row{display:flex;justify-content:space-between;align-items:baseline}
-  .plan .nm{font-weight:700;font-size:16px}
-  .plan .pr{font-weight:700;font-size:16px}
-  .plan .sub{font-size:13px;color:var(--muted);margin-top:4px}
-  label.f{display:block;font-size:14px;font-weight:600;margin:6px 0}
-  input[type=tel]{width:100%;font-size:18px;padding:12px;border:2px solid var(--line);border-radius:10px;color:var(--navy)}
-  input[type=tel]:focus{outline:none;border-color:var(--teal)}
-  .btn{width:100%;border:0;background:var(--teal);color:#fff;font-size:17px;font-weight:700;padding:14px;border-radius:10px;margin-top:14px;cursor:pointer}
+
+  main{max-width:520px;margin:0 auto;padding:16px 16px 8px}
+  footer{text-align:center;color:var(--muted);font-size:13px;padding:6px 16px 30px}
+  footer a{color:var(--teal);font-weight:700;text-decoration:none}
+
+  /* ---------- greeting ---------- */
+  .hi{display:flex;align-items:center;gap:12px;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:14px 16px;margin-bottom:12px}
+  .av{width:44px;height:44px;border-radius:50%;background:var(--navy);color:#fff;font-weight:800;font-size:18px;display:flex;align-items:center;justify-content:center;flex:none}
+  .hi .tx{min-width:0;flex:1}
+  .hi h1{font-size:17px;line-height:1.2;margin:0;font-weight:800;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .hi .bz{font-size:13px;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .chip{display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:5px 11px;font-size:12px;font-weight:700;flex:none;border:1px solid transparent}
+  .chip i{width:8px;height:8px;border-radius:50%;background:currentColor;display:block}
+  .note{background:#E8F7F2;border:1px solid #BFE9DD;border-radius:12px;padding:10px 14px;font-size:13.5px;margin-bottom:12px}
+
+  /* ---------- section titles ---------- */
+  .sec{font-size:19px;font-weight:800;margin:20px 2px 10px;letter-spacing:-.2px}
+  .sec small{display:block;font-size:13px;font-weight:500;color:var(--muted);margin-top:2px;letter-spacing:0}
+
+  /* ---------- billing switch ---------- */
+  .seg{display:flex;background:#E7EBF5;border-radius:14px;padding:4px;margin-bottom:14px}
+  .seg button{flex:1;border:0;background:transparent;padding:11px 8px;border-radius:11px;font-size:14px;font-weight:600;color:#53608a;cursor:pointer}
+  .seg button.on{background:#fff;color:var(--navy);font-weight:800;box-shadow:0 1px 4px #1b2a5a22}
+
+  /* ---------- plan cards ---------- */
+  .plan{--c:var(--navy);background:var(--card);border:2px solid var(--line);border-radius:20px;margin-bottom:12px;overflow:hidden;cursor:pointer;transition:border-color .2s,box-shadow .2s;position:relative}
+  .plan.sel{border-color:var(--c);box-shadow:0 8px 24px -8px var(--c)}
+  .plan.sel{box-shadow:0 10px 28px -10px color-mix(in srgb,var(--c) 70%,transparent)}
+  .ph{display:flex;align-items:center;gap:12px;padding:15px 14px 15px 15px}
+  .plan.open .ph{background:color-mix(in srgb,var(--c) 8%,#fff)}
+  .em{width:46px;height:46px;border-radius:15px;background:var(--c);display:flex;align-items:center;justify-content:center;flex:none}
+  .em svg{width:24px;height:24px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+  .plan.ubuntu .em{background:#fff;border:2px solid var(--c)}
+  .plan.ubuntu .em svg{stroke:var(--c)}
+  .pm{flex:1;min-width:0}
+  .pn{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  .pn b{font-size:18px;font-weight:800;letter-spacing:-.2px}
+  .pill{font-size:11.5px;font-weight:700;color:var(--c);background:color-mix(in srgb,var(--c) 12%,#fff);border-radius:999px;padding:2px 9px}
+  .pt{font-size:12.5px;color:var(--muted);margin-top:2px;line-height:1.3}
+  .pp{text-align:right;flex:none}
+  .pp b{display:block;font-size:19px;font-weight:800;color:var(--c);letter-spacing:-.3px;white-space:nowrap}
+  .pp span{font-size:11.5px;color:var(--muted);font-weight:600}
+  .pp .free{font-size:17px}
+  .ribbon{position:absolute;top:0;right:0;background:var(--c);color:#fff;font-size:11px;font-weight:800;padding:3px 12px 4px;border-radius:0 0 0 12px;letter-spacing:.2px}
+  .plan.hasrib .ph{padding-top:22px}
+  .pf{display:none;padding:2px 16px 16px;border-top:1px solid color-mix(in srgb,var(--c) 18%,#fff)}
+  .plan.open .pf{display:block}
+  .sv{display:inline-block;margin:12px 0 4px;font-size:12.5px;font-weight:700;color:#0E7C61;background:#E3F6EF;border-radius:999px;padding:4px 11px}
+  .ft{list-style:none;margin:10px 0 0;padding:0}
+  .ft li{display:flex;gap:10px;align-items:flex-start;font-size:14px;padding:5px 0;line-height:1.35}
+  .ft .ic{width:20px;height:20px;border-radius:50%;flex:none;display:flex;align-items:center;justify-content:center;margin-top:1px;background:color-mix(in srgb,var(--c) 14%,#fff)}
+  .ft .ic svg{width:12px;height:12px;stroke:var(--c);fill:none;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+  .ft li.off{color:#A5ADC3;text-decoration:line-through}
+  .ft li.off .ic{background:#F0F2F7}
+  .ft li.off .ic svg{stroke:#C3C9D8;stroke-width:2.6}
+  .pfnote{margin-top:12px;font-size:13px;color:var(--muted);background:#F5F7FB;border-radius:12px;padding:10px 12px}
+  .tap{margin-top:12px;font-size:13px;font-weight:700;color:var(--c)}
+
+  /* ---------- payment ---------- */
+  .pay{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:16px;margin-bottom:14px}
+  .pay h2{font-size:17px;font-weight:800;margin:0 0 12px}
+  .nets{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .net{--nc:#FFCC00;position:relative;border:2px solid var(--line);background:#fff;border-radius:16px;padding:12px 8px 10px;cursor:pointer;text-align:center;transition:border-color .15s,background .15s}
+  .net.airtel{--nc:#E4002B}
+  .net.on{border-color:var(--nc);background:color-mix(in srgb,var(--nc) 9%,#fff)}
+  .net .lgw{height:76px;display:flex;align-items:center;justify-content:center}
+  .net img{height:76px;width:76px;object-fit:cover;border-radius:16px;display:block;box-shadow:0 2px 8px #0002}
+  .net .wmk{display:none;align-items:center;justify-content:center;height:76px;width:76px;text-align:center;border-radius:16px;font-weight:800;font-size:14px;letter-spacing:.2px;line-height:1.1;background:#FFCC00;color:#1a1a1a}
+  .net.airtel .wmk{background:#E4002B;color:#fff}
+  .net .nl{font-size:13px;font-weight:700;margin-top:6px;color:var(--navy)}
+  .net .ck{position:absolute;top:8px;right:8px;width:20px;height:20px;border-radius:50%;background:var(--nc);display:none;align-items:center;justify-content:center}
+  .net.airtel .ck svg{stroke:#fff}
+  .net .ck svg{width:12px;height:12px;stroke:#1a1a1a;fill:none;stroke-width:3.4;stroke-linecap:round;stroke-linejoin:round}
+  .net.on .ck{display:flex}
+  label.f{display:block;font-size:14px;font-weight:700;margin:16px 0 8px}
+  .phw{display:flex;align-items:center;border:2px solid var(--line);border-radius:14px;background:#fff;transition:border-color .15s}
+  .phw:focus-within{border-color:var(--navy)}
+  .phw .cc{display:flex;align-items:center;gap:8px;align-self:stretch;padding:0 12px;background:#F1F4FA;border-right:2px solid var(--line);border-radius:12px 0 0 12px;font-weight:800;color:var(--navy);font-size:17px}.phw .cc svg{width:24px;height:16px;border-radius:3px;box-shadow:0 0 0 1px #0002}.phw{overflow:hidden}
+  input[type=tel]{flex:1;min-width:0;border:0;background:transparent;font-family:inherit;font-size:19px;font-weight:700;letter-spacing:.5px;padding:14px 14px 14px 12px;color:var(--navy)}
+  input[type=tel]:focus{outline:none}
+  input[type=tel]::placeholder{color:#B4BBCF;font-weight:600}
+  .hint{font-size:12.5px;color:var(--muted);margin-top:8px}
+  .sum{margin-top:16px;background:#F6F8FC;border-radius:14px;padding:12px 14px}
+  .sum div{display:flex;justify-content:space-between;font-size:14px;padding:3px 0;color:#4A5578}
+  .sum div b{color:var(--navy);white-space:nowrap;margin-left:12px}
+  .sum .tot{border-top:1px dashed #CBD2E4;margin-top:6px;padding-top:9px;font-size:16px;color:var(--navy);font-weight:800}
+  .btn{width:100%;border:0;background:var(--navy);color:#fff;font-size:17px;font-weight:800;padding:16px;border-radius:14px;margin-top:16px;cursor:pointer;transition:filter .15s,transform .05s;letter-spacing:.1px}
+  .btn:active{transform:scale(.99)}
   .btn:disabled{opacity:.55}
-  .btn.alt{background:#fff;color:var(--navy);border:2px solid var(--line)}
-  .err{color:var(--bad);font-size:14px;margin-top:10px;min-height:18px}
-  .center{text-align:center;padding:26px 8px}
-  .spin{width:46px;height:46px;border:5px solid #dfe5f1;border-top-color:var(--teal);border-radius:50%;animation:s 1s linear infinite;margin:0 auto 16px}
+  .err{color:var(--bad);font-size:14px;font-weight:600;margin-top:12px;min-height:18px}
+  .secure{display:flex;align-items:center;justify-content:center;gap:7px;font-size:12.5px;color:var(--muted);margin-top:12px}
+  .secure svg{width:14px;height:14px;stroke:var(--muted);fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+
+  /* ---------- states ---------- */
+  .card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:26px 18px;margin-bottom:14px}
+  .card h1{font-size:21px;margin:0 0 6px;font-weight:800}
+  .center{text-align:center}
+  .muted{color:var(--muted);font-size:14px}
+  .spin{width:48px;height:48px;border:5px solid #DFE5F1;border-top-color:var(--teal);border-radius:50%;animation:s 1s linear infinite;margin:6px auto 18px}
   @keyframes s{to{transform:rotate(360deg)}}
-  .tick{width:60px;height:60px;border-radius:50%;background:var(--teal);color:#fff;font-size:34px;line-height:60px;margin:0 auto 14px}
-  .cross{width:60px;height:60px;border-radius:50%;background:var(--bad);color:#fff;font-size:34px;line-height:60px;margin:0 auto 14px}
-  footer{text-align:center;color:var(--muted);font-size:13px;padding:6px 16px 28px}
-  .hide{display:none}
+  .tick,.cross{width:64px;height:64px;border-radius:50%;margin:0 auto 14px;display:flex;align-items:center;justify-content:center}
+  .tick{background:var(--teal)} .cross{background:var(--bad)}
+  .tick svg,.cross svg{width:30px;height:30px;stroke:#fff;fill:none;stroke-width:3.2;stroke-linecap:round;stroke-linejoin:round}
+  .okplan{display:inline-flex;align-items:center;gap:8px;margin:6px 0 10px;border-radius:999px;padding:7px 16px;color:#fff;font-weight:800;font-size:15px}
+  .btn.alt{background:#fff;color:var(--navy);border:2px solid var(--line)}
+  @media (prefers-reduced-motion:reduce){.spin{animation-duration:3s}*{transition:none!important}}
 </style>
 </head>
 <body>
@@ -64,125 +147,271 @@
 <footer id="foot"></footer>
 
 <script>
-// ===== set this to your backend address =====
+// ===== backend address =====
 var API = "https://trackly-backend-1.onrender.com/api/v1/pay";
-// ============================================
+// ===========================
 
+/* ---------------- icons ---------------- */
+var IC = {
+  ubuntu:'<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>',
+  ibanze:'<path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/>',
+  iterambere:'<path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/>',
+  inkunga:'<path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/>',
+  check:'<path d="M20 6 9 17l-5-5"/>', x:'<path d="M18 6 6 18M6 6l12 12"/>',
+  lock:'<rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>'
+};
+function svg(name){ return '<svg viewBox="0 0 24 24" aria-hidden="true">'+IC[name]+'</svg>'; }
+
+/* ---------------- plans (colours, copy) ---------------- */
+var COLOR = { ubuntu:"#64748B", ibanze:"#1B2A5A", iterambere:"#1DAA8A", inkunga:"#D4860A" };
+function T3(en,rw,fr){ return {en:en,rw:rw,fr:fr}; }
+var PLANS = {
+  ubuntu:{ name:"Ubuntu", badge:T3("Free","Ubuntu","Gratuit"),
+    tagline:T3("Free forever. Start selling today.","Ni ubuntu burundu. Tangira gucuruza uyu munsi.","Gratuit pour toujours. Commencez à vendre."),
+    features:[
+      [T3("Up to 20 products","Ibicuruzwa kugeza kuri 20","Jusqu'à 20 produits"),1],
+      [T3("Today's sales report","Raporo y'uyu munsi","Rapport du jour"),1],
+      [T3("Invoice history, last 30 days","Amateka ya fagitire y'iminsi 30","Historique des factures sur 30 jours"),1],
+      [T3("Inventory and low-stock alerts","Ububiko n'impuruza z'ububiko buke","Stock et alertes de stock bas"),1],
+      [T3("Customer records","Urutonde rw'abakiriya","Fiches clients"),1],
+      [T3("Receipts on WhatsApp","Fagitire kuri WhatsApp","Reçus sur WhatsApp"),1],
+      [T3("Credit sales and rentals","Kugurisha ku nguzanyo no gukodesha","Ventes à crédit et locations"),0],
+      [T3("Profit and loss, expenses","Inyungu n'ibyasohotse","Profits, pertes et dépenses"),0],
+      [T3("Staff accounts","Konti z'abakozi","Comptes employés"),0]
+    ]},
+  ibanze:{ name:"Ibanze", badge:T3("Starter","Tangira","Débutant"),
+    tagline:T3("Start small, grow steady","Tangira ubu, igiciro gito","Démarrez petit, grandissez"),
+    features:[
+      [T3("Up to 100 products","Ibicuruzwa kugeza kuri 100","Jusqu'à 100 produits"),1],
+      [T3("Invoice history, last 90 days","Amateka ya fagitire y'iminsi 90","Historique des factures sur 90 jours"),1],
+      [T3("Weekly sales report","Raporo y'icyumweru","Rapport hebdomadaire"),1],
+      [T3("Inventory and low-stock alerts","Ububiko n'impuruza z'ububiko buke","Stock et alertes de stock bas"),1],
+      [T3("Barcode scanning","Gusikana barcode","Scan des codes-barres"),1],
+      [T3("Customer records","Urutonde rw'abakiriya","Fiches clients"),1],
+      [T3("Credit sales and rentals","Kugurisha ku nguzanyo no gukodesha","Ventes à crédit et locations"),1],
+      [T3("Clean receipts, no Trackly footer","Fagitire zitagira ikirango cya Trackly","Reçus sans mention Trackly"),1],
+      [T3("Full reports and profit and loss","Raporo zuzuye n'inyungu (P&L)","Rapports complets et P&L"),0],
+      [T3("Staff accounts","Konti z'abakozi","Comptes employés"),0]
+    ]},
+  iterambere:{ name:"Iterambere", badge:T3("Growth","Ihitimu","Croissance"), popular:T3("Most popular","Ayakunzwe cyane","Le plus populaire"),
+    tagline:T3("Sell more, grow faster","Gurisha byinshi, gukura vuba","Vendre plus, grandir vite"),
+    features:[
+      [T3("Everything in Ibanze","Byose biri muri Ibanze","Tout Ibanze inclus"),1],
+      [T3("Unlimited products","Ibicuruzwa nta ngano","Produits illimités"),1],
+      [T3("Unlimited invoice history","Amateka ya fagitire nta karimbi","Historique illimité"),1],
+      [T3("Reports, profit and loss, cash flow","Raporo, inyungu n'igihombo, amafaranga yinjira n'asohoka","Rapports, P&L et trésorerie"),1],
+      [T3("Expense tracking and business goals","Ibyasohotse n'intego z'ubucuruzi","Suivi des dépenses et objectifs"),1],
+      [T3("Suppliers and purchase orders","Abaganaciro n'ubusabe bwo gutumiza","Fournisseurs et bons de commande"),1],
+      [T3("Quotations, returns and discounts","Amaproforma, ibyagaruwe n'igabanyirizwa","Devis, retours et remises"),1],
+      [T3("Layaway, loans and cash desk","Kwishyura mu byiciro, inguzanyo n'agasanduku k'amafaranga","Acomptes, prêts et caisse"),1],
+      [T3("Up to 2 staff accounts","Kugeza ku bakozi 2","Jusqu'à 2 employés"),1],
+      [T3("RRA tax and VAT reports","Raporo z'imisoro RRA na TVA","Rapports fiscaux RRA et TVA"),0],
+      [T3("Shifts, assets and stock transfers","Ihinduka ry'abakozi, ibikoresho, kohereza ububiko","Équipes, actifs et transferts de stock"),0]
+    ]},
+  inkunga:{ name:"Agaciro", badge:T3("Pro","Pro","Pro"),
+    tagline:T3("The full suite: RRA tax and bank","Ubucuruzi bwose: RRA na Banki","La suite complète : RRA et banque"),
+    features:[
+      [T3("Everything in Iterambere","Byose biri muri Iterambere","Tout Iterambere inclus"),1],
+      [T3("Unlimited staff accounts","Abakozi nta ngano","Employés illimités"),1],
+      [T3("RRA tax and VAT reports","Raporo z'imisoro RRA na TVA","Rapports fiscaux RRA et TVA"),1],
+      [T3("Bank reconciliation","Guhuzisha konti ya Banki","Rapprochement bancaire"),1],
+      [T3("Shift management","Gucunga ihinduka ry'abakozi","Gestion des équipes"),1],
+      [T3("Asset tracking","Gukurikirana ibikoresho","Suivi des actifs"),1],
+      [T3("Stock transfers between branches","Kohereza ububiko hagati y'amashami","Transferts de stock entre sites"),1]
+    ]}
+};
+var ORDER = ["ubuntu","ibanze","iterambere","inkunga"];
+
+/* ---------------- text ---------------- */
 var L = {
- en:{choose:"Choose your plan",hello:"Hello",forBiz:"Account:",monthly:"Monthly",yearly:"Yearly",perMonth:"/ month",perYear:"/ year",
-  phone:"Mobile money number (MTN or Airtel)",phoneHint:"For example 0788123456. The payment request is sent to this phone.",
-  pay:"Pay {a} RWF",total:"Total to pay",fee:"includes {f} RWF mobile money fee",
+ en:{hello:"Hello",yourPlan:"Your plan",choose:"Choose your plan",chooseSub:"Upgrade any time. Your data always stays safe.",monthly:"Monthly",yearly:"Yearly",perMonth:"per month",perYear:"per year",
+  free:"Free",save:"Save {a} RWF a year",tapSel:"Tap to choose this plan",selected:"Selected",
+  freeNote:"No payment needed. You keep this plan until you choose a paid one.",
+  payWith:"Pay with",mtn:"MTN Mobile Money",airtel:"Airtel Money",phone:"Mobile money number",phoneHint:"The payment request is sent to this phone.",
+  sPlan:"Plan",sPrice:"Price",sFee:"Mobile money fee",sTotal:"Total to pay",
+  pay:"Pay {a} RWF",secure:"Secure payment by mobile money. You approve it with your PIN.",
   active:"Your plan is active until {d}. You can renew early below.",
   waitTitle:"Approve on your phone",wait:"Check your phone and approve the payment with your PIN. This page updates by itself.",
-  okTitle:"Payment received!",ok:"Your {p} plan is active until {d}. You can go back to the Trackly app now.",
+  okTitle:"Payment received!",ok:"Your plan is active until {d}. You can go back to the Trackly app now.",
   failTitle:"Payment not completed",fail:"The payment was not completed. You have not been charged unless you approved it.",
   late:"We have not received the payment yet. If you approved it, it will show here shortly. Otherwise try again.",
   badLink:"This link is invalid or has expired. Please open the newest message we sent you.",retry:"Try again",loading:"Loading...",help:"Need help? contact.ivanexo@gmail.com",
-  badPhone:"Enter a valid MTN or Airtel number, for example 0788123456.",net:"Connection problem. Please try again.",
+  badPhone:"Enter a valid MTN or Airtel number, for example 0788123456.",
+  wrongNet:"This number is not an {n} number. Choose the other network or check the number.",chooseNet:"Choose MTN or Airtel Money first.",net:"Connection problem. Please try again.",
   noPlans:"No plans are available right now."},
- rw:{choose:"Hitamo gahunda yawe",hello:"Muraho",forBiz:"Konti:",monthly:"Buri kwezi",yearly:"Buri mwaka",perMonth:"ku kwezi",perYear:"ku mwaka",
-  phone:"Nimero ya Mobile Money (MTN cyangwa Airtel)",phoneHint:"Urugero 0788123456. Ubusabe bw'ubwishyu buzoherezwa kuri iyi telefone.",
-  pay:"Ishyura {a} RWF",total:"Amafaranga yose wishyura",fee:"harimo {f} RWF y'amafaranga ya mobile money",
+ rw:{hello:"Muraho",yourPlan:"Gahunda yawe",choose:"Hitamo gahunda yawe",chooseSub:"Ushobora kuzamura igihe cyose. Amakuru yawe ahora afite umutekano.",monthly:"Buri kwezi",yearly:"Buri mwaka",perMonth:"ku kwezi",perYear:"ku mwaka",
+  free:"Ubuntu",save:"Wizigama {a} RWF ku mwaka",tapSel:"Kanda ubone iyi gahunda",selected:"Yatoranyijwe",
+  freeNote:"Nta kwishyura. Ugumana iyi gahunda kugeza uhisemo iyishyurwa.",
+  payWith:"Ishyura ukoresheje",mtn:"MTN Mobile Money",airtel:"Airtel Money",phone:"Nimero ya Mobile Money",phoneHint:"Ubusabe bw'ubwishyu buzoherezwa kuri iyi telefone.",
+  sPlan:"Gahunda",sPrice:"Igiciro",sFee:"Amafaranga ya mobile money",sTotal:"Amafaranga yose wishyura",
+  pay:"Ishyura {a} RWF",secure:"Ubwishyu bufite umutekano bwa mobile money. Ubwemeza ukoresheje PIN yawe.",
   active:"Gahunda yawe ikora kugeza ku wa {d}. Ushobora kuyongera hakiri kare hano hepfo.",
   waitTitle:"Emeza kuri telefone yawe",wait:"Reba kuri telefone yawe wemeze ubwishyu ukoresheje PIN yawe. Uru rupapuro ruhita ruhinduka rwonyine.",
-  okTitle:"Ubwishyu bwakiriwe!",ok:"Gahunda yawe ya {p} ikora kugeza ku wa {d}. Ushobora gusubira muri porogaramu ya Trackly.",
+  okTitle:"Ubwishyu bwakiriwe!",ok:"Gahunda yawe ikora kugeza ku wa {d}. Ushobora gusubira muri porogaramu ya Trackly.",
   failTitle:"Ubwishyu ntibwarangiye",fail:"Ubwishyu ntibwarangiye. Nta mafaranga yakuweho keretse niba warabwemeje.",
   late:"Ntituramenya ko ubwishyu bwakiriwe. Niba warabwemeje, buraza kugaragara vuba. Niba atari ko, ongera ugerageze.",
   badLink:"Iyi link ntabwo ari yo cyangwa yararangiye. Nyamuneka fungura ubutumwa bushya twakwoherereje.",retry:"Ongera ugerageze",loading:"Birimo gufunguka...",help:"Ukeneye ubufasha? contact.ivanexo@gmail.com",
-  badPhone:"Andika nimero nziza ya MTN cyangwa Airtel, urugero 0788123456.",net:"Ikibazo cy'umurongo. Ongera ugerageze.",
+  badPhone:"Andika nimero nziza ya MTN cyangwa Airtel, urugero 0788123456.",
+  wrongNet:"Iyi nimero si iya {n}. Hitamo indi sosiyete cyangwa usuzume nimero.",chooseNet:"Banza uhitemo MTN cyangwa Airtel Money.",net:"Ikibazo cy'umurongo. Ongera ugerageze.",
   noPlans:"Nta gahunda zihari ubu."},
- fr:{choose:"Choisissez votre plan",hello:"Bonjour",forBiz:"Compte :",monthly:"Mensuel",yearly:"Annuel",perMonth:"/ mois",perYear:"/ an",
-  phone:"Numéro Mobile Money (MTN ou Airtel)",phoneHint:"Par exemple 0788123456. La demande de paiement est envoyée à ce téléphone.",
-  pay:"Payer {a} RWF",total:"Total à payer",fee:"dont {f} RWF de frais Mobile Money",
+ fr:{hello:"Bonjour",yourPlan:"Votre plan",choose:"Choisissez votre plan",chooseSub:"Changez de plan quand vous voulez. Vos données restent en sécurité.",monthly:"Mensuel",yearly:"Annuel",perMonth:"par mois",perYear:"par an",
+  free:"Gratuit",save:"Économisez {a} RWF par an",tapSel:"Touchez pour choisir ce plan",selected:"Choisi",
+  freeNote:"Aucun paiement. Vous gardez ce plan tant que vous n'en choisissez pas un payant.",
+  payWith:"Payer avec",mtn:"MTN Mobile Money",airtel:"Airtel Money",phone:"Numéro Mobile Money",phoneHint:"La demande de paiement est envoyée à ce téléphone.",
+  sPlan:"Plan",sPrice:"Prix",sFee:"Frais Mobile Money",sTotal:"Total à payer",
+  pay:"Payer {a} RWF",secure:"Paiement sécurisé par Mobile Money. Vous le validez avec votre code PIN.",
   active:"Votre plan est actif jusqu'au {d}. Vous pouvez renouveler en avance ci-dessous.",
   waitTitle:"Validez sur votre téléphone",wait:"Vérifiez votre téléphone et validez le paiement avec votre code PIN. Cette page se met à jour toute seule.",
-  okTitle:"Paiement reçu !",ok:"Votre plan {p} est actif jusqu'au {d}. Vous pouvez retourner dans l'application Trackly.",
+  okTitle:"Paiement reçu !",ok:"Votre plan est actif jusqu'au {d}. Vous pouvez retourner dans l'application Trackly.",
   failTitle:"Paiement non abouti",fail:"Le paiement n'a pas abouti. Vous n'êtes pas débité sauf si vous l'avez validé.",
   late:"Nous n'avons pas encore reçu le paiement. Si vous l'avez validé, il apparaîtra bientôt. Sinon, réessayez.",
   badLink:"Ce lien est invalide ou a expiré. Veuillez ouvrir le message le plus récent que nous vous avons envoyé.",retry:"Réessayer",loading:"Chargement...",help:"Besoin d'aide ? contact.ivanexo@gmail.com",
-  badPhone:"Saisissez un numéro MTN ou Airtel valide, par exemple 0788123456.",net:"Problème de connexion. Réessayez.",
+  badPhone:"Saisissez un numéro MTN ou Airtel valide, par exemple 0788123456.",
+  wrongNet:"Ce numéro n'est pas un numéro {n}. Choisissez l'autre réseau ou vérifiez le numéro.",chooseNet:"Choisissez d'abord MTN ou Airtel Money.",net:"Problème de connexion. Réessayez.",
   noPlans:"Aucun plan disponible pour le moment."}
 };
 
+/* ---------------- state ---------------- */
 var lang = "en";
 try { var nl=(navigator.language||"en").toLowerCase(); if(nl.indexOf("fr")===0) lang="fr"; else if(nl.indexOf("rw")===0) lang="rw";
-      var saved=localStorage.getItem("trackly_pay_lang"); if(saved&&L[saved]) lang=saved; } catch(e){}
-
+      var sv=localStorage.getItem("trackly_pay_lang"); if(sv&&L[sv]) lang=sv; } catch(e){}
 var token = new URLSearchParams(location.search).get("t") || "";
-var data = null, plan = null, cycle = "monthly", view = "load", payRef = null, serverMsg = "", poll = null, result = null, errMsg = "";
+var data=null, plan=null, openKey=null, cycle="monthly", net=null, phone="", view="load", payRef=null, serverMsg="", poll=null, result=null, errMsg="";
 
-function t(k, r){ var s=(L[lang][k]||k); if(r) for(var x in r) s=s.split("{"+x+"}").join(r[x]); return s; }
+function t(k,r){ var s=(L[lang][k]||k); if(r) for(var x in r) s=s.split("{"+x+"}").join(r[x]); return s; }
+function tt(o){ return o[lang]||o.en; }
 function esc(s){ return String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
 function fmt(n){ return Number(n).toLocaleString("en-US"); }
 function dstr(iso){ if(!iso) return ""; var d=new Date(iso); if(isNaN(d)) return ""; return ("0"+d.getDate()).slice(-2)+"/"+("0"+(d.getMonth()+1)).slice(-2)+"/"+d.getFullYear(); }
-
-function api(path, opt){
-  return fetch(API+path, opt).then(function(r){
+function api(path,opt){
+  return fetch(API+path,opt).then(function(r){
     return r.json().catch(function(){return {};}).then(function(j){ if(!r.ok) throw new Error(j.message||j.error||("HTTP "+r.status)); return j; });
   });
 }
+function isActive(){ return data && ["active","trialing","past_due"].indexOf(String(data.status||"").toLowerCase())>=0 && data.currentPlan; }
+function effPlan(){ return isActive() ? data.currentPlan : "ubuntu"; }
+function byKey(k){ if(!data) return null; for(var i=0;i<data.plans.length;i++) if(data.plans[i].key===k) return data.plans[i]; return null; }
+function priceOf(p){ return cycle==="yearly" ? p.priceYearly : p.priceMonthly; }
+function chargeOf(p){ return cycle==="yearly" ? p.chargeYearly : p.chargeMonthly; }
 
+/* ---------------- phone / network ---------------- */
+function digits(s){ var d=String(s||"").replace(/\D/g,""); if(d.indexOf("250")===0) d=d.slice(3); if(d.charAt(0)==="0") d=d.slice(1); return d; }
+function netOf(d){ var p=d.slice(0,2); return (p==="78"||p==="79")?"mtn":(p==="72"||p==="73")?"airtel":null; }
+function netName(n){ return n==="mtn"?"MTN":"Airtel"; }
+
+/* ---------------- render ---------------- */
 function langBar(){
   var h=""; ["en","rw","fr"].forEach(function(c){ h+='<button class="'+(c===lang?"on":"")+'" data-l="'+c+'">'+c.toUpperCase()+'</button>'; });
   var el=document.getElementById("langs"); el.innerHTML=h;
   el.onclick=function(e){ var c=e.target.getAttribute&&e.target.getAttribute("data-l"); if(c){ lang=c; try{localStorage.setItem("trackly_pay_lang",c);}catch(x){} document.documentElement.lang=c; render(); } };
   document.getElementById("foot").innerHTML=esc(t("help")).replace("contact.ivanexo@gmail.com",'<a href="mailto:contact.ivanexo@gmail.com">contact.ivanexo@gmail.com</a>');
 }
+function planName(k){ return (byKey(k)&&byKey(k).name) || (PLANS[k]&&PLANS[k].name) || k; }
 
-function current(){ if(!data) return null; for(var i=0;i<data.plans.length;i++) if(data.plans[i].key===plan) return data.plans[i]; return null; }
-function priceOf(p){ return cycle==="yearly" ? p.priceYearly : p.priceMonthly; }
-function chargeOf(p){ return cycle==="yearly" ? p.chargeYearly : p.chargeMonthly; }
+function planCard(k){
+  var P=PLANS[k], srv=byKey(k), isFree=(k==="ubuntu");
+  if(!isFree && !srv) return "";
+  var pr=isFree?0:priceOf(srv); if(!isFree && pr<=0) return "";
+  var open=(openKey===k), selected=(!isFree && plan===k), cur=(effPlan()===k);
+  var cls="plan "+(isFree?"ubuntu ":"")+(open?"open ":"")+(selected?"sel ":"")+(P.popular?"hasrib":"");
+  var h='<div class="'+cls+'" style="--c:'+COLOR[k]+'" role="'+(isFree?"group":"radio")+'" '+(isFree?"":'aria-checked="'+selected+'" ')+'tabindex="0" data-p="'+k+'">';
+  if(P.popular) h+='<div class="ribbon">'+esc(tt(P.popular))+'</div>';
+  h+='<div class="ph"><div class="em">'+svg(k)+'</div><div class="pm"><div class="pn"><b>'+esc(planName(k))+'</b><span class="pill">'+esc(tt(P.badge))+'</span></div><div class="pt">'+esc(tt(P.tagline))+'</div></div>';
+  h+='<div class="pp">'+(isFree?'<b class="free">'+t("free")+'</b><span>&nbsp;</span>':'<b>'+fmt(pr)+' <small style="font-size:12px;font-weight:700">RWF</small></b><span>'+(cycle==="yearly"?t("perYear"):t("perMonth"))+'</span>')+'</div></div>';
+  h+='<div class="pf">';
+  if(cur) h+='<span class="chip" style="color:'+COLOR[k]+';background:color-mix(in srgb,'+COLOR[k]+' 12%,#fff);margin-top:12px"><i></i>'+t("yourPlan")+'</span> ';
+  if(!isFree && cycle==="yearly" && srv.priceMonthly*12>srv.priceYearly) h+='<span class="sv">'+t("save",{a:fmt(srv.priceMonthly*12-srv.priceYearly)})+'</span>';
+  h+='<ul class="ft">';
+  P.features.forEach(function(f){ h+='<li class="'+(f[1]?"":"off")+'"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true">'+IC[f[1]?"check":"x"]+'</svg></span><span>'+esc(tt(f[0]))+'</span></li>'; });
+  h+='</ul>';
+  if(isFree) h+='<div class="pfnote">'+t("freeNote")+'</div>';
+  else h+='<div class="tap">'+(selected?t("selected"):t("tapSel"))+'</div>';
+  h+='</div></div>';
+  return h;
+}
+
+function netTile(n){
+  var logo = n==="mtn" ? "logos/mtn.png" : "logos/airtel.png";
+  var mk = n==="mtn" ? "MTN MoMo" : "airtel money";
+  return '<div class="net '+n+(net===n?" on":"")+'" role="radio" aria-checked="'+(net===n)+'" tabindex="0" data-n="'+n+'">'+
+    '<span class="ck"><svg viewBox="0 0 24 24" aria-hidden="true">'+IC.check+'</svg></span>'+
+    '<div class="lgw"><img src="'+logo+'" alt="" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'flex\'"><span class="wmk">'+mk+'</span></div>'+
+    '<div class="nl">'+t(n)+'</div></div>';
+}
+
+function payPanel(){
+  var cur=byKey(plan); if(!cur) return "";
+  var pr=priceOf(cur), ch=chargeOf(cur), fee=ch-pr;
+  var h='<div class="pay" id="paybox" style="--c:'+COLOR[plan]+'"><h2>'+t("payWith")+'</h2><div class="nets">'+netTile("mtn")+netTile("airtel")+'</div>';
+  h+='<label class="f" for="ph">'+t("phone")+'</label><div class="phw"><span class="cc"><svg viewBox="0 0 3 2" aria-hidden="true"><rect width="3" height="1" fill="#00A1DE"/><rect y="1" width="3" height=".5" fill="#FAD201"/><rect y="1.5" width="3" height=".5" fill="#20603D"/><circle cx="2.4" cy=".4" r=".17" fill="#FAD201"/></svg>+250</span><input id="ph" type="tel" inputmode="tel" autocomplete="tel" placeholder="78X XXX XXX"></div><div class="hint">'+t("phoneHint")+'</div>';
+  h+='<div class="sum"><div><span>'+t("sPlan")+'</span><b>'+esc(planName(plan))+' · '+(cycle==="yearly"?t("yearly"):t("monthly"))+'</b></div><div><span>'+t("sPrice")+'</span><b>'+fmt(pr)+' RWF</b></div>';
+  if(fee>0) h+='<div><span>'+t("sFee")+'</span><b>'+fmt(fee)+' RWF</b></div>';
+  h+='<div class="tot"><span>'+t("sTotal")+'</span><span>'+fmt(ch)+' RWF</span></div></div>';
+  h+='<div class="err" id="err" role="alert">'+esc(errMsg)+'</div><button class="btn" id="go" style="background:'+COLOR[plan]+'">'+t("pay",{a:fmt(ch)})+'</button>';
+  h+='<div class="secure"><svg viewBox="0 0 24 24" aria-hidden="true">'+IC.lock+'</svg>'+t("secure")+'</div></div>';
+  return h;
+}
 
 function render(){
   langBar();
   var app=document.getElementById("app"), h="";
-  if(view==="load"){ app.innerHTML='<div class="center"><div class="spin"></div><div class="muted">'+t("loading")+'</div></div>'; return; }
-  if(view==="error"){ var em=(serverMsg.indexOf("invalid or has expired")>=0)?t("badLink"):serverMsg; app.innerHTML='<div class="card center"><div class="cross">!</div><div>'+esc(em)+'</div></div>'; return; }
+  if(view==="load"){ app.innerHTML='<div class="card center"><div class="spin"></div><div class="muted">'+t("loading")+'</div></div>'; return; }
+  if(view==="error"){ var em=(serverMsg.indexOf("invalid or has expired")>=0)?t("badLink"):serverMsg; app.innerHTML='<div class="card center"><div class="cross"><svg viewBox="0 0 24 24">'+IC.x+'</svg></div><div>'+esc(em)+'</div></div>'; return; }
   if(view==="wait"){ app.innerHTML='<div class="card center"><div class="spin"></div><h1>'+t("waitTitle")+'</h1><p class="muted">'+t("wait")+'</p></div>'; return; }
-  if(view==="ok"){ app.innerHTML='<div class="card center"><div class="tick">&#10003;</div><h1>'+t("okTitle")+'</h1><p>'+esc(t("ok",{p:result.planName,d:dstr(result.paidUntil)}))+'</p></div>'; return; }
+  if(view==="ok"){
+    var k=plan||"ibanze";
+    app.innerHTML='<div class="card center"><div class="tick"><svg viewBox="0 0 24 24">'+IC.check+'</svg></div><h1>'+t("okTitle")+'</h1><div class="okplan" style="background:'+COLOR[k]+'">'+esc(result&&result.planName?result.planName:planName(k))+'</div><p>'+esc(t("ok",{d:dstr(result&&result.paidUntil)}))+'</p></div>'; return;
+  }
   if(view==="fail"||view==="late"){
-    app.innerHTML='<div class="card center"><div class="cross">!</div><h1>'+t("failTitle")+'</h1><p class="muted">'+t(view==="late"?"late":"fail")+'</p><button class="btn" id="retry">'+t("retry")+'</button></div>';
+    app.innerHTML='<div class="card center"><div class="cross"><svg viewBox="0 0 24 24">'+IC.x+'</svg></div><h1>'+t("failTitle")+'</h1><p class="muted">'+t(view==="late"?"late":"fail")+'</p><button class="btn" id="retry">'+t("retry")+'</button></div>';
     document.getElementById("retry").onclick=function(){ view="form"; errMsg=""; render(); }; return;
   }
   // form
-  var cur=current(), hasYear=data.plans.some(function(p){return p.priceYearly>0;});
-  h+='<div class="card"><h1>'+t("hello")+(data.ownerName?", "+esc(data.ownerName):"")+'</h1><div class="muted">'+t("forBiz")+" <b>"+esc(data.businessName)+'</b></div></div>';
-  if(data.status==="active" && data.paidUntil && new Date(data.paidUntil)>new Date()) h+='<div class="note">'+esc(t("active",{d:dstr(data.paidUntil)}))+'</div>';
+  var ek=effPlan(), name=data.ownerName||"";
+  h+='<div class="hi"><div class="av">'+esc((name||data.businessName||"T").charAt(0).toUpperCase())+'</div><div class="tx"><h1>'+t("hello")+(name?", "+esc(name):"")+'</h1><div class="bz">'+esc(data.businessName)+'</div></div>'+
+     '<span class="chip" style="color:'+COLOR[ek]+';background:color-mix(in srgb,'+COLOR[ek]+' 12%,#fff);border-color:color-mix(in srgb,'+COLOR[ek]+' 30%,#fff)"><i></i>'+esc(planName(ek))+'</span></div>';
+  if(isActive() && data.paidUntil && new Date(data.paidUntil)>new Date()) h+='<div class="note">'+esc(t("active",{d:dstr(data.paidUntil)}))+'</div>';
   if(!data.plans.length){ app.innerHTML=h+'<div class="card">'+t("noPlans")+'</div>'; return; }
-  h+='<div class="card"><h2>'+t("choose")+'</h2>';
-  if(hasYear) h+='<div class="seg"><button data-c="monthly" class="'+(cycle==="monthly"?"on":"")+'">'+t("monthly")+'</button><button data-c="yearly" class="'+(cycle==="yearly"?"on":"")+'">'+t("yearly")+'</button></div>';
-  data.plans.forEach(function(p){
-    var pr=priceOf(p); if(pr<=0) return;
-    var ch=chargeOf(p);
-    h+='<label class="plan '+(p.key===plan?"on":"")+'" data-p="'+p.key+'"><input type="radio" name="p"><div class="row"><span class="nm">'+esc(p.name)+'</span><span class="pr">'+fmt(pr)+" RWF <small>"+(cycle==="yearly"?t("perYear"):t("perMonth"))+'</small></span></div>';
-    if(ch>pr) h+='<div class="sub">'+t("total")+": "+fmt(ch)+" RWF ("+t("fee",{f:fmt(ch-pr)})+")</div>";
-    h+='</label>';
-  });
-  h+='<label class="f" for="ph">'+t("phone")+'</label><input id="ph" type="tel" inputmode="tel" autocomplete="tel" placeholder="07XX XXX XXX"><div class="muted" style="margin-top:6px">'+t("phoneHint")+'</div>';
-  var amt=cur?chargeOf(cur):0;
-  h+='<div class="err" id="err">'+esc(errMsg)+'</div><button class="btn" id="go">'+t("pay",{a:fmt(amt)})+'</button></div>';
+  var hasYear=data.plans.some(function(p){return p.priceYearly>0;});
+  h+='<div class="sec">'+t("choose")+'<small>'+t("chooseSub")+'</small></div>';
+  if(hasYear) h+='<div class="seg" role="tablist"><button data-c="monthly" class="'+(cycle==="monthly"?"on":"")+'">'+t("monthly")+'</button><button data-c="yearly" class="'+(cycle==="yearly"?"on":"")+'">'+t("yearly")+'</button></div>';
+  ORDER.forEach(function(k){ h+=planCard(k); });
+  h+=payPanel();
   app.innerHTML=h;
-  var saved=window._phone||""; document.getElementById("ph").value=saved;
-  document.getElementById("ph").oninput=function(){ window._phone=this.value; };
+
+  var ph=document.getElementById("ph");
+  if(ph){ ph.value=phone; ph.oninput=function(){ phone=this.value; var n=netOf(digits(phone)); if(n&&n!==net){ net=n; syncNets(); } errMsg=""; var e=document.getElementById("err"); if(e) e.textContent=""; }; }
   app.onclick=function(e){
     var el=e.target; while(el&&el!==app){
-      if(el.getAttribute&&el.getAttribute("data-p")){ plan=el.getAttribute("data-p"); render(); return; }
-      if(el.getAttribute&&el.getAttribute("data-c")){ cycle=el.getAttribute("data-c"); render(); return; }
+      var a=el.getAttribute&&el.getAttribute.bind(el);
+      if(a&&a("data-n")){ net=a("data-n"); syncNets(); return; }
+      if(a&&a("data-p")){ pick(a("data-p")); return; }
+      if(a&&a("data-c")){ cycle=a("data-c"); render(); return; }
       el=el.parentNode;
     }
   };
-  document.getElementById("go").onclick=start;
+  app.onkeydown=function(e){ if(e.key!=="Enter"&&e.key!==" ") return; var el=e.target; if(el&&el.getAttribute){ var n=el.getAttribute("data-n"), p=el.getAttribute("data-p"); if(n||p){ e.preventDefault(); if(n){net=n;syncNets();} else pick(p); } } };
+  var go=document.getElementById("go"); if(go) go.onclick=start;
+}
+function syncNets(){ var els=document.querySelectorAll(".net"); for(var i=0;i<els.length;i++){ var on=els[i].getAttribute("data-n")===net; els[i].className="net "+els[i].getAttribute("data-n")+(on?" on":""); els[i].setAttribute("aria-checked",on); } }
+function pick(k){
+  if(k==="ubuntu"){ openKey=(openKey==="ubuntu")?null:"ubuntu"; }
+  else { if(plan===k && openKey===k){ openKey=null; } else { plan=k; openKey=k; } }
+  var keep=phone; render(); phone=keep;
+  if(k!=="ubuntu"){ var pb=document.getElementById("paybox"); if(pb&&pb.scrollIntoView){ try{ pb.scrollIntoView({behavior:"smooth",block:"nearest"}); }catch(e){} } }
 }
 
 function start(){
-  var ph=(document.getElementById("ph").value||"").replace(/[^0-9+]/g,"");
-  var d=ph.replace(/\D/g,"");
-  if(!(/^(0|250)?7[2389]\d{7}$/.test(d))){ errMsg=t("badPhone"); render(); return; }
+  var d=digits(phone), n=netOf(d);
+  if(!/^7[2389]\d{7}$/.test(d)){ return fail(t("badPhone")); }
+  if(!net){ net=n; syncNets(); }
+  if(net!==n){ return fail(t("wrongNet",{n:netName(net)})); }
   var btn=document.getElementById("go"); btn.disabled=true; errMsg="";
-  api("/start",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({t:token,phone:ph,planKey:plan,billingCycle:cycle})})
+  api("/start",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({t:token,phone:"0"+d,planKey:plan,billingCycle:cycle})})
    .then(function(r){ payRef=r.ref; view="wait"; render(); waitFor(Date.now()); })
-   .catch(function(e){ errMsg=(e&&e.message&&e.message.indexOf("HTTP")!==0)?e.message:t("net"); view="form"; render(); });
+   .catch(function(e){ errMsg=(e&&e.message&&e.message.indexOf("HTTP")!==0)?e.message:t("net"); var keep=phone; view="form"; render(); phone=keep; });
 }
+function fail(m){ errMsg=m; var e=document.getElementById("err"); if(e) e.textContent=m; }
 
 function waitFor(t0){
   clearTimeout(poll);
@@ -202,8 +431,10 @@ function init(){
   render();
   if(!token){ serverMsg="This link is invalid or has expired. Please open the newest message we sent you."; view="error"; render(); return; }
   api("/info?t="+encodeURIComponent(token)).then(function(r){
-    data=r; plan=r.currentPlan||"iterambere";
-    if(!r.plans.some(function(p){return p.key===plan;})) plan=r.plans.length?r.plans[0].key:null;
+    data=r;
+    var cp=isActive()?r.currentPlan:null;
+    plan=(cp&&byKey(cp))?cp:(byKey("iterambere")?"iterambere":(r.plans.length?r.plans[0].key:null));
+    openKey=plan;
     view="form"; render();
   }).catch(function(e){ serverMsg=(e&&e.message&&e.message.indexOf("HTTP")!==0)?e.message:t("net"); view="error"; render(); });
 }
