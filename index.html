@@ -5,12 +5,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex">
 <title>Trackly</title>
+<link rel="icon" href="logo.png">
+<meta name="theme-color" content="#1B2A5A">
 <style>
   :root{--navy:#1B2A5A;--teal:#1DAA8A;--bg:#f4f6fb;--card:#fff;--line:#e3e7f0;--muted:#6b7490;--bad:#c0392b}
   *{box-sizing:border-box}
   body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--navy)}
   header{background:var(--navy);color:#fff;padding:14px 16px;display:flex;align-items:center;justify-content:space-between}
-  header b{font-size:20px;letter-spacing:.3px}
+  .brand{display:flex;align-items:center;gap:11px;min-width:0}
+  .brand img{width:42px;height:42px;border-radius:10px;flex:none;background:#fff}
+  .brand .wm{font-size:23px;font-weight:800;letter-spacing:-.6px;line-height:1}
+  .brand .wm i{font-style:normal;color:var(--teal)}
+  .brand .tg{font-size:11px;color:#ffffffb3;margin-top:4px;letter-spacing:.2px;line-height:1.2}
   .langs button{background:transparent;border:1px solid #ffffff55;color:#fff;border-radius:6px;padding:4px 9px;margin-left:6px;font-size:13px;cursor:pointer}
   .langs button.on{background:var(--teal);border-color:var(--teal)}
   main{max-width:520px;margin:0 auto;padding:16px}
@@ -46,7 +52,7 @@
 </style>
 </head>
 <body>
-<header><b>Trackly</b><div class="langs" id="langs"></div></header>
+<header><div class="brand"><img src="logo.png" alt="Trackly" width="42" height="42"><div><div class="wm">Track<i>ly</i></div><div class="tg">The operating system for your business</div></div></div><div class="langs" id="langs"></div></header>
 <main id="app"></main>
 <footer id="foot"></footer>
 
@@ -64,7 +70,7 @@ var L = {
   okTitle:"Payment received!",ok:"Your {p} plan is active until {d}. You can go back to the Trackly app now.",
   failTitle:"Payment not completed",fail:"The payment was not completed. You have not been charged unless you approved it.",
   late:"We have not received the payment yet. If you approved it, it will show here shortly. Otherwise try again.",
-  retry:"Try again",loading:"Loading...",help:"Need help? support@trackly.rw",
+  retry:"Try again",loading:"Loading...",help:"Need help? contact.ivanexo@gmail.com",
   badPhone:"Enter a valid MTN or Airtel number, for example 0788123456.",net:"Connection problem. Please try again.",
   noPlans:"No plans are available right now."},
  rw:{choose:"Hitamo gahunda yawe",hello:"Muraho",forBiz:"Konti:",monthly:"Buri kwezi",yearly:"Buri mwaka",perMonth:"ku kwezi",perYear:"ku mwaka",
@@ -75,7 +81,7 @@ var L = {
   okTitle:"Ubwishyu bwakiriwe!",ok:"Gahunda yawe ya {p} ikora kugeza ku wa {d}. Ushobora gusubira muri porogaramu ya Trackly.",
   failTitle:"Ubwishyu ntibwarangiye",fail:"Ubwishyu ntibwarangiye. Nta mafaranga yakuweho keretse niba warabwemeje.",
   late:"Ntituramenya ko ubwishyu bwakiriwe. Niba warabwemeje, buraza kugaragara vuba. Niba atari ko, ongera ugerageze.",
-  retry:"Ongera ugerageze",loading:"Birimo gufunguka...",help:"Ukeneye ubufasha? support@trackly.rw",
+  retry:"Ongera ugerageze",loading:"Birimo gufunguka...",help:"Ukeneye ubufasha? contact.ivanexo@gmail.com",
   badPhone:"Andika nimero nziza ya MTN cyangwa Airtel, urugero 0788123456.",net:"Ikibazo cy'umurongo. Ongera ugerageze.",
   noPlans:"Nta gahunda zihari ubu."},
  fr:{choose:"Choisissez votre plan",hello:"Bonjour",forBiz:"Compte :",monthly:"Mensuel",yearly:"Annuel",perMonth:"/ mois",perYear:"/ an",
@@ -86,7 +92,7 @@ var L = {
   okTitle:"Paiement reçu !",ok:"Votre plan {p} est actif jusqu'au {d}. Vous pouvez retourner dans l'application Trackly.",
   failTitle:"Paiement non abouti",fail:"Le paiement n'a pas abouti. Vous n'êtes pas débité sauf si vous l'avez validé.",
   late:"Nous n'avons pas encore reçu le paiement. Si vous l'avez validé, il apparaîtra bientôt. Sinon, réessayez.",
-  retry:"Réessayer",loading:"Chargement...",help:"Besoin d'aide ? support@trackly.rw",
+  retry:"Réessayer",loading:"Chargement...",help:"Besoin d'aide ? contact.ivanexo@gmail.com",
   badPhone:"Saisissez un numéro MTN ou Airtel valide, par exemple 0788123456.",net:"Problème de connexion. Réessayez.",
   noPlans:"Aucun plan disponible pour le moment."}
 };
