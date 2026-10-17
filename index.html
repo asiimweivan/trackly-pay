@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Trackly</title>
+<style>
+  :root{--navy:#1B2A5A;--teal:#1DAA8A;--bg:#f4f6fb;--card:#fff;--line:#e3e7f0;--muted:#6b7490;--bad:#c0392b}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--navy)}
+  header{background:var(--navy);color:#fff;padding:14px 16px;display:flex;align-items:center;justify-content:space-between}
+  header b{font-size:20px;letter-spacing:.3px}
+  .langs button{background:transparent;border:1px solid #ffffff55;color:#fff;border-radius:6px;padding:4px 9px;margin-left:6px;font-size:13px;cursor:pointer}
+  .langs button.on{background:var(--teal);border-color:var(--teal)}
+  main{max-width:520px;margin:0 auto;padding:16px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin-bottom:14px}
+  h1{font-size:20px;margin:0 0 4px}
+  h2{font-size:15px;margin:0 0 10px}
+  .muted{color:var(--muted);font-size:14px}
+  .note{background:#e8f7f2;border:1px solid #bfe9dd;border-radius:8px;padding:10px 12px;font-size:14px;margin-bottom:12px}
+  .seg{display:flex;background:#eef1f8;border-radius:10px;padding:3px;margin-bottom:12px}
+  .seg button{flex:1;border:0;background:transparent;padding:9px;border-radius:8px;font-size:14px;color:var(--navy);cursor:pointer}
+  .seg button.on{background:#fff;font-weight:700;box-shadow:0 1px 3px #0001}
+  .plan{display:block;border:2px solid var(--line);border-radius:10px;padding:12px;margin-bottom:10px;cursor:pointer}
+  .plan.on{border-color:var(--teal);background:#f3fbf8}
+  .plan input{display:none}
+  .plan .row{display:flex;justify-content:space-between;align-items:baseline}
+  .plan .nm{font-weight:700;font-size:16px}
+  .plan .pr{font-weight:700;font-size:16px}
+  .plan .sub{font-size:13px;color:var(--muted);margin-top:4px}
+  label.f{display:block;font-size:14px;font-weight:600;margin:6px 0}
+  input[type=tel]{width:100%;font-size:18px;padding:12px;border:2px solid var(--line);border-radius:10px;color:var(--navy)}
+  input[type=tel]:focus{outline:none;border-color:var(--teal)}
+  .btn{width:100%;border:0;background:var(--teal);color:#fff;font-size:17px;font-weight:700;padding:14px;border-radius:10px;margin-top:14px;cursor:pointer}
+  .btn:disabled{opacity:.55}
+  .btn.alt{background:#fff;color:var(--navy);border:2px solid var(--line)}
+  .err{color:var(--bad);font-size:14px;margin-top:10px;min-height:18px}
+  .center{text-align:center;padding:26px 8px}
+  .spin{width:46px;height:46px;border:5px solid #dfe5f1;border-top-color:var(--teal);border-radius:50%;animation:s 1s linear infinite;margin:0 auto 16px}
+  @keyframes s{to{transform:rotate(360deg)}}
+  .tick{width:60px;height:60px;border-radius:50%;background:var(--teal);color:#fff;font-size:34px;line-height:60px;margin:0 auto 14px}
+  .cross{width:60px;height:60px;border-radius:50%;background:var(--bad);color:#fff;font-size:34px;line-height:60px;margin:0 auto 14px}
+  footer{text-align:center;color:var(--muted);font-size:13px;padding:6px 16px 28px}
+  .hide{display:none}
+</style>
+</head>
+<body>
+<header><b>Trackly</b><div class="langs" id="langs"></div></header>
+<main id="app"></main>
+<footer id="foot"></footer>
+
+<script>
+// ===== set this to your backend address =====
+var API = "https://trackly-backend-1.onrender.com/api/v1/pay";
+// ============================================
+
+var L = {
+ en:{choose:"Choose your plan",hello:"Hello",forBiz:"Account:",monthly:"Monthly",yearly:"Yearly",perMonth:"/ month",perYear:"/ year",
+  phone:"Mobile money number (MTN or Airtel)",phoneHint:"For example 0788123456. The payment request is sent to this phone.",
+  pay:"Pay {a} RWF",total:"Total to pay",fee:"includes {f} RWF mobile money fee",
+  active:"Your plan is active until {d}. You can renew early below.",
+  waitTitle:"Approve on your phone",wait:"Check your phone and approve the payment with your PIN. This page updates by itself.",
+  okTitle:"Payment received!",ok:"Your {p} plan is active until {d}. You can go back to the Trackly app now.",
+  failTitle:"Payment not completed",fail:"The payment was not completed. You have not been charged unless you approved it.",
+  late:"We have not received the payment yet. If you approved it, it will show here shortly. Otherwise try again.",
+  retry:"Try again",loading:"Loading...",help:"Need help? support@trackly.rw",
+  badPhone:"Enter a valid MTN or Airtel number, for example 0788123456.",net:"Connection problem. Please try again.",
+  noPlans:"No plans are available right now."},
+ rw:{choose:"Hitamo gahunda yawe",hello:"Muraho",forBiz:"Konti:",monthly:"Buri kwezi",yearly:"Buri mwaka",perMonth:"ku kwezi",perYear:"ku mwaka",
+  phone:"Nimero ya Mobile Money (MTN cyangwa Airtel)",phoneHint:"Urugero 0788123456. Ubusabe bw'ubwishyu buzoherezwa kuri iyi telefone.",
+  pay:"Ishyura {a} RWF",total:"Amafaranga yose wishyura",fee:"harimo {f} RWF y'amafaranga ya mobile money",
+  active:"Gahunda yawe ikora kugeza ku wa {d}. Ushobora kuyongera hakiri kare hano hepfo.",
+  waitTitle:"Emeza kuri telefone yawe",wait:"Reba kuri telefone yawe wemeze ubwishyu ukoresheje PIN yawe. Uru rupapuro ruhita ruhinduka rwonyine.",
+  okTitle:"Ubwishyu bwakiriwe!",ok:"Gahunda yawe ya {p} ikora kugeza ku wa {d}. Ushobora gusubira muri porogaramu ya Trackly.",
+  failTitle:"Ubwishyu ntibwarangiye",fail:"Ubwishyu ntibwarangiye. Nta mafaranga yakuweho keretse niba warabwemeje.",
+  late:"Ntituramenya ko ubwishyu bwakiriwe. Niba warabwemeje, buraza kugaragara vuba. Niba atari ko, ongera ugerageze.",
+  retry:"Ongera ugerageze",loading:"Birimo gufunguka...",help:"Ukeneye ubufasha? support@trackly.rw",
+  badPhone:"Andika nimero nziza ya MTN cyangwa Airtel, urugero 0788123456.",net:"Ikibazo cy'umurongo. Ongera ugerageze.",
+  noPlans:"Nta gahunda zihari ubu."},
+ fr:{choose:"Choisissez votre plan",hello:"Bonjour",forBiz:"Compte :",monthly:"Mensuel",yearly:"Annuel",perMonth:"/ mois",perYear:"/ an",
+  phone:"Numéro Mobile Money (MTN ou Airtel)",phoneHint:"Par exemple 0788123456. La demande de paiement est envoyée à ce téléphone.",
+  pay:"Payer {a} RWF",total:"Total à payer",fee:"dont {f} RWF de frais Mobile Money",
+  active:"Votre plan est actif jusqu'au {d}. Vous pouvez renouveler en avance ci-dessous.",
+  waitTitle:"Validez sur votre téléphone",wait:"Vérifiez votre téléphone et validez le paiement avec votre code PIN. Cette page se met à jour toute seule.",
+  okTitle:"Paiement reçu !",ok:"Votre plan {p} est actif jusqu'au {d}. Vous pouvez retourner dans l'application Trackly.",
+  failTitle:"Paiement non abouti",fail:"Le paiement n'a pas abouti. Vous n'êtes pas débité sauf si vous l'avez validé.",
+  late:"Nous n'avons pas encore reçu le paiement. Si vous l'avez validé, il apparaîtra bientôt. Sinon, réessayez.",
+  retry:"Réessayer",loading:"Chargement...",help:"Besoin d'aide ? support@trackly.rw",
+  badPhone:"Saisissez un numéro MTN ou Airtel valide, par exemple 0788123456.",net:"Problème de connexion. Réessayez.",
+  noPlans:"Aucun plan disponible pour le moment."}
+};
+
+var lang = "en";
+try { var nl=(navigator.language||"en").toLowerCase(); if(nl.indexOf("fr")===0) lang="fr"; else if(nl.indexOf("rw")===0) lang="rw";
+      var saved=localStorage.getItem("trackly_pay_lang"); if(saved&&L[saved]) lang=saved; } catch(e){}
+
+var token = new URLSearchParams(location.search).get("t") || "";
+var data = null, plan = null, cycle = "monthly", view = "load", payRef = null, serverMsg = "", poll = null, result = null, errMsg = "";
+
+function t(k, r){ var s=(L[lang][k]||k); if(r) for(var x in r) s=s.split("{"+x+"}").join(r[x]); return s; }
+function esc(s){ return String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
+function fmt(n){ return Number(n).toLocaleString("en-US"); }
+function dstr(iso){ if(!iso) return ""; var d=new Date(iso); if(isNaN(d)) return ""; return ("0"+d.getDate()).slice(-2)+"/"+("0"+(d.getMonth()+1)).slice(-2)+"/"+d.getFullYear(); }
+
+function api(path, opt){
+  return fetch(API+path, opt).then(function(r){
+    return r.json().catch(function(){return {};}).then(function(j){ if(!r.ok) throw new Error(j.message||j.error||("HTTP "+r.status)); return j; });
+  });
+}
+
+function langBar(){
+  var h=""; ["en","rw","fr"].forEach(function(c){ h+='<button class="'+(c===lang?"on":"")+'" data-l="'+c+'">'+c.toUpperCase()+'</button>'; });
+  var el=document.getElementById("langs"); el.innerHTML=h;
+  el.onclick=function(e){ var c=e.target.getAttribute&&e.target.getAttribute("data-l"); if(c){ lang=c; try{localStorage.setItem("trackly_pay_lang",c);}catch(x){} document.documentElement.lang=c; render(); } };
+  document.getElementById("foot").textContent=t("help");
+}
+
+function current(){ if(!data) return null; for(var i=0;i<data.plans.length;i++) if(data.plans[i].key===plan) return data.plans[i]; return null; }
+function priceOf(p){ return cycle==="yearly" ? p.priceYearly : p.priceMonthly; }
+function chargeOf(p){ return cycle==="yearly" ? p.chargeYearly : p.chargeMonthly; }
+
+function render(){
+  langBar();
+  var app=document.getElementById("app"), h="";
+  if(view==="load"){ app.innerHTML='<div class="center"><div class="spin"></div><div class="muted">'+t("loading")+'</div></div>'; return; }
+  if(view==="error"){ app.innerHTML='<div class="card center"><div class="cross">!</div><div>'+esc(serverMsg)+'</div></div>'; return; }
+  if(view==="wait"){ app.innerHTML='<div class="card center"><div class="spin"></div><h1>'+t("waitTitle")+'</h1><p class="muted">'+t("wait")+'</p></div>'; return; }
+  if(view==="ok"){ app.innerHTML='<div class="card center"><div class="tick">&#10003;</div><h1>'+t("okTitle")+'</h1><p>'+esc(t("ok",{p:result.planName,d:dstr(result.paidUntil)}))+'</p></div>'; return; }
+  if(view==="fail"||view==="late"){
+    app.innerHTML='<div class="card center"><div class="cross">!</div><h1>'+t("failTitle")+'</h1><p class="muted">'+t(view==="late"?"late":"fail")+'</p><button class="btn" id="retry">'+t("retry")+'</button></div>';
+    document.getElementById("retry").onclick=function(){ view="form"; errMsg=""; render(); }; return;
+  }
+  // form
+  var cur=current(), hasYear=data.plans.some(function(p){return p.priceYearly>0;});
+  h+='<div class="card"><h1>'+t("hello")+(data.ownerName?", "+esc(data.ownerName):"")+'</h1><div class="muted">'+t("forBiz")+" <b>"+esc(data.businessName)+'</b></div></div>';
+  if(data.status==="active" && data.paidUntil && new Date(data.paidUntil)>new Date()) h+='<div class="note">'+esc(t("active",{d:dstr(data.paidUntil)}))+'</div>';
+  if(!data.plans.length){ app.innerHTML=h+'<div class="card">'+t("noPlans")+'</div>'; return; }
+  h+='<div class="card"><h2>'+t("choose")+'</h2>';
+  if(hasYear) h+='<div class="seg"><button data-c="monthly" class="'+(cycle==="monthly"?"on":"")+'">'+t("monthly")+'</button><button data-c="yearly" class="'+(cycle==="yearly"?"on":"")+'">'+t("yearly")+'</button></div>';
+  data.plans.forEach(function(p){
+    var pr=priceOf(p); if(pr<=0) return;
+    var ch=chargeOf(p);
+    h+='<label class="plan '+(p.key===plan?"on":"")+'" data-p="'+p.key+'"><input type="radio" name="p"><div class="row"><span class="nm">'+esc(p.name)+'</span><span class="pr">'+fmt(pr)+" RWF <small>"+(cycle==="yearly"?t("perYear"):t("perMonth"))+'</small></span></div>';
+    if(ch>pr) h+='<div class="sub">'+t("total")+": "+fmt(ch)+" RWF ("+t("fee",{f:fmt(ch-pr)})+")</div>";
+    h+='</label>';
+  });
+  h+='<label class="f" for="ph">'+t("phone")+'</label><input id="ph" type="tel" inputmode="tel" autocomplete="tel" placeholder="07XX XXX XXX"><div class="muted" style="margin-top:6px">'+t("phoneHint")+'</div>';
+  var amt=cur?chargeOf(cur):0;
+  h+='<div class="err" id="err">'+esc(errMsg)+'</div><button class="btn" id="go">'+t("pay",{a:fmt(amt)})+'</button></div>';
+  app.innerHTML=h;
+  var saved=window._phone||""; document.getElementById("ph").value=saved;
+  document.getElementById("ph").oninput=function(){ window._phone=this.value; };
+  app.onclick=function(e){
+    var el=e.target; while(el&&el!==app){
+      if(el.getAttribute&&el.getAttribute("data-p")){ plan=el.getAttribute("data-p"); render(); return; }
+      if(el.getAttribute&&el.getAttribute("data-c")){ cycle=el.getAttribute("data-c"); render(); return; }
+      el=el.parentNode;
+    }
+  };
+  document.getElementById("go").onclick=start;
+}
+
+function start(){
+  var ph=(document.getElementById("ph").value||"").replace(/[^0-9+]/g,"");
+  var d=ph.replace(/\D/g,"");
+  if(!(/^(0|250)?7[2389]\d{7}$/.test(d))){ errMsg=t("badPhone"); render(); return; }
+  var btn=document.getElementById("go"); btn.disabled=true; errMsg="";
+  api("/start",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({t:token,phone:ph,planKey:plan,billingCycle:cycle})})
+   .then(function(r){ payRef=r.ref; view="wait"; render(); waitFor(Date.now()); })
+   .catch(function(e){ errMsg=(e&&e.message&&e.message.indexOf("HTTP")!==0)?e.message:t("net"); view="form"; render(); });
+}
+
+function waitFor(t0){
+  clearTimeout(poll);
+  poll=setTimeout(function(){
+    api("/status?t="+encodeURIComponent(token)+"&ref="+encodeURIComponent(payRef))
+     .then(function(r){
+        if(r.status==="paid"){ result=r; view="ok"; render(); return; }
+        if(r.status==="failed"){ view="fail"; render(); return; }
+        if(Date.now()-t0>180000){ view="late"; render(); return; }
+        waitFor(t0);
+     })
+     .catch(function(){ if(Date.now()-t0>180000){ view="late"; render(); } else waitFor(t0); });
+  },3000);
+}
+
+function init(){
+  render();
+  if(!token){ serverMsg="This link is invalid or has expired. Please open the newest message we sent you."; view="error"; render(); return; }
+  api("/info?t="+encodeURIComponent(token)).then(function(r){
+    data=r; plan=r.currentPlan||"iterambere";
+    if(!r.plans.some(function(p){return p.key===plan;})) plan=r.plans.length?r.plans[0].key:null;
+    view="form"; render();
+  }).catch(function(e){ serverMsg=(e&&e.message&&e.message.indexOf("HTTP")!==0)?e.message:t("net"); view="error"; render(); });
+}
+init();
+</script>
+</body>
+</html>
