@@ -395,7 +395,7 @@ function planCard(k){
 
 function openApp(){
   var ua=navigator.userAgent||"";
-  if(/Android/i.test(ua)){ location.href="intent://open#Intent;action=android.intent.action.MAIN;category=android.intent.category.LAUNCHER;package=com.trackly.mobile;end"; }
+  if(/Android/i.test(ua)){ location.href="intent://open#Intent;scheme=trackly;package=com.trackly.mobile;S.browser_fallback_url="+encodeURIComponent(location.href.split("#")[0])+";end"; }
   var old=document.getElementById("toast"); if(old) old.remove();
   var d=document.createElement("div"); d.id="toast"; d.className="toast"; d.textContent=t("openMsg"); document.body.appendChild(d);
   setTimeout(function(){ if(d.parentNode) d.remove(); },5000);
