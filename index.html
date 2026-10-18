@@ -96,8 +96,8 @@
   .cta svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
   .cta:active{transform:scale(.985)}
   .plan.sel .cta{background:var(--c);color:#fff;border-color:var(--c);box-shadow:0 10px 20px -8px var(--c)}
-  .cta.static{cursor:default;border-style:dashed;background:#fff}
-  .cta.static:active{transform:none}
+  .cta.free{background:var(--c);color:#fff;border-color:var(--c);box-shadow:0 10px 20px -8px var(--c)}
+  .toast{position:fixed;left:16px;right:16px;bottom:18px;max-width:440px;margin:0 auto;background:#1B2A5A;color:#fff;padding:13px 16px;border-radius:14px;font-size:13.5px;font-weight:600;line-height:1.4;box-shadow:0 14px 30px -10px rgba(0,0,0,.4);z-index:50;text-align:center}
 
   .trust{display:flex;flex-wrap:wrap;justify-content:center;gap:8px 14px;margin:20px 0 6px}
   .trust span{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:600;color:#4B5563}
@@ -277,7 +277,7 @@ var L = {
  en:{hello:"Hello",choose:"Choose your plan",sub:"Pick a plan to start using Trackly",monthly:"Monthly",yearly:"Yearly",m2f:"2 months free",
   popular:"Most popular",perMonth:"/month",perYear:"/year",rwf:"RWF",free:"Free",foreverFree:"Free forever",
   save:"Save {a} RWF",daily:"{a} RWF per day only",nocommit:"No commitment, cancel anytime",
-  yours:"Your plan",stay:"Your free plan",included:"Free for every business",start:"Start {n}",renew:"Renew {n}",
+  yours:"Your plan",stay:"Your free plan",openApp:"Continue free in Trackly",openMsg:"You are on the free Ubuntu plan. Open the Trackly app to start selling.",included:"Free for every business",start:"Start {n}",renew:"Renew {n}",
   guarantee:"No contracts. Cancel anytime. Secure MoMo and Airtel payment.",
   tMade:"Made for Rwanda",tOff:"Works offline",tSecure:"Secure payment",tFast:"Fast and reliable",
   payTitle:"Pay with Mobile Money",chooseMethod:"Choose your payment method",mtn:"MTN Mobile Money",airtel:"Airtel Money",
@@ -296,7 +296,7 @@ var L = {
  rw:{hello:"Muraho",choose:"Hitamo gahunda yawe",sub:"Hitamo gahunda utangire gukoresha Trackly",monthly:"Buri kwezi",yearly:"Buri mwaka",m2f:"amezi 2 ubuntu",
   popular:"Ayakunzwe cyane",perMonth:"/ukwezi",perYear:"/umwaka",rwf:"RWF",free:"Ubuntu",foreverFree:"Ni ubuntu burundu",
   save:"Wizigama {a} RWF",daily:"{a} RWF ku munsi gusa",nocommit:"Nta gufunga, hagarika ryari na ryari",
-  yours:"Gahunda yawe",stay:"Gahunda yawe y'ubuntu",included:"Ni ubuntu ku bucuruzi bwose",start:"Tangira {n}",renew:"Ongera {n}",
+  yours:"Gahunda yawe",stay:"Gahunda yawe y'ubuntu",openApp:"Komeza ku buntu muri Trackly",openMsg:"Uri kuri gahunda y'ubuntu. Fungura porogaramu ya Trackly utangire gucuruza.",included:"Ni ubuntu ku bucuruzi bwose",start:"Tangira {n}",renew:"Ongera {n}",
   guarantee:"Nta masezerano. Hagarika ryari na ryari. Ubwishyu bwizewe bwa MoMo na Airtel.",
   tMade:"Yakozwe ku Rwanda",tOff:"Gukora offline",tSecure:"Ubwishyu bwizewe",tFast:"Byihuse",
   payTitle:"Ishyura na Mobile Money",chooseMethod:"Hitamo uburyo bwo kwishyura",mtn:"MTN Mobile Money",airtel:"Airtel Money",
@@ -315,7 +315,7 @@ var L = {
  fr:{hello:"Bonjour",choose:"Choisissez votre plan",sub:"Choisissez un plan pour commencer avec Trackly",monthly:"Mensuel",yearly:"Annuel",m2f:"2 mois offerts",
   popular:"Le plus populaire",perMonth:"/mois",perYear:"/an",rwf:"RWF",free:"Gratuit",foreverFree:"Gratuit pour toujours",
   save:"Économisez {a} RWF",daily:"{a} RWF par jour seulement",nocommit:"Sans engagement, annulez à tout moment",
-  yours:"Votre plan",stay:"Votre plan gratuit",included:"Gratuit pour chaque entreprise",start:"Commencer {n}",renew:"Renouveler {n}",
+  yours:"Votre plan",stay:"Votre plan gratuit",openApp:"Continuer gratuitement dans Trackly",openMsg:"Vous êtes sur le plan gratuit Ubuntu. Ouvrez l'application Trackly pour commencer à vendre.",included:"Gratuit pour chaque entreprise",start:"Commencer {n}",renew:"Renouveler {n}",
   guarantee:"Sans engagement. Annulez à tout moment. Paiement MoMo et Airtel sécurisé.",
   tMade:"Conçu pour le Rwanda",tOff:"Hors ligne",tSecure:"Paiement sécurisé",tFast:"Rapide et fiable",
   payTitle:"Payer par Mobile Money",chooseMethod:"Choisissez votre méthode de paiement",mtn:"MTN Mobile Money",airtel:"Airtel Money",
@@ -388,9 +388,17 @@ function planCard(k){
   h+='</div><div class="dv"></div><ul class="ft">';
   P.features.forEach(function(f){ h+='<li class="'+(f[1]?"":"off")+'"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true">'+IC[f[1]?"check":"x"]+'</svg></span><span>'+esc(tt(f[0]))+'</span></li>'; });
   h+='</ul>';
-  if(free) h+='<div class="cta static">'+(cur?t("stay"):t("included"))+'</div>';
+  if(free) h+='<button class="cta free" data-open="1">'+t("openApp")+svg("arrow")+'</button>';
   else h+='<button class="cta" data-buy="'+k+'">'+(cur?t("renew",{n:planName(k)}):t("start",{n:planName(k)}))+svg("arrow")+'</button>';
   return h+'</section>';
+}
+
+function openApp(){
+  var ua=navigator.userAgent||"";
+  if(/Android/i.test(ua)){ location.href="intent://open#Intent;action=android.intent.action.MAIN;category=android.intent.category.LAUNCHER;package=com.trackly.mobile;end"; }
+  var old=document.getElementById("toast"); if(old) old.remove();
+  var d=document.createElement("div"); d.id="toast"; d.className="toast"; d.textContent=t("openMsg"); document.body.appendChild(d);
+  setTimeout(function(){ if(d.parentNode) d.remove(); },5000);
 }
 
 function render(){
@@ -410,6 +418,7 @@ function render(){
     while(el&&el!==app){
       if(el.getAttribute){
         if(el.getAttribute("data-c")){ cycle=el.getAttribute("data-c"); render(); renderSheet(); return; }
+        if(el.getAttribute("data-open")){ openApp(); return; }
         if(el.getAttribute("data-buy")){ plan=el.getAttribute("data-buy"); openSheet(); return; }
         var s=el.getAttribute("data-sel"); if(s){ plan=s; var all=app.querySelectorAll(".plan"); for(var i=0;i<all.length;i++) all[i].classList.toggle("sel",all[i].getAttribute("data-sel")===plan); return; }
       }
