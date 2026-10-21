@@ -290,7 +290,7 @@ var L = {
   failTitle:"Payment not completed",fail:"The payment was not completed. You have not been charged unless you approved it.",
   late:"We have not received the payment yet. If you approved it, it will show here shortly. Otherwise try again.",
   badLink:"This link is invalid or has expired. Please open the newest message we sent you.",retry:"Try again",loading:"Loading...",close:"Close",
-  help:"Need help? contact.ivanexo@gmail.com",
+  help:"Need help? support@ivanexo.com",
   badPhone:"Enter a valid MTN or Airtel number, for example 788 123 456.",
   wrongNet:"This number is not an {n} number. Choose the other network or check the number.",net:"Connection problem. Please try again.",noPlans:"No plans are available right now."},
  rw:{hello:"Muraho",choose:"Hitamo gahunda yawe",sub:"Hitamo gahunda utangire gukoresha Trackly",monthly:"Buri kwezi",yearly:"Buri mwaka",m2f:"amezi 2 ubuntu",
@@ -309,7 +309,7 @@ var L = {
   failTitle:"Ubwishyu ntibwarangiye",fail:"Ubwishyu ntibwarangiye. Nta mafaranga yakuweho keretse niba warabwemeje.",
   late:"Ntituramenya ko ubwishyu bwakiriwe. Niba warabwemeje, buraza kugaragara vuba. Niba atari ko, ongera ugerageze.",
   badLink:"Iyi link ntabwo ari yo cyangwa yararangiye. Nyamuneka fungura ubutumwa bushya twakwoherereje.",retry:"Ongera ugerageze",loading:"Birimo gufunguka...",close:"Funga",
-  help:"Ukeneye ubufasha? contact.ivanexo@gmail.com",
+  help:"Ukeneye ubufasha? support@ivanexo.com",
   badPhone:"Andika nimero nziza ya MTN cyangwa Airtel, urugero 788 123 456.",
   wrongNet:"Iyi nimero si iya {n}. Hitamo indi sosiyete cyangwa usuzume nimero.",net:"Ikibazo cy'umurongo. Ongera ugerageze.",noPlans:"Nta gahunda zihari ubu."},
  fr:{hello:"Bonjour",choose:"Choisissez votre plan",sub:"Choisissez un plan pour commencer avec Trackly",monthly:"Mensuel",yearly:"Annuel",m2f:"2 mois offerts",
@@ -328,7 +328,7 @@ var L = {
   failTitle:"Paiement non abouti",fail:"Le paiement n'a pas abouti. Vous n'êtes pas débité sauf si vous l'avez validé.",
   late:"Nous n'avons pas encore reçu le paiement. Si vous l'avez validé, il apparaîtra bientôt. Sinon, réessayez.",
   badLink:"Ce lien est invalide ou a expiré. Veuillez ouvrir le message le plus récent que nous vous avons envoyé.",retry:"Réessayer",loading:"Chargement...",close:"Fermer",
-  help:"Besoin d'aide ? contact.ivanexo@gmail.com",
+  help:"Besoin d'aide ? support@ivanexo.com",
   badPhone:"Saisissez un numéro MTN ou Airtel valide, par exemple 788 123 456.",
   wrongNet:"Ce numéro n'est pas un numéro {n}. Choisissez l'autre réseau ou vérifiez le numéro.",net:"Problème de connexion. Réessayez.",noPlans:"Aucun plan disponible pour le moment."}
 };
@@ -360,7 +360,7 @@ function chrome(){
   var h=""; ["en","rw","fr"].forEach(function(c){ h+='<button class="'+(c===lang?"on":"")+'" data-l="'+c+'">'+c.toUpperCase()+'</button>'; });
   var el=document.getElementById("langs"); el.innerHTML=h;
   el.onclick=function(e){ var c=e.target.getAttribute&&e.target.getAttribute("data-l"); if(c){ lang=c; try{localStorage.setItem("trackly_pay_lang",c);}catch(x){} document.documentElement.lang=c; render(); } };
-  document.getElementById("foot").innerHTML=esc(t("help")).replace("contact.ivanexo@gmail.com",'<a href="mailto:contact.ivanexo@gmail.com">contact.ivanexo@gmail.com</a>');
+  document.getElementById("foot").innerHTML=esc(t("help")).replace("support@ivanexo.com",'<a href="mailto:support@ivanexo.com">support@ivanexo.com</a>');
   var ht=document.getElementById("ht");
   if(data&&view!=="error"){
     var name=data.ownerName||"", ek=effPlan();
