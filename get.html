@@ -76,6 +76,7 @@ a:focus-visible{outline:3px solid var(--teal);outline-offset:3px;border-radius:4
 @media (min-width:640px){.sheet{padding:2.4rem 2rem 3.5rem}}
 @media (prefers-reduced-motion:reduce){.logo{animation:none}}
 </style>
+<script data-goatcounter="https://ivanexo.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </head>
 <body>
 <div id="root" lang="en">
@@ -163,6 +164,7 @@ a:focus-visible{outline:3px solid var(--teal);outline-offset:3px;border-radius:4
   if(/iPhone|iPad|iPod/i.test(ua)) root.className = "is-ios";
 
   dl.href = APK_URL;
+  dl.addEventListener("click",function(){try{if(window.goatcounter&&window.goatcounter.count){window.goatcounter.count({path:"download-apk",title:"APK download tap",event:true});}}catch(e){}});
   if(/\.apk(\?|$)/i.test(APK_URL)) dl.setAttribute("download","Trackly.apk");
   var bits=[VERSION&&("Version "+VERSION), SIZE].filter(Boolean);
   document.getElementById("meta").textContent = bits.join("  |  ");
