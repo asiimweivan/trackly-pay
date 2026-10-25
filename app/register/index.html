@@ -38,7 +38,7 @@ a{color:inherit}
 .side li{display:flex;gap:.8rem;align-items:flex-start}
 .side li svg{flex:none;width:24px;height:24px;margin-top:2px;color:var(--tealL);fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
 .side .lead{font-size:clamp(1.05rem,1.35vw,1.3rem);color:#c3cdea;max-width:24em;margin:0}
-.person{position:absolute!important;left:50%;transform:translateX(-50%);bottom:0;height:clamp(300px,calc(100vh - 330px),760px);width:auto;max-width:100%;display:block;z-index:1;-webkit-mask-image:linear-gradient(to right,transparent 0,#000 10%);mask-image:linear-gradient(to right,transparent 0,#000 10%)}
+.person{--H:min(78vh,56vw);position:absolute!important;left:50%;transform:translateX(-50%);height:var(--H);bottom:calc(57vh - .9*var(--H));width:auto;display:block;z-index:1;-webkit-mask-image:linear-gradient(to right,transparent 0,#000 10%);mask-image:linear-gradient(to right,transparent 0,#000 10%)}
 
 /* right column */
 .main{display:flex;flex-direction:column;min-height:100vh;background:#fff}
@@ -112,7 +112,6 @@ select.in:disabled{background-color:var(--bg);color:#9aa4bd;cursor:not-allowed}
 @media (max-height:700px) and (min-width:1021px){
  .side .lead{display:none}
  .side h1{margin-top:2rem}
- .person{height:clamp(260px,calc(100vh - 290px),760px)}
 }
 @media (max-width:1020px){
  body{grid-template-columns:minmax(0,1fr)}
