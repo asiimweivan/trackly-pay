@@ -327,7 +327,7 @@ select.in:disabled{background-color:var(--bg);color:#9aa4bd;cursor:not-allowed}
         try{localStorage.setItem(KEYS.a,res.accessToken);localStorage.setItem(KEYS.r,res.refreshToken);localStorage.setItem(KEYS.u,JSON.stringify(res.user))}catch(e){}
         user=res.user||{};
         return fetch(API+"/businesses",{headers:{Authorization:"Bearer "+res.accessToken}}).then(function(r){return r.ok?r.json():[]}).then(function(l){if(l&&l.length){try{localStorage.setItem(KEYS.b,l[0].id)}catch(e){}}}).catch(function(){});
-      }).then(function(){okText();go("vOk")});
+      }).then(function(){location.href="/app/"});
     });
   });
   function okText(){
