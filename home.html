@@ -321,6 +321,43 @@ details p{margin:0;padding:0 0 1.2rem;color:var(--mut)}
 .final h2{margin-inline:auto;max-width:18em}
 .final .cta{justify-content:center;margin-top:1.8rem}
 
+
+.pricing{background:#fff}
+.cyc{display:flex;width:max-content;max-width:100%;margin:-.8rem auto 2.6rem;background:var(--bg);border-radius:99px;padding:5px;gap:4px}
+.cyc button{font:inherit;font-weight:700;font-size:.98rem;color:var(--mut);background:none;border:0;border-radius:99px;padding:.65rem 1.4rem;cursor:pointer;display:flex;align-items:center;gap:.6rem}
+.cyc button[aria-pressed=true]{background:#fff;color:var(--ink);box-shadow:0 2px 10px rgba(15,33,80,.14)}
+.cyc em{font-style:normal;font-size:.74rem;font-weight:800;background:var(--mint);color:var(--tealD);border-radius:99px;padding:.18rem .6rem}
+.plans{display:grid;grid-template-columns:repeat(4,1fr);gap:1.4rem;align-items:stretch}
+.plan{position:relative;display:flex;flex-direction:column;background:#fff;border:1px solid var(--line);border-radius:28px;padding:2rem 1.8rem 1.9rem;--c:var(--teal);transition:transform .25s,box-shadow .25s}
+.plan:hover{transform:translateY(-5px);box-shadow:0 30px 50px -32px rgba(15,33,80,.4)}
+.plan::before{content:"";position:absolute;left:1.8rem;top:0;width:54px;height:5px;border-radius:0 0 6px 6px;background:var(--c)}
+.plan h3{margin:0;font-size:1.4rem;letter-spacing:-.02em;display:flex;align-items:center;gap:.6rem;flex-wrap:wrap}
+.plan .badge{font-size:.72rem;font-weight:800;border-radius:99px;padding:.18rem .6rem;background:color-mix(in srgb,var(--c) 14%,#fff);color:var(--c)}
+.plan .tag{color:var(--mut);margin:.5rem 0 1.3rem;min-height:3em;font-size:.97rem}
+.plan .price{display:flex;align-items:baseline;gap:.5rem;margin-bottom:.2rem;min-height:2.6rem}
+.plan .price b{font-size:2.5rem;line-height:1;letter-spacing:-.04em;color:var(--c)}
+.plan .price span{color:var(--mut);font-weight:600;font-size:.95rem}
+.plan .sv{min-height:1.5em;font-size:.85rem;font-weight:700;color:var(--tealD);margin-bottom:1.3rem}
+.plan .btn{width:100%;margin-bottom:1.5rem}
+.plan ul{list-style:none;padding:0;margin:0;display:grid;gap:.7rem;font-size:.95rem}
+.plan li{display:flex;gap:.65rem;align-items:flex-start}
+.plan li svg{flex:none;width:20px;height:20px;margin-top:2px;fill:none;stroke:var(--c);stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
+.plan li.off{color:#9aa4bd}
+.plan li.off svg{stroke:#c4cbdc;stroke-width:2.2}
+.plan.pop{background:var(--hero);color:#fff;border-color:var(--hero);box-shadow:0 36px 60px -34px rgba(17,40,101,.7)}
+.plan.pop .tag,.plan.pop .price span{color:#b8c4e6}
+.plan.pop .price b{color:#fff}
+.plan.pop .sv{color:var(--tealL)}
+.plan.pop li.off{color:#7f8fbe}
+.plan.pop li.off svg{stroke:#5d6ea6}
+.plan.pop li svg{stroke:var(--tealL)}
+.plan.pop .badge{background:var(--gold);color:#3b2a00}
+.plan.pop .btn-primary{background:var(--tealL);color:#06241e}
+.plan.pop .btn-primary:hover{background:#7ae6d2}
+.pnote{text-align:center;color:var(--mut);font-size:.93rem;margin:2rem 0 0}
+@media (max-width:1180px){.plans{grid-template-columns:1fr 1fr}}
+@media (max-width:640px){.plans{grid-template-columns:1fr}.plan .tag{min-height:0}}
+
 /* footer */
 footer{background:#0a1a45;color:#b8c4e6;padding-top:4.4rem}
 .fgrid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1.3fr;gap:3rem;padding-bottom:3rem}
@@ -447,6 +484,7 @@ footer .lnk:hover{color:#8ff0dc;text-decoration:none}
    <a href="#features" data-t="n_feat">Features</a>
    <a href="#how" data-t="n_how">How it works</a>
    <a href="#devices" data-t="n_dev">Every screen</a>
+   <a href="#pricing" data-t="n_price">Pricing</a>
    <a href="#download" data-t="n_dl">Download</a>
    <a href="#faq" data-t="n_faq">FAQ</a>
    <a class="mob" href="/app/login/" data-t="login">Log in</a>
@@ -576,6 +614,21 @@ footer .lnk:hover{color:#8ff0dc;text-decoration:none}
  </div>
 </section>
 
+<section class="pricing" id="pricing">
+ <div class="wrap">
+  <div class="sec-head c">
+   <h2 data-t="p_h">Simple pricing that grows with your business.</h2>
+   <p class="sub" data-t="p_s">Start free. Upgrade when your shop is ready. Pay with MTN MoMo or Airtel Money.</p>
+  </div>
+  <div class="cyc" role="group" aria-label="Billing">
+   <button type="button" id="cycM" aria-pressed="true" data-t="p_m">Monthly</button>
+   <button type="button" id="cycY" aria-pressed="false"><span data-t="p_y">Yearly</span> <em data-t="p_save">2 months free</em></button>
+  </div>
+  <div class="plans" id="plans"></div>
+  <p class="pnote" data-t="p_note">The price you see is the price you pay.</p>
+ </div>
+</section>
+
 <section class="app" id="download">
  <div class="wrap split">
   <div>
@@ -637,6 +690,7 @@ footer .lnk:hover{color:#8ff0dc;text-decoration:none}
     <ul>
      <li><a href="#features" data-t="n_feat">Features</a></li>
      <li><a href="#how" data-t="n_how">How it works</a></li>
+     <li><a href="#pricing" data-t="n_price">Pricing</a></li>
      <li><a href="/get" data-t="a_btn">Download for Android</a></li>
      <li><a href="/app/login/" data-t="login">Log in</a></li>
      <li><a href="/app/register/" data-t="create">Create account</a></li>
@@ -691,7 +745,7 @@ footer .lnk:hover{color:#8ff0dc;text-decoration:none}
     fr:'<svg class="fl" viewBox="0 0 24 24"><defs><clipPath id="c3"><circle cx="12" cy="12" r="12"/></clipPath></defs><g clip-path="url(#c3)"><rect width="8" height="24" fill="#0055A4"/><rect x="8" width="8" height="24" fill="#fff"/><rect x="16" width="8" height="24" fill="#EF4135"/></g></svg>'
   };
   var T={
-  en:{tag:"Business Operating System",f7t:"Mobile Money and cash",f7d:"Record how each customer paid, MTN MoMo, Airtel Money or cash, and see it in your reports.",f8t:"Low-stock alerts",f8d:"Get a warning before an item runs out, so you reorder in time and never lose a sale.",f9t:"VAT and taxes",f9d:"Keep your tax records ready, without the end-of-month panic.",fm_t:"More services",fm_d:"Trackly grows with the shops that use it. Tell us what your business needs and we will build it with you.",fm_b:"Tell us what you need",r_h:"Built for businesses across Africa.",r_s:"From the corner pharmacy to the busy bakery, Trackly fits the way you trade.",b1n:"Pharmacy",b1t:"Always know what is on the shelf.",b1d:"Scan products in, see what is running low before a customer asks, and give each staff member only the access they need.",b1c:"Barcode scanning|Low-stock alerts|Staff access",b2n:"Retail shop",b2t:"Fast at the counter, clear at closing.",b2d:"Ring up sales in seconds, take cash or Mobile Money, and end the day knowing exactly what you earned.",b2c:"Quick sales|Mobile Money|Daily reports",b3n:"Electronics shop",b3t:"Big sales, tracked to the last item.",b3d:"Record layaway and instalments, remember who still owes you, and see your profit on every sale.",b3c:"Layaway and credit|Customer records|Profit reports",b4n:"Bakery",b4t:"Counted fresh, every evening.",b4d:"See which breads and cakes sell best and which days are busiest, so tomorrow's baking is never a guess.",b4c:"Best sellers|Busiest days|Cash and MoMo",b5n:"Hardware store",b5t:"Hundreds of items, one clear list.",b5d:"Keep every bolt, bag and pipe in stock, scan to add, and track credit for the builders who pay later.",b5c:"Large stock lists|Scan to add|Credit tracking",b6n:"Café and restaurant",b6t:"Busy tables, simple totals.",b6d:"Ring up orders fast, record every payment and see what sells best without a calculator.",b6c:"Fast checkout|Every payment recorded|Best sellers",w_h:"Your language. Your money. Your records.",q_s:"Cannot find your answer? Write to us and we will help.",alt1:"Trackly on a computer",alt2:"Trackly on a tablet",alt3:"Trackly on a phone",alt4:"Trackly on a laptop, tablet and phone",alt5:"A shop owner showing Trackly on her phone",alt6:"A shop owner showing Trackly on his phone",n_feat:"Features",n_how:"How it works",n_dev:"Every screen",n_dl:"Download",n_faq:"FAQ",login:"Log in",create:"Create account",by:"by",
+  en:{tag:"Business Operating System",n_price:"Pricing",p_h:"Simple pricing that grows with your business.",p_s:"Start free. Upgrade when your shop is ready. Pay with MTN MoMo or Airtel Money.",p_m:"Monthly",p_y:"Yearly",p_save:"2 months free",p_note:"The price you see is the price you pay.",p_free:"Free",p_rwf:"RWF",p_permo:"/ month",p_peryr:"/ year",p_saves:"You save {n} RWF a year",p_cta_free:"Start free",p_cta:"Get started",f7t:"Mobile Money and cash",f7d:"Record how each customer paid, MTN MoMo, Airtel Money or cash, and see it in your reports.",f8t:"Low-stock alerts",f8d:"Get a warning before an item runs out, so you reorder in time and never lose a sale.",f9t:"VAT and taxes",f9d:"Keep your tax records ready, without the end-of-month panic.",fm_t:"More services",fm_d:"Trackly grows with the shops that use it. Tell us what your business needs and we will build it with you.",fm_b:"Tell us what you need",r_h:"Built for businesses across Africa.",r_s:"From the corner pharmacy to the busy bakery, Trackly fits the way you trade.",b1n:"Pharmacy",b1t:"Always know what is on the shelf.",b1d:"Scan products in, see what is running low before a customer asks, and give each staff member only the access they need.",b1c:"Barcode scanning|Low-stock alerts|Staff access",b2n:"Retail shop",b2t:"Fast at the counter, clear at closing.",b2d:"Ring up sales in seconds, take cash or Mobile Money, and end the day knowing exactly what you earned.",b2c:"Quick sales|Mobile Money|Daily reports",b3n:"Electronics shop",b3t:"Big sales, tracked to the last item.",b3d:"Record layaway and instalments, remember who still owes you, and see your profit on every sale.",b3c:"Layaway and credit|Customer records|Profit reports",b4n:"Bakery",b4t:"Counted fresh, every evening.",b4d:"See which breads and cakes sell best and which days are busiest, so tomorrow's baking is never a guess.",b4c:"Best sellers|Busiest days|Cash and MoMo",b5n:"Hardware store",b5t:"Hundreds of items, one clear list.",b5d:"Keep every bolt, bag and pipe in stock, scan to add, and track credit for the builders who pay later.",b5c:"Large stock lists|Scan to add|Credit tracking",b6n:"Café and restaurant",b6t:"Busy tables, simple totals.",b6d:"Ring up orders fast, record every payment and see what sells best without a calculator.",b6c:"Fast checkout|Every payment recorded|Best sellers",w_h:"Your language. Your money. Your records.",q_s:"Cannot find your answer? Write to us and we will help.",alt1:"Trackly on a computer",alt2:"Trackly on a tablet",alt3:"Trackly on a phone",alt4:"Trackly on a laptop, tablet and phone",alt5:"A shop owner showing Trackly on her phone",alt6:"A shop owner showing Trackly on his phone",n_feat:"Features",n_how:"How it works",n_dev:"Every screen",n_dl:"Download",n_faq:"FAQ",login:"Log in",create:"Create account",by:"by",
    h1a:"Run your whole business from",h1b:"any screen.",lead:"Sell, track stock, know your customers and see your profit. On your phone, tablet or computer.",cta1:"Create free account",fine:"Free to start. Takes two minutes.",
    t1:"Sale completed",t1d:"8,700 RWF · Cash",t2:"Low stock",t2d:"Sugar 1kg · 4 left",
    m_search:"Search or scan a product",m_p1:"Bread",m_p2:"Milk 1L",m_p3:"Sugar 1kg",m_p4:"Soap",m_p5:"Rice 5kg",m_p6:"Eggs (6)",m_cart:"New sale",m_total:"Total",m_pay:"Take payment",m_today:"Today's sales",
@@ -705,7 +759,7 @@ footer .lnk:hover{color:#8ff0dc;text-decoration:none}
    q_h:"Questions, answered.",q1:"Is it free to start?",a1:"Yes. You can create an account and start on the free plan.",q2:"Which devices can I use?",a2:"Any phone, tablet or computer with a web browser. There is also an Android app.",q3:"Is my business data safe?",a3:"You sign in with your own account, and only the people you invite can see your data. Each person only gets the access you give them.",q4:"Can I record Mobile Money sales?",a4:"Yes. Record cash and Mobile Money payments on every sale.",q5:"Who do I ask for help?",a5:"Write to us at",
    z_h:"Start running your shop the easy way, today.",
    f_about:"Trackly is a product of Ivanexo Ltd, a software company in Kigali, Rwanda.",fc1:"Product",fc2:"Company",fc3:"Contact us",f_ivx:"About Ivanexo",f_priv:"Privacy policy",f_del:"Delete your account",f_gen:"General questions",f_sup:"Help with your account",f_rights:"All rights reserved."},
-  rw:{tag:"Business Operating System",f7t:"Mobile Money n'amafaranga mu ntoki",f7d:"Andika uko buri mukiriya yishyuye: MTN MoMo, Airtel Money cyangwa amafaranga mu ntoki, urebe byose muri raporo.",f8t:"Ibimenyetso by'ibishira",f8d:"Menyeshwa mbere y'uko igicuruzwa gishira, ubashe gutumiza hakiri kare ntucikwe n'umukiriya.",f9t:"TVA n'imisoro",f9d:"Bika inyandiko z'imisoro yawe zihora ziteguye, nta rwaserera rw'impera z'ukwezi.",fm_t:"Izindi serivisi",fm_d:"Trackly ikura hamwe n'amaduka ayikoresha. Tubwire icyo ubucuruzi bwawe bukeneye tukigufashemo.",fm_b:"Tubwire icyo ukeneye",r_h:"Yakorewe ubucuruzi bwo muri Afurika yose.",r_s:"Kuva kuri farumasi yo ku mfuruka kugeza ku ruganda rw'imigati rwuzuye abakiriya, Trackly ijyana n'uko ucuruza.",b1n:"Farumasi",b1t:"Menya buri gihe ibiri ku gipangu.",b1d:"Andika ibicuruzwa ukoresheje scanner, urebe ibigiye gushira mbere y'uko umukiriya abibaza, kandi buri mukozi ahabwe uburenganzira akeneye gusa.",b1c:"Gusoma barcode|Ibimenyetso by'ibishira|Uburenganzira bw'abakozi",b2n:"Iduka",b2t:"Byihuse ku kabati, bisobanutse nimugoroba.",b2d:"Gurisha mu masegonda, wakire amafaranga mu ntoki cyangwa Mobile Money, urangize umunsi uzi neza icyo winjije.",b2c:"Kugurisha byihuse|Mobile Money|Raporo za buri munsi",b3n:"Iduka rya elegitoronike",b3t:"Kugurisha binini, byose bikurikiranywe.",b3d:"Andika kwishyura buhoro buhoro n'ideni, wibuke ukibereyemo umwenda, urebe inyungu kuri buri gurisha.",b3c:"Kwishyura buhoro buhoro|Amakuru y'abakiriya|Raporo y'inyungu",b4n:"Imigati",b4t:"Bibarwa neza buri mugoroba.",b4d:"Reba imigati na keke bigurwa cyane n'iminsi ifite abakiriya benshi, kugira ngo iby'ejo utegura bitaba igikeka.",b4c:"Ibigurwa cyane|Iminsi y'abakiriya benshi|Amafaranga na MoMo",b5n:"Ibikoresho by'ubwubatsi",b5t:"Ibicuruzwa amagana, urutonde rumwe rusobanutse.",b5d:"Bika buri gikoresho muri stock, wongeremo ukoresheje scanner, kandi ukurikirane ideni ry'abubatsi bishyura nyuma.",b5c:"Urutonde runini|Kongeramo kuri scanner|Gukurikirana ideni",b6n:"Café na resitora",b6t:"Ameza yuzuye, imibare yoroshye.",b6d:"Akira ibyo bategetse vuba, andika buri kwishyura, urebe ibigurwa cyane nta mashini ikuramo imibare.",b6c:"Kwishyura byihuse|Buri kwishyura kwanditswe|Ibigurwa cyane",w_h:"Ururimi rwawe. Amafaranga yawe. Inyandiko zawe.",q_s:"Ntubonye igisubizo? Twandikire tukugire inama.",alt1:"Trackly kuri mudasobwa",alt2:"Trackly kuri tablet",alt3:"Trackly kuri telefoni",alt4:"Trackly kuri mudasobwa, tablet na telefoni",alt5:"Nyiri iduka yerekana Trackly kuri telefoni ye",alt6:"Nyiri iduka yerekana Trackly kuri telefoni ye",n_feat:"Ibyo ukora",n_how:"Uko bikora",n_dev:"Kuri ecran zose",n_dl:"Kuramo",n_faq:"Ibibazo",login:"Injira",create:"Fungura konti",by:"ya",
+  rw:{tag:"Business Operating System",n_price:"Ibiciro",p_h:"Ibiciro byoroshye bikurana n'ubucuruzi bwawe.",p_s:"Tangira ku buntu. Zamura gahunda igihe iduka ryawe rimaze gukura. Ishyura ukoresheje MTN MoMo cyangwa Airtel Money.",p_m:"Buri kwezi",p_y:"Buri mwaka",p_save:"amezi 2 ubuntu",p_note:"Igiciro ubona ni cyo wishyura.",p_free:"Ubuntu",p_rwf:"RWF",p_permo:"/ukwezi",p_peryr:"/umwaka",p_saves:"Uzigama {n} RWF ku mwaka",p_cta_free:"Tangira ku buntu",p_cta:"Tangira",f7t:"Mobile Money n'amafaranga mu ntoki",f7d:"Andika uko buri mukiriya yishyuye: MTN MoMo, Airtel Money cyangwa amafaranga mu ntoki, urebe byose muri raporo.",f8t:"Ibimenyetso by'ibishira",f8d:"Menyeshwa mbere y'uko igicuruzwa gishira, ubashe gutumiza hakiri kare ntucikwe n'umukiriya.",f9t:"TVA n'imisoro",f9d:"Bika inyandiko z'imisoro yawe zihora ziteguye, nta rwaserera rw'impera z'ukwezi.",fm_t:"Izindi serivisi",fm_d:"Trackly ikura hamwe n'amaduka ayikoresha. Tubwire icyo ubucuruzi bwawe bukeneye tukigufashemo.",fm_b:"Tubwire icyo ukeneye",r_h:"Yakorewe ubucuruzi bwo muri Afurika yose.",r_s:"Kuva kuri farumasi yo ku mfuruka kugeza ku ruganda rw'imigati rwuzuye abakiriya, Trackly ijyana n'uko ucuruza.",b1n:"Farumasi",b1t:"Menya buri gihe ibiri ku gipangu.",b1d:"Andika ibicuruzwa ukoresheje scanner, urebe ibigiye gushira mbere y'uko umukiriya abibaza, kandi buri mukozi ahabwe uburenganzira akeneye gusa.",b1c:"Gusoma barcode|Ibimenyetso by'ibishira|Uburenganzira bw'abakozi",b2n:"Iduka",b2t:"Byihuse ku kabati, bisobanutse nimugoroba.",b2d:"Gurisha mu masegonda, wakire amafaranga mu ntoki cyangwa Mobile Money, urangize umunsi uzi neza icyo winjije.",b2c:"Kugurisha byihuse|Mobile Money|Raporo za buri munsi",b3n:"Iduka rya elegitoronike",b3t:"Kugurisha binini, byose bikurikiranywe.",b3d:"Andika kwishyura buhoro buhoro n'ideni, wibuke ukibereyemo umwenda, urebe inyungu kuri buri gurisha.",b3c:"Kwishyura buhoro buhoro|Amakuru y'abakiriya|Raporo y'inyungu",b4n:"Imigati",b4t:"Bibarwa neza buri mugoroba.",b4d:"Reba imigati na keke bigurwa cyane n'iminsi ifite abakiriya benshi, kugira ngo iby'ejo utegura bitaba igikeka.",b4c:"Ibigurwa cyane|Iminsi y'abakiriya benshi|Amafaranga na MoMo",b5n:"Ibikoresho by'ubwubatsi",b5t:"Ibicuruzwa amagana, urutonde rumwe rusobanutse.",b5d:"Bika buri gikoresho muri stock, wongeremo ukoresheje scanner, kandi ukurikirane ideni ry'abubatsi bishyura nyuma.",b5c:"Urutonde runini|Kongeramo kuri scanner|Gukurikirana ideni",b6n:"Café na resitora",b6t:"Ameza yuzuye, imibare yoroshye.",b6d:"Akira ibyo bategetse vuba, andika buri kwishyura, urebe ibigurwa cyane nta mashini ikuramo imibare.",b6c:"Kwishyura byihuse|Buri kwishyura kwanditswe|Ibigurwa cyane",w_h:"Ururimi rwawe. Amafaranga yawe. Inyandiko zawe.",q_s:"Ntubonye igisubizo? Twandikire tukugire inama.",alt1:"Trackly kuri mudasobwa",alt2:"Trackly kuri tablet",alt3:"Trackly kuri telefoni",alt4:"Trackly kuri mudasobwa, tablet na telefoni",alt5:"Nyiri iduka yerekana Trackly kuri telefoni ye",alt6:"Nyiri iduka yerekana Trackly kuri telefoni ye",n_feat:"Ibyo ukora",n_how:"Uko bikora",n_dev:"Kuri ecran zose",n_dl:"Kuramo",n_faq:"Ibibazo",login:"Injira",create:"Fungura konti",by:"ya",
    h1a:"Genzura ubucuruzi bwawe bwose kuri",h1b:"ecran iyo ariyo yose.",lead:"Gurisha, ukurikirane ibicuruzwa, umenye abakiriya bawe kandi urebe inyungu yawe. Kuri telefoni, tablet cyangwa mudasobwa.",cta1:"Fungura konti y'ubuntu",fine:"Utangira ku buntu. Bifata iminota ibiri.",
    t1:"Kugurisha byarangiye",t1d:"8,700 RWF · Amafaranga",t2:"Ibicuruzwa biri gushira",t2d:"Isukari 1kg · hasigaye 4",
    m_search:"Shakisha cyangwa usome igicuruzwa",m_p1:"Imigati",m_p2:"Amata 1L",m_p3:"Isukari 1kg",m_p4:"Isabune",m_p5:"Umuceri 5kg",m_p6:"Amagi (6)",m_cart:"Kugurisha gushya",m_total:"Yose hamwe",m_pay:"Akira amafaranga",m_today:"Ibyagurishijwe uyu munsi",
@@ -719,7 +773,7 @@ footer .lnk:hover{color:#8ff0dc;text-decoration:none}
    q_h:"Ibibazo n'ibisubizo.",q1:"Gutangira ni ubuntu?",a1:"Yego. Ushobora gufungura konti ugatangirira ku mugambi w'ubuntu.",q2:"Nakoresha ibihe bikoresho?",a2:"Telefoni, tablet cyangwa mudasobwa ifite murandasi. Hari na porogaramu ya Android.",q3:"Amakuru y'ubucuruzi bwanjye arabungabunzwe?",a3:"Winjira ukoresheje konti yawe, kandi abo wemereye gusa ni bo babona amakuru yawe. Buri wese abona gusa ibyo umwemereye.",q4:"Nandika ibyishyuwe kuri Mobile Money?",a4:"Yego. Andika amafaranga mu ntoki cyangwa Mobile Money kuri buri gurisha.",q5:"Nabona ubufasha nte?",a5:"Twandikire kuri",
    z_h:"Tangira gucuruza byoroshye, uyu munsi.",
    f_about:"Trackly ni igicuruzwa cya Ivanexo Ltd, ikigo cya porogaramu cyo i Kigali mu Rwanda.",fc1:"Igicuruzwa",fc2:"Ikigo",fc3:"Twandikire",f_ivx:"Ibya Ivanexo",f_priv:"Politiki y'ibanga",f_del:"Gusiba konti yawe",f_gen:"Ibibazo rusange",f_sup:"Ubufasha kuri konti yawe",f_rights:"Uburenganzira bwose burabitswe."},
-  fr:{tag:"Business Operating System",f7t:"Mobile Money et espèces",f7d:"Notez comment chaque client a payé, MTN MoMo, Airtel Money ou espèces, et retrouvez tout dans vos rapports.",f8t:"Alertes de stock bas",f8d:"Soyez prévenu avant qu'un article ne manque, pour réapprovisionner à temps sans perdre de vente.",f9t:"TVA et taxes",f9d:"Gardez vos dossiers fiscaux prêts, sans stress de fin de mois.",fm_t:"Plus de services",fm_d:"Trackly évolue avec les commerces qui l'utilisent. Dites-nous ce dont votre activité a besoin, nous le construirons avec vous.",fm_b:"Dites-nous ce qu'il vous faut",r_h:"Conçu pour les commerces de toute l'Afrique.",r_s:"De la pharmacie du coin à la boulangerie qui ne désemplit pas, Trackly s'adapte à votre façon de vendre.",b1n:"Pharmacie",b1t:"Sachez toujours ce qu'il y a en rayon.",b1d:"Scannez les produits à l'entrée, voyez ce qui manque avant qu'un client ne le demande, et donnez à chaque employé uniquement l'accès dont il a besoin.",b1c:"Scan des codes-barres|Alertes de stock bas|Accès du personnel",b2n:"Boutique",b2t:"Rapide en caisse, clair à la fermeture.",b2d:"Encaissez en quelques secondes, en espèces ou en Mobile Money, et terminez la journée en sachant exactement ce que vous avez gagné.",b2c:"Ventes rapides|Mobile Money|Rapports quotidiens",b3n:"Magasin d'électronique",b3t:"De grosses ventes, suivies jusqu'au dernier article.",b3d:"Enregistrez les paiements échelonnés et les crédits, retrouvez qui vous doit encore de l'argent et voyez votre bénéfice sur chaque vente.",b3c:"Paiement échelonné et crédit|Fiches clients|Rapports de bénéfice",b4n:"Boulangerie",b4t:"Compté frais, chaque soir.",b4d:"Voyez quels pains et gâteaux se vendent le mieux et quels jours sont les plus chargés, pour ne plus deviner la production de demain.",b4c:"Meilleures ventes|Jours les plus chargés|Espèces et MoMo",b5n:"Quincaillerie",b5t:"Des centaines d'articles, une seule liste claire.",b5d:"Gardez chaque vis, sac et tuyau en stock, scannez pour ajouter, et suivez le crédit des maçons qui paient plus tard.",b5c:"Grands inventaires|Scan pour ajouter|Suivi du crédit",b6n:"Café et restaurant",b6t:"Tables pleines, totaux simples.",b6d:"Encaissez les commandes rapidement, enregistrez chaque paiement et voyez ce qui se vend le mieux sans calculatrice.",b6c:"Encaissement rapide|Chaque paiement noté|Meilleures ventes",w_h:"Votre langue. Votre argent. Vos dossiers.",q_s:"Vous ne trouvez pas votre réponse ? Écrivez-nous, nous vous aiderons.",alt1:"Trackly sur ordinateur",alt2:"Trackly sur tablette",alt3:"Trackly sur téléphone",alt4:"Trackly sur ordinateur, tablette et téléphone",alt5:"Une commerçante montre Trackly sur son téléphone",alt6:"Un commerçant montre Trackly sur son téléphone",n_feat:"Fonctions",n_how:"Comment ça marche",n_dev:"Tous les écrans",n_dl:"Télécharger",n_faq:"FAQ",login:"Se connecter",create:"Créer un compte",by:"par",
+  fr:{tag:"Business Operating System",n_price:"Tarifs",p_h:"Des tarifs simples qui grandissent avec votre commerce.",p_s:"Commencez gratuitement. Passez au plan supérieur quand votre commerce est prêt. Payez avec MTN MoMo ou Airtel Money.",p_m:"Mensuel",p_y:"Annuel",p_save:"2 mois offerts",p_note:"Le prix affiché est le prix payé.",p_free:"Gratuit",p_rwf:"RWF",p_permo:"/ mois",p_peryr:"/ an",p_saves:"Vous économisez {n} RWF par an",p_cta_free:"Commencer gratuitement",p_cta:"Commencer",f7t:"Mobile Money et espèces",f7d:"Notez comment chaque client a payé, MTN MoMo, Airtel Money ou espèces, et retrouvez tout dans vos rapports.",f8t:"Alertes de stock bas",f8d:"Soyez prévenu avant qu'un article ne manque, pour réapprovisionner à temps sans perdre de vente.",f9t:"TVA et taxes",f9d:"Gardez vos dossiers fiscaux prêts, sans stress de fin de mois.",fm_t:"Plus de services",fm_d:"Trackly évolue avec les commerces qui l'utilisent. Dites-nous ce dont votre activité a besoin, nous le construirons avec vous.",fm_b:"Dites-nous ce qu'il vous faut",r_h:"Conçu pour les commerces de toute l'Afrique.",r_s:"De la pharmacie du coin à la boulangerie qui ne désemplit pas, Trackly s'adapte à votre façon de vendre.",b1n:"Pharmacie",b1t:"Sachez toujours ce qu'il y a en rayon.",b1d:"Scannez les produits à l'entrée, voyez ce qui manque avant qu'un client ne le demande, et donnez à chaque employé uniquement l'accès dont il a besoin.",b1c:"Scan des codes-barres|Alertes de stock bas|Accès du personnel",b2n:"Boutique",b2t:"Rapide en caisse, clair à la fermeture.",b2d:"Encaissez en quelques secondes, en espèces ou en Mobile Money, et terminez la journée en sachant exactement ce que vous avez gagné.",b2c:"Ventes rapides|Mobile Money|Rapports quotidiens",b3n:"Magasin d'électronique",b3t:"De grosses ventes, suivies jusqu'au dernier article.",b3d:"Enregistrez les paiements échelonnés et les crédits, retrouvez qui vous doit encore de l'argent et voyez votre bénéfice sur chaque vente.",b3c:"Paiement échelonné et crédit|Fiches clients|Rapports de bénéfice",b4n:"Boulangerie",b4t:"Compté frais, chaque soir.",b4d:"Voyez quels pains et gâteaux se vendent le mieux et quels jours sont les plus chargés, pour ne plus deviner la production de demain.",b4c:"Meilleures ventes|Jours les plus chargés|Espèces et MoMo",b5n:"Quincaillerie",b5t:"Des centaines d'articles, une seule liste claire.",b5d:"Gardez chaque vis, sac et tuyau en stock, scannez pour ajouter, et suivez le crédit des maçons qui paient plus tard.",b5c:"Grands inventaires|Scan pour ajouter|Suivi du crédit",b6n:"Café et restaurant",b6t:"Tables pleines, totaux simples.",b6d:"Encaissez les commandes rapidement, enregistrez chaque paiement et voyez ce qui se vend le mieux sans calculatrice.",b6c:"Encaissement rapide|Chaque paiement noté|Meilleures ventes",w_h:"Votre langue. Votre argent. Vos dossiers.",q_s:"Vous ne trouvez pas votre réponse ? Écrivez-nous, nous vous aiderons.",alt1:"Trackly sur ordinateur",alt2:"Trackly sur tablette",alt3:"Trackly sur téléphone",alt4:"Trackly sur ordinateur, tablette et téléphone",alt5:"Une commerçante montre Trackly sur son téléphone",alt6:"Un commerçant montre Trackly sur son téléphone",n_feat:"Fonctions",n_how:"Comment ça marche",n_dev:"Tous les écrans",n_dl:"Télécharger",n_faq:"FAQ",login:"Se connecter",create:"Créer un compte",by:"par",
    h1a:"Gérez toute votre entreprise depuis",h1b:"n'importe quel écran.",lead:"Vendez, suivez votre stock, connaissez vos clients et voyez votre bénéfice. Sur téléphone, tablette ou ordinateur.",cta1:"Créer un compte gratuit",fine:"Gratuit pour commencer. Deux minutes suffisent.",
    t1:"Vente terminée",t1d:"8 700 RWF · Espèces",t2:"Stock faible",t2d:"Sucre 1kg · 4 restants",
    m_search:"Chercher ou scanner un produit",m_p1:"Pain",m_p2:"Lait 1L",m_p3:"Sucre 1kg",m_p4:"Savon",m_p5:"Riz 5kg",m_p6:"Œufs (6)",m_cart:"Nouvelle vente",m_total:"Total",m_pay:"Encaisser",m_today:"Ventes du jour",
@@ -746,11 +800,94 @@ footer .lnk:hover{color:#8ff0dc;text-decoration:none}
     a.setAttribute("title",NAMES[k]);a.innerHTML=ICONS[k]+"<span>"+HANDLE[k]+"</span>";soc.appendChild(a);
   });
 
+  /* ---- pricing ---- */
+function T3(en,rw,fr){ return {en:en,rw:rw,fr:fr}; }
+var PLANS = {
+  ubuntu:{ name:"Ubuntu", badge:T3("Free","Ubuntu","Gratuit"),
+    tagline:T3("Free forever. Start selling today.","Ni ubuntu burundu. Tangira gucuruza uyu munsi.","Gratuit pour toujours. Commencez à vendre."),
+    features:[
+      [T3("Up to 20 products","Ibicuruzwa kugeza kuri 20","Jusqu'à 20 produits"),1],
+      [T3("Today's sales report","Raporo y'uyu munsi","Rapport du jour"),1],
+      [T3("Invoice history, last 30 days","Amateka ya fagitire y'iminsi 30","Historique des factures sur 30 jours"),1],
+      [T3("Inventory and low-stock alerts","Ububiko n'impuruza z'ububiko buke","Stock et alertes de stock bas"),1],
+      [T3("Customer records","Urutonde rw'abakiriya","Fiches clients"),1],
+      [T3("Receipts on WhatsApp","Fagitire kuri WhatsApp","Reçus sur WhatsApp"),1],
+      [T3("Credit sales and rentals","Kugurisha ku nguzanyo no gukodesha","Ventes à crédit et locations"),0],
+      [T3("Profit and loss, expenses","Inyungu n'ibyasohotse","Profits, pertes et dépenses"),0],
+      [T3("Staff accounts","Konti z'abakozi","Comptes employés"),0]
+    ]},
+  ibanze:{ name:"Ibanze", badge:T3("Starter","Tangira","Débutant"),
+    tagline:T3("Start small, grow steady","Tangira ubu, igiciro gito","Démarrez petit, grandissez"),
+    features:[
+      [T3("Up to 100 products","Ibicuruzwa kugeza kuri 100","Jusqu'à 100 produits"),1],
+      [T3("Invoice history, last 90 days","Amateka ya fagitire y'iminsi 90","Historique des factures sur 90 jours"),1],
+      [T3("Weekly sales report","Raporo y'icyumweru","Rapport hebdomadaire"),1],
+      [T3("Inventory and low-stock alerts","Ububiko n'impuruza z'ububiko buke","Stock et alertes de stock bas"),1],
+      [T3("Barcode scanning","Gusikana barcode","Scan des codes-barres"),1],
+      [T3("Customer records","Urutonde rw'abakiriya","Fiches clients"),1],
+      [T3("Credit sales and rentals","Kugurisha ku nguzanyo no gukodesha","Ventes à crédit et locations"),1],
+      [T3("Clean receipts, no Trackly footer","Fagitire zitagira ikirango cya Trackly","Reçus sans mention Trackly"),1],
+      [T3("Full reports and profit and loss","Raporo zuzuye n'inyungu (P&L)","Rapports complets et P&L"),0],
+      [T3("Staff accounts","Konti z'abakozi","Comptes employés"),0]
+    ]},
+  iterambere:{ name:"Iterambere", badge:T3("Growth","Ihitimu","Croissance"), popular:T3("Most popular","Ayakunzwe cyane","Le plus populaire"),
+    tagline:T3("Sell more, grow faster","Gurisha byinshi, gukura vuba","Vendre plus, grandir vite"),
+    features:[
+      [T3("Everything in Ibanze","Byose biri muri Ibanze","Tout Ibanze inclus"),1],
+      [T3("Unlimited products","Ibicuruzwa nta ngano","Produits illimités"),1],
+      [T3("Unlimited invoice history","Amateka ya fagitire nta karimbi","Historique illimité"),1],
+      [T3("Reports, profit and loss, cash flow","Raporo, inyungu n'igihombo, amafaranga yinjira n'asohoka","Rapports, P&L et trésorerie"),1],
+      [T3("Expense tracking and business goals","Ibyasohotse n'intego z'ubucuruzi","Suivi des dépenses et objectifs"),1],
+      [T3("Suppliers and purchase orders","Abaganaciro n'ubusabe bwo gutumiza","Fournisseurs et bons de commande"),1],
+      [T3("Quotations, returns and discounts","Amaproforma, ibyagaruwe n'igabanyirizwa","Devis, retours et remises"),1],
+      [T3("Layaway, loans and cash desk","Kwishyura mu byiciro, inguzanyo n'agasanduku k'amafaranga","Acomptes, prêts et caisse"),1],
+      [T3("Up to 2 staff accounts","Kugeza ku bakozi 2","Jusqu'à 2 employés"),1],
+      [T3("RRA tax and VAT reports","Raporo z'imisoro RRA na TVA","Rapports fiscaux RRA et TVA"),0],
+      [T3("Shifts, assets and stock transfers","Ihinduka ry'abakozi, ibikoresho, kohereza ububiko","Équipes, actifs et transferts de stock"),0]
+    ]},
+  inkunga:{ name:"Agaciro", badge:T3("Pro","Pro","Pro"),
+    tagline:T3("The full suite: RRA tax and bank","Ubucuruzi bwose: RRA na Banki","La suite complète : RRA et banque"),
+    features:[
+      [T3("Everything in Iterambere","Byose biri muri Iterambere","Tout Iterambere inclus"),1],
+      [T3("Unlimited staff accounts","Abakozi nta ngano","Employés illimités"),1],
+      [T3("RRA tax and VAT reports","Raporo z'imisoro RRA na TVA","Rapports fiscaux RRA et TVA"),1],
+      [T3("Bank reconciliation","Guhuzisha konti ya Banki","Rapprochement bancaire"),1],
+      [T3("Shift management","Gucunga ihinduka ry'abakozi","Gestion des équipes"),1],
+      [T3("Asset tracking","Gukurikirana ibikoresho","Suivi des actifs"),1],
+      [T3("Stock transfers between branches","Kohereza ububiko hagati y'amashami","Transferts de stock entre sites"),1]
+    ]}
+};
+var PRICE={ubuntu:[0,0],ibanze:[3000,30000],iterambere:[6000,60000],inkunga:[10000,100000]};
+var PCOL={ubuntu:"#7C3AED",ibanze:"#1B2A5A",iterambere:"#1DAA8A",inkunga:"#D4860A"};
+var ORDER=["ubuntu","ibanze","iterambere","inkunga"];
+var cycle="monthly";
+function fmt(n){return String(n).replace(/\B(?=(\d{3})+(?!\d))/g,",")}
+function renderPlans(l){
+  var d=T[l],box=document.getElementById("plans");if(!box)return;box.innerHTML="";
+  ORDER.forEach(function(k){
+    var P=PLANS[k],free=k==="ubuntu",pop=k==="iterambere",yr=cycle==="yearly";
+    var card=document.createElement("article");card.className="plan"+(pop?" pop":"");card.style.setProperty("--c",PCOL[k]);
+    var price=free?d.p_free:fmt(PRICE[k][yr?1:0]);
+    var per=free?"":(d.p_rwf+" "+(yr?d.p_peryr:d.p_permo));
+    var save=(!free&&yr)?d.p_saves.replace("{n}",fmt(PRICE[k][0]*12-PRICE[k][1])):"";
+    var html='<h3>'+P.name+'<span class="badge">'+(pop?P.popular[l]:P.badge[l])+'</span></h3><p class="tag">'+P.tagline[l]+'</p>'
+      +'<div class="price"><b>'+price+'</b><span>'+per+'</span></div><div class="sv">'+save+'</div>'
+      +'<a class="btn btn-primary" href="/app/register/?plan='+k+'">'+(free?d.p_cta_free:d.p_cta)+'</a><ul>';
+    P.features.forEach(function(f){html+='<li class="'+(f[1]?"":"off")+'"><svg viewBox="0 0 24 24" aria-hidden="true">'+(f[1]?'<path d="m5 12.5 4.5 4.5L19 7.5"/>':'<path d="M6 6l12 12M18 6 6 18"/>')+'</svg><span>'+f[0][l]+'</span></li>'});
+    card.innerHTML=html+'</ul>';box.appendChild(card);
+  });
+  document.getElementById("cycM").setAttribute("aria-pressed",cycle==="monthly"?"true":"false");
+  document.getElementById("cycY").setAttribute("aria-pressed",cycle==="yearly"?"true":"false");
+}
+
+  var curLang="en";
   function apply(l){
+    curLang=l;
     var d=T[l];
     $$("[data-t]").forEach(function(e){var k=e.getAttribute("data-t");if(d[k]!=null)e.textContent=d[k]});
     $$("img[data-img]").forEach(function(i){var n=i.getAttribute("data-img");i.src="/img/tk-"+l+"-"+n+".webp";if(d["alt"+n])i.alt=d["alt"+n]});
     $$("[data-chips]").forEach(function(e){var v=d[e.getAttribute("data-chips")];if(v){e.innerHTML="";v.split("|").forEach(function(x){var c=document.createElement("span");c.textContent=x;e.appendChild(c)})}});
+    renderPlans(l);
     document.documentElement.lang=l;
     $("#langFlag").innerHTML=FLAGS[l];$("#langCode").textContent=CODE[l];
     $$("#langMenu [data-lang]").forEach(function(b){b.setAttribute("aria-checked",b.getAttribute("data-lang")===l?"true":"false")});
@@ -763,6 +900,8 @@ footer .lnk:hover{color:#8ff0dc;text-decoration:none}
   $$("#langMenu [data-lang]").forEach(function(b){b.addEventListener("click",function(){apply(b.getAttribute("data-lang"));close()})});
   document.addEventListener("click",close);
   document.addEventListener("keydown",function(e){if(e.key==="Escape")close()});
+  document.getElementById("cycM").addEventListener("click",function(){cycle="monthly";renderPlans(curLang)});
+  document.getElementById("cycY").addEventListener("click",function(){cycle="yearly";renderPlans(curLang)});
   var burger=$("#burger"),links=$("#links");
   burger.addEventListener("click",function(){var o=links.classList.toggle("open");burger.setAttribute("aria-expanded",o?"true":"false")});
   $$("#links a").forEach(function(a){a.addEventListener("click",function(){links.classList.remove("open");burger.setAttribute("aria-expanded","false")})});

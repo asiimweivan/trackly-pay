@@ -37,11 +37,11 @@ a{color:inherit}
 .side ul{list-style:none;padding:0;margin:0;display:grid;gap:.85rem;font-size:1.06rem;color:#dbe3ff}
 .side li{display:flex;gap:.8rem;align-items:flex-start}
 .side li svg{flex:none;width:24px;height:24px;margin-top:2px;color:var(--tealL);fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
-.heroimg{position:relative;width:112%;margin:auto -6% 0 -6%;aspect-ratio:1/.7;max-height:46vh;align-self:center}
-.heroimg img{position:absolute;display:block;height:auto;filter:drop-shadow(0 30px 28px rgba(2,8,30,.5)) drop-shadow(0 6px 10px rgba(2,8,30,.25))}
-.heroimg .hl{width:76%;left:12%;top:0;z-index:1}
-.heroimg .hp{width:50%;left:0;bottom:9%;z-index:2}
-.heroimg .hm{width:19%;right:3%;bottom:8%;z-index:3}
+.mosaic{margin:auto -1.2rem -3.5rem;display:grid;grid-template-columns:repeat(3,1fr);gap:.85rem;align-items:start;padding-top:2rem}
+.mosaic figure{margin:0;border-radius:26px;overflow:hidden;aspect-ratio:4/5;background:#1b3377;box-shadow:0 24px 40px -22px rgba(2,8,30,.7)}
+.mosaic figure:nth-child(3n+2){transform:translateY(2.2rem)}
+.mosaic img{display:block;width:100%;height:100%;object-fit:cover}
+.mosaic figcaption{display:none}
 
 /* right column */
 .main{display:flex;flex-direction:column;min-height:100vh;background:#fff}
@@ -50,15 +50,6 @@ a{color:inherit}
 .top-r{display:flex;align-items:center;gap:1rem;margin-left:auto;font-size:.95rem;color:var(--mut)}
 .top-r a{color:var(--tealD);font-weight:700;text-decoration:none}
 .top-r a:hover{text-decoration:underline}
-.lang{position:relative}
-.lang>button{display:flex;align-items:center;gap:.5rem;font:inherit;font-weight:700;font-size:.92rem;color:var(--ink);background:#fff;border:1px solid var(--line);border-radius:11px;padding:.5rem .7rem;cursor:pointer}
-.lang>button:hover{border-color:var(--ink)}
-svg.fl{width:22px;height:22px;display:block;border-radius:50%;box-shadow:0 0 0 1px rgba(15,33,80,.15)}
-.lang .chev{width:14px;height:14px;opacity:.6}
-.menu{position:absolute;right:0;top:calc(100% + 8px);min-width:200px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:.4rem;box-shadow:0 18px 40px -12px rgba(15,33,80,.25);display:none;z-index:20}
-.menu.open{display:block}
-.menu button{display:flex;align-items:center;gap:.7rem;width:100%;font:inherit;font-weight:600;font-size:.95rem;color:var(--ink);background:none;border:0;border-radius:9px;padding:.55rem .6rem;cursor:pointer;text-align:left}
-.menu button:hover,.menu button[aria-checked=true]{background:var(--bg)}
 .stage{flex:1;display:flex;align-items:center;justify-content:center;padding:1rem clamp(1.2rem,4vw,3.4rem) 3rem}
 .card{width:100%;max-width:580px}
 .card h2{font-size:clamp(1.7rem,2.4vw,2.2rem);letter-spacing:-.03em;line-height:1.1;margin:0 0 .4rem;font-weight:800}
@@ -152,10 +143,13 @@ select.in:disabled{background-color:var(--bg);color:#9aa4bd;cursor:not-allowed}
   <li><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m8 12.3 2.7 2.7L16 9.5"/></svg><span data-t="b2">Works on phone, tablet and computer</span></li>
   <li><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m8 12.3 2.7 2.7L16 9.5"/></svg><span data-t="b3">In Kinyarwanda, English and French</span></li>
  </ul>
- <div class="heroimg" aria-hidden="true">
-  <img class="hp" data-img="2" src="/img/tk-en-2.webp" alt="">
-  <img class="hl" data-img="1" src="/img/tk-en-1.webp" alt="">
-  <img class="hm" data-img="3" src="/img/tk-en-3.webp" alt="">
+ <div class="mosaic" aria-hidden="true">
+  <figure><img src="/img/biz-1.webp" alt="" loading="eager"></figure>
+  <figure><img src="/img/biz-2.webp" alt="" loading="eager"></figure>
+  <figure><img src="/img/biz-3.webp" alt="" loading="eager"></figure>
+  <figure><img src="/img/biz-4.webp" alt="" loading="lazy"></figure>
+  <figure><img src="/img/biz-5.webp" alt="" loading="lazy"></figure>
+  <figure><img src="/img/biz-6.webp" alt="" loading="lazy"></figure>
  </div>
 </aside>
 
@@ -167,17 +161,6 @@ select.in:disabled{background-color:var(--bg);color:#9aa4bd;cursor:not-allowed}
   </a>
   <div class="top-r">
    <span class="t-q" data-t="have">Already have an account?</span> <a href="/app/login/" data-t="login">Log in</a>
-   <div class="lang" id="lang">
-    <button type="button" id="langBtn" aria-haspopup="listbox" aria-expanded="false" aria-label="Language">
-     <span id="langFlag"></span><span id="langCode">EN</span>
-     <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
-    </button>
-    <div class="menu" id="langMenu" role="listbox" aria-label="Language">
-     <button type="button" role="option" data-lang="en"><span data-flag="en"></span>English</button>
-     <button type="button" role="option" data-lang="rw"><span data-flag="rw"></span>Kinyarwanda</button>
-     <button type="button" role="option" data-lang="fr"><span data-flag="fr"></span>Fran&ccedil;ais</button>
-    </div>
-   </div>
   </div>
  </div>
 
@@ -282,12 +265,6 @@ select.in:disabled{background-color:var(--bg);color:#9aa4bd;cursor:not-allowed}
   "use strict";
   var API="https://trackly-backend-1.onrender.com/api/v1";
   var KEYS={a:"@trackly_access_token_v1",r:"@trackly_refresh_token_v1",u:"@trackly_user_v1",b:"@trackly_business_id_v1"};
-  var FLAGS={
-    rw:'<svg class="fl" viewBox="0 0 24 24"><defs><clipPath id="c1"><circle cx="12" cy="12" r="12"/></clipPath></defs><g clip-path="url(#c1)"><rect width="24" height="12" fill="#00A1DE"/><rect y="12" width="24" height="6" fill="#FAD201"/><rect y="18" width="24" height="6" fill="#20603D"/><circle cx="18.500" cy="6" r="2.400" fill="#FAD201"/></g></svg>',
-    en:'<svg class="fl" viewBox="0 0 24 24"><defs><clipPath id="c2"><circle cx="12" cy="12" r="12"/></clipPath></defs><g clip-path="url(#c2)"><rect width="24" height="24" fill="#012169"/><path d="M0 0l24 24M24 0L0 24" stroke="#fff" stroke-width="4.500"/><path d="M0 0l24 24M24 0L0 24" stroke="#C8102E" stroke-width="1.600"/><path d="M12 0v24M0 12h24" stroke="#fff" stroke-width="7"/><path d="M12 0v24M0 12h24" stroke="#C8102E" stroke-width="4"/></g></svg>',
-    fr:'<svg class="fl" viewBox="0 0 24 24"><defs><clipPath id="c3"><circle cx="12" cy="12" r="12"/></clipPath></defs><g clip-path="url(#c3)"><rect width="8" height="24" fill="#0055A4"/><rect x="8" width="8" height="24" fill="#fff"/><rect x="16" width="8" height="24" fill="#EF4135"/></g></svg>'
-  };
-  var CODE={en:"EN",rw:"RW",fr:"FR"};
 
   var TYPES=[
    ["retail","#1DAA8A",{en:"Retail / General Store",rw:"Iduka rya Retail",fr:"Commerce de detail"}],
@@ -363,7 +340,15 @@ select.in:disabled{background-color:var(--bg);color:#9aa4bd;cursor:not-allowed}
   function $(s,r){return (r||document).querySelector(s)}
   function $$(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))}
   var lang="en";
-  try{var q=new URLSearchParams(location.search).get("lang");var sv=localStorage.getItem("tk_lang");lang=T[q]?q:(T[sv]?sv:"en")}catch(e){}
+  /* language: chosen once on the home page and shared by every page (tk_lang) */
+  try{
+    var q=new URLSearchParams(location.search).get("lang"),sv=localStorage.getItem("tk_lang");
+    var nav=((navigator.languages&&navigator.languages[0])||navigator.language||"en").toLowerCase();
+    var guess=nav.indexOf("fr")===0?"fr":(nav.indexOf("rw")===0||nav.indexOf("kin")===0?"rw":"en");
+    lang=T[q]?q:(T[sv]?sv:guess);
+    if(T[q])localStorage.setItem("tk_lang",q);
+    var pl=new URLSearchParams(location.search).get("plan");if(pl)localStorage.setItem("tk_plan_intent",pl);
+  }catch(e){}
   function tr(k){return T[lang][k]||T.en[k]||k}
 
   var state={role:"owner",step:1,type:"",geo:null,geoLoading:null,registered:false,busy:false,pw:false};
@@ -375,20 +360,10 @@ select.in:disabled{background-color:var(--bg);color:#9aa4bd;cursor:not-allowed}
     $$("[data-t]").forEach(function(e){var k=e.getAttribute("data-t");if(d[k]!=null)e.textContent=d[k]});
     $$("img[data-img]").forEach(function(i){i.src="/img/tk-"+lang+"-"+i.getAttribute("data-img")+".webp"});
     document.documentElement.lang=lang;
-    $("#langFlag").innerHTML=FLAGS[lang];$("#langCode").textContent=CODE[lang];
-    $$("#langMenu [data-lang]").forEach(function(b){b.setAttribute("aria-checked",b.getAttribute("data-lang")===lang?"true":"false")});
     $("#eye").setAttribute("aria-label",tr(state.pw?"eye_hide":"eye_show"));
     renderTypes();renderGeo();strength();syncButtons();
     document.title=d.title+" | Trackly";
-    try{localStorage.setItem("tk_lang",lang)}catch(e){}
   }
-  $$("[data-flag]").forEach(function(e){e.innerHTML=FLAGS[e.getAttribute("data-flag")]});
-  var menu=$("#langMenu"),btn=$("#langBtn");
-  function closeMenu(){menu.classList.remove("open");btn.setAttribute("aria-expanded","false")}
-  btn.addEventListener("click",function(e){e.stopPropagation();var o=menu.classList.toggle("open");btn.setAttribute("aria-expanded",o?"true":"false")});
-  $$("#langMenu [data-lang]").forEach(function(b){b.addEventListener("click",function(){lang=b.getAttribute("data-lang");closeMenu();apply()})});
-  document.addEventListener("click",closeMenu);
-  document.addEventListener("keydown",function(e){if(e.key==="Escape")closeMenu()});
 
   /* ---------- business types ---------- */
   function renderTypes(){
