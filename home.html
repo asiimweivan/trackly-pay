@@ -210,11 +210,11 @@ svg.fl{width:22px;height:22px;display:block;border-radius:50%;box-shadow:0 0 0 1
 
 
 
-.heroimg{position:relative;width:104%;max-width:980px;aspect-ratio:1/.76;justify-self:end;margin-right:-2%}
+.heroimg{position:relative;width:104%;max-width:min(980px,calc((100vh - 130px)/.7));aspect-ratio:1/.7;justify-self:end;margin-right:-2%}
 .heroimg img{position:absolute;display:block;height:auto;filter:drop-shadow(0 34px 34px rgba(2,8,30,.5)) drop-shadow(0 6px 10px rgba(2,8,30,.25))}
 .heroimg .hl{width:76%;left:12%;top:0;z-index:1}
-.heroimg .hp{width:50%;left:0;bottom:0;z-index:2}
-.heroimg .hm{width:19%;right:3%;bottom:0;z-index:3}
+.heroimg .hp{width:50%;left:0;bottom:9%;z-index:2}
+.heroimg .hm{width:19%;right:3%;bottom:8%;z-index:3}
 .features .grid3{gap:1.5rem}
 .f{position:relative;overflow:hidden;border-radius:28px;padding:2.2rem 2.1rem 2.3rem;transition:transform .25s,box-shadow .25s,border-color .25s}
 .f::after{content:"";position:absolute;right:-46px;top:-46px;width:150px;height:150px;border-radius:50%;background:rgba(15,166,140,.07)}
