@@ -1,0 +1,301 @@
+﻿
+===== C:\Users\25078\Documents\Trackly\trackly-mobile\src\services\authService.ts =====
+
+/**
+ * authService.ts
+ * Trackly - Auth API calls
+ *
+ * Fixed several request-shape mismatches against the real backend:
+ * - register() never sent email at all, even though it's now mandatory
+ * - sendOtp()/verifyOtp() sent {phone, countryCode} but backend expects {phone, purpose}
+ * - resetPassword() sent {phone, countryCode, otp} but backend expects {email, otpCode}
+ *   (password reset is now email-based, sent via Brevo, since no SMS/WhatsApp
+ *   provider is configured yet)
+ */
+import { api, tokenStorage } from './api';
+
+export interface User {
+  id:         string;
+  phone:      string;
+  fullName:   string;
+  email:      string | null;
+  role:       string;
+  appRole?:   string;
+  businessId?: string;
+  isVerified: boolean;
+  pinEnabled: boolean;
+}
+
+export interface AuthResponse {
+  accessToken:  string;
+  refreshToken: string;
+  user:         User;
+}
+
+export const authService = {
+  async register(phone: string, fullName: string, email: string, password: string, role: string = 'business_owner'): Promise<AuthResponse> {
+    const res = await api.post<AuthResponse>('/auth/register', { phone, fullName, email, password, role });
+    await tokenStorage.setTokens(res.accessToken, res.refreshToken);
+    await tokenStorage.setUser(res.user);
+    return res;
+  },
+
+  async login(phone: string, password: string): Promise<AuthResponse> {
+    const res = await api.post<AuthResponse>('/auth/login', { phone, password });
+    await tokenStorage.setTokens(res.accessToken, res.refreshToken);
+    await tokenStorage.setUser(res.user);
+    return res;
+  },
+
+  async pinLogin(phone: string, pin: string): Promise<AuthResponse> {
+    const res = await api.post<AuthResponse>('/auth/pin/login', { phone, pin });
+    await tokenStorage.setTokens(res.accessToken, res.refreshToken);
+    await tokenStorage.setUser(res.user);
+    return res;
+  },
+
+  async setupPin(pin: string): Promise<void> {
+    await api.post('/auth/pin/setup', { pin });
+  },
+
+  // For phone verification purposes (register/verify_phone) -- SMS-based,
+  // still logs to console server-side until an SMS provider is configured.
+  async sendOtp(phone: string, purpose: 'register' | 'verify_phone'): Promise<void> {
+    await api.post('/auth/otp/send', { phone, purpose });
+  },
+
+  async verifyOtp(phone: string, purpose: 'register' | 'verify_phone', code: string): Promise<void> {
+    await api.post('/auth/otp/verify', { phone, purpose, code });
+  },
+
+  // Forgot password is email-based -- code is emailed via Brevo.
+  async forgotPassword(email: string): Promise<void> {
+    await api.post('/auth/password/forgot', { email });
+  },
+
+  async resetPassword(email: string, otpCode: string, newPassword: string): Promise<void> {
+    await api.post('/auth/password/reset', { email, otpCode, newPassword });
+  },
+
+  // Permanently deletes the account and all business data (password required).
+  async deleteAccount(password: string): Promise<void> {
+    await api.post('/auth/account/delete', { password });
+    await tokenStorage.clear();
+  },
+
+  // A deleted account asks Trackly to recover it (phone + password prove ownership).
+  async requestRecovery(phone: string, password: string): Promise<void> {
+    await api.post('/auth/account/recovery-request', { phone, password });
+  },
+
+  async getMe(): Promise<User> {
+    return api.get<User>('/auth/me');
+  },
+
+  async logout(): Promise<void> {
+    await tokenStorage.clear();
+  },
+};
+
+
+===== C:\Users\25078\Documents\Trackly\trackly-mobile\src\services\businessService.ts =====
+
+/**
+ * businessService.ts
+ * Trackly â€” Business API calls
+ */
+
+import { api } from './api';
+
+export interface Business {
+  id:             string;
+  ownerId:        string;
+  name:           string;
+  category:       string;
+  province:       string;
+  district:       string;
+  sector:         string | null;
+  cell:           string | null;
+  village:        string | null;
+  phone:          string;
+  email:          string | null;
+  logoUrl:        string | null;
+  currency:       string;
+  timezone:       string;
+  tinNumber:      string | null;
+  isVatRegistered:boolean;
+  annualTurnover: number;
+  createdAt:      string | null;
+}
+
+export interface CreateBusinessRequest {
+  name:            string;
+  category:        string;
+  province:        string;
+  district:        string;
+  sector?:         string;
+  cell?:           string;
+  village?:        string;
+  phone:           string;
+  email?:          string;
+  tinNumber?:      string;
+  referralCode?:   string;
+  isVatRegistered: boolean;
+  annualTurnover:  number;
+}
+
+export const businessService = {
+
+  async create(req: CreateBusinessRequest): Promise<Business> {
+    return api.post<Business>('/businesses', req);
+  },
+
+  async getAll(): Promise<Business[]> {
+    return api.get<Business[]>('/businesses');
+  },
+
+  async getById(id: string): Promise<Business> {
+    return api.get<Business>(`/businesses/${id}`);
+  },
+
+  async update(id: string, req: Partial<CreateBusinessRequest>): Promise<Business> {
+    return api.patch<Business>(`/businesses/${id}`, req);
+  },
+
+  async delete(id: string): Promise<void> {
+    return api.delete(`/businesses/${id}`);
+  },
+};
+
+===== C:\Users\25078\Documents\Trackly\trackly-mobile\src\services\index.ts =====
+
+/**
+ * index.ts
+ * Trackly â€” Central export for all services
+ * Usage: import { authService, salesService } from '../services';
+ */
+
+export { api, ApiError, tokenStorage, API_BASE_URL } from './api';
+export { authService }           from './authService';
+export { businessService }       from './businessService';
+export { productService }        from './productService';
+export { salesService }          from './salesService';
+export { expenseService }        from './expenseService';
+export { subscriptionService }   from './subscriptionService';
+export { staffService }          from './staffService';
+export { agentService }          from './agentService';
+export { customerService }       from './customerService';
+export { supplierService }       from './supplierService';
+export { fetchNotificationData } from './notificationService';
+export { supportService }        from './supportService';
+
+export type { User, AuthResponse }                                    from './authService';
+export type { Business, CreateBusinessRequest }                       from './businessService';
+export type { Product, Category, BarcodeLookup, StockSummary }        from './productService';
+export type { Sale, SaleItem, SalesSummary, CreateSaleRequest }       from './salesService';
+export type { Expense, ExpenseSummary }                               from './expenseService';
+export type { Subscription, PlanInfo }                                from './subscriptionService';
+export type { Employee, Shift, StaffSummary }                         from './staffService';
+export type { AgentApplication, AgentProfile }                        from './agentService';
+export type { NotificationData }                                      from './notificationService';
+export type { SupportTicket }                                         from './supportService';
+
+===== C:\Users\25078\Documents\Trackly\trackly-mobile\src\constants\businessTypes.ts =====
+
+/**
+ * businessTypes.ts â€” Trackly by IVANEXO
+ * Single shared list of business categories used at registration
+ * and in Settings business-edit, with icons for consistent styling.
+ */
+export interface BizTypeDef {
+  key: string;
+  icon: string;
+  color: string;
+  label: { rw: string; en: string; fr: string };
+}
+
+export const BUSINESS_TYPES: BizTypeDef[] = [
+  { key: 'retail',       icon: 'storefront-outline',     color: '#1DAA8A', label: { rw: 'Iduka rya Retail',        en: 'Retail / General Store',      fr: 'Commerce de detail' } },
+  { key: 'grocery',      icon: 'cart-outline',           color: '#F97316', label: { rw: 'Ibiribwa n\'Ibinyobwa',   en: 'Grocery / Supermarket',        fr: 'Epicerie / Supermarche' } },
+  { key: 'restaurant',   icon: 'restaurant-outline',     color: '#EF4444', label: { rw: 'Resitora / Bar',          en: 'Restaurant / Bar',             fr: 'Restaurant / Bar' } },
+  { key: 'bakery',       icon: 'cafe-outline',           color: '#D4860A', label: { rw: 'Ibigori / Kafe',          en: 'Bakery / Cafe',                fr: 'Boulangerie / Cafe' } },
+  { key: 'pharmacy',     icon: 'medkit-outline',         color: '#059669', label: { rw: 'Farumasi',                en: 'Pharmacy',                     fr: 'Pharmacie' } },
+  { key: 'clinic',       icon: 'pulse-outline',          color: '#EC4899', label: { rw: 'Ubuvuzi',                 en: 'Clinic / Health',              fr: 'Clinique / Sante' } },
+  { key: 'salon',        icon: 'cut-outline',            color: '#8B5CF6', label: { rw: 'Salon',                   en: 'Salon / Beauty',               fr: 'Salon de beaute' } },
+  { key: 'boutique',     icon: 'shirt-outline',          color: '#2563EB', label: { rw: 'Boutiki',                 en: 'Boutique / Clothing',          fr: 'Boutique / Vetements' } },
+  { key: 'hardware',     icon: 'hammer-outline',         color: '#6B7280', label: { rw: 'Feramente',               en: 'Hardware / Construction',      fr: 'Quincaillerie' } },
+  { key: 'electronics',  icon: 'hardware-chip-outline',  color: '#3B82F6', label: { rw: 'Elegitoronike',           en: 'Electronics',                  fr: 'Electronique' } },
+  { key: 'agriculture',  icon: 'leaf-outline',           color: '#16A34A', label: { rw: 'Ubuhinzi',                en: 'Agriculture',                  fr: 'Agriculture' } },
+  { key: 'auto',         icon: 'construct-outline',      color: '#F59E0B', label: { rw: 'Ivugurura Imodoka',       en: 'Auto Repair / Garage',         fr: 'Garage / Reparation auto' } },
+  { key: 'transport',    icon: 'car-outline',            color: '#0EA5E9', label: { rw: 'Gutwara',                 en: 'Transport / Logistics',        fr: 'Transport / Logistique' } },
+  { key: 'hotel',        icon: 'bed-outline',            color: '#7C3AED', label: { rw: 'Hoteli',                  en: 'Hotel / Guesthouse',           fr: 'Hotel / Auberge' } },
+  { key: 'cyber',        icon: 'desktop-outline',        color: '#1B2A5A', label: { rw: 'Sibernet / IT',           en: 'Cyber Cafe / IT Services',     fr: 'Cybercafe / Services IT' } },
+  { key: 'services',     icon: 'briefcase-outline',      color: '#4B5563', label: { rw: 'Serivisi',                en: 'Professional Services',        fr: 'Services professionnels' } },
+  { key: 'realestate',   icon: 'business-outline',       color: '#D97706', label: { rw: 'Inyubako',                en: 'Real Estate / Construction',   fr: 'Immobilier / Construction' } },
+  { key: 'wholesale',    icon: 'cube-outline',           color: '#0891B2', label: { rw: 'Gucuruza Igicuruzwa',     en: 'Wholesale / Distribution',     fr: 'Vente en gros / Distribution' } },
+  { key: 'other',        icon: 'ellipsis-horizontal-outline', color: '#9CA3AF', label: { rw: 'Ibindi',             en: 'Other',                        fr: 'Autre' } },
+];
+
+
+===== rwanda_geo.ts size: 191889 bytes =====
+
+// Rwanda Geographic Data - Full Cascade
+// Source: Final List of Revised NEP Villages 2021
+// 5 Provinces | 30 Districts | Full Sectors, Cells & Villages
+
+export type Province = 'Kigali' | 'Northern' | 'Southern' | 'Eastern' | 'Western';
+
+// Structure: Province > District > Sector > Cell > Villages[]
+export const RWANDA_GEO: Record<Province, Record<string, Record<string, Record<string, string[]>>>> = {
+  'Kigali': {
+    'Gasabo': {
+      'Bumbogo': {
+        'Kinyaga': ['Akakaza','Muhozi','Rubungo','Ryakigogo','Zindiro'],
+        'Musave': ['Kagarama','Kayumba','Ramba','Rebero','Rugando'],
+        'Mvuzo': ['Kigabiro','Kiyoro','Murarambo','Nkona','Nyakabingo','Rukoma'],
+        'Ngara': ['Birembo','Gisasa','Munini','Ruhinga','Uwaruraza'],
+        'Nkuzuzu': ['Akabenejuru','Akasedogo','Akimpama','Burima','Kityazo'],
+        'Nyabikenke': ['Bushya','Gikumba','Kamutamu','Karama','Kayenzi','Kigara','Kiriza','Masizi','Mbogo','Nyampamo'],
+        'Nyagasozi': ['Akanyiramugarura','Akigabiro','Gishaka','Kabuye','Mpabwa','Nyagasambu','Urutarishonga'],
+      },
+      'Gatsata': {
+        'Karuruma': ['Akamamana','Akimihigo','Bigega','Busasamana','Kingasire','Kumuyange','Muremera','Nyagasozi','Rugoro','Rwesero','Tetero'],
+        'Nyamabuye': ['Agakomeye','Gashubi','Gisiza','Hanika','Juru','Kibaya','Mpakabavu','Musango','Ndengo','Nyakabande','Nyakanunga','Rubonobono','Runyonza','Rusoro','Ruvumero','Uwagatovu'],
+        'Nyamugari': ['Agataramo','Akamwunguzi','Akarubimbura','Akisoko','Amarembo','Amizero','Bwiza','Ihuriro','Isangano','Kanyonyomba','Nyakariba','Rwakarihejuru'],
+      },
+      'Gikomero': {
+        'Gasagara': ['Bwimiyange','Bwingeyo','Gasagara','Rugwiza'],
+        'Gicaca': ['Ntaganzwa','Nyagasozi','Nyagisozi','Ruganda'],
+        'Kibara': ['Gahinga','Gasharu','Kibobo','Nombe'],
+        'Munini': ['Munini','Mutokerezwa','Rudakabukirwa','Runyinya'],
+        'Murambi': ['Kimisebeya','Kivugiza','Rugarama','Twina'],
+      },
+      'Gisozi': {
+        'Musezero': ['Amajyambere','Amarembo','Byimana','Gasave','Gasharu','Kagara','Nyakariba','Rwinyana'],
+        'Ruhango': ['Kanyinya','Kumukenke','Murambi','Ntora','Rukeri','Umurava'],
+      },
+      'Jabana': {
+        'Akamatamu': ['Akamatamu','Cyeyere','Murehe','Nyacyonga','Nyagasozi','Nyarukurazo'],
+        'Bweramvura': ['Agakenke','Agatare','Akinyana','Gikingo','Gitega','Gitenga','Nyakabingo','Nyarurama','Rugogwe','Taba'],
+        'Kabuye': ['Amakawa','Amasangano','Buliza','Ihuriro','Kabeza','Karuruma','Murama','Nyagasozi','Rebero','Rugarama','Tetero'],
+        'Kidashya': ['Agasekabuye','Agatare','Amasangano','Mubuga','Nyamweru'],
+        'Ngiryi': ['Agahama','Agasharu','Akabuga','Jurwe','Kiberinka','Nyakirehe','Nyarubuye','Rubona','Rwanyanza','Uwanyange'],
+      },
+      'Jali': {
+        'Agateko': ['Bugarama','Bukamba','Byimana','Kabizoza','Kinunga','Rwankuba','Urunyinya'],
+        'Buhiza': ['Gatare','Kabande','Nyamugali','Nyarubuye'],
+        'Muko': ['Gahinga','Gatare','Umunyinya'],
+        'Nkusi': ['Agatwa','Kabagina','Kajevuba','Kigarama','Nyagasayo'],
+        'Nyabuliba': ['Kirehe','Mataba','Nyaburira','Nyarurembo','Rubona'],
+        'Nyakabungo': ['Bwocya','Gitaba','Karenge','Rugina','Ruhihi'],
+        'Nyamitanga': ['Agasharu','Agatare','Kabuga','Runyinya'],
+      },
+      'Kacyiru': {
+        'Kamatamu': ['Amajyambere','Bukinanyana','Cyimana','Gataba','Itetero','Kabare','Kamuhire','Karukamba','Nyagacyamo','Rwinzovu','Urugwiro','Uruhongore'],
+        'Kamutwa': ['Agasaro','Gasharu','Inkingi','Kanserege','Kigugu','Ruganwa','Umuco','Urugero','Urwibutso'],
+        'Kibaza': ['Amahoro','Bwiza','Ihuriro','Ineza','Inyange','Iriba','Kabagari','Ubumwe','Umutako','Urukundo','Virunga'],
+      },
+      'Kimihurura': {
+        'Kamukina': ['Inyamibwa','Isangano','Isano','Ituze','Izuba','Juru','Nyenyeri','Umurava','Urumuri'],
+        'Kimihurura': ['Amahoro','Amajyambere','Imihigo','Intambwe','Mutara','Rugarama','Ubumwe','Umutekano','Urwego'],
+        'Rugando': ['Gasange','Gasasa','Rebero','Taba'],

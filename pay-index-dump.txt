@@ -1,0 +1,507 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Trackly</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 rx=%2716%27 fill=%27%231DAA8A%27/%3E%3Ctext x=%2732%27 y=%2745%27 font-size=%2740%27 font-weight=%27bold%27 font-family=%27Arial%27 text-anchor=%27middle%27 fill=%27white%27%3ET%3C/text%3E%3Ccircle cx=%2750%27 cy=%2714%27 r=%276%27 fill=%27%23E58A12%27/%3E%3C/svg%3E">
+<meta name="theme-color" content="#1B2A5A">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#1B2A5A; --teal:#1DAA8A; --gold:#D4860A; --violet:#7C3AED;
+    --bg:#F3F5FB; --card:#fff; --line:#E5E7EB; --muted:#6B7280; --soft:#9CA3AF; --ink:#111827; --bad:#C0392B;
+    --font:"Plus Jakarta Sans",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0;font-family:var(--font);background:var(--bg);color:var(--ink);line-height:1.45}
+  body.lock{overflow:hidden}
+  button{font-family:inherit}
+  :focus-visible{outline:3px solid #7FD6C2;outline-offset:2px}
+
+  /* ---------- header (matches app) ---------- */
+  .hero{position:relative;overflow:hidden;background:var(--navy);color:#fff;padding:14px 16px 58px;border-radius:0 0 34px 34px}
+  .hero:before,.hero:after{content:"";position:absolute;border-radius:50%;pointer-events:none}
+  .hero:before{width:240px;height:240px;right:-90px;top:-100px;background:#ffffff0d}
+  .hero:after{width:170px;height:170px;left:-70px;bottom:-60px;background:#1DAA8A26}
+  .bar{position:relative;z-index:1;max-width:520px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:8px}
+  .brand{display:flex;align-items:center;gap:12px;min-width:0}
+  .brand .lg{position:relative;width:44px;height:44px;border-radius:13px;background:var(--teal);color:#fff;font-weight:800;font-size:27px;line-height:44px;text-align:center;flex:none}
+  .brand .lg:after{content:"";position:absolute;top:7px;right:7px;width:9px;height:9px;border-radius:50%;background:#E58A12}
+  .brand .wm{font-size:20px;font-weight:800;letter-spacing:4px;line-height:1}
+  .brand .wm i{font-style:normal;color:#D9951A}
+  .brand .tg{font-size:9.5px;color:#8E9BC6;margin-top:6px;letter-spacing:.3px;white-space:nowrap}
+  .langs{display:flex;flex:none}
+  .langs button{background:transparent;border:1px solid #ffffff55;color:#fff;border-radius:7px;padding:4px 7px;margin-left:4px;font-size:13px;font-weight:600;cursor:pointer}
+  .langs button.on{background:var(--teal);border-color:var(--teal)}
+  .ht{position:relative;z-index:1;max-width:520px;margin:22px auto 0;text-align:center}
+  .ht h1{margin:0;font-size:26px;font-weight:800;letter-spacing:-.4px;line-height:1.15}
+  .ht p{margin:6px 0 0;font-size:14px;color:#B8C2E4}
+  .biz{display:inline-flex;align-items:center;gap:8px;margin-top:14px;max-width:100%;background:#ffffff1a;border:1px solid #ffffff2e;border-radius:999px;padding:6px 14px 6px 6px;font-size:13px;font-weight:600}
+  .biz .av{width:26px;height:26px;border-radius:50%;background:#fff;color:var(--navy);font-weight:800;font-size:13px;display:flex;align-items:center;justify-content:center;flex:none}
+  .biz span.n{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .biz .cp{flex:none;font-size:11.5px;font-weight:800;border-radius:999px;padding:2px 9px;color:#fff}
+
+  main{max-width:520px;margin:-34px auto 0;padding:0 16px;position:relative;z-index:2}
+  footer{text-align:center;color:var(--muted);font-size:13px;padding:6px 16px 36px}
+  footer a{color:var(--teal);font-weight:800;text-decoration:none}
+
+  /* ---------- billing toggle ---------- */
+  .tog{display:flex;background:#fff;border:1px solid var(--line);border-radius:18px;padding:5px;margin-bottom:16px;box-shadow:0 6px 20px -10px #1b2a5a55}
+  .tog button{flex:1;display:flex;align-items:center;justify-content:center;gap:7px;border:0;background:transparent;padding:12px 6px;border-radius:14px;font-size:14px;font-weight:600;color:var(--soft);cursor:pointer;transition:background .2s,color .2s}
+  .tog button.on{background:var(--teal);color:#fff;font-weight:800;box-shadow:0 6px 14px -6px var(--teal)}
+  .tog svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}
+  .tog .bd{font-size:10px;font-weight:800;background:#F59E0B;color:#fff;border-radius:999px;padding:2px 7px;white-space:nowrap}
+  .note{background:#E8F7F2;border:1px solid #BFE9DD;border-radius:14px;padding:11px 14px;font-size:13.5px;margin-bottom:16px}
+
+  /* ---------- plan cards (all open, like the app) ---------- */
+  .plan{--c:var(--navy);position:relative;background:var(--card);border:1.5px solid var(--line);border-radius:22px;margin-bottom:16px;overflow:hidden;box-shadow:0 3px 12px #00000014;transition:border-color .2s,box-shadow .2s}
+  .plan.sel{border:2.5px solid var(--c);box-shadow:0 14px 30px -12px var(--c)}
+  .plan .rib{display:flex;align-items:center;justify-content:center;gap:6px;background:var(--c);color:#fff;font-size:12px;font-weight:800;padding:8px;letter-spacing:.3px}
+  .plan .rib svg{width:12px;height:12px;fill:#fff;stroke:#fff;stroke-width:1.5}
+  .ph{display:flex;align-items:center;gap:12px;padding:16px 18px;background:color-mix(in srgb,var(--c) 7%,#fff)}
+  .em{width:44px;height:44px;border-radius:14px;background:color-mix(in srgb,var(--c) 16%,#fff);display:flex;align-items:center;justify-content:center;flex:none}
+  .em svg{width:22px;height:22px;stroke:var(--c);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+  .pm{flex:1;min-width:0}
+  .pn{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  .pn b{font-size:19px;font-weight:800;letter-spacing:-.3px}
+  .pill{font-size:10.5px;font-weight:800;color:var(--c);background:color-mix(in srgb,var(--c) 14%,#fff);border:1px solid color-mix(in srgb,var(--c) 32%,#fff);border-radius:8px;padding:2px 8px}
+  .pt{font-size:12.5px;color:var(--soft);font-weight:500;margin-top:3px;line-height:1.3}
+  .yours{font-size:11px;font-weight:800;color:#fff;background:var(--c);border-radius:999px;padding:3px 10px;white-space:nowrap;flex:none}
+
+  .price{display:flex;align-items:center;flex-wrap:wrap;gap:10px;padding:10px 18px 4px}
+  .price .big{font-size:36px;font-weight:800;letter-spacing:-1.5px;color:var(--c);line-height:1}
+  .price .mt{display:flex;flex-direction:column;line-height:1.2;margin-top:8px}
+  .price .mt b{font-size:12px;color:#4B5563;font-weight:800}
+  .price .mt span{font-size:11.5px;color:var(--soft)}
+  .chips{display:flex;flex-wrap:wrap;gap:8px;padding:8px 18px 12px}
+  .cp2{display:inline-flex;align-items:center;gap:5px;border:1px solid;border-radius:999px;padding:5px 10px;font-size:11px;font-weight:700}
+  .cp2 svg{width:12px;height:12px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+  .cp2.day{color:var(--c);background:color-mix(in srgb,var(--c) 9%,#fff);border-color:color-mix(in srgb,var(--c) 28%,#fff)}
+  .cp2.sv{color:#059669;background:#ECFDF5;border-color:#A7F3D0}
+  .cp2.nc{color:var(--teal);background:#F0FDF9;border-color:#1DAA8A55}
+  .dv{height:1px;margin:2px 18px 14px;background:color-mix(in srgb,var(--c) 20%,#fff)}
+  .ft{list-style:none;margin:0;padding:0 18px 6px}
+  .ft li{display:flex;gap:10px;align-items:center;font-size:13.5px;color:#374151;margin-bottom:10px;line-height:1.35}
+  .ft .ic{width:22px;height:22px;border-radius:50%;flex:none;display:flex;align-items:center;justify-content:center;background:color-mix(in srgb,var(--c) 15%,#fff)}
+  .ft .ic svg{width:12px;height:12px;stroke:var(--c);fill:none;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+  .ft li.off{color:#CBD0DA;text-decoration:line-through}
+  .ft li.off .ic{background:#F3F4F6}
+  .ft li.off .ic svg{stroke:#D1D5DB}
+  .cta{display:flex;align-items:center;justify-content:center;gap:8px;width:calc(100% - 36px);margin:6px 18px 18px;height:52px;border-radius:15px;border:1.5px solid color-mix(in srgb,var(--c) 40%,#fff);background:color-mix(in srgb,var(--c) 9%,#fff);color:var(--c);font-size:14.5px;font-weight:800;cursor:pointer;transition:transform .08s,box-shadow .2s}
+  .cta svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+  .cta:active{transform:scale(.985)}
+  .plan.sel .cta{background:var(--c);color:#fff;border-color:var(--c);box-shadow:0 10px 20px -8px var(--c)}
+  .cta.free{background:var(--c);color:#fff;border-color:var(--c);box-shadow:0 10px 20px -8px var(--c)}
+  .toast{position:fixed;left:16px;right:16px;bottom:18px;max-width:440px;margin:0 auto;background:#1B2A5A;color:#fff;padding:13px 16px;border-radius:14px;font-size:13.5px;font-weight:600;line-height:1.4;box-shadow:0 14px 30px -10px rgba(0,0,0,.4);z-index:50;text-align:center}
+
+  .trust{display:flex;flex-wrap:wrap;justify-content:center;gap:8px 14px;margin:20px 0 6px}
+  .trust span{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:600;color:#4B5563}
+  .trust svg{width:14px;height:14px;stroke:var(--teal);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+  .guar{display:flex;align-items:center;justify-content:center;gap:6px;color:var(--soft);font-size:12px;text-align:center;margin:12px 4px 18px}
+  .guar svg{width:14px;height:14px;stroke:var(--soft);fill:none;stroke-width:2;flex:none}
+
+  /* ---------- payment sheet ---------- */
+  .ov{position:fixed;inset:0;background:#0000008c;z-index:50;display:none;align-items:flex-end;justify-content:center}
+  .ov.show{display:flex;animation:fd .2s ease-out}
+  .sheet{--c:var(--navy);width:100%;max-width:520px;max-height:94vh;overflow-y:auto;background:#fff;border-radius:28px 28px 0 0;padding:8px 22px 30px;animation:up .28s cubic-bezier(.2,.8,.2,1)}
+  .grab{width:38px;height:4px;border-radius:2px;background:#E5E7EB;margin:6px auto 14px}
+  .sh{display:flex;align-items:flex-start;gap:12px;margin-bottom:16px}
+  .sh h2{margin:0;font-size:20px;font-weight:800}
+  .sh p{margin:2px 0 0;font-size:12.5px;color:var(--soft);font-weight:600}
+  .xb{margin-left:auto;flex:none;width:34px;height:34px;border-radius:50%;border:0;background:#F3F4F6;cursor:pointer;display:flex;align-items:center;justify-content:center}
+  .xb svg{width:16px;height:16px;stroke:#6B7280;fill:none;stroke-width:2.6;stroke-linecap:round}
+  .sum1{display:flex;align-items:center;gap:12px;border:1.5px solid color-mix(in srgb,var(--c) 30%,#fff);background:color-mix(in srgb,var(--c) 7%,#fff);border-radius:16px;padding:13px 14px;margin-bottom:20px}
+  .sum1 .em{width:42px;height:42px}
+  .sum1 .t{flex:1;min-width:0}
+  .sum1 .t b{display:block;font-size:15px;font-weight:800}
+  .sum1 .t span{font-size:12px;color:var(--muted);font-weight:600}
+  .sum1 .a{font-size:18px;font-weight:800;color:var(--c);white-space:nowrap}
+  .lab{font-size:13px;font-weight:800;color:#374151;margin:0 0 9px}
+  .nets{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px}
+  .net{--nc:#FFCC00;position:relative;border:2px solid var(--line);background:#fff;border-radius:18px;padding:14px 8px 11px;cursor:pointer;text-align:center;transition:border-color .15s,background .15s,box-shadow .15s}
+  .net.airtel{--nc:#E4002B}
+  .net.on{border-color:var(--nc);background:color-mix(in srgb,var(--nc) 8%,#fff);box-shadow:0 10px 22px -12px var(--nc)}
+  .net .lgw{height:76px;display:flex;align-items:center;justify-content:center}
+  .net img{height:76px;width:76px;object-fit:cover;border-radius:18px;display:block;box-shadow:0 2px 8px #0002}
+  .net .wmk{display:none;align-items:center;justify-content:center;height:76px;width:76px;text-align:center;border-radius:18px;font-weight:800;font-size:14px;line-height:1.1;background:#FFCC00;color:#1a1a1a}
+  .net.airtel .wmk{background:#E4002B;color:#fff}
+  .net .nl{font-size:13px;font-weight:800;margin-top:9px;color:var(--ink)}
+  .net .ck{position:absolute;top:9px;right:9px;width:22px;height:22px;border-radius:50%;background:var(--nc);display:none;align-items:center;justify-content:center}
+  .net .ck svg{width:12px;height:12px;stroke:#111;fill:none;stroke-width:3.4;stroke-linecap:round;stroke-linejoin:round}
+  .net.airtel .ck svg{stroke:#fff}
+  .net.on .ck{display:flex}
+  .phw{display:flex;align-items:center;border:2px solid var(--line);border-radius:16px;background:#fff;overflow:hidden;transition:border-color .15s}
+  .phw:focus-within{border-color:var(--c)}
+  .cc{display:flex;align-items:center;gap:8px;align-self:stretch;padding:0 13px;background:#F1F4FA;border-right:2px solid var(--line);font-weight:800;color:var(--navy);font-size:17px}
+  .cc svg{width:24px;height:16px;border-radius:3px;box-shadow:0 0 0 1px #0002}
+  input[type=tel]{flex:1;min-width:0;border:0;background:transparent;font-family:inherit;font-size:20px;font-weight:700;letter-spacing:.6px;padding:15px 14px 15px 13px;color:var(--ink)}
+  input[type=tel]:focus{outline:none}
+  input[type=tel]::placeholder{color:#C3C9D6;font-weight:600}
+  .hint{font-size:12.5px;color:var(--soft);margin:8px 2px 0;font-weight:500}
+  .tot{margin-top:18px;background:#F7F8FC;border-radius:16px;padding:13px 15px}
+  .tot div{display:flex;justify-content:space-between;gap:12px;font-size:14px;padding:3px 0;color:#4B5563}
+  .tot div b{color:var(--ink);white-space:nowrap}
+  .tot .g{border-top:1px dashed #CBD2E4;margin-top:7px;padding-top:10px;font-size:16px;color:var(--ink);font-weight:800}
+  .tot .g b{color:var(--c);font-size:18px}
+  .err{color:var(--bad);font-size:14px;font-weight:700;margin-top:12px;min-height:18px}
+  .pay{width:100%;border:0;background:var(--c);color:#fff;font-size:16.5px;font-weight:800;height:56px;border-radius:16px;margin-top:10px;cursor:pointer;box-shadow:0 12px 22px -10px var(--c);display:flex;align-items:center;justify-content:center;gap:9px}
+  .pay svg{width:17px;height:17px;stroke:#fff;fill:none;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+  .pay:disabled{opacity:.55}
+  .pay:active{transform:scale(.99)}
+  .sec{display:flex;align-items:center;justify-content:center;gap:7px;font-size:12.5px;color:var(--muted);margin-top:14px;text-align:center}
+  .sec svg{width:14px;height:14px;stroke:var(--muted);fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;flex:none}
+  .ctr{text-align:center;padding:10px 0 4px}
+  .ctr h2{margin:6px 0 6px;font-size:22px;font-weight:800}
+  .ctr p{margin:0 auto;max-width:360px;color:var(--muted);font-size:14.5px}
+  .spin{width:54px;height:54px;border:5px solid #DFE5F1;border-top-color:var(--c);border-radius:50%;animation:s 1s linear infinite;margin:10px auto 18px}
+  .tick,.cross{width:70px;height:70px;border-radius:50%;margin:6px auto 12px;display:flex;align-items:center;justify-content:center}
+  .tick{background:var(--c)} .cross{background:var(--bad)}
+  .tick svg,.cross svg{width:32px;height:32px;stroke:#fff;fill:none;stroke-width:3.2;stroke-linecap:round;stroke-linejoin:round}
+  .okp{display:inline-block;margin:6px 0 10px;border-radius:999px;padding:7px 18px;color:#fff;background:var(--c);font-weight:800;font-size:15px}
+  .alt{background:#fff;color:var(--ink);border:2px solid var(--line);box-shadow:none;margin-top:18px}
+
+  .card{background:#fff;border:1px solid var(--line);border-radius:22px;padding:30px 20px;margin-bottom:16px;text-align:center;box-shadow:0 3px 12px #00000010}
+  .card h1{font-size:21px;margin:0 0 6px}
+  .muted{color:var(--muted);font-size:14px}
+  .card .spin{--c:var(--teal)}
+  @keyframes s{to{transform:rotate(360deg)}}
+  @keyframes fd{from{opacity:0}to{opacity:1}}
+  @keyframes up{from{transform:translateY(40px);opacity:.4}to{transform:none;opacity:1}}
+  @keyframes pop{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+  .plan{animation:pop .5s cubic-bezier(.2,.8,.2,1) both}
+  .plan:nth-of-type(2){animation-delay:.07s}.plan:nth-of-type(3){animation-delay:.14s}.plan:nth-of-type(4){animation-delay:.21s}
+  @media (min-width:600px){.ov{align-items:center}.sheet{border-radius:28px;padding-bottom:28px}}
+  @media (prefers-reduced-motion:reduce){.spin{animation-duration:3s}.plan,.sheet,.ov.show{animation:none}*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="hero">
+  <div class="bar"><div class="brand"><div class="lg">T</div><div><div class="wm">TRACK<i>LY</i></div><div class="tg">Business Operating System</div></div></div><div class="langs" id="langs"></div></div>
+  <div class="ht" id="ht"></div>
+</div>
+<main id="app"></main>
+<footer id="foot"></footer>
+<div class="ov" id="ov" role="dialog" aria-modal="true"><div class="sheet" id="sheet"></div></div>
+
+<script>
+// ===== backend address =====
+var API = "https://trackly-backend-1.onrender.com/api/v1/pay";
+// ===========================
+
+var IC = {
+  ubuntu:'<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>',
+  ibanze:'<path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/>',
+  iterambere:'<path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/>',
+  inkunga:'<path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/>',
+  check:'<path d="M20 6 9 17l-5-5"/>', x:'<path d="M18 6 6 18M6 6l12 12"/>',
+  lock:'<rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>',
+  star:'<path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>',
+  gift:'<rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13"/><path d="M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"/><path d="M7.5 8a2.5 2.5 0 0 1 0-5C11 3 12 8 12 8s1-5 4.5-5a2.5 2.5 0 0 1 0 5"/>',
+  cup:'<path d="M17 8h1a4 4 0 1 1 0 8h-1"/><path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z"/><path d="M6 2v2M10 2v2M14 2v2"/>',
+  shield:'<path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/>',
+  arrow:'<path d="M5 12h14M13 6l6 6-6 6"/>',
+  cal:'<rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/>',
+  flag:'<path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><path d="M4 22v-7"/>',
+  off:'<path d="M2 2l20 20"/><path d="M5.78 5.78A7 7 0 0 0 9 19h8a4.5 4.5 0 0 0 1.31-.2"/><path d="M21.53 16.5A4.5 4.5 0 0 0 17.5 10h-1.79A7 7 0 0 0 10 5.07"/>',
+  zap:'<path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/>',
+  phone:'<rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/>'
+};
+function svg(n){ return '<svg viewBox="0 0 24 24" aria-hidden="true">'+IC[n]+'</svg>'; }
+
+var COLOR = { ubuntu:"#7C3AED", ibanze:"#1B2A5A", iterambere:"#1DAA8A", inkunga:"#D4860A" };
+function T3(en,rw,fr){ return {en:en,rw:rw,fr:fr}; }
+var PLANS = {
+  ubuntu:{ name:"Ubuntu", badge:T3("Free","Ubuntu","Gratuit"),
+    tagline:T3("Free forever. Start selling today.","Ni ubuntu burundu. Tangira gucuruza uyu munsi.","Gratuit pour toujours. Commencez Ã  vendre."),
+    features:[
+      [T3("Up to 20 products","Ibicuruzwa kugeza kuri 20","Jusqu'Ã  20 produits"),1],
+      [T3("Today's sales report","Raporo y'uyu munsi","Rapport du jour"),1],
+      [T3("Invoice history, last 30 days","Amateka ya fagitire y'iminsi 30","Historique des factures sur 30 jours"),1],
+      [T3("Inventory and low-stock alerts","Ububiko n'impuruza z'ububiko buke","Stock et alertes de stock bas"),1],
+      [T3("Customer records","Urutonde rw'abakiriya","Fiches clients"),1],
+      [T3("Receipts on WhatsApp","Fagitire kuri WhatsApp","ReÃ§us sur WhatsApp"),1],
+      [T3("Credit sales and rentals","Kugurisha ku nguzanyo no gukodesha","Ventes Ã  crÃ©dit et locations"),0],
+      [T3("Profit and loss, expenses","Inyungu n'ibyasohotse","Profits, pertes et dÃ©penses"),0],
+      [T3("Staff accounts","Konti z'abakozi","Comptes employÃ©s"),0]
+    ]},
+  ibanze:{ name:"Ibanze", badge:T3("Starter","Tangira","DÃ©butant"),
+    tagline:T3("Start small, grow steady","Tangira ubu, igiciro gito","DÃ©marrez petit, grandissez"),
+    features:[
+      [T3("Up to 100 products","Ibicuruzwa kugeza kuri 100","Jusqu'Ã  100 produits"),1],
+      [T3("Invoice history, last 90 days","Amateka ya fagitire y'iminsi 90","Historique des factures sur 90 jours"),1],
+      [T3("Weekly sales report","Raporo y'icyumweru","Rapport hebdomadaire"),1],
+      [T3("Inventory and low-stock alerts","Ububiko n'impuruza z'ububiko buke","Stock et alertes de stock bas"),1],
+      [T3("Barcode scanning","Gusikana barcode","Scan des codes-barres"),1],
+      [T3("Customer records","Urutonde rw'abakiriya","Fiches clients"),1],
+      [T3("Credit sales and rentals","Kugurisha ku nguzanyo no gukodesha","Ventes Ã  crÃ©dit et locations"),1],
+      [T3("Clean receipts, no Trackly footer","Fagitire zitagira ikirango cya Trackly","ReÃ§us sans mention Trackly"),1],
+      [T3("Full reports and profit and loss","Raporo zuzuye n'inyungu (P&L)","Rapports complets et P&L"),0],
+      [T3("Staff accounts","Konti z'abakozi","Comptes employÃ©s"),0]
+    ]},
+  iterambere:{ name:"Iterambere", badge:T3("Growth","Ihitimu","Croissance"), popular:T3("Most popular","Ayakunzwe cyane","Le plus populaire"),
+    tagline:T3("Sell more, grow faster","Gurisha byinshi, gukura vuba","Vendre plus, grandir vite"),
+    features:[
+      [T3("Everything in Ibanze","Byose biri muri Ibanze","Tout Ibanze inclus"),1],
+      [T3("Unlimited products","Ibicuruzwa nta ngano","Produits illimitÃ©s"),1],
+      [T3("Unlimited invoice history","Amateka ya fagitire nta karimbi","Historique illimitÃ©"),1],
+      [T3("Reports, profit and loss, cash flow","Raporo, inyungu n'igihombo, amafaranga yinjira n'asohoka","Rapports, P&L et trÃ©sorerie"),1],
+      [T3("Expense tracking and business goals","Ibyasohotse n'intego z'ubucuruzi","Suivi des dÃ©penses et objectifs"),1],
+      [T3("Suppliers and purchase orders","Abaganaciro n'ubusabe bwo gutumiza","Fournisseurs et bons de commande"),1],
+      [T3("Quotations, returns and discounts","Amaproforma, ibyagaruwe n'igabanyirizwa","Devis, retours et remises"),1],
+      [T3("Layaway, loans and cash desk","Kwishyura mu byiciro, inguzanyo n'agasanduku k'amafaranga","Acomptes, prÃªts et caisse"),1],
+      [T3("Up to 2 staff accounts","Kugeza ku bakozi 2","Jusqu'Ã  2 employÃ©s"),1],
+      [T3("RRA tax and VAT reports","Raporo z'imisoro RRA na TVA","Rapports fiscaux RRA et TVA"),0],
+      [T3("Shifts, assets and stock transfers","Ihinduka ry'abakozi, ibikoresho, kohereza ububiko","Ã‰quipes, actifs et transferts de stock"),0]
+    ]},
+  inkunga:{ name:"Agaciro", badge:T3("Pro","Pro","Pro"),
+    tagline:T3("The full suite: RRA tax and bank","Ubucuruzi bwose: RRA na Banki","La suite complÃ¨te : RRA et banque"),
+    features:[
+      [T3("Everything in Iterambere","Byose biri muri Iterambere","Tout Iterambere inclus"),1],
+      [T3("Unlimited staff accounts","Abakozi nta ngano","EmployÃ©s illimitÃ©s"),1],
+      [T3("RRA tax and VAT reports","Raporo z'imisoro RRA na TVA","Rapports fiscaux RRA et TVA"),1],
+      [T3("Bank reconciliation","Guhuzisha konti ya Banki","Rapprochement bancaire"),1],
+      [T3("Shift management","Gucunga ihinduka ry'abakozi","Gestion des Ã©quipes"),1],
+      [T3("Asset tracking","Gukurikirana ibikoresho","Suivi des actifs"),1],
+      [T3("Stock transfers between branches","Kohereza ububiko hagati y'amashami","Transferts de stock entre sites"),1]
+    ]}
+};
+
+var ORDER = ["ubuntu","ibanze","iterambere","inkunga"];
+
+var L = {
+ en:{hello:"Hello",choose:"Choose your plan",sub:"Pick a plan to start using Trackly",monthly:"Monthly",yearly:"Yearly",m2f:"2 months free",
+  popular:"Most popular",perMonth:"/month",perYear:"/year",rwf:"RWF",free:"Free",foreverFree:"Free forever",
+  save:"Save {a} RWF",daily:"{a} RWF per day only",nocommit:"No commitment, cancel anytime",
+  yours:"Your plan",stay:"Your free plan",openApp:"Continue free in Trackly",openMsg:"You are on the free Ubuntu plan. Open the Trackly app to start selling.",included:"Free for every business",start:"Start {n}",renew:"Renew {n}",
+  guarantee:"No contracts. Cancel anytime. Secure MoMo and Airtel payment.",
+  tMade:"Made for Rwanda",tOff:"Works offline",tSecure:"Secure payment",tFast:"Fast and reliable",
+  payTitle:"Pay with Mobile Money",chooseMethod:"Choose your payment method",mtn:"MTN Mobile Money",airtel:"Airtel Money",
+  phone:"Enter your phone number",phoneHint:"You will receive a payment prompt on this phone.",
+  sPlan:"Plan",sPrice:"Price",sFee:"Mobile money fee",sTotal:"Total to pay",pay:"Pay {a} RWF",
+  secure:"Secure payment. You approve it with your PIN.",
+  active:"Your plan is active until {d}. You can renew early below.",
+  waitTitle:"Approve on your phone",wait:"A payment request was sent to your phone. Enter your PIN to approve it. This page updates by itself.",
+  okTitle:"Payment received!",ok:"Your plan is active until {d}. You can go back to the Trackly app now.",
+  failTitle:"Payment not completed",fail:"The payment was not completed. You have not been charged unless you approved it.",
+  late:"We have not received the payment yet. If you approved it, it will show here shortly. Otherwise try again.",
+  badLink:"This link is invalid or has expired. Please open the newest message we sent you.",retry:"Try again",loading:"Loading...",close:"Close",
+  help:"Need help? support@ivanexo.com",
+  badPhone:"Enter a valid MTN or Airtel number, for example 788 123 456.",
+  wrongNet:"This number is not an {n} number. Choose the other network or check the number.",net:"Connection problem. Please try again.",noPlans:"No plans are available right now."},
+ rw:{hello:"Muraho",choose:"Hitamo gahunda yawe",sub:"Hitamo gahunda utangire gukoresha Trackly",monthly:"Buri kwezi",yearly:"Buri mwaka",m2f:"amezi 2 ubuntu",
+  popular:"Ayakunzwe cyane",perMonth:"/ukwezi",perYear:"/umwaka",rwf:"RWF",free:"Ubuntu",foreverFree:"Ni ubuntu burundu",
+  save:"Wizigama {a} RWF",daily:"{a} RWF ku munsi gusa",nocommit:"Nta gufunga, hagarika ryari na ryari",
+  yours:"Gahunda yawe",stay:"Gahunda yawe y'ubuntu",openApp:"Komeza ku buntu muri Trackly",openMsg:"Uri kuri gahunda y'ubuntu. Fungura porogaramu ya Trackly utangire gucuruza.",included:"Ni ubuntu ku bucuruzi bwose",start:"Tangira {n}",renew:"Ongera {n}",
+  guarantee:"Nta masezerano. Hagarika ryari na ryari. Ubwishyu bwizewe bwa MoMo na Airtel.",
+  tMade:"Yakozwe ku Rwanda",tOff:"Gukora offline",tSecure:"Ubwishyu bwizewe",tFast:"Byihuse",
+  payTitle:"Ishyura na Mobile Money",chooseMethod:"Hitamo uburyo bwo kwishyura",mtn:"MTN Mobile Money",airtel:"Airtel Money",
+  phone:"Injiza nimero ya telefone",phoneHint:"Uzahabwa ubusabe bwo kwishyura kuri iyi telefone.",
+  sPlan:"Gahunda",sPrice:"Igiciro",sFee:"Amafaranga ya mobile money",sTotal:"Amafaranga yose wishyura",pay:"Ishyura {a} RWF",
+  secure:"Ubwishyu bufite umutekano. Ubwemeza ukoresheje PIN yawe.",
+  active:"Gahunda yawe ikora kugeza ku wa {d}. Ushobora kuyongera hakiri kare hano hepfo.",
+  waitTitle:"Emeza kuri telefone yawe",wait:"Ubusabe bwo kwishyura bwoherejwe kuri telefone yawe. Shyiramo PIN yawe wemeze. Uru rupapuro ruhita ruhinduka rwonyine.",
+  okTitle:"Ubwishyu bwakiriwe!",ok:"Gahunda yawe ikora kugeza ku wa {d}. Ushobora gusubira muri porogaramu ya Trackly.",
+  failTitle:"Ubwishyu ntibwarangiye",fail:"Ubwishyu ntibwarangiye. Nta mafaranga yakuweho keretse niba warabwemeje.",
+  late:"Ntituramenya ko ubwishyu bwakiriwe. Niba warabwemeje, buraza kugaragara vuba. Niba atari ko, ongera ugerageze.",
+  badLink:"Iyi link ntabwo ari yo cyangwa yararangiye. Nyamuneka fungura ubutumwa bushya twakwoherereje.",retry:"Ongera ugerageze",loading:"Birimo gufunguka...",close:"Funga",
+  help:"Ukeneye ubufasha? support@ivanexo.com",
+  badPhone:"Andika nimero nziza ya MTN cyangwa Airtel, urugero 788 123 456.",
+  wrongNet:"Iyi nimero si iya {n}. Hitamo indi sosiyete cyangwa usuzume nimero.",net:"Ikibazo cy'umurongo. Ongera ugerageze.",noPlans:"Nta gahunda zihari ubu."},
+ fr:{hello:"Bonjour",choose:"Choisissez votre plan",sub:"Choisissez un plan pour commencer avec Trackly",monthly:"Mensuel",yearly:"Annuel",m2f:"2 mois offerts",
+  popular:"Le plus populaire",perMonth:"/mois",perYear:"/an",rwf:"RWF",free:"Gratuit",foreverFree:"Gratuit pour toujours",
+  save:"Ã‰conomisez {a} RWF",daily:"{a} RWF par jour seulement",nocommit:"Sans engagement, annulez Ã  tout moment",
+  yours:"Votre plan",stay:"Votre plan gratuit",openApp:"Continuer gratuitement dans Trackly",openMsg:"Vous Ãªtes sur le plan gratuit Ubuntu. Ouvrez l'application Trackly pour commencer Ã  vendre.",included:"Gratuit pour chaque entreprise",start:"Commencer {n}",renew:"Renouveler {n}",
+  guarantee:"Sans engagement. Annulez Ã  tout moment. Paiement MoMo et Airtel sÃ©curisÃ©.",
+  tMade:"ConÃ§u pour le Rwanda",tOff:"Hors ligne",tSecure:"Paiement sÃ©curisÃ©",tFast:"Rapide et fiable",
+  payTitle:"Payer par Mobile Money",chooseMethod:"Choisissez votre mÃ©thode de paiement",mtn:"MTN Mobile Money",airtel:"Airtel Money",
+  phone:"Entrez votre numÃ©ro",phoneHint:"Vous recevrez une demande de paiement sur ce tÃ©lÃ©phone.",
+  sPlan:"Plan",sPrice:"Prix",sFee:"Frais Mobile Money",sTotal:"Total Ã  payer",pay:"Payer {a} RWF",
+  secure:"Paiement sÃ©curisÃ©. Vous le validez avec votre code PIN.",
+  active:"Votre plan est actif jusqu'au {d}. Vous pouvez renouveler en avance ci-dessous.",
+  waitTitle:"Validez sur votre tÃ©lÃ©phone",wait:"Une demande de paiement a Ã©tÃ© envoyÃ©e sur votre tÃ©lÃ©phone. Entrez votre code PIN pour valider. Cette page se met Ã  jour toute seule.",
+  okTitle:"Paiement reÃ§u !",ok:"Votre plan est actif jusqu'au {d}. Vous pouvez retourner dans l'application Trackly.",
+  failTitle:"Paiement non abouti",fail:"Le paiement n'a pas abouti. Vous n'Ãªtes pas dÃ©bitÃ© sauf si vous l'avez validÃ©.",
+  late:"Nous n'avons pas encore reÃ§u le paiement. Si vous l'avez validÃ©, il apparaÃ®tra bientÃ´t. Sinon, rÃ©essayez.",
+  badLink:"Ce lien est invalide ou a expirÃ©. Veuillez ouvrir le message le plus rÃ©cent que nous vous avons envoyÃ©.",retry:"RÃ©essayer",loading:"Chargement...",close:"Fermer",
+  help:"Besoin d'aide ? support@ivanexo.com",
+  badPhone:"Saisissez un numÃ©ro MTN ou Airtel valide, par exemple 788 123 456.",
+  wrongNet:"Ce numÃ©ro n'est pas un numÃ©ro {n}. Choisissez l'autre rÃ©seau ou vÃ©rifiez le numÃ©ro.",net:"ProblÃ¨me de connexion. RÃ©essayez.",noPlans:"Aucun plan disponible pour le moment."}
+};
+
+var lang="en";
+try{ var nl=(navigator.language||"en").toLowerCase(); if(nl.indexOf("fr")===0) lang="fr"; else if(nl.indexOf("rw")===0) lang="rw";
+     var sv=localStorage.getItem("trackly_pay_lang"); if(sv&&L[sv]) lang=sv; }catch(e){}
+var token=new URLSearchParams(location.search).get("t")||"";
+var data=null, plan=null, cycle="monthly", net=null, phone="", view="load", sheet=false, payRef=null, serverMsg="", poll=null, result=null, errMsg="";
+
+function t(k,r){ var s=(L[lang][k]||k); if(r) for(var x in r) s=s.split("{"+x+"}").join(r[x]); return s; }
+function tt(o){ return o[lang]||o.en; }
+function esc(s){ return String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
+function fmt(n){ return Number(n).toLocaleString("en-US"); }
+function dstr(iso){ if(!iso) return ""; var d=new Date(iso); if(isNaN(d)) return ""; return ("0"+d.getDate()).slice(-2)+"/"+("0"+(d.getMonth()+1)).slice(-2)+"/"+d.getFullYear(); }
+function api(path,opt){ return fetch(API+path,opt).then(function(r){ return r.json().catch(function(){return {};}).then(function(j){ if(!r.ok) throw new Error(j.message||j.error||("HTTP "+r.status)); return j; }); }); }
+function isActive(){ return data && ["active","trialing","past_due"].indexOf(String(data.status||"").toLowerCase())>=0 && data.currentPlan; }
+function effPlan(){ return isActive()?data.currentPlan:"ubuntu"; }
+function byKey(k){ if(!data) return null; for(var i=0;i<data.plans.length;i++) if(data.plans[i].key===k) return data.plans[i]; return null; }
+function priceOf(p){ return cycle==="yearly"?p.priceYearly:p.priceMonthly; }
+function chargeOf(p){ return cycle==="yearly"?p.chargeYearly:p.chargeMonthly; }
+function planName(k){ return (byKey(k)&&byKey(k).name)||(PLANS[k]&&PLANS[k].name)||k; }
+function digits(s){ var d=String(s||"").replace(/\D/g,""); if(d.indexOf("250")===0) d=d.slice(3); if(d.charAt(0)==="0") d=d.slice(1); return d; }
+function netOf(d){ var p=d.slice(0,2); return (p==="78"||p==="79")?"mtn":(p==="72"||p==="73")?"airtel":null; }
+function netName(n){ return n==="mtn"?"MTN":"Airtel"; }
+var FLAG='<svg viewBox="0 0 3 2" aria-hidden="true"><rect width="3" height="1" fill="#00A1DE"/><rect y="1" width="3" height=".5" fill="#FAD201"/><rect y="1.5" width="3" height=".5" fill="#20603D"/><circle cx="2.4" cy=".4" r=".17" fill="#FAD201"/></svg>';
+
+function chrome(){
+  var h=""; ["en","rw","fr"].forEach(function(c){ h+='<button class="'+(c===lang?"on":"")+'" data-l="'+c+'">'+c.toUpperCase()+'</button>'; });
+  var el=document.getElementById("langs"); el.innerHTML=h;
+  el.onclick=function(e){ var c=e.target.getAttribute&&e.target.getAttribute("data-l"); if(c){ lang=c; try{localStorage.setItem("trackly_pay_lang",c);}catch(x){} document.documentElement.lang=c; render(); } };
+  document.getElementById("foot").innerHTML=esc(t("help")).replace("support@ivanexo.com",'<a href="mailto:support@ivanexo.com">support@ivanexo.com</a>');
+  var ht=document.getElementById("ht");
+  if(data&&view!=="error"){
+    var name=data.ownerName||"", ek=effPlan();
+    ht.innerHTML='<h1>'+t("choose")+'</h1><p>'+t("sub")+'</p><div class="biz"><span class="av">'+esc((name||data.businessName||"T").charAt(0).toUpperCase())+'</span><span class="n">'+esc(data.businessName||"")+'</span><span class="cp" style="background:'+COLOR[ek]+'">'+esc(planName(ek))+'</span></div>';
+  } else ht.innerHTML='<h1>'+t("choose")+'</h1><p>'+t("sub")+'</p>';
+}
+
+function planCard(k){
+  var P=PLANS[k], srv=byKey(k), free=(k==="ubuntu");
+  if(!free&&!srv) return "";
+  var pr=free?0:priceOf(srv); if(!free&&pr<=0) return "";
+  var cur=(effPlan()===k), sel=(!free&&plan===k);
+  var h='<section class="plan'+(sel?" sel":"")+'" style="--c:'+COLOR[k]+'" data-sel="'+(free?"":k)+'">';
+  if(P.popular) h+='<div class="rib"><svg viewBox="0 0 24 24" aria-hidden="true">'+IC.star+'</svg>'+esc(tt(P.popular))+'</div>';
+  h+='<div class="ph"><div class="em">'+svg(k)+'</div><div class="pm"><div class="pn"><b>'+esc(planName(k))+'</b><span class="pill">'+esc(tt(P.badge))+'</span></div><div class="pt">'+esc(tt(P.tagline))+'</div></div>'+(cur?'<span class="yours">'+t("yours")+'</span>':'')+'</div>';
+  h+='<div class="price">';
+  if(free) h+='<span class="big">'+t("free")+'</span><div class="mt"><b>'+t("foreverFree")+'</b></div>';
+  else h+='<span class="big">'+fmt(pr)+'</span><div class="mt"><b>'+t("rwf")+'</b><span>'+(cycle==="yearly"?t("perYear"):t("perMonth"))+'</span></div>';
+  h+='</div><div class="chips">';
+  if(!free){
+    h+='<span class="cp2 day">'+svg("cup")+t("daily",{a:fmt(Math.round(priceOf(srv)/(cycle==="yearly"?365:30)))})+'</span>';
+    if(cycle==="yearly"&&srv.priceMonthly*12>srv.priceYearly) h+='<span class="cp2 sv">'+svg("gift")+t("save",{a:fmt(srv.priceMonthly*12-srv.priceYearly)})+'</span>';
+    if(cycle==="monthly") h+='<span class="cp2 nc">'+svg("shield")+t("nocommit")+'</span>';
+  } else h+='<span class="cp2 day">'+svg("shield")+t("included")+'</span>';
+  h+='</div><div class="dv"></div><ul class="ft">';
+  P.features.forEach(function(f){ h+='<li class="'+(f[1]?"":"off")+'"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true">'+IC[f[1]?"check":"x"]+'</svg></span><span>'+esc(tt(f[0]))+'</span></li>'; });
+  h+='</ul>';
+  if(free) h+='<button class="cta free" data-open="1">'+t("openApp")+svg("arrow")+'</button>';
+  else h+='<button class="cta" data-buy="'+k+'">'+(cur?t("renew",{n:planName(k)}):t("start",{n:planName(k)}))+svg("arrow")+'</button>';
+  return h+'</section>';
+}
+
+function openApp(){
+  var ua=navigator.userAgent||"";
+  if(/Android/i.test(ua)){ location.href="intent://open#Intent;scheme=trackly;package=com.trackly.mobile;S.browser_fallback_url="+encodeURIComponent(location.href.split("#")[0])+";end"; }
+  var old=document.getElementById("toast"); if(old) old.remove();
+  var d=document.createElement("div"); d.id="toast"; d.className="toast"; d.textContent=t("openMsg"); document.body.appendChild(d);
+  setTimeout(function(){ if(d.parentNode) d.remove(); },5000);
+}
+
+function render(){
+  chrome();
+  var app=document.getElementById("app"), h="";
+  if(view==="load"){ app.innerHTML='<div class="card"><div class="spin"></div><div class="muted">'+t("loading")+'</div></div>'; return; }
+  if(view==="error"){ var em=(serverMsg.indexOf("invalid or has expired")>=0)?t("badLink"):serverMsg; app.innerHTML='<div class="card"><div class="tick" style="background:var(--bad)"><svg viewBox="0 0 24 24">'+IC.x+'</svg></div><div>'+esc(em)+'</div></div>'; return; }
+  if(isActive()&&data.paidUntil&&new Date(data.paidUntil)>new Date()) h+='<div class="note">'+esc(t("active",{d:dstr(data.paidUntil)}))+'</div>';
+  if(!data.plans.length){ app.innerHTML=h+'<div class="card">'+t("noPlans")+'</div>'; return; }
+  if(data.plans.some(function(p){return p.priceYearly>0;}))
+    h+='<div class="tog"><button data-c="monthly" class="'+(cycle==="monthly"?"on":"")+'">'+svg("cal")+t("monthly")+'</button><button data-c="yearly" class="'+(cycle==="yearly"?"on":"")+'">'+svg("cal")+t("yearly")+'<span class="bd">'+t("m2f")+'</span></button></div>';
+  ORDER.forEach(function(k){ h+=planCard(k); });
+  h+='<div class="trust"><span>'+svg("flag")+t("tMade")+'</span><span>'+svg("off")+t("tOff")+'</span><span>'+svg("shield")+t("tSecure")+'</span><span>'+svg("zap")+t("tFast")+'</span></div><div class="guar">'+svg("lock")+t("guarantee")+'</div>';
+  app.innerHTML=h;
+  app.onclick=function(e){
+    var el=e.target;
+    while(el&&el!==app){
+      if(el.getAttribute){
+        if(el.getAttribute("data-c")){ cycle=el.getAttribute("data-c"); render(); renderSheet(); return; }
+        if(el.getAttribute("data-open")){ openApp(); return; }
+        if(el.getAttribute("data-buy")){ plan=el.getAttribute("data-buy"); openSheet(); return; }
+        var s=el.getAttribute("data-sel"); if(s){ plan=s; var all=app.querySelectorAll(".plan"); for(var i=0;i<all.length;i++) all[i].classList.toggle("sel",all[i].getAttribute("data-sel")===plan); return; }
+      }
+      el=el.parentNode;
+    }
+  };
+}
+
+/* ---------- payment sheet ---------- */
+function openSheet(){ sheet=true; errMsg=""; view="form"; document.body.classList.add("lock"); document.getElementById("ov").classList.add("show"); renderSheet(); }
+function closeSheet(){ clearTimeout(poll); sheet=false; document.body.classList.remove("lock"); document.getElementById("ov").classList.remove("show"); view="form"; render(); }
+document.getElementById("ov").addEventListener("mousedown",function(e){ if(e.target===this&&view!=="wait") closeSheet(); });
+document.addEventListener("keydown",function(e){ if(e.key==="Escape"&&sheet&&view!=="wait") closeSheet(); });
+
+function netTile(n){
+  var logo=n==="mtn"?"logos/mtn.png":"logos/airtel.png", mk=n==="mtn"?"MTN MoMo":"airtel money";
+  return '<div class="net '+n+(net===n?" on":"")+'" role="radio" aria-checked="'+(net===n)+'" tabindex="0" data-n="'+n+'"><span class="ck"><svg viewBox="0 0 24 24" aria-hidden="true">'+IC.check+'</svg></span>'+
+   '<div class="lgw"><img src="'+logo+'" alt="" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'flex\'"><span class="wmk">'+mk+'</span></div><div class="nl">'+t(n)+'</div></div>';
+}
+function renderSheet(){
+  if(!sheet) return;
+  var sh=document.getElementById("sheet"); var cur=byKey(plan); if(!cur) return;
+  sh.style.setProperty("--c",COLOR[plan]);
+  var x='<button class="xb" id="xb" aria-label="'+t("close")+'">'+'<svg viewBox="0 0 24 24">'+IC.x+'</svg></button>';
+  var top='<div class="grab"></div>';
+  if(view==="wait"){ sh.innerHTML=top+'<div class="ctr"><div class="spin"></div><h2>'+t("waitTitle")+'</h2><p>'+t("wait")+'</p></div>'; return; }
+  if(view==="ok"){ sh.innerHTML=top+'<div class="ctr"><div class="tick"><svg viewBox="0 0 24 24">'+IC.check+'</svg></div><h2>'+t("okTitle")+'</h2><span class="okp">'+esc(result&&result.planName?result.planName:planName(plan))+'</span><p>'+esc(t("ok",{d:dstr(result&&result.paidUntil)}))+'</p><button class="pay alt" id="done">'+t("close")+'</button></div>'; document.getElementById("done").onclick=closeSheet; return; }
+  if(view==="fail"||view==="late"){ sh.innerHTML=top+'<div class="ctr"><div class="cross"><svg viewBox="0 0 24 24">'+IC.x+'</svg></div><h2>'+t("failTitle")+'</h2><p>'+t(view==="late"?"late":"fail")+'</p><button class="pay" id="retry">'+t("retry")+'</button></div>'; document.getElementById("retry").onclick=function(){ view="form"; errMsg=""; renderSheet(); }; return; }
+  var pr=priceOf(cur), ch=chargeOf(cur), fee=ch-pr;
+  var h=top+'<div class="sh"><div><h2>'+t("payTitle")+'</h2><p>'+t("chooseMethod")+'</p></div>'+x+'</div>';
+  h+='<div class="sum1"><div class="em">'+svg(plan)+'</div><div class="t"><b>'+esc(planName(plan))+'</b><span>'+(cycle==="yearly"?t("yearly"):t("monthly"))+'</span></div><div class="a">'+fmt(pr)+' RWF</div></div>';
+  h+='<div class="nets" role="radiogroup">'+netTile("mtn")+netTile("airtel")+'</div>';
+  h+='<div class="lab">'+t("phone")+'</div><div class="phw"><span class="cc">'+FLAG+'+250</span><input id="ph" type="tel" inputmode="tel" autocomplete="tel" placeholder="78X XXX XXX" aria-label="'+esc(t("phone"))+'"></div><div class="hint">'+t("phoneHint")+'</div>';
+  h+='<div class="tot"><div><span>'+t("sPrice")+'</span><b>'+fmt(pr)+' RWF</b></div>';
+  if(fee>0) h+='<div><span>'+t("sFee")+'</span><b>'+fmt(fee)+' RWF</b></div>';
+  h+='<div class="g"><span>'+t("sTotal")+'</span><b>'+fmt(ch)+' RWF</b></div></div>';
+  h+='<div class="err" id="err" role="alert">'+esc(errMsg)+'</div><button class="pay" id="go">'+t("pay",{a:fmt(ch)})+svg("arrow")+'</button><div class="sec">'+svg("lock")+t("secure")+'</div>';
+  sh.innerHTML=h;
+  document.getElementById("xb").onclick=closeSheet;
+  var ph=document.getElementById("ph"); ph.value=phone;
+  ph.oninput=function(){ phone=this.value; var n=netOf(digits(phone)); if(n&&n!==net){ net=n; syncNets(); } errMsg=""; var e=document.getElementById("err"); if(e) e.textContent=""; };
+  sh.onclick=function(e){ var el=e.target; while(el&&el!==sh){ if(el.getAttribute&&el.getAttribute("data-n")){ net=el.getAttribute("data-n"); syncNets(); return; } el=el.parentNode; } };
+  sh.onkeydown=function(e){ if((e.key==="Enter"||e.key===" ")&&e.target.getAttribute&&e.target.getAttribute("data-n")){ e.preventDefault(); net=e.target.getAttribute("data-n"); syncNets(); } };
+  document.getElementById("go").onclick=start;
+  if(window.innerWidth>=600) ph.focus();
+}
+function syncNets(){ var els=document.querySelectorAll(".net"); for(var i=0;i<els.length;i++){ var on=els[i].getAttribute("data-n")===net; els[i].className="net "+els[i].getAttribute("data-n")+(on?" on":""); els[i].setAttribute("aria-checked",on); } }
+function setErr(m){ errMsg=m; var e=document.getElementById("err"); if(e) e.textContent=m; }
+
+function start(){
+  var d=digits(phone), n=netOf(d);
+  if(!/^7[2389]\d{7}$/.test(d)) return setErr(t("badPhone"));
+  if(!net){ net=n; syncNets(); }
+  if(net!==n) return setErr(t("wrongNet",{n:netName(net)}));
+  document.getElementById("go").disabled=true; errMsg="";
+  api("/start",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({t:token,phone:"0"+d,planKey:plan,billingCycle:cycle})})
+   .then(function(r){ payRef=r.ref; view="wait"; renderSheet(); waitFor(Date.now()); })
+   .catch(function(e){ errMsg=(e&&e.message&&e.message.indexOf("HTTP")!==0)?e.message:t("net"); view="form"; renderSheet(); });
+}
+function waitFor(t0){
+  clearTimeout(poll);
+  poll=setTimeout(function(){
+    api("/status?t="+encodeURIComponent(token)+"&ref="+encodeURIComponent(payRef))
+     .then(function(r){
+        if(r.status==="paid"){ result=r; view="ok"; if(data){ data.currentPlan=plan; data.status="active"; if(r.paidUntil) data.paidUntil=r.paidUntil; } render(); renderSheet(); return; }
+        if(r.status==="failed"){ view="fail"; renderSheet(); return; }
+        if(Date.now()-t0>180000){ view="late"; renderSheet(); return; }
+        waitFor(t0);
+     })
+     .catch(function(){ if(Date.now()-t0>180000){ view="late"; renderSheet(); } else waitFor(t0); });
+  },3000);
+}
+
+function init(){
+  render();
+  if(!token){ serverMsg="This link is invalid or has expired. Please open the newest message we sent you."; view="error"; render(); return; }
+  api("/info?t="+encodeURIComponent(token)).then(function(r){
+    data=r; var cp=isActive()?r.currentPlan:null;
+    plan=(cp&&byKey(cp))?cp:(byKey("iterambere")?"iterambere":(r.plans.length?r.plans[0].key:null));
+    view="form"; render();
+  }).catch(function(e){ serverMsg=(e&&e.message&&e.message.indexOf("HTTP")!==0)?e.message:t("net"); view="error"; render(); });
+}
+init();
+</script>
+</body>
+</html>
