@@ -85,6 +85,26 @@ svg.i{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.9;stro
 .si .flame{font-size:.62rem;padding:.12rem .45rem .12rem .32rem}
 .si.cur{background:rgba(47,209,179,.16);color:#fff}
 
+
+.sl{font-size:.68rem;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:#7f91c4;padding:.9rem .8rem .35rem}
+.sl:first-child{padding-top:.1rem}
+.nt{width:32px;height:32px;border-radius:10px;display:inline-flex;align-items:center;justify-content:center;flex:none;background:color-mix(in srgb,var(--tc) 16%,transparent);color:var(--tc);transition:background .15s}
+.nt svg{width:18px;height:18px}
+.ni{padding:.45rem .6rem;gap:.75rem}
+.ni:hover .nt,.cat.open>.ni .nt,.ni.on .nt{background:color-mix(in srgb,var(--tc) 26%,transparent)}
+.ni.on{box-shadow:none;background:linear-gradient(90deg,rgba(47,209,179,.22),rgba(47,209,179,.06))}
+.lockcount{background:rgba(255,178,71,.16);border:1px solid rgba(255,178,71,.3);padding:.12rem .45rem;border-radius:99px;gap:3px}
+.nav .brand{padding:.1rem .6rem 1.1rem;margin-bottom:.5rem;border-bottom:1px solid rgba(255,255,255,.08)}
+.me{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:.6rem .7rem;margin-top:.7rem;width:100%}
+.me:hover{background:rgba(255,255,255,.11)}
+.me:hover .who b{text-decoration:none}
+.me .av{box-shadow:0 0 0 2px rgba(47,209,179,.55)}
+.nav:not(:has(.upg)) .me{margin-top:.7rem}
+.upg{margin-top:.5rem}
+.upg+.me{margin-top:.6rem}
+.nav .list{padding-bottom:.6rem}
+
+@media (max-height:980px) and (min-width:901px){.upg span{display:none}.upg{padding:.7rem .9rem}}
 /* ---------- main ---------- */
 .main{min-width:0;display:flex;flex-direction:column}
 .top{position:sticky;top:0;z-index:30;display:flex;align-items:center;gap:1rem;padding:.8rem clamp(1rem,3vw,2.6rem);background:rgba(244,246,251,.86);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid transparent}
@@ -413,11 +433,11 @@ var GATE={
  "notifications":["notifications","bell","ubuntu"],"settings":["settings","gear","ubuntu"],"profile":["profile","user","ubuntu"]
 };
 var CATS=[
- {k:"sales",icon:"cart",c:"#0a8577",bg:"#e6f7f2",items:["new-sale","invoice-history","quotations","sales-returns","discounts","credit-rental","layaway","customers"]},
- {k:"inventory",icon:"cube",c:"#2563eb",bg:"#ebf2ff",items:["inventory","stock-alerts","stock-transfer","suppliers","purchase-orders","assets"]},
- {k:"finance",icon:"wallet",c:"#dc2626",bg:"#fef2f2",items:["cash-desk","cashflow","expenses","loans","tax-vat","bank-reconciliation"]},
- {k:"reports",icon:"chart",c:"#7c3aed",bg:"#f3eeff",items:["reports","profit-loss","goals"]},
- {k:"team",icon:"teamc",c:"#d97706",bg:"#fff4e0",items:["employees","shift-manager"]}
+ {k:"sales",tc:"#2fd1b3",icon:"cart",c:"#0a8577",bg:"#e6f7f2",items:["new-sale","invoice-history","quotations","sales-returns","discounts","credit-rental","layaway","customers"]},
+ {k:"inventory",tc:"#6ea0ff",icon:"cube",c:"#2563eb",bg:"#ebf2ff",items:["inventory","stock-alerts","stock-transfer","suppliers","purchase-orders","assets"]},
+ {k:"finance",tc:"#ff8a8a",icon:"wallet",c:"#dc2626",bg:"#fef2f2",items:["cash-desk","cashflow","expenses","loans","tax-vat","bank-reconciliation"]},
+ {k:"reports",tc:"#b79bff",icon:"chart",c:"#7c3aed",bg:"#f3eeff",items:["reports","profit-loss","goals"]},
+ {k:"team",tc:"#ffc15a",icon:"teamc",c:"#d97706",bg:"#fff4e0",items:["employees","shift-manager"]}
 ];
 
 /* ---------- text ---------- */
@@ -570,10 +590,10 @@ function load(){
 /* ---------- sidebar ---------- */
 function buildNav(){
  var rr=route();if(rr.k==="svc"&&!OPEN){CATS.forEach(function(c){if(c.items.indexOf(rr.a)>-1)OPEN=c.k})}
- var t=tx(),r0=route(),h='<a class="ni'+(route().k==="home"?" on":"")+'" href="#/">'+ico("home")+'<span class="lbl">'+esc(t.home)+'</span></a>';
+ var t=tx(),r0=route(),h='<div class="sl">'+esc(t.menu)+'</div><a class="ni'+(route().k==="home"?" on":"")+'" href="#/"><span class="nt" style="--tc:#2fd1b3">'+ico("home")+'</span><span class="lbl">'+esc(t.home)+'</span></a><div class="sl">'+esc(t.services)+'</div>';
  CATS.forEach(function(c){
   var locked=c.items.filter(function(d){return !can(S.plan,d)}).length,tot=c.items.length;
-  h+='<div class="cat'+(OPEN===c.k||(r0.k==="svc"&&c.items.indexOf(r0.a)>-1&&OPEN!==""&&OPEN===c.k)?" open":"")+'" data-k="'+c.k+'"><button class="ni catbtn" aria-expanded="'+(OPEN===c.k)+'">'+ico(c.icon)+'<span class="lbl">'+esc(t.cats[c.k])+'</span>'+'<span class="cn">'+(tot-locked)+'/'+tot+'</span>'+(locked?'<span class="lockcount">'+FLAME.replace("<svg","<svg style=\"fill:#ffb347\"")+locked+'</span>':"")+ico("chev","chev")+'</button>'+
+  h+='<div class="cat'+(OPEN===c.k||(r0.k==="svc"&&c.items.indexOf(r0.a)>-1&&OPEN!==""&&OPEN===c.k)?" open":"")+'" data-k="'+c.k+'"><button class="ni catbtn" aria-expanded="'+(OPEN===c.k)+'"><span class="nt" style="--tc:'+c.tc+'">'+ico(c.icon)+'</span>'+'<span class="lbl">'+esc(t.cats[c.k])+'</span>'+(locked?'<span class="lockcount">'+FLAME.replace("<svg","<svg style=\"fill:#ffb347\"")+locked+'</span>':"")+ico("chev","chev")+'</button>'+
   '<div class="sub" role="menu"><div class="in">';
   c.items.forEach(function(d){
    var lk=!can(S.plan,d),gt=GATE[d];
