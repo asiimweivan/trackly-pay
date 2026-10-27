@@ -338,6 +338,7 @@ select.in:disabled{background-color:var(--bg);color:#9aa4bd;cursor:not-allowed}
     lang=T[q]?q:(T[sv]?sv:guess);
     if(T[q])localStorage.setItem("tk_lang",q);
     var pl=new URLSearchParams(location.search).get("plan");if(pl)localStorage.setItem("tk_plan_intent",pl);
+    var rfc=new URLSearchParams(location.search).get("ref");if(rfc){var rfe=document.getElementById("ref");if(rfe)rfe.value=rfc.replace(/[^A-Za-z0-9-]/g,"").toUpperCase().slice(0,30)}
   }catch(e){}
   function tr(k){return T[lang][k]||T.en[k]||k}
 
