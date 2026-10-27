@@ -239,8 +239,8 @@ select.in:disabled{background-color:var(--bg);color:#9aa4bd;cursor:not-allowed}
     <h2 id="okTitle"></h2>
     <p class="sub" id="okText"></p>
     <div class="btns">
-     <a class="btn btn-primary" href="/get" data-t="ok_dl">Download Trackly for Android</a>
-     <a class="btn btn-ghost" href="/app/login/" data-t="login">Log in</a>
+     <a class="btn btn-primary" href="/app/" id="okDash" hidden data-t="ok_dash">Open my dashboard</a>
+     <a class="btn btn-ghost" href="/get" data-t="ok_dl">Download Trackly for Android</a>
     </div>
    </div>
 
@@ -288,7 +288,7 @@ select.in:disabled{background-color:var(--bg);color:#9aa4bd;cursor:not-allowed}
   };
 
   var T={
-  en:{home:"Home",tag:"Business Operating System",h1a:"Welcome to Trackly.",h1b:"Let's grow your business.",lead:"Create your free account in two minutes and start selling today.",
+  en:{ok_dash:"Open my dashboard",home:"Home",tag:"Business Operating System",h1a:"Welcome to Trackly.",h1b:"Let's grow your business.",lead:"Create your free account in two minutes and start selling today.",
    have:"Already have an account?",login:"Log in",title:"Create your account",sub:"Free to start. It takes about two minutes.",r_owner:"Business owner",r_agent:"Agent",
    s1:"Personal",s2:"Business",s3:"Security",l_name:"Full name",l_phone:"Phone number",h_phone:"9 digits, starting with 7",l_email:"Email",h_email:"We use your email to recover your password.",
    l_biz:"Business name",l_type:"Type of business",l_prov:"Province",l_dist:"District",l_sect:"Sector",l_cell:"Cell",l_vill:"Village",l_ref:"Agent code",opt:"(optional)",h_ref:"If a Trackly agent gave you a code, enter it here so they get credit.",
@@ -300,8 +300,8 @@ select.in:disabled{background-color:var(--bg);color:#9aa4bd;cursor:not-allowed}
    e_pw:"Password must have at least 6 characters.",e_pw2:"Passwords do not match.",e_terms:"Accept the terms to continue.",
    e_mail409:"This email is already used by another account.",e_phone409:"This phone number already has an account.",e_net:"Cannot reach Trackly. Check your internet and try again.",e_geo:"Could not load locations. Refresh the page and try again.",e_biz_fail:"Your account was created, but the business could not be saved. Check the details and press Create account again.",
    wake:"Waking up the server. This can take up to a minute…",
-   ok_dl:"Download Trackly for Android",ok_t:"Welcome to Trackly, ",ok_x:"Your account is ready. Install the Android app and log in with your phone number and password.",ok_agent:"Your agent account is ready. Install the Android app and log in with your phone number and password."},
-  rw:{home:"Ahabanza",tag:"Business Operating System",h1a:"Murakaza neza kuri Trackly.",h1b:"Tugufashe gukuza ubucuruzi bwawe.",lead:"Fungura konti y'ubuntu mu minota ibiri utangire gucuruza uyu munsi.",
+   ok_dl:"Download Trackly for Android",ok_t:"Welcome to Trackly, ",ok_x:"Your account is ready. Open your dashboard on the web, or install the Android app.",ok_agent:"Your agent account is ready. Install the Android app and log in with your phone number and password."},
+  rw:{ok_dash:"Fungura dashboard yanjye",home:"Ahabanza",tag:"Business Operating System",h1a:"Murakaza neza kuri Trackly.",h1b:"Tugufashe gukuza ubucuruzi bwawe.",lead:"Fungura konti y'ubuntu mu minota ibiri utangire gucuruza uyu munsi.",
    have:"Usanzwe ufite konti?",login:"Injira",title:"Fungura konti yawe",sub:"Gutangira ni ubuntu. Bitwara iminota nka ibiri.",r_owner:"Nyiri ubucuruzi",r_agent:"Umukozi (Agent)",
    s1:"Umuntu",s2:"Iduka",s3:"Umutekano",l_name:"Amazina yuzuye",l_phone:"Nimero ya telefoni",h_phone:"Imibare 9, itangira na 7",l_email:"Imeyili",h_email:"Imeyili yawe ikoreshwa mu gusubiza ijambo banga.",
    l_biz:"Izina ry'iduka",l_type:"Ubwoko bw'ubucuruzi",l_prov:"Intara",l_dist:"Akarere",l_sect:"Umurenge",l_cell:"Akagari",l_vill:"Umudugudu",l_ref:"Kode y'umukozi",opt:"(si ngombwa)",h_ref:"Niba umukozi wa Trackly yaguhaye kode, yandike hano kugira ngo ahabwe ibye.",
@@ -313,8 +313,8 @@ select.in:disabled{background-color:var(--bg);color:#9aa4bd;cursor:not-allowed}
    e_pw:"Ijambo banga rigomba kuba rifite nibura inyuguti 6.",e_pw2:"Amagambo banga ntahuje.",e_terms:"Emera amabwiriza kugira ngo ukomeze.",
    e_mail409:"Imeyili yawe isanzwe ikoreshwa kuri indi konti.",e_phone409:"Nimero yawe isanzwe ifite konti.",e_net:"Ntidushoboye kugera kuri Trackly. Reba interineti ugerageze nanone.",e_geo:"Ntitwabashije kubona aho ubucuruzi buherereye. Ongera ufungure urupapuro.",e_biz_fail:"Konti yawe yafunguwe, ariko iduka ntiryabitswe. Reba amakuru wongere ukande Fungura konti.",
    wake:"Seriveri irimo kubyuka. Bishobora gutwara iminota igera kuri umwe…",
-   ok_dl:"Kuramo Trackly kuri Android",ok_t:"Murakaza neza kuri Trackly, ",ok_x:"Konti yawe irahari. Shyira porogaramu ya Android kuri telefoni, winjire ukoresheje nimero yawe n'ijambo banga.",ok_agent:"Konti yawe y'umukozi irahari. Shyira porogaramu ya Android kuri telefoni, winjire ukoresheje nimero yawe n'ijambo banga."},
-  fr:{home:"Accueil",tag:"Business Operating System",h1a:"Bienvenue sur Trackly.",h1b:"Développons votre commerce.",lead:"Créez votre compte gratuit en deux minutes et commencez à vendre dès aujourd'hui.",
+   ok_dl:"Kuramo Trackly kuri Android",ok_t:"Murakaza neza kuri Trackly, ",ok_x:"Konti yawe irahari. Fungura dashboard kuri web, cyangwa ushyire porogaramu ya Android kuri telefoni.",ok_agent:"Konti yawe y'umukozi irahari. Shyira porogaramu ya Android kuri telefoni, winjire ukoresheje nimero yawe n'ijambo banga."},
+  fr:{ok_dash:"Ouvrir mon tableau de bord",home:"Accueil",tag:"Business Operating System",h1a:"Bienvenue sur Trackly.",h1b:"Développons votre commerce.",lead:"Créez votre compte gratuit en deux minutes et commencez à vendre dès aujourd'hui.",
    have:"Vous avez déjà un compte ?",login:"Se connecter",title:"Créez votre compte",sub:"Gratuit pour commencer. Environ deux minutes.",r_owner:"Propriétaire",r_agent:"Agent",
    s1:"Personnel",s2:"Commerce",s3:"Sécurité",l_name:"Nom complet",l_phone:"Numéro de téléphone",h_phone:"9 chiffres, commençant par 7",l_email:"E-mail",h_email:"Votre e-mail sert à récupérer votre mot de passe.",
    l_biz:"Nom du commerce",l_type:"Type de commerce",l_prov:"Province",l_dist:"District",l_sect:"Secteur",l_cell:"Cellule",l_vill:"Village",l_ref:"Code agent",opt:"(facultatif)",h_ref:"Si un agent Trackly vous a donné un code, saisissez-le ici pour qu'il soit crédité.",
@@ -326,7 +326,7 @@ select.in:disabled{background-color:var(--bg);color:#9aa4bd;cursor:not-allowed}
    e_pw:"Le mot de passe doit contenir au moins 6 caractères.",e_pw2:"Les mots de passe ne correspondent pas.",e_terms:"Acceptez les conditions pour continuer.",
    e_mail409:"Cet e-mail est déjà utilisé par un autre compte.",e_phone409:"Ce numéro a déjà un compte.",e_net:"Impossible de joindre Trackly. Vérifiez votre connexion et réessayez.",e_geo:"Impossible de charger les lieux. Actualisez la page et réessayez.",e_biz_fail:"Votre compte est créé, mais le commerce n'a pas pu être enregistré. Vérifiez les informations et appuyez de nouveau sur Créer le compte.",
    wake:"Réveil du serveur. Cela peut prendre jusqu'à une minute…",
-   ok_dl:"Télécharger Trackly pour Android",ok_t:"Bienvenue sur Trackly, ",ok_x:"Votre compte est prêt. Installez l'application Android et connectez-vous avec votre numéro et votre mot de passe.",ok_agent:"Votre compte agent est prêt. Installez l'application Android et connectez-vous avec votre numéro et votre mot de passe."}
+   ok_dl:"Télécharger Trackly pour Android",ok_t:"Bienvenue sur Trackly, ",ok_x:"Votre compte est prêt. Ouvrez votre tableau de bord sur le web ou installez l'application Android.",ok_agent:"Votre compte agent est prêt. Installez l'application Android et connectez-vous avec votre numéro et votre mot de passe."}
   };
 
   function $(s,r){return (r||document).querySelector(s)}
@@ -522,6 +522,8 @@ select.in:disabled{background-color:var(--bg);color:#9aa4bd;cursor:not-allowed}
     var first=name.split(/\s+/)[0];
     $("#okTitle").textContent=tr("ok_t")+first+"!";
     $("#okText").textContent=tr(agent?"ok_agent":"ok_x");
+    $("#okDash").hidden=false;
+    try{var pi=localStorage.getItem("tk_plan_intent");if(pi&&pi!=="ubuntu"&&!agent)setTimeout(function(){location.href="/app/"},1600)}catch(e){}
     window.scrollTo({top:0,behavior:"smooth"});
   }
   var session=null;
