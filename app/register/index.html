@@ -452,6 +452,7 @@ select.in:disabled{background-color:var(--bg);color:#9aa4bd;cursor:not-allowed}
   }
   $("#roleOwner").addEventListener("click",function(){setRole("owner")});
   $("#roleAgent").addEventListener("click",function(){setRole("agent")});
+  try{if(new URLSearchParams(location.search).get("role")==="agent")setRole("agent")}catch(e){}
   $("#back").addEventListener("click",function(){if(state.step>1){state.step--;hideError();show();$("#card").scrollIntoView({block:"start"})}});
 
   function v1(){
