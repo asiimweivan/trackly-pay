@@ -906,6 +906,72 @@ textarea.inp{resize:vertical}.inp.big{font-size:1.5rem;font-weight:800;min-heigh
 @media (max-width:420px){.lgc{padding:.8rem .2rem .7rem}.lgc .flg{width:44px;height:30px}.lgc b{font-size:.84rem}.lgc small{font-size:.68rem}}
 
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+/* ---------- agent portal ---------- */
+.agchip{display:inline-flex;align-items:center;gap:.4rem;font-size:.76rem;font-weight:800;padding:.28rem .7rem;border-radius:99px;color:var(--c);background:color-mix(in srgb,var(--c) 13%,#fff);border:1px solid color-mix(in srgb,var(--c) 28%,#fff);white-space:nowrap}
+.agchip>i{width:7px;height:7px;border-radius:50%;background:var(--c)}.agchip.sm{font-size:.72rem;padding:.16rem .55rem}
+.agchip.on-d{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.2);color:#fff;margin-left:auto}.agchip.on-d>i{background:#2fd1b3}
+.agpl{font-style:normal;font-size:.72rem;font-weight:800;padding:.14rem .6rem;border-radius:99px;color:var(--c);background:color-mix(in srgb,var(--c) 13%,#fff);margin-right:.5rem;white-space:nowrap}
+.agh{position:relative;overflow:hidden;border-radius:26px;background:radial-gradient(120% 140% at 85% -20%,#1d4fa3 0%,var(--hero) 55%);color:#fff;padding:1.5rem clamp(1.1rem,2.6vw,2rem);margin-top:.6rem}
+.agh::before{content:"";position:absolute;right:-8%;top:-60%;width:50%;aspect-ratio:1;border-radius:50%;background:rgba(47,209,179,.1);pointer-events:none}
+.agh>*{position:relative}
+.agh-t{display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+.agh-t small{color:#b8c8ee;font-weight:600}.agh-t h1{margin:.1rem 0 0;font-size:clamp(1.7rem,3vw,2.4rem);letter-spacing:-.035em;line-height:1.1}
+.agh .agchip{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.22);color:#fff}.agh .agchip>i{background:#2fd1b3}
+.agcode{display:flex;align-items:center;justify-content:space-between;gap:1.2rem;flex-wrap:wrap;margin-top:1.2rem;padding:1.1rem 1.2rem;border-radius:20px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.16);backdrop-filter:blur(6px)}
+.agcl{min-width:0;flex:1 1 240px;display:flex;flex-direction:column;gap:.2rem}.agcl small{font-weight:700;color:#b8c8ee;font-size:.78rem}
+.agcl b{font-size:clamp(1.6rem,3.4vw,2.3rem);letter-spacing:.12em;font-weight:800;color:#fff;overflow-wrap:anywhere}.agcl span{color:#c6d2f2;font-size:.88rem;max-width:34em}
+.agact{display:flex;gap:.6rem;flex-wrap:wrap}.agact.row{margin-top:.9rem}
+.agb{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;min-height:46px;padding:.6rem 1.1rem;border-radius:13px;border:2px solid rgba(255,255,255,.25);background:rgba(255,255,255,.12);color:#fff;font:inherit;font-weight:700;font-size:.92rem;cursor:pointer;text-decoration:none;transition:background .15s,transform .15s}
+.agb:hover{background:rgba(255,255,255,.2);transform:translateY(-1px)}.agb svg{width:18px;height:18px}
+.agb.wa{background:#25d366;border-color:#25d366;color:#fff}.agb.wa:hover{background:#1ebe5b}
+.panel .agb{background:var(--mint);color:var(--tealD);border-color:transparent}.panel .agb:hover{background:#d5f0e9}.panel .agb.wa{background:#25d366;color:#fff}.panel .agact.row .agb{flex:1}
+.agstats{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-top:1rem}
+.agst{position:relative;overflow:hidden;background:#fff;border:1px solid #edf0f7;border-radius:20px;padding:1.1rem 1.1rem 1.25rem;box-shadow:var(--sh);display:flex;flex-direction:column;gap:.1rem}
+.agst::after{content:"";position:absolute;left:0;right:0;bottom:0;height:3px;background:var(--c)}
+.agsi{width:40px;height:40px;border-radius:13px;display:flex;align-items:center;justify-content:center;background:color-mix(in srgb,var(--c,#0fa68c) 14%,#fff);color:var(--c,#0fa68c);margin-bottom:.5rem}.agsi svg{width:20px;height:20px}
+.agst b{font-size:clamp(1.5rem,2.4vw,2rem);letter-spacing:-.03em;line-height:1.1;font-weight:800}.agst em{font-style:normal;font-size:.74rem;font-weight:700;color:#8a96b3}.agst small{color:var(--mut);font-weight:700;font-size:.82rem;margin-top:.15rem}
+.aggrid{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:1rem;margin-top:1rem;align-items:start}.aggrid.even{grid-template-columns:repeat(2,minmax(0,1fr))}.aggrid.card2{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+.agside{display:grid;gap:1rem}
+.agph{display:flex;align-items:center;justify-content:space-between;gap:.8rem;margin-bottom:.4rem;flex-wrap:wrap}.agph h3{margin:0}.agph a{font-weight:800;font-size:.86rem;color:var(--tealD)}
+.aglist{display:grid}
+.agrow{display:flex;align-items:center;gap:.8rem;padding:.8rem 0;border-top:1px solid #eef1f8}.agrow:first-child{border-top:0}
+.agdot{width:10px;height:10px;border-radius:50%;flex:none}.agri{flex:1;min-width:0;display:flex;flex-direction:column;gap:.15rem}.agri b{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.agri span{display:flex;align-items:center;flex-wrap:wrap;gap:.2rem;color:var(--mut);font-size:.82rem;font-weight:600}
+.agrow strong{color:var(--tealD);font-weight:800;white-space:nowrap}.agrow strong small{font-size:.7rem;color:#8a96b3}
+.agem{display:flex;flex-direction:column;align-items:center;text-align:center;gap:.35rem;padding:2rem 1rem;color:var(--mut)}.agem>svg{width:44px;height:44px;color:#c4cde0}.agem b{color:var(--ink)}.agem span{max-width:30em;font-size:.9rem}
+.agpay{position:relative;overflow:hidden;border-radius:22px;padding:1.3rem;color:#fff;background:linear-gradient(135deg,#d4860a,#f2a50f);box-shadow:0 18px 34px -18px rgba(212,134,10,.8)}
+.agpay .agsi{--c:#fff;background:rgba(255,255,255,.22);color:#fff}.agpay small{display:block;font-weight:700;opacity:.9}.agpay b{display:block;font-size:2.2rem;letter-spacing:-.03em;line-height:1.1}.agpay b em{font-style:normal;font-size:1rem}.agpay p{margin:.4rem 0 0;font-weight:600;font-size:.9rem}.agpay .agmin{font-size:.8rem;opacity:.9;margin-top:.6rem}
+.agul{list-style:none;margin:.5rem 0 0;padding:0;display:grid;gap:.65rem}.agul li{display:flex;gap:.6rem;align-items:flex-start;color:var(--mut);font-weight:600;font-size:.9rem}.agul svg{width:18px;height:18px;flex:none;color:var(--teal);margin-top:2px}
+.agbar{display:flex;gap:.8rem;flex-wrap:wrap;align-items:center;margin-bottom:1rem}
+.agsr{position:relative;flex:1 1 260px}.agsr svg{position:absolute;left:14px;top:50%;transform:translateY(-50%);width:18px;height:18px;color:#8a96b3;pointer-events:none}.agsr .inp{padding-left:42px}
+.agtabs{display:inline-flex;gap:.3rem;padding:.3rem;background:#e9edf6;border-radius:14px;flex-wrap:wrap}.agtabs button{display:inline-flex;align-items:center;gap:.45rem;border:0;background:transparent;font:inherit;font-weight:700;font-size:.88rem;color:var(--mut);padding:.5rem .85rem;border-radius:11px;cursor:pointer}
+.agtabs button em{font-style:normal;font-size:.72rem;background:#fff;border-radius:99px;padding:.05rem .5rem;color:var(--mut)}.agtabs button[aria-selected=true]{background:#fff;color:var(--ink);box-shadow:0 2px 8px rgba(15,33,80,.1)}.agtabs button[aria-selected=true] em{background:var(--teal);color:#fff}
+.agtabs.sm button{padding:.35rem .7rem;font-size:.82rem}
+.agsum{display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;padding:.9rem 1.2rem;margin-bottom:1rem;border-radius:18px;background:var(--mint);color:var(--tealD);font-weight:700}.agsum b{font-size:1.3rem;letter-spacing:-.02em}
+.agsubs{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:1rem}
+.agsc{position:relative;background:#fff;border:1px solid #edf0f7;border-radius:20px;padding:1.1rem 1.2rem;box-shadow:var(--sh);display:flex;flex-direction:column;gap:.8rem;border-top:4px solid var(--c)}
+.agsc-h{display:flex;justify-content:space-between;gap:.8rem;align-items:flex-start}.agsc-h>div{min-width:0}.agsc-h b{display:block;font-size:1.05rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.agsc-h span{color:var(--mut);font-size:.84rem;font-weight:600}.agsc-h .agpl{margin:0}
+.agsc-m{display:flex;flex-wrap:wrap;gap:.4rem .9rem;align-items:center;color:var(--mut);font-size:.8rem;font-weight:600}
+.agbarp div{height:8px;background:#edf0f7;border-radius:99px;overflow:hidden}.agbarp i{display:block;height:100%;background:var(--c);border-radius:99px}.agbarp small{color:var(--mut);font-weight:700;font-size:.76rem;display:block;margin-top:.3rem}
+.agsc-f{display:flex;justify-content:space-between;align-items:baseline;gap:.5rem;padding-top:.7rem;border-top:1px dashed #e3e8f2}.agsc-f small{color:var(--mut);font-weight:700}.agsc-f strong{color:var(--tealD);font-size:1.05rem}
+.agh.slim{display:flex;align-items:center;justify-content:space-between;gap:1.5rem;flex-wrap:wrap}.agh.slim small{display:block;color:#b8c8ee;font-weight:700}.agbig{font-size:clamp(2rem,4vw,3rem);letter-spacing:-.04em;font-weight:800}.agbig em{font-style:normal;font-size:1.1rem}
+.agtwo{display:flex;gap:2rem;flex-wrap:wrap}.agtwo b{font-size:1.2rem}
+.agidc{position:relative;overflow:hidden;border-radius:26px;padding:1.3rem;color:#fff;background:radial-gradient(120% 120% at 100% 0,#1d4fa3,#112865 60%);box-shadow:0 26px 50px -24px rgba(15,33,80,.7);max-width:480px;aspect-ratio:1.6;display:flex;flex-direction:column;justify-content:space-between}
+.agidc::before{content:"";position:absolute;right:-12%;bottom:-40%;width:60%;aspect-ratio:1;border-radius:50%;background:rgba(47,209,179,.14)}.agidc>*{position:relative}
+.agid-h{display:flex;align-items:center;gap:.7rem}.agid-l{position:relative;width:40px;height:40px;border-radius:12px;background:linear-gradient(135deg,#0fa68c,#13c0a2);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1.3rem}.agid-l i{position:absolute;top:7px;right:7px;width:7px;height:7px;border-radius:50%;background:#f2a50f}
+.agid-h b{display:block;font-size:1.15rem;letter-spacing:.03em}.agid-h b em{font-style:normal;color:#f2a50f}.agid-h small{display:block;font-size:.62rem;letter-spacing:.14em;color:#b8c8ee;font-weight:700}
+.agid-b{display:flex;gap:1rem;align-items:center}.agid-p{position:relative;overflow:hidden;width:96px;height:116px;flex:none;border-radius:16px;background:#fff;display:flex;align-items:center;justify-content:center;border:3px solid rgba(255,255,255,.9)}.agid-p b{color:var(--hero);font-size:1.8rem}.agid-p img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.agid-b small{display:block;font-size:.6rem;letter-spacing:.14em;color:#b8c8ee;font-weight:700;margin-top:.5rem}.agid-b small:first-child{margin-top:0}.agid-b strong{display:block;font-size:1.15rem;line-height:1.2}.agid-b code{display:block;font-size:1.3rem;letter-spacing:.12em;font-weight:800;color:#f2c04a;font-family:inherit}
+.agid-loc{display:flex;align-items:center;gap:.3rem;margin-top:.4rem;font-size:.76rem;color:#c6d2f2}.agid-loc svg{width:12px;height:12px}
+.agid-f{font-size:.7rem;letter-spacing:.12em;color:#8fa3d6;font-weight:700;text-align:right}
+.agsx{margin:0 0 1rem;color:var(--mut)}.aglnk{display:flex;gap:.5rem}.aglnk .inp{flex:1;min-width:0}.aglnk .agb{white-space:nowrap}
+.agpre{margin:.9rem 0 0;white-space:pre-wrap;word-break:break-word;font:inherit;font-size:.86rem;color:var(--ink);background:#f4f6fb;border:1px solid var(--line);border-radius:14px;padding:.9rem 1rem}
+.agkvs{display:grid}.agkv{display:flex;justify-content:space-between;gap:1rem;padding:.75rem 0;border-top:1px solid #eef1f8}.agkv:first-child{border-top:0}.agkv small{color:var(--mut);font-weight:700}.agkv b{text-align:right;overflow-wrap:anywhere}
+.agseg{display:grid;grid-template-columns:1fr 1fr;gap:.5rem}.agseg button{border:2px solid #dfe5f1;background:#fff;font:inherit;font-weight:700;color:var(--ink);border-radius:12px;min-height:46px;cursor:pointer}.agseg button[aria-checked=true]{border-color:var(--teal);background:var(--mint);color:var(--tealD)}
+.agerr{margin:0 0 .8rem;color:var(--err);font-weight:700;font-size:.88rem}
+.agtoast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,20px);background:var(--ink);color:#fff;font-weight:700;padding:.7rem 1.2rem;border-radius:99px;box-shadow:0 14px 30px -10px rgba(9,20,56,.6);opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;z-index:200}.agtoast.on{opacity:1;transform:translate(-50%,0)}
+@media (max-width:1100px){.agstats{grid-template-columns:repeat(2,1fr)}.aggrid,.aggrid.even,.aggrid.card2{grid-template-columns:1fr}}
+@media (max-width:560px){.agstats{gap:.7rem}.agst{padding:.9rem}.agcode{padding:.95rem}.agact{width:100%}.agact .agb{flex:1}.agid-p{width:78px;height:96px}.agidc{aspect-ratio:auto;gap:1.2rem}.agsubs{grid-template-columns:1fr}.aglnk{flex-direction:column}.agtwo{gap:1.2rem}}
+@media print{body.agprint *{visibility:hidden}body.agprint #agidc,body.agprint #agidc *{visibility:visible}body.agprint #agidc{position:fixed;left:50%;top:40px;transform:translateX(-50%);width:480px;-webkit-print-color-adjust:exact;print-color-adjust:exact}}
 </style>
 </head>
 <body>
@@ -1122,7 +1188,7 @@ var OPEN="";
 var S={user:null,biz:null,sub:null,products:[],sales:[],plan:"ubuntu",tab:"today",bizId:null,loading:true,error:false,agent:false,loadedAt:0};
 try{S.user=JSON.parse(g("u")||"null")}catch(e){}
 if(!g("a")){toLogin();return}
-S.agent=!!(S.user&&S.user.role==="agent");
+S.agent=!!(S.user&&/agent/i.test(String(S.user.role||"")));
 
 /* ---------- api ---------- */
 function ApiErr(s){this.status=s}
@@ -1143,6 +1209,7 @@ function get(path,retry){
  });
 }
 function load(){
+ if(S.agent){agLoad();return}
  S.loading=true;S.error=false;draw();
  var wt=setTimeout(function(){var w=$("#wk");if(w){w.textContent=tx().wake;w.hidden=false}},8000);
  var idP=g("b")?Promise.resolve(g("b")):get("/businesses").then(function(l){return l&&l.length?(function(){try{localStorage.setItem(KEYS.b,l[0].id)}catch(e){}return l[0].id})():null});
@@ -1168,6 +1235,7 @@ function load(){
 
 /* ---------- sidebar ---------- */
 function buildNav(){
+ if(S.agent){agNav();return}
  var rr=route();if(rr.k==="svc"&&!OPEN){CATS.forEach(function(c){if(c.items.indexOf(rr.a)>-1)OPEN=c.k})}
  var t=tx(),r0=route(),h='<div class="sl">'+esc(t.menu)+'</div><a class="ni'+(route().k==="home"?" on":"")+'" href="#/"><span class="nt" style="--tc:#2fd1b3">'+ico("home")+'</span><span class="lbl">'+esc(t.home)+'</span></a><div class="sl">'+esc(t.services)+'</div>';
  CATS.forEach(function(c){
@@ -1207,6 +1275,7 @@ document.addEventListener("keydown",function(e){if(e.key==="Escape"){accClose();
 
 /* ---------- top bar & account ---------- */
 function topbar(){
+ if(S.agent){agTopbar();return}
  var t=tx(),r=route(),title=t.home;
  if(r.k==="profile")title=t.prof;else if(r.k==="cat")title=t.cats[r.a];else if(r.k==="svc")title=lbl(r.a);
  $("#topTitle").textContent=title;
@@ -1245,9 +1314,207 @@ function modal(dest){
 }
 function modalClose(){$("#modalRoot").innerHTML=""}
 
+/* ---------- agent portal ---------- */
+var AGT={"portal": ["Agent portal", "Ahakorerwa n'umukozi", "Espace agent"], "ov": ["Overview", "Incamake", "Aperçu"], "subs": ["Subscribers", "Abakiriya", "Abonnés"], "earn": ["Earnings", "Ihembwa", "Revenus"], "card": ["Share & ID card", "Sangira & ikarita", "Partager & carte"], "prof": ["Profile", "Umwirondoro", "Profil"], "gm": ["Good morning", "Mwaramutse", "Bonjour"], "ga": ["Good afternoon", "Mwiriwe", "Bon après-midi"], "ge": ["Good evening", "Ijoro ryiza", "Bonsoir"], "active": ["Active", "Bikora", "Actif"], "review": ["Under review", "Irasuzumwa", "En cours de vérification"], "rejected": ["Not approved", "Yanzwe", "Refusée"], "suspended": ["Suspended", "Yahagaritswe", "Suspendu"], "yourcode": ["Your agent code", "Kode yawe y'umu agent", "Votre code agent"], "codesub": ["Give this code to every new business. It links them to you for commission.", "Tanga iyi kode ku bakiriya bashya. Ni yo ituma ubona komisiyo.", "Donnez ce code à chaque nouveau commerce. Il les relie à vous pour la commission."], "copy": ["Copy code", "Koporora kode", "Copier le code"], "copied": ["Copied", "Byakoporowe", "Copié"], "copymsg": ["Copy message", "Koporora ubutumwa", "Copier le message"], "wa": ["Share on WhatsApp", "Sangira kuri WhatsApp", "Partager sur WhatsApp"], "share": ["Share", "Sangira", "Partager"], "period": ["This month", "Uku kwezi", "Ce mois"], "pending": ["Pending", "Gutegereza", "En attente"], "paid": ["Paid out", "Yatanzwe", "Payé"], "life": ["Lifetime earned", "Byose hamwe", "Total gagné"], "actsub": ["Active subscribers", "Abakiriya bakora", "Abonnés actifs"], "signups": ["Total sign-ups", "Abiyandikishije bose", "Inscriptions totales"], "nextpay": ["Next payout", "Ihembwa rikurikira", "Prochain versement"], "nextd": ["On the 5th of each month, to your MoMo number.", "Tariki ya 5 buri kwezi, kuri nimero yawe ya MoMo.", "Le 5 de chaque mois, sur votre numéro MoMo."], "minpay": ["Minimum payout is 1,000 RWF. Smaller amounts roll over to the next month.", "Ihembwa rya make ni 1,000 RWF. Ibitarenga biraguma ukwezi gukurikira.", "Le versement minimum est de 1 000 RWF. Les montants inférieurs sont reportés au mois suivant."], "recent": ["Recent commissions", "Ibyakiriwe vuba", "Commissions récentes"], "all": ["View all", "Reba byose", "Tout voir"], "nocomm": ["No commissions yet", "Nta hembwa riraboneka", "Aucune commission pour le moment"], "nocommx": ["Share your code. When a business you referred pays for a plan, your commission appears here.", "Sangira kode yawe. Ubucuruzi wazanye nibwishyura gahunda, komisiyo yawe izagaragara hano.", "Partagez votre code. Quand un commerce que vous avez parrainé paie un plan, votre commission apparaît ici."], "how": ["How you earn", "Uko ubona amafaranga", "Comment vous gagnez"], "h1": ["A percentage of every subscription payment from a business you referred.", "Ijanisha ry'ibyo ubucuruzi wazanye bwishyura buri gihe.", "Un pourcentage de chaque paiement d'abonnement d'un commerce que vous avez parrainé."], "h2": ["For 6 months per business. The super admin can extend it.", "Amezi 6 kuri buri bucuruzi. Umuyobozi mukuru ashobora kuyongera.", "Pendant 6 mois par commerce. Le super admin peut le prolonger."], "h3": ["Nothing is paid for free-plan businesses.", "Nta kintu gitangwa ku bucuruzi buri ku gahunda y'ubuntu.", "Rien n'est versé pour les commerces au plan gratuit."], "h4": ["Encourage, never pressure. Explain the benefits honestly.", "Shishikariza, ntuhatire. Sobanura inyungu mu kuri.", "Encouragez sans jamais forcer. Expliquez honnêtement les avantages."], "refresh": ["Refresh", "Vugurura", "Actualiser"], "nosubs": ["No subscribers yet. Share your agent code!", "Nta mukiriya uraboneka. Sangira kode yawe!", "Aucun abonné pour le moment. Partagez votre code !"], "nores": ["No results found", "Nta bisubizo bibonetse", "Aucun résultat"], "search": ["Search by business or location", "Shakisha ubucuruzi cyangwa aho buherereye", "Rechercher un commerce ou un lieu"], "fall": ["All", "Bose", "Tous"], "fact": ["Active", "Bakora", "Actifs"], "ftri": ["Trial", "Igerageza", "Essai"], "fend": ["Ended", "Barangije", "Terminés"], "stactive": ["Active", "Ikora", "Actif"], "sttrial": ["Free trial", "Igerageza (ubuntu)", "Essai gratuit"], "stend": ["Ended", "Byarangiye", "Terminé"], "started": ["Joined", "Yinjiye", "Inscrit"], "renews": ["Renews", "Izongera", "Renouvellement"], "cycle": ["Month {a} of {b}", "Ukwezi {a} kuri {b}", "Mois {a} sur {b}"], "comm": ["Commission earned", "Komisiyo yabonetse", "Commission gagnée"], "listcomm": ["Commission from this list", "Komisiyo y'uru rutonde", "Commission de cette liste"], "subsub": ["{a} referred, {b} active", "{a} bazanywe, {b} bakora", "{a} parrainés, {b} actifs"], "summary": ["Summary", "Incamake", "Résumé"], "trend": ["Commission by month", "Komisiyo ku kwezi", "Commission par mois"], "allcomm": ["All commissions", "Komisiyo zose", "Toutes les commissions"], "business": ["Business", "Ubucuruzi", "Commerce"], "plan": ["Plan", "Gahunda", "Plan"], "amount": ["Amount", "Amafaranga", "Montant"], "status": ["Status", "Imiterere", "Statut"], "month": ["Month", "Ukwezi", "Mois"], "cpaid": ["Paid", "Yatanzwe", "Payé"], "cpend": ["Pending", "Gutegereza", "En attente"], "cvoid": ["Voided", "Yahagaritswe", "Annulé"], "payouts": ["Payout history", "Amateka y'ibyishyuwe", "Historique des versements"], "nopay": ["No payouts yet", "Nta ihembwa ryishyuwe", "Aucun versement pour le moment"], "nopayx": ["Payouts are calculated after each month closes and sent by MoMo.", "Amafaranga abarwa ukwezi gushize, agatangwa kuri MoMo.", "Les versements sont calculés après chaque mois clos et envoyés par MoMo."], "pcalc": ["Processing", "Birimo gutegurwa", "En cours"], "ppaid": ["Sent", "Byoherejwe", "Envoyé"], "pvoid": ["Voided", "Byahagaritswe", "Annulé"], "ref": ["MoMo ref", "Nimero ya MoMo", "Réf. MoMo"], "cardt": ["Your agent ID card", "Ikarita yawe y'umu agent", "Votre carte d'agent"], "cardx": ["Show this card to businesses so they know you are an official Trackly agent.", "Yereke ubucuruzi ko uri umu agent wa Trackly wemewe.", "Montrez cette carte aux commerces pour prouver que vous êtes un agent Trackly officiel."], "official": ["OFFICIAL AGENT", "UMU AGENT UFITE UBWEMERE", "AGENT OFFICIEL"], "name": ["NAME", "AMAZINA", "NOM"], "aid": ["AGENT ID", "NOMERO Y'UMU AGENT", "N° AGENT"], "sharet": ["Invite a business", "Tumira ubucuruzi", "Inviter un commerce"], "sharex": ["Send this message. The link opens Trackly with your code already filled in.", "Ohereza ubu butumwa. Ihuza rifungura Trackly kode yawe yamaze kwandikwa.", "Envoyez ce message. Le lien ouvre Trackly avec votre code déjà rempli."], "link": ["Referral link", "Ihuza ryawe", "Lien de parrainage"], "copylink": ["Copy link", "Koporora ihuza", "Copier le lien"], "msg": ["Hello! I use Trackly to manage the sales and stock of my business.\n\nYou can join too, it is free to start:\n{l}\n\nMy agent code is {c}. Using it makes sure I am credited for referring you.", "Muraho! Nkoresha Trackly mu gucunga ibicuruzwa n'amafaranga y'ubucuruzi bwanjye.\n\nNawe wakwiyandikisha, gutangira ni ubuntu:\n{l}\n\nKode yanjye y'umu agent ni {c}. Iyo wayanditse, mpabwa amanota y'uko naguhaye Trackly.", "Bonjour ! J'utilise Trackly pour gérer les ventes et le stock de mon commerce.\n\nVous pouvez vous inscrire aussi, c'est gratuit pour commencer :\n{l}\n\nMon code agent est {c}. L'utiliser me permet d'être crédité pour votre parrainage."], "print": ["Print card", "Capa ikarita", "Imprimer la carte"], "pf": ["Personal details", "Amakuru yawe", "Informations personnelles"], "fname": ["Full name", "Amazina yuzuye", "Nom complet"], "fphone": ["Phone", "Telefone", "Téléphone"], "fnid": ["National ID", "Indangamuntu", "Pièce d'identité"], "floc": ["Location", "Aho uherereye", "Localisation"], "fapp": ["Approved on", "Yemejwe ku wa", "Approuvé le"], "pay": ["Payout account", "Aho wishyurirwa", "Compte de versement"], "momo": ["MoMo number", "Nimero ya MoMo", "Numéro MoMo"], "prov": ["Provider", "Umuyoboro", "Opérateur"], "mail": ["Email", "Email", "E-mail"], "mailx": ["Trackly messages about your agent account are sent here.", "Ubutumwa bwa Trackly kuri konti yawe y'umu agent buzoherezwa hano.", "Les messages Trackly sur votre compte agent sont envoyés ici."], "save": ["Save changes", "Bika impinduka", "Enregistrer"], "saved": ["Saved", "Byabitswe", "Enregistré"], "failed": ["Could not save. Try again.", "Ntibyakunze. Ongera ugerageze.", "Échec de l'enregistrement. Réessayez."], "badmomo": ["Enter a valid 9-digit number.", "Andika nimero y'imibare 9.", "Entrez un numéro valide à 9 chiffres."], "mtnerr": ["MTN numbers start with 078 or 079.", "MTN itangira kuri 078 cyangwa 079.", "MTN commence par 078 ou 079."], "airerr": ["Airtel numbers start with 072 or 073.", "Airtel itangira kuri 072 cyangwa 073.", "Airtel commence par 072 ou 073."], "bademail": ["Enter a valid email address.", "Andika email nyayo.", "Entrez une adresse e-mail valide."], "lang": ["Language", "Ururimi", "Langue"], "acct": ["Account", "Konti", "Compte"], "logout": ["Log out", "Sohoka", "Déconnexion"], "photo": ["To change your ID photo, use the Trackly app.", "Guhindura ifoto yo ku ikarita, koresha porogaramu ya Trackly.", "Pour changer la photo de la carte, utilisez l'application Trackly."], "none": ["Finish your agent application", "Rangiza isaba ryawe ry'umu agent", "Terminez votre candidature d'agent"], "nonex": ["Your account is ready, but the application is not submitted yet. Open the Trackly app to add your ID details and photo. We reply within 48 hours.", "Konti yawe irahari ariko isaba ntiryoherejwe. Fungura porogaramu ya Trackly wongeremo amakuru y'indangamuntu n'ifoto. Dusubiza mu masaha 48.", "Votre compte est prêt, mais la candidature n'est pas encore envoyée. Ouvrez l'application Trackly pour ajouter vos informations et votre photo. Réponse sous 48 heures."], "getapp": ["Get the Trackly app", "Kuramo porogaramu ya Trackly", "Obtenir l'application Trackly"], "revt": ["Your application is under review", "Isaba ryawe rirasuzumwa", "Votre candidature est en cours d'examen"], "revx": ["We reply within 48 hours by email. This page opens up as soon as you are approved.", "Dusubiza mu masaha 48 kuri email. Uru rupapuro ruzafungurwa umaze kwemerwa.", "Nous répondons sous 48 heures par e-mail. Cette page s'ouvre dès votre approbation."], "rejt": ["Your application was not approved", "Isaba ryawe ntiryemewe", "Votre candidature n'a pas été approuvée"], "suspt": ["Your agent account is suspended", "Konti yawe y'umu agent yahagaritswe", "Votre compte agent est suspendu"], "suspx": ["Contact Trackly support to find out why and how to continue.", "Vugana n'ubufasha bwa Trackly umenye impamvu n'uko wakomeza.", "Contactez le support Trackly pour en connaître la raison."], "reason": ["Reason", "Impamvu", "Motif"], "contact": ["Contact support", "Vugana n'ubufasha", "Contacter le support"], "err": ["Could not load your data.", "Ntibyashobotse gufungura amakuru yawe.", "Impossible de charger vos données."], "retry": ["Try again", "Ongera ugerageze", "Réessayer"], "more": ["Show {n} more", "Erekana {n} zindi", "Afficher {n} de plus"], "less": ["Show less", "Erekana nke", "Afficher moins"], "you": ["Agent", "Umu agent", "Agent"]};
+var AG={p:null,e:null,subs:[],comms:[],pay:[],none:false,tab:"all",q:"",ct:"all",toast:"",tt:null};
+var AGR={subscribers:"subs",earnings:"earn",card:"card"};
+var AGSITE="https://trackly.ivanexo.com";
+function ag(k,o){var i=lang==="rw"?1:lang==="fr"?2:0,v=AGT[k];if(!v)return k;v=v[i];return o?fill(v,o):v}
+function agM(n){return fmtN(n)+" RWF"}
+function agLoc(){return lang==="rw"?"rw-RW":lang==="fr"?"fr-FR":"en-GB"}
+function agD(s,mon){var d=pdate(s);if(!d||isNaN(d))return"-";try{return d.toLocaleDateString(agLoc(),mon?{month:"short",year:"numeric"}:{day:"numeric",month:"short",year:"numeric"})}catch(e){return d.toDateString()}}
+function agPer(p){if(!p)return"-";var m=/^(\d{4})-(\d{2})/.exec(p);if(!m)return p;try{return new Date(+m[1],+m[2]-1,1).toLocaleDateString(agLoc(),{month:"short",year:"numeric"})}catch(e){return p}}
+function agPlan(k){var p=PLAN[k];return p?p:{label:k||"-",color:"#64748b"}}
+function agPlanName(k){return k==="ubuntu"?"Ubuntu":agPlan(k).label}
+function agSt(s){s=String(s||"").toLowerCase();return s==="active"||s==="paid"?"active":s==="trialing"||s==="trial"?"trial":"end"}
+function agCode(){return (AG.p&&AG.p.agentCode)||""}
+function agLink(){return AGSITE+"/app/register/?ref="+encodeURIComponent(agCode())}
+function agMsg(){return ag("msg",{l:agLink(),c:agCode()})}
+function agLocTxt(p){return [p.sector,p.district,p.province].filter(Boolean).join(", ")}
+function agStat(){var s=(AG.p&&AG.p.status)||"";return s==="approved"?["active","#0fa68c"]:s==="rejected"?["rejected","#c0392b"]:s==="suspended"?["suspended","#d97706"]:["review","#d97706"]}
+function agChip(){var s=agStat();return '<span class="agchip" style="--c:'+s[1]+'"><i></i>'+esc(ag(s[0]))+'</span>'}
+function agAv(px){var p=AG.p||{};return avatar(p.photoUrl,p.fullName||uname(),false,px)}
+
+/* data */
+function agLoad(){
+ S.loading=true;S.error=false;draw();
+ send("GET","/agents/me").then(function(p){
+  AG.p=p;AG.none=false;
+  if(!p||p.status!=="approved")return;
+  return Promise.allSettled([send("GET","/agents/me/earnings"),send("GET","/agents/me/subscribers"),send("GET","/agents/me/commissions"),send("GET","/agents/me/payouts")]).then(function(r){
+   var v=function(i){return r[i].status==="fulfilled"?r[i].value:null};
+   AG.e=v(0);AG.subs=Array.isArray(v(1))?v(1):[];AG.comms=Array.isArray(v(2))?v(2):[];AG.pay=Array.isArray(v(3))?v(3):[];
+  });
+ }).catch(function(e){
+  if(e&&e.status===404){AG.none=true;AG.p=null;return}
+  if(e&&e.status===401){clearAll();toLogin();return}
+  S.error=true;
+ }).then(function(){S.loading=false;S.loadedAt=Date.now();draw()});
+}
+
+/* chrome */
+function agNavItems(){return [["ov","#/","home","#2fd1b3"],["subs","#/subscribers","people","#60a5fa"],["earn","#/earnings","wallet","#fbbf24"],["card","#/card","user","#f472b6"],["prof","#/profile","gear","#a78bfa"]]}
+function agCur(){var r=route();return r.k==="profile"?"prof":r.k==="ag"?r.a:"ov"}
+function agNav(){
+ var cur=agCur(),ok=AG.p&&AG.p.status==="approved";
+ var h='<div class="sl">'+esc(ag("portal"))+'</div>';
+ agNavItems().forEach(function(n){
+  if(!ok&&n[0]!=="prof"&&n[0]!=="ov")return;
+  h+='<a class="ni'+(cur===n[0]?" on":"")+'" href="'+n[1]+'"><span class="nt" style="--tc:'+n[3]+'">'+ico(n[2])+'</span><span class="lbl">'+esc(ag(n[0]))+'</span></a>';
+ });
+ $("#navList").innerHTML=h;
+ $("#navFoot").innerHTML='<a class="me" href="#/profile">'+agAv()+'<span class="who"><b>'+esc((AG.p&&AG.p.fullName)||uname()||"Trackly")+'</b><small>'+esc(agCode()||ag("you"))+'</small></span></a>';
+}
+function agTopbar(){
+ var cur=agCur(),p=AG.p||{};
+ var bl=$("#bell");if(bl)bl.hidden=true;
+ $("#topTitle").textContent=ag(cur);
+ $("#accAv").innerHTML=agAv();
+ $("#accName").textContent=((p.fullName||uname()||"").split(/\s+/)[0]);
+ $("#acc").innerHTML='<div class="acc-h">'+agAv(48)+'<div><b>'+esc(p.fullName||uname())+'</b><small>'+esc(ag("you"))+(p.agentCode?" - "+esc(p.agentCode):"")+'</small></div></div>'+
+  '<a href="#/profile" role="menuitem">'+ico("user")+esc(ag("prof"))+'</a>'+
+  '<a href="mailto:support@ivanexo.com" role="menuitem">'+ico("chat")+esc(tx().support)+'</a><hr>'+
+  '<button class="row dng" id="lo" role="menuitem">'+ico("out")+esc(ag("logout"))+'</button>';
+ $("#lo").addEventListener("click",function(){clearAll();toLogin()});
+ $$("#acc a").forEach(function(a){a.addEventListener("click",accClose)});
+}
+
+/* views */
+function agView(r){
+ if(AG.none)return agNone();
+ var p=AG.p||{};
+ if(p.status!=="approved")return agBlocked(p);
+ var a=agCur();
+ return (a==="subs"?agSubs:a==="earn"?agEarn:a==="card"?agCardV:a==="prof"?agProf:agOv)();
+}
+function agNone(){return '<div class="soonc"><span class="pi">'+ico("user")+'</span><h1>'+esc(ag("none"))+'</h1><p>'+esc(ag("nonex"))+'</p><div class="bt"><a class="pb p" href="/get">'+ico("dl")+esc(ag("getapp"))+'</a><button class="pb o" id="agrf">'+ico("up")+esc(ag("refresh"))+'</button></div></div>'}
+function agBlocked(p){
+ var s=p.status,t=s==="rejected"?ag("rejt"):s==="suspended"?ag("suspt"):ag("revt"),x=s==="suspended"?ag("suspx"):s==="rejected"?(p.rejectedReason?ag("reason")+": "+p.rejectedReason:""):ag("revx");
+ return '<div class="soonc"><span class="pi">'+ico(s==="rejected"||s==="suspended"?"lock":"clock")+'</span>'+agChip()+'<h1 style="margin-top:.8rem">'+esc(t)+'</h1><p>'+esc(x)+'</p><div class="bt"><button class="pb p" id="agrf">'+ico("up")+esc(ag("refresh"))+'</button><a class="pb o" href="mailto:support@ivanexo.com">'+ico("chat")+esc(ag("contact"))+'</a></div></div>';
+}
+function agTile(ic,val,unit,label,c){return '<div class="agst" style="--c:'+c+'"><span class="agsi">'+ico(ic)+'</span><b>'+esc(val)+'</b><em>'+esc(unit)+'</em><small>'+esc(label)+'</small></div>'}
+function agCommRow(c,short){
+ var pl=agPlan(c.planKey),paid=c.status==="paid",v=c.status==="voided";
+ return '<div class="agrow"><span class="agdot" style="background:'+(paid?"#0fa68c":v?"#9aada6":"#d97706")+'"></span><div class="agri"><b>'+esc(c.businessName||ag("business"))+'</b><span><i class="agpl" style="--c:'+pl.color+'">'+esc(agPlanName(c.planKey))+'</i>'+esc(agPer(c.period))+' - '+esc(paid?ag("cpaid"):v?ag("cvoid"):ag("cpend"))+'</span></div><strong>+'+fmtN(c.amountRwf)+' <small>RWF</small></strong></div>';
+}
+function agShare(cls){return '<div class="agact '+(cls||"")+'"><button class="agb" id="agcp" data-v="c">'+ico("check")+'<span>'+esc(ag("copy"))+'</span></button><a class="agb wa" target="_blank" rel="noopener" href="https://wa.me/?text='+encodeURIComponent(agMsg())+'">'+ico("wa")+'<span>'+esc(ag("wa"))+'</span></a></div>'}
+function agOv(){
+ var p=AG.p||{},e=AG.e||{},h=new Date().getHours(),gr=h<12?"gm":h<17?"ga":"ge",first=(p.fullName||uname()).split(/\s+/)[0];
+ var rec=(e.recentCommissions||[]).slice(0,5);
+ return '<section class="agh"><div class="agh-t"><div><small>'+esc(ag(gr))+'</small><h1>'+esc(first)+'</h1></div>'+agChip()+'</div>'+
+  '<div class="agcode"><div class="agcl"><small>'+esc(ag("yourcode"))+'</small><b id="agcv">'+esc(agCode())+'</b><span>'+esc(ag("codesub"))+'</span></div>'+agShare()+'</div></section>'+
+  '<div class="agstats">'+agTile("cash",fmtN(e.currentPeriodRwf||0),"RWF",ag("period")+(e.currentPeriod?" ("+agPer(e.currentPeriod)+")":""),"#0fa68c")+
+  agTile("people",String(p.activeSubscribers!=null?p.activeSubscribers:(e.activeSubscribers||0)),ag("subs"),ag("actsub"),"#2563eb")+
+  agTile("clock",fmtN(e.pendingRwf||0),"RWF",ag("pending"),"#d97706")+
+  agTile("trophy",fmtN(e.totalEarnedRwf||0),"RWF",ag("life"),"#7c3aed")+'</div>'+
+  '<div class="aggrid"><section class="panel"><div class="agph"><h3>'+esc(ag("recent"))+'</h3><a href="#/earnings">'+esc(ag("all"))+'</a></div>'+
+  (rec.length?'<div class="aglist">'+rec.map(function(c){return agCommRow(c)}).join("")+'</div>':'<div class="agem">'+ico("receipt")+'<b>'+esc(ag("nocomm"))+'</b><span>'+esc(ag("nocommx"))+'</span></div>')+'</section>'+
+  '<div class="agside"><section class="agpay"><span class="agsi">'+ico("wallet")+'</span><small>'+esc(ag("nextpay"))+'</small><b>'+fmtN(e.pendingRwf||0)+' <em>RWF</em></b><p>'+esc(ag("nextd"))+'</p><p class="agmin">'+esc(ag("minpay"))+'</p></section>'+
+  '<section class="panel agcard"><h3>'+esc(ag("how"))+'</h3><ul class="agul"><li>'+ico("check")+esc(ag("h1"))+'</li><li>'+ico("check")+esc(ag("h2"))+'</li><li>'+ico("check")+esc(ag("h3"))+'</li><li>'+ico("check")+esc(ag("h4"))+'</li></ul></section></div></div>';
+}
+function agSubs(){
+ var L=(AG.subs||[]).map(function(x){x._s=agSt(x.status);return x});
+ var n={all:L.length,active:0,trial:0,end:0};L.forEach(function(x){n[x._s]++});
+ var q=AG.q.trim().toLowerCase(),tab=AG.tab;
+ var F=L.filter(function(x){return(tab==="all"||x._s===tab)&&(!q||(x.businessName||"").toLowerCase().indexOf(q)>-1||[x.district,x.sector].join(" ").toLowerCase().indexOf(q)>-1)});
+ var tot=F.reduce(function(a,x){return a+Number(x.commissionEarnedRwf||0)},0);
+ var tabs=[["all","fall"],["active","fact"],["trial","ftri"],["end","fend"]];
+ var h='<div class="ph"><span class="pi" style="--bg2:#e8f0ff;--cl:#2563eb">'+ico("people")+'</span><div><h1>'+esc(ag("subs"))+'</h1><p>'+esc(ag("subsub",{a:n.all,b:n.active}))+'</p></div></div>'+
+ '<div class="agbar"><label class="agsr">'+ico("search")+'<input id="agq" class="inp" type="search" value="'+esc(AG.q)+'" placeholder="'+esc(ag("search"))+'" autocomplete="off"></label><div class="agtabs" role="tablist">'+tabs.map(function(t){return '<button role="tab" data-t="'+t[0]+'" aria-selected="'+(tab===t[0])+'">'+esc(ag(t[1]))+'<em>'+n[t[0]]+'</em></button>'}).join("")+'</div></div>';
+ if(!F.length)return h+'<div class="panel agem">'+ico("people")+'<b>'+esc(L.length?ag("nores"):ag("nosubs"))+'</b></div>';
+ return h+'<div class="agsum"><span>'+esc(ag("listcomm"))+'</span><b>'+agM(tot)+'</b></div><div class="agsubs">'+F.map(function(x){
+  var pl=agPlan(x.planKey),a=Number(x.cyclesPaid||0),b=Math.max(Number(x.cyclesTotal||0),a,1),loc=[x.sector,x.district].filter(Boolean).join(", ");
+  var st=x._s==="active"?[ag("stactive"),"#0fa68c"]:x._s==="trial"?[ag("sttrial"),"#2563eb"]:[ag("stend"),"#9aada6"];
+  return '<article class="agsc" style="--c:'+pl.color+'"><div class="agsc-h"><div><b>'+esc(x.businessName||"-")+'</b><span>'+esc(loc||"-")+'</span></div><i class="agpl" style="--c:'+pl.color+'">'+esc(agPlanName(x.planKey))+'</i></div>'+
+  '<div class="agsc-m"><span class="agchip sm" style="--c:'+st[1]+'"><i></i>'+esc(st[0])+'</span><span>'+esc(ag("started"))+" "+esc(agD(x.startedAt,true))+'</span>'+(x.renewsAt&&x._s!=="end"?'<span>'+esc(ag("renews"))+" "+esc(agD(x.renewsAt))+'</span>':"")+'</div>'+
+  '<div class="agbarp"><div><i style="width:'+Math.round(a/b*100)+'%"></i></div><small>'+esc(ag("cycle",{a:a,b:b}))+'</small></div>'+
+  '<div class="agsc-f"><small>'+esc(ag("comm"))+'</small><strong>'+agM(x.commissionEarnedRwf||0)+'</strong></div></article>';
+ }).join("")+'</div>';
+}
+function agBars(){
+ var by={};(AG.comms||[]).forEach(function(c){if(c.status==="voided")return;var k=c.period||String(c.createdAt||"").slice(0,7);if(k)by[k]=(by[k]||0)+Number(c.amountRwf||0)});
+ var ks=Object.keys(by).sort().slice(-6);if(!ks.length)return"";
+ var mx=Math.max.apply(null,ks.map(function(k){return by[k]}))||1,W=560,H=190,bw=Math.min(54,(W-40)/ks.length-14),g=(W-40)/ks.length,s="";
+ ks.forEach(function(k,i){var v=by[k],bh=Math.max(4,Math.round((H-52)*v/mx)),x=20+i*g+(g-bw)/2,y=H-28-bh;
+  s+='<rect x="'+x+'" y="'+y+'" width="'+bw+'" height="'+bh+'" rx="8" fill="#0fa68c" opacity="'+(i===ks.length-1?1:.55)+'"/><text x="'+(x+bw/2)+'" y="'+(y-7)+'" text-anchor="middle" font-size="11" font-weight="800" fill="#0f2150">'+esc(fmtC(v))+'</text><text x="'+(x+bw/2)+'" y="'+(H-9)+'" text-anchor="middle" font-size="11" font-weight="600" fill="#5b6685">'+esc(agPer(k).replace(/\s?\d{4}$/,""))+'</text>'});
+ return '<section class="panel"><h3>'+esc(ag("trend"))+'</h3><svg class="rsv" viewBox="0 0 '+W+' '+H+'" role="img" aria-label="'+esc(ag("trend"))+'">'+s+'</svg></section>';
+}
+function agEarn(){
+ var e=AG.e||{},C=(AG.comms||[]).slice().sort(function(a,b){return String(b.createdAt||"").localeCompare(String(a.createdAt||""))});
+ var ct=AG.ct,F0=C.filter(function(c){return ct==="all"||c.status===ct}),F=AG.more?F0:F0.slice(0,12);
+ var tabs=[["all","fall"],["pending","cpend"],["paid","cpaid"]];
+ var h='<div class="ph"><span class="pi" style="--bg2:#fff4dc;--cl:#d97706">'+ico("wallet")+'</span><div><h1>'+esc(ag("earn"))+'</h1><p>'+esc(ag("nextd"))+'</p></div></div>'+
+ '<section class="agh slim"><div><small>'+esc(ag("life"))+'</small><b class="agbig">'+fmtN(e.totalEarnedRwf||0)+' <em>RWF</em></b></div><div class="agtwo"><div><small>'+esc(ag("paid"))+'</small><b>'+agM(e.paidRwf||0)+'</b></div><div><small>'+esc(ag("pending"))+'</small><b>'+agM(e.pendingRwf||0)+'</b></div></div></section>'+
+ '<div class="agstats">'+agTile("cash",fmtN(e.currentPeriodRwf||0),"RWF",ag("period"),"#0fa68c")+agTile("people",String(e.activeSubscribers||0),ag("subs"),ag("actsub"),"#2563eb")+agTile("trend",String(e.totalSignups||0),ag("subs"),ag("signups"),"#7c3aed")+agTile("check",fmtN(e.paidRwf||0),"RWF",ag("paid"),"#d97706")+'</div>'+
+ '<div class="aggrid even">'+agBars()+'<section class="panel"><h3>'+esc(ag("payouts"))+'</h3>'+((AG.pay||[]).length?'<div class="aglist">'+AG.pay.map(function(p){var s=p.status==="paid"?[ag("ppaid"),"#0fa68c"]:p.status==="voided"?[ag("pvoid"),"#9aada6"]:[ag("pcalc"),"#d97706"];
+  return '<div class="agrow"><span class="agdot" style="background:'+s[1]+'"></span><div class="agri"><b>'+esc(agPer(p.period))+'</b><span><i class="agchip sm" style="--c:'+s[1]+'"><i></i>'+esc(s[0])+'</i>'+(p.momoRef?esc(ag("ref"))+": "+esc(p.momoRef):esc(p.momoNumber||""))+'</span></div><strong>'+fmtN(p.totalRwf)+' <small>RWF</small></strong></div>'}).join("")+'</div>':'<div class="agem">'+ico("bank")+'<b>'+esc(ag("nopay"))+'</b><span>'+esc(ag("nopayx"))+'</span></div>')+'</section></div>'+
+ '<section class="panel" style="margin-top:1rem"><div class="agph"><h3>'+esc(ag("allcomm"))+'</h3><div class="agtabs sm" role="tablist">'+tabs.map(function(t){return '<button role="tab" data-ct="'+t[0]+'" aria-selected="'+(ct===t[0])+'">'+esc(ag(t[1]))+'</button>'}).join("")+'</div></div>'+
+ (F.length?'<div class="aglist">'+F.map(function(c){return agCommRow(c)}).join("")+'</div>'+(F0.length>12?'<button class="pb o" id="agmore" style="width:100%;margin-top:.8rem">'+esc(AG.more?ag("less"):ag("more",{n:F0.length-12}))+'</button>':""):'<div class="agem">'+ico("receipt")+'<b>'+esc(ag("nocomm"))+'</b><span>'+esc(ag("nocommx"))+'</span></div>')+'</section>';
+ return h;
+}
+function agCardV(){
+ var p=AG.p||{},loc=[p.district,p.province].filter(Boolean).join(", ");
+ return '<div class="ph"><span class="pi" style="--bg2:#fde8f3;--cl:#db2777">'+ico("user")+'</span><div><h1>'+esc(ag("card"))+'</h1><p>'+esc(ag("cardx"))+'</p></div></div>'+
+ '<div class="aggrid card2"><div><div class="agidc" id="agidc"><div class="agid-h"><span class="agid-l">T<i></i></span><div><b>TRACK<em>LY</em></b><small>'+esc(ag("official"))+'</small></div>'+agChip().replace('class="agchip"','class="agchip on-d"')+'</div>'+
+ '<div class="agid-b"><span class="agid-p">'+(p.photoUrl?'<img src="'+esc(avOpt(p.photoUrl,160))+'" alt="" onerror="this.remove()">':"")+'<b>'+esc(initials(p.fullName))+'</b></span><div><small>'+esc(ag("name"))+'</small><strong>'+esc(p.fullName||"-")+'</strong><small>'+esc(ag("aid"))+'</small><code>'+esc(agCode())+'</code>'+(loc?'<span class="agid-loc">'+ico("pin")+esc(loc)+'</span>':"")+'</div></div><div class="agid-f">trackly.ivanexo.com</div></div>'+
+ '<button class="pb o" id="agpr" style="margin-top:1rem">'+ico("doc")+esc(ag("print"))+'</button></div>'+
+ '<section class="panel"><h3>'+esc(ag("sharet"))+'</h3><p class="agsx">'+esc(ag("sharex"))+'</p><label class="lab2">'+esc(ag("link"))+'</label><div class="aglnk"><input class="inp" readonly value="'+esc(agLink())+'" id="agli"><button class="agb" id="agcl" data-v="l">'+esc(ag("copylink"))+'</button></div>'+
+ '<pre class="agpre" id="agpre">'+esc(agMsg())+'</pre>'+agShare("row")+'<button class="pb o" id="agcm" style="margin-top:.7rem;width:100%">'+esc(ag("copymsg"))+'</button></section></div>';
+}
+function agFld(id,lab,val,extra){return '<div class="fld"><label for="'+id+'">'+esc(lab)+'</label><input class="inp" id="'+id+'" value="'+esc(val||"")+'" '+(extra||"")+'></div>'}
+function agProf(){
+ var p=AG.p||{},mp=String(p.momoProvider||"mtn").toLowerCase();
+ var row=function(l,v){return '<div class="agkv"><small>'+esc(l)+'</small><b>'+esc(v||"-")+'</b></div>'};
+ return '<div class="ph"><span class="pi" style="--bg2:#efeaff;--cl:#7c3aed">'+agAv(56)+'</span><div><h1>'+esc(p.fullName||"")+'</h1><p>'+esc(agCode())+'</p></div></div>'+
+ '<div class="aggrid even"><section class="panel"><h3>'+esc(ag("pf"))+'</h3><div class="agkvs">'+row(ag("fname"),p.fullName)+row(ag("fphone"),p.phone)+row(ag("fnid"),p.nationalId)+row(ag("floc"),agLocTxt(p))+row(ag("fapp"),p.approvedAt?agD(p.approvedAt):"")+'</div><p class="emhint">'+esc(ag("photo"))+'</p></section>'+
+ '<section class="panel"><h3>'+esc(ag("pay"))+'</h3><form id="agpf" novalidate>'+
+ '<div class="fld"><label>'+esc(ag("prov"))+'</label><div class="agseg" role="radiogroup"><button type="button" role="radio" data-m="mtn" aria-checked="'+(mp==="mtn")+'">MTN MoMo</button><button type="button" role="radio" data-m="airtel" aria-checked="'+(mp==="airtel")+'">Airtel Money</button></div></div>'+
+ agFld("agmo",ag("momo"),(function(d){return d?"0"+d:""})(String(p.momoNumber||"").replace(/\D/g,"").replace(/^250/,"").replace(/^0/,"")),'inputmode="tel" maxlength="12" placeholder="78 123 4567"')+agFld("agem",ag("mail"),p.email,'type="email" inputmode="email"')+'<p class="emhint" style="margin:-.4rem 0 .9rem">'+esc(ag("mailx"))+'</p>'+
+ '<p class="agerr" id="agerr" role="alert" hidden></p><button class="pb p" id="agsv" type="submit" style="width:100%">'+esc(ag("save"))+'</button></form></section></div>'+
+ '<section class="panel" style="margin-top:1rem"><h3>'+esc(ag("lang"))+'</h3><div class="lgg" role="radiogroup" style="display:grid;grid-template-columns:repeat(3,1fr);gap:.7rem">'+["rw","en","fr"].map(function(c){return '<button class="lgc" role="radio" aria-checked="'+(c===lang)+'" data-l="'+c+'">'+flag(c)+'<b>'+({rw:"Kinyarwanda",en:"English",fr:"Français"})[c]+'</b></button>'}).join("")+'</div>'+
+ '<button class="pb dng" id="agout" style="margin-top:1rem">'+ico("out")+esc(ag("logout"))+'</button></section>';
+}
+
+/* behaviour */
+function agToast(m){AG.toast=m;var t=$("#agtoast");if(!t){t=document.createElement("div");t.id="agtoast";t.className="agtoast";t.setAttribute("role","status");document.body.appendChild(t)}t.textContent=m;t.classList.add("on");clearTimeout(AG.tt);AG.tt=setTimeout(function(){t.classList.remove("on")},2200)}
+function agCopy(txt,done){
+ var ok=function(){agToast(ag("copied"));if(done)done()};
+ if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(ok,function(){agFb(txt);ok()})}else{agFb(txt);ok()}
+}
+function agFb(t){var a=document.createElement("textarea");a.value=t;a.style.position="fixed";a.style.opacity="0";document.body.appendChild(a);a.select();try{document.execCommand("copy")}catch(e){}a.remove()}
+function agMomoOk(n,pr){var d=String(n||"").replace(/\D/g,"").replace(/^250/,"").replace(/^0/,"");if(d.length!==9)return ag("badmomo");var f=d.slice(0,2);if(pr==="mtn"&&f!=="78"&&f!=="79")return ag("mtnerr");if(pr==="airtel"&&f!=="72"&&f!=="73")return ag("airerr");return""}
+function agBind(){
+ var mr=$("#agmore");if(mr)mr.addEventListener("click",function(){AG.more=!AG.more;draw()});
+ var rf=$("#agrf");if(rf)rf.addEventListener("click",agLoad);
+ $$("#agcp").forEach(function(b){b.addEventListener("click",function(){agCopy(agCode())})});
+ var cl=$("#agcl");if(cl)cl.addEventListener("click",function(){agCopy(agLink())});
+ var cm=$("#agcm");if(cm)cm.addEventListener("click",function(){agCopy(agMsg())});
+ var pr=$("#agpr");if(pr)pr.addEventListener("click",function(){document.body.classList.add("agprint");setTimeout(function(){window.print();document.body.classList.remove("agprint")},50)});
+ var q=$("#agq");if(q)q.addEventListener("input",function(){AG.q=q.value;var pos=q.selectionStart;draw();var n=$("#agq");if(n){n.focus();try{n.setSelectionRange(pos,pos)}catch(e){}}});
+ $$(".agtabs [data-t]").forEach(function(b){b.addEventListener("click",function(){AG.tab=b.getAttribute("data-t");draw()})});
+ $$(".agtabs [data-ct]").forEach(function(b){b.addEventListener("click",function(){AG.ct=b.getAttribute("data-ct");draw()})});
+ $$(".lgg .lgc").forEach(function(b){b.addEventListener("click",function(){var c=b.getAttribute("data-l");if(c===lang)return;try{localStorage.setItem("tk_lang",c)}catch(e){}lang=c;draw()})});
+ var lo=$("#agout");if(lo)lo.addEventListener("click",function(){clearAll();toLogin()});
+ var f=$("#agpf");
+ if(f){
+  var prov=String((AG.p&&AG.p.momoProvider)||"mtn").toLowerCase();
+  $$(".agseg [data-m]").forEach(function(b){b.addEventListener("click",function(){prov=b.getAttribute("data-m");$$(".agseg [data-m]").forEach(function(x){x.setAttribute("aria-checked",String(x===b))})})});
+  f.addEventListener("submit",function(e){
+   e.preventDefault();var er=$("#agerr"),mo=$("#agmo").value,em=$("#agem").value.trim(),m=agMomoOk(mo,prov);
+   if(!m&&em&&!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(em))m=ag("bademail");
+   if(m){er.textContent=m;er.hidden=false;return}
+   er.hidden=true;var b=$("#agsv");b.disabled=true;
+   var d=String(mo).replace(/\D/g,"").replace(/^250/,"").replace(/^0/,"");
+   var body={momoNumber:d,momoProvider:prov};if(em)body.email=em;
+   send("PATCH","/agents/me",body).then(function(p){AG.p=p||AG.p;b.disabled=false;agToast(ag("saved"))}).catch(function(x){b.disabled=false;if(x&&x.status===401){clearAll();toLogin();return}er.textContent=(x&&x.msg)||ag("failed");er.hidden=false});
+  });
+ }
+}
+
 /* ---------- routing ---------- */
 function route(){
  var h=(location.hash||"#/").replace(/^#\/?/,"").split("/");
+ if(S.agent&&AGR[h[0]])return{k:"ag",a:AGR[h[0]]};
  if(h[0]==="profile")return{k:"profile"};
  if(h[0]==="c"&&h[1])return{k:"cat",a:h[1]};
  if(h[0]==="s"&&h[1]&&GATE[h[1]])return{k:"svc",a:h[1]};
@@ -1259,6 +1526,7 @@ window.addEventListener("hashchange",function(){window.scrollTo(0,0);draw()});
 function view(){
  var r=route(),t=tx();
  if(S.loading)return '<div class="hero sk" style="height:210px;margin-top:.6rem"></div><div class="stats"><div class="sk" style="height:150px"></div><div class="sk" style="height:150px"></div><div class="sk" style="height:150px"></div><div class="sk" style="height:150px"></div></div><div id="wk" class="wake" hidden></div>';
+ if(S.agent&&!S.error)return agView(r);
  if(S.error)return '<div class="errb"><span>'+esc(t.err)+'</span><button class="pb o" id="rt">'+esc(t.retry)+'</button></div>';
  if(r.k==="profile")return vPF();
  if(r.k==="cat")return vCat(r.a);
@@ -4805,6 +5073,7 @@ function draw(){
  $("#page").innerHTML=view();
  $$("[data-t=tag]").forEach(function(e){e.textContent=tx().tag});
  var rt=$("#rt");if(rt)rt.addEventListener("click",load);
+ if(S.agent)agBind();
  $$("[data-tab]").forEach(function(b){b.addEventListener("click",function(){S.tab=b.getAttribute("data-tab");draw()})});
  $$(".tile").forEach(function(a){a.addEventListener("click",function(e){var d=a.getAttribute("data-d");if(!can(S.plan,d)){e.preventDefault();modal(d)}})});
  closeNav();
