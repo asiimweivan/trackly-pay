@@ -47,6 +47,8 @@ a{color:inherit}
 .top-r{display:flex;align-items:center;gap:1rem;margin-left:auto;font-size:.95rem;color:var(--mut)}
 .top-r a{color:var(--tealD);font-weight:700;text-decoration:none}
 .top-r a:hover{text-decoration:underline}
+.homebtn{display:inline-flex;align-items:center;gap:.4rem;padding:.45rem .85rem;border:1.5px solid var(--line);border-radius:999px;background:#fff;color:var(--ink)!important;font-weight:700;text-decoration:none!important}.homebtn:hover{border-color:var(--teal);color:var(--tealD)!important}@media(max-width:460px){.top-r{gap:.6rem}.homebtn{padding:.5rem}.homebtn span{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}}
+.homebtn svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 .stage{flex:1;display:flex;align-items:center;justify-content:center;padding:1rem clamp(1.2rem,4vw,3.4rem) 3rem}
 .card{width:100%;max-width:580px}
 .card h2{font-size:clamp(1.7rem,2.4vw,2.2rem);letter-spacing:-.03em;line-height:1.1;margin:0 0 .4rem;font-weight:800}
@@ -150,7 +152,7 @@ select.in:disabled{background-color:var(--bg);color:#9aa4bd;cursor:not-allowed}
    <span><span class="wm">TRACK<i>LY</i></span><small data-t="tag">Business Operating System</small></span>
   </a>
   <div class="top-r">
-   <span class="t-q" data-t="have">Already have an account?</span> <a href="/app/login/" data-t="login">Log in</a>
+   <a class="homebtn" href="/home.html" aria-label="Home"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11.5 12 4l9 7.5"/><path d="M5.5 10v9.5h13V10"/></svg><span data-t="home">Home</span></a> <span class="t-q" data-t="have">Already have an account?</span> <a href="/app/login/" data-t="login">Log in</a>
   </div>
  </div>
 
@@ -286,7 +288,7 @@ select.in:disabled{background-color:var(--bg);color:#9aa4bd;cursor:not-allowed}
   };
 
   var T={
-  en:{tag:"Business Operating System",h1a:"Welcome to Trackly.",h1b:"Let's grow your business.",lead:"Create your free account in two minutes and start selling today.",
+  en:{home:"Home",tag:"Business Operating System",h1a:"Welcome to Trackly.",h1b:"Let's grow your business.",lead:"Create your free account in two minutes and start selling today.",
    have:"Already have an account?",login:"Log in",title:"Create your account",sub:"Free to start. It takes about two minutes.",r_owner:"Business owner",r_agent:"Agent",
    s1:"Personal",s2:"Business",s3:"Security",l_name:"Full name",l_phone:"Phone number",h_phone:"9 digits, starting with 7",l_email:"Email",h_email:"We use your email to recover your password.",
    l_biz:"Business name",l_type:"Type of business",l_prov:"Province",l_dist:"District",l_sect:"Sector",l_cell:"Cell",l_vill:"Village",l_ref:"Agent code",opt:"(optional)",h_ref:"If a Trackly agent gave you a code, enter it here so they get credit.",
@@ -299,7 +301,7 @@ select.in:disabled{background-color:var(--bg);color:#9aa4bd;cursor:not-allowed}
    e_mail409:"This email is already used by another account.",e_phone409:"This phone number already has an account.",e_net:"Cannot reach Trackly. Check your internet and try again.",e_geo:"Could not load locations. Refresh the page and try again.",e_biz_fail:"Your account was created, but the business could not be saved. Check the details and press Create account again.",
    wake:"Waking up the server. This can take up to a minute…",
    ok_dl:"Download Trackly for Android",ok_t:"Welcome to Trackly, ",ok_x:"Your account is ready. Install the Android app and log in with your phone number and password.",ok_agent:"Your agent account is ready. Install the Android app and log in with your phone number and password."},
-  rw:{tag:"Business Operating System",h1a:"Murakaza neza kuri Trackly.",h1b:"Tugufashe gukuza ubucuruzi bwawe.",lead:"Fungura konti y'ubuntu mu minota ibiri utangire gucuruza uyu munsi.",
+  rw:{home:"Ahabanza",tag:"Business Operating System",h1a:"Murakaza neza kuri Trackly.",h1b:"Tugufashe gukuza ubucuruzi bwawe.",lead:"Fungura konti y'ubuntu mu minota ibiri utangire gucuruza uyu munsi.",
    have:"Usanzwe ufite konti?",login:"Injira",title:"Fungura konti yawe",sub:"Gutangira ni ubuntu. Bitwara iminota nka ibiri.",r_owner:"Nyiri ubucuruzi",r_agent:"Umukozi (Agent)",
    s1:"Umuntu",s2:"Iduka",s3:"Umutekano",l_name:"Amazina yuzuye",l_phone:"Nimero ya telefoni",h_phone:"Imibare 9, itangira na 7",l_email:"Imeyili",h_email:"Imeyili yawe ikoreshwa mu gusubiza ijambo banga.",
    l_biz:"Izina ry'iduka",l_type:"Ubwoko bw'ubucuruzi",l_prov:"Intara",l_dist:"Akarere",l_sect:"Umurenge",l_cell:"Akagari",l_vill:"Umudugudu",l_ref:"Kode y'umukozi",opt:"(si ngombwa)",h_ref:"Niba umukozi wa Trackly yaguhaye kode, yandike hano kugira ngo ahabwe ibye.",
@@ -312,7 +314,7 @@ select.in:disabled{background-color:var(--bg);color:#9aa4bd;cursor:not-allowed}
    e_mail409:"Imeyili yawe isanzwe ikoreshwa kuri indi konti.",e_phone409:"Nimero yawe isanzwe ifite konti.",e_net:"Ntidushoboye kugera kuri Trackly. Reba interineti ugerageze nanone.",e_geo:"Ntitwabashije kubona aho ubucuruzi buherereye. Ongera ufungure urupapuro.",e_biz_fail:"Konti yawe yafunguwe, ariko iduka ntiryabitswe. Reba amakuru wongere ukande Fungura konti.",
    wake:"Seriveri irimo kubyuka. Bishobora gutwara iminota igera kuri umwe…",
    ok_dl:"Kuramo Trackly kuri Android",ok_t:"Murakaza neza kuri Trackly, ",ok_x:"Konti yawe irahari. Shyira porogaramu ya Android kuri telefoni, winjire ukoresheje nimero yawe n'ijambo banga.",ok_agent:"Konti yawe y'umukozi irahari. Shyira porogaramu ya Android kuri telefoni, winjire ukoresheje nimero yawe n'ijambo banga."},
-  fr:{tag:"Business Operating System",h1a:"Bienvenue sur Trackly.",h1b:"Développons votre commerce.",lead:"Créez votre compte gratuit en deux minutes et commencez à vendre dès aujourd'hui.",
+  fr:{home:"Accueil",tag:"Business Operating System",h1a:"Bienvenue sur Trackly.",h1b:"Développons votre commerce.",lead:"Créez votre compte gratuit en deux minutes et commencez à vendre dès aujourd'hui.",
    have:"Vous avez déjà un compte ?",login:"Se connecter",title:"Créez votre compte",sub:"Gratuit pour commencer. Environ deux minutes.",r_owner:"Propriétaire",r_agent:"Agent",
    s1:"Personnel",s2:"Commerce",s3:"Sécurité",l_name:"Nom complet",l_phone:"Numéro de téléphone",h_phone:"9 chiffres, commençant par 7",l_email:"E-mail",h_email:"Votre e-mail sert à récupérer votre mot de passe.",
    l_biz:"Nom du commerce",l_type:"Type de commerce",l_prov:"Province",l_dist:"District",l_sect:"Secteur",l_cell:"Cellule",l_vill:"Village",l_ref:"Code agent",opt:"(facultatif)",h_ref:"Si un agent Trackly vous a donné un code, saisissez-le ici pour qu'il soit crédité.",
