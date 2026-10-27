@@ -1207,7 +1207,7 @@ function avatar(url,name,verified,size){
  var inner=url?'<img src="'+esc(avOpt(url,size||48))+'" alt="" onerror="this.remove()">':"";
  return '<span class="avw"><span class="av"'+(size?' style="width:'+size+'px;height:'+size+'px"':"")+'>'+esc(initials(name))+inner+'</span>'+(verified?'<span class="vb" title="'+esc(tx().verified)+'"><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span>':"")+'</span>';
 }
-function flame(plan,short){var p=PLAN[plan];return '<span class="flame '+p.fc+'" title="'+esc(p.label)+'">'+FLAME+esc(short?"":p.label)+'</span>'}
+function flame(plan,short,over){var p=PLAN[plan];return '<span class="flame '+p.fc+'" title="'+esc(over||p.label)+'">'+FLAME+esc(short?"":(over||p.label))+'</span>'}
 
 /* ---------- state ---------- */
 var OPEN="";
@@ -1266,17 +1266,17 @@ function buildNav(){
  var t=tx(),r0=route(),h='<div class="sl">'+esc(t.menu)+'</div><a class="ni'+(route().k==="home"?" on":"")+'" href="#/"><span class="nt" style="--tc:#2fd1b3">'+ico("home")+'</span><span class="lbl">'+esc(t.home)+'</span></a><div class="sl">'+esc(t.services)+'</div>';
  CATS.forEach(function(c){
   var locked=c.items.filter(function(d){return !can(S.plan,d)}).length,tot=c.items.length;
-  h+='<div class="cat'+(OPEN===c.k||(r0.k==="svc"&&c.items.indexOf(r0.a)>-1&&OPEN!==""&&OPEN===c.k)?" open":"")+'" data-k="'+c.k+'"><button class="ni catbtn" aria-expanded="'+(OPEN===c.k)+'"><span class="nt" style="--tc:'+c.tc+'">'+ico(c.icon)+'</span>'+'<span class="lbl">'+esc(t.cats[c.k])+'</span>'+(locked?'<span class="lockcount">'+FLAME.replace("<svg","<svg style=\"fill:#ffb347\"")+locked+'</span>':"")+ico("chev","chev")+'</button>'+
+  h+='<div class="cat'+(OPEN===c.k||(r0.k==="svc"&&c.items.indexOf(r0.a)>-1&&OPEN!==""&&OPEN===c.k)?" open":"")+'" data-k="'+c.k+'"><button class="ni catbtn" aria-expanded="'+(OPEN===c.k)+'"><span class="nt" style="--tc:'+c.tc+'">'+ico(c.icon)+'</span>'+'<span class="lbl">'+esc(t.cats[c.k])+'</span>'+ico("chev","chev")+'</button>'+
   '<div class="sub" role="menu"><div class="in">';
   c.items.forEach(function(d){
    var lk=!can(S.plan,d),gt=GATE[d];
-   h+='<a class="si'+(lk?" lk":"")+(r0.k==="svc"&&r0.a===d?" cur":"")+'" role="menuitem" href="#/s/'+d+'" data-d="'+d+'"><span class="ic">'+ico(gt[1])+'</span><span class="t">'+esc(lbl(d))+'</span>'+(lk?flame(gt[2]):"")+'</a>';
+   h+='<a class="si'+(lk?" lk":"")+(r0.k==="svc"&&r0.a===d?" cur":"")+'" role="menuitem" href="#/s/'+d+'" data-d="'+d+'"><span class="ic">'+ico(gt[1])+'</span><span class="t">'+esc(lbl(d))+'</span>'+(lk?flame(gt[2],0,t.upgrade):"")+'</a>';
   });
   h+='</div></div></div>';
  });
  $("#navList").innerHTML=h;
  var f="";
- if(RANK[S.plan]<2&&!S.agent)f+='<a class="upg" href="/home.html#pricing"><b>'+FLAME+esc(t.nudgeT)+'</b><span>'+esc(t.nudgeS)+'</span></a>';
+ if(RANK[S.plan]<2&&!S.agent)f+='<a class="upg" href="/home.html#pricing"><b>'+FLAME+esc(t.upgrade)+'</b></a>';
  f+='<a class="me" href="#/profile">'+avatar(S.biz&&S.biz.logoUrl,uname(),S.biz&&S.biz.isVerified)+'<span class="who"><b>'+esc(uname()||"Trackly")+'</b><small>'+esc((S.biz&&S.biz.name)||"")+'</small></span></a>';
  $("#navFoot").innerHTML=f;
 }
