@@ -1276,7 +1276,7 @@ function buildNav(){
  });
  $("#navList").innerHTML=h;
  var f="";
- if(RANK[S.plan]<2&&!S.agent)f+='<a class="upg" href="/home.html#pricing"><b>'+FLAME+esc(t.upgrade)+'</b></a>';
+ if(RANK[S.plan]<2&&!S.agent)f+='<a class="upg" href="/#pricing"><b>'+FLAME+esc(t.upgrade)+'</b></a>';
  f+='<a class="me" href="#/profile">'+avatar(S.biz&&S.biz.logoUrl,uname(),S.biz&&S.biz.isVerified)+'<span class="who"><b>'+esc(uname()||"Trackly")+'</b><small>'+esc((S.biz&&S.biz.name)||"")+'</small></span></a>';
  $("#navFoot").innerHTML=f;
 }
@@ -1311,7 +1311,7 @@ function topbar(){
  var p=PLAN[S.plan];
  $("#acc").innerHTML='<div class="acc-h">'+avatar(S.biz&&S.biz.logoUrl,uname(),S.biz&&S.biz.isVerified,48)+'<div><b>'+esc(uname())+'</b><small>'+esc((S.biz&&S.biz.name)||t[S.agent?"agent":"owner"])+'</small><br><span class="chip" style="--pc:'+(S.plan==="ubuntu"?"#64748b":p.color)+'">'+ico("diamond").replace('class="i"','class="i" style="width:11px;height:11px"')+esc(p.label)+'</span></div></div>'+
   '<a href="#/profile" role="menuitem">'+ico("user")+esc(t.myacc)+'</a>'+
-  '<a href="/home.html#pricing" role="menuitem">'+ico("diamond")+esc(t.plans)+'</a>'+
+  '<a href="/#pricing" role="menuitem">'+ico("diamond")+esc(t.plans)+'</a>'+
   '<a href="#/s/notifications" role="menuitem">'+ico("bell")+esc(t.notif)+'</a>'+
   '<a href="#/s/settings" role="menuitem">'+ico("gear")+esc(t.sett)+'</a>'+
   '<a href="mailto:support@ivanexo.com" role="menuitem">'+ico("chat")+esc(t.support)+'</a><hr>'+
@@ -1541,7 +1541,7 @@ function pyFail(){
 }
 /* plan links inside the dashboard open the payment sheet instead of the pricing page */
 document.addEventListener("click",function(e){
- var a=e.target.closest&&e.target.closest('a[href="/home.html#pricing"]');
+ var a=e.target.closest&&e.target.closest('a[href="/#pricing"]');
  if(!a||!pyOwner()||!S.user)return;
  e.preventDefault();modalClose();var cur=S.plan;pyOpen(cur==="ubuntu"?"ibanze":cur==="ibanze"?"iterambere":cur);
 });
@@ -1565,7 +1565,7 @@ function modal(dest){
  '<div class="mbody"><h2>'+esc(lbl(dest))+'</h2><p>'+esc(fill(t.gmsg,{f:lbl(dest),p:p.label}))+'</p>'+
  '<div class="ben"><h5>'+esc(fill(t.benH,{p:p.label}))+'</h5><ul>'+ben.map(function(b){return '<li>'+ico("check")+'<span>'+esc(b)+'</span></li>'}).join("")+'</ul></div>'+
  '<div class="prow"><div><b>'+fmtN(p.price)+'</b><span>'+esc(t.perM)+'</span></div><i></i><div><b>'+p.day+'</b><span>'+esc(t.perD)+'</span></div></div>'+
- '<a class="mcta" href="/home.html#pricing">'+ico("bolt")+esc(fill(t.upTo,{p:p.label}))+'</a><button class="mlater" id="ml">'+esc(t.later)+'</button></div></div></div>';
+ '<a class="mcta" href="/#pricing">'+ico("bolt")+esc(fill(t.upTo,{p:p.label}))+'</a><button class="mlater" id="ml">'+esc(t.later)+'</button></div></div></div>';
  $("#modalRoot").innerHTML=h;
  $("#mx").addEventListener("click",modalClose);$("#ml").addEventListener("click",modalClose);
  $("#scrim").addEventListener("click",function(e){if(e.target.id==="scrim")modalClose()});
@@ -1824,7 +1824,7 @@ function vHome(){
   (loc?'<div class="loc">'+ico("pin")+esc(loc)+'</div>':"")+'</div>'+
   '<div class="hr-r"><div class="dte">'+esc(now.toLocaleDateString(lang==="rw"?"en-GB":lang,{weekday:"long",day:"numeric",month:"long"}))+'</div><a class="pill" href="#/profile">'+ico("diamond")+esc(p.label)+'</a></div></div>'+
   '<div class="tabs" role="group">'+["today","week","month"].map(function(k){return '<button data-tab="'+k+'" aria-pressed="'+(tab===k)+'">'+esc(t[k])+'</button>'}).join("")+'</div></section>';
- if((S.plan==="ubuntu"||S.plan==="ibanze")&&lp>=.7)h+='<a class="ban w" href="/home.html#pricing"><span class="bi">'+ico("alert")+'</span><span style="flex:1"><span>'+esc(fill(t.lim,{n:P.length,m:lim})+(lp>=1?t.limR:t.limL))+'</span><span class="tr" style="display:block"><i style="display:block;width:'+Math.min(lp*100,100)+'%;'+(lp>=1?"background:#ef4444":"")+'"></i></span></span><span class="go">'+ico("chev")+'</span></a>';
+ if((S.plan==="ubuntu"||S.plan==="ibanze")&&lp>=.7)h+='<a class="ban w" href="/#pricing"><span class="bi">'+ico("alert")+'</span><span style="flex:1"><span>'+esc(fill(t.lim,{n:P.length,m:lim})+(lp>=1?t.limR:t.limL))+'</span><span class="tr" style="display:block"><i style="display:block;width:'+Math.min(lp*100,100)+'%;'+(lp>=1?"background:#ef4444":"")+'"></i></span></span><span class="go">'+ico("chev")+'</span></a>';
  if(out.length)h+='<a class="ban r" href="#/s/inventory"><span class="bi">'+ico("alert")+'</span><span>'+esc(out.length+" × "+t.out)+'</span><span class="go">'+ico("chev")+'</span></a>';
  function stat(ic,a,l,v,u,extra){return '<div class="stat" style="--a:'+a+'">'+(extra||"")+'<span class="ti">'+ico(ic)+'</span><div class="v">'+v+'</div><div class="u">'+u+'</div><div class="l">'+esc(l)+'</div></div>'}
  var dl=tab==="month"&&growth!==null?'<span class="dl '+(growth>=0?"up":"dn")+'">'+ico(growth>=0?"up":"dn")+Math.abs(growth)+'%</span>':"";
@@ -1833,7 +1833,7 @@ function vHome(){
   stat("bag","#2563eb",t.items,esc(String(itemsV)),esc(t.pieces))+
   stat("alert",out.length?"#ef4444":"#f59e0b",t.attn,esc(String(out.length+low.length)),esc(fill(t.outlow,{o:out.length,l:low.length})))+
   stat("layers","#c9982a",t.sval,esc(fmtC(sval)),"RWF · "+P.length+" "+esc(t.prods))+'</div>';
- if(RANK[S.plan]<2)h+='<div class="nudge"><span class="ni2">'+ico("rocket").replace("<svg","<svg")+'</span><div><b>'+esc(t.nudgeT)+'</b><span>'+esc(t.nudgeS)+'</span></div><a class="pb p" href="/home.html#pricing">'+esc(t.upgrade)+'</a></div>';
+ if(RANK[S.plan]<2)h+='<div class="nudge"><span class="ni2">'+ico("rocket").replace("<svg","<svg")+'</span><div><b>'+esc(t.nudgeT)+'</b><span>'+esc(t.nudgeS)+'</span></div><a class="pb p" href="/#pricing">'+esc(t.upgrade)+'</a></div>';
  h+='<section class="sec"><a class="sale" href="#/s/new-sale"><div class="st"><span class="sti">'+ico("cart")+'</span><div><h3>'+esc(lbl("new-sale"))+'</h3><p>'+esc(t.sale1)+'</p></div></div><div class="ss"><div><b>'+st.length+'</b><span>'+esc(t.sales)+'</span></div><div><b>'+esc(fmtC(revT))+'</b><span>'+esc(t.revenue)+'</span></div><div><b>'+cnt(st)+'</b><span>'+esc(t.itm)+'</span></div></div></a></section>';
  h+='<section class="sec"><div class="sec-h"><h3>'+esc(t.services)+'<span class="cnt">'+CATS.length+'</span></h3></div><div class="cats">'+CATS.map(function(c){
   var lk=c.items.filter(function(d){return !can(S.plan,d)}).length,tot=c.items.length,u=tot-lk;
@@ -1899,7 +1899,7 @@ function vProfile(){
  var ps=S.plan==="ubuntu"?t.free:(sub&&sub.daysRemaining!=null?fill(t.daysLeft,{d:sub.daysRemaining}):t.active);
  return crumb(t.prof)+'<div class="pcover"></div><div class="pcard">'+avatar(b.logoUrl,uname(),b.isVerified,112)+'<div class="pn"><h1>'+esc(uname())+'</h1><p>'+esc(b.name||t.owner)+'</p><span class="chip" style="--pc:'+(S.plan==="ubuntu"?"#64748b":p.color)+'">'+ico("diamond").replace('class="i"','class="i" style="width:11px;height:11px"')+esc(p.label)+'</span></div><span class="edit"><span class="pb o" style="cursor:default">'+ico("gear")+esc(t.editApp)+'</span></span></div>'+
  '<div class="pgrid"><div class="panel"><h3>'+esc(t.ownInfo)+'</h3>'+kv([[t.owner,uname()],[t.phone,u.phone],[t.email,u.email]])+'</div>'+
- '<div class="panel"><h3>'+esc(t.planInfo)+'</h3><div class="planbox" style="--pc:'+p.color+'"><b>'+esc(p.label)+'</b><span>'+esc(ps)+'</span></div>'+(RANK[S.plan]<3?'<p style="margin:.9rem 0 0"><a class="pb p" href="/home.html#pricing">'+ico("bolt").replace("<svg","<svg")+esc(t.upgrade)+'</a></p>':"")+'</div>'+
+ '<div class="panel"><h3>'+esc(t.planInfo)+'</h3><div class="planbox" style="--pc:'+p.color+'"><b>'+esc(p.label)+'</b><span>'+esc(ps)+'</span></div>'+(RANK[S.plan]<3?'<p style="margin:.9rem 0 0"><a class="pb p" href="/#pricing">'+ico("bolt").replace("<svg","<svg")+esc(t.upgrade)+'</a></p>':"")+'</div>'+
  '<div class="panel" style="grid-column:1/-1"><h3>'+esc(t.bizInfo)+'</h3>'+kv([[t.bizName,b.name],[t.type,BIZT[b.category]||b.category],[t.loc,loc],[t.phone,b.phone],[t.email,b.email],[t.tin,b.tinNumber],[t.vat,b.isVatRegistered?t.yes:t.no],[t.cur,b.currency],[t.since,since]])+'</div></div>';
 }
 
@@ -2185,7 +2185,7 @@ function errMsg(e){var t=it();if(e&&e.status===401){clearAll();toLogin();return"
  return e&&e.status?(e.msg||t.errSave):t.errNet}
 function limitDlg(){
  var t=it(),nx=S.plan==="ubuntu"?"ibanze":"iterambere",p=PLAN[nx];
- dlgOpen('<button class="dx" id="dx" aria-label="Close">'+ico("x")+'</button><div class="dh"><span class="di" style="--c:'+p.color+'">'+ico("lock")+'</span><h2>'+esc(t.limitT)+'</h2><p>'+esc(fill(t.limitX,{max:LIMITS[S.plan],p:p.label}))+'</p></div><div class="da"><a class="pb p" href="/home.html#pricing">'+ico("bolt")+esc(fill(t.upTo,{p:p.label}))+'</a><button class="pb o" id="dc">'+esc(t.cancel)+'</button></div>');
+ dlgOpen('<button class="dx" id="dx" aria-label="Close">'+ico("x")+'</button><div class="dh"><span class="di" style="--c:'+p.color+'">'+ico("lock")+'</span><h2>'+esc(t.limitT)+'</h2><p>'+esc(fill(t.limitX,{max:LIMITS[S.plan],p:p.label}))+'</p></div><div class="da"><a class="pb p" href="/#pricing">'+ico("bolt")+esc(fill(t.upTo,{p:p.label}))+'</a><button class="pb o" id="dc">'+esc(t.cancel)+'</button></div>');
  $("#dc").addEventListener("click",modalClose);
 }
 function openForm(p){
@@ -2415,7 +2415,7 @@ function vInvoices(){
  '<div id="ivs" class="istats ivs"></div>'+
  '<div class="itool"><div class="pbar">'+ico("search")+'<input id="ivq" type="search" autocomplete="off" placeholder="'+esc(t.search)+'" value="'+esc(IV.q)+'"></div><select id="ivp" class="sel" aria-label="'+esc(t.payment)+'"><option value="">'+esc(t.allPay)+'</option><option value="Cash"'+(IV.pay==="Cash"?" selected":"")+'>'+esc(t.cash)+'</option><option value="Mobile Money"'+(IV.pay==="Mobile Money"?" selected":"")+'>'+esc(t.momo)+'</option></select></div>'+
  '<div class="chips" id="ivc">'+chips.map(function(c){return '<button data-p="'+c[0]+'" aria-pressed="'+(IV.per===c[0])+'">'+esc(c[1])+'</button>'}).join("")+'</div>'+
- (lim>0?'<div class="hnote">'+ico("lock")+'<span>'+esc(fill(t.limNote,{d:lim}))+'</span><a href="/home.html#pricing">'+esc(t.upg)+'</a></div>':"")+
+ (lim>0?'<div class="hnote">'+ico("lock")+'<span>'+esc(fill(t.limNote,{d:lim}))+'</span><a href="/#pricing">'+esc(t.upg)+'</a></div>':"")+
  '<div id="ivl"></div><div class="toast" id="itoast" hidden></div>';
 }
 function initInvoices(){
@@ -2754,7 +2754,7 @@ function vReports(){
  '<div class="rctl"><div class="chips" id="rch" style="margin:0">'+chips.map(function(c){var ok=rAllowed(c[0]);return '<button data-p="'+c[0]+'" aria-pressed="'+(REP.per===c[0])+'"'+(ok?"":' class="lkd"')+'>'+(ok?"":ico("lock"))+esc(c[1])+'</button>'}).join("")+'</div>'+
  '<div class="rdt" id="rdt" '+(REP.per==="c"?"":"hidden")+'><input type="date" class="inp" id="rf" value="'+REP.from+'"><span>→</span><input type="date" class="inp" id="rto" value="'+REP.to+'"></div>'+
  '<div class="rac"><button class="pb o sm" id="rpr">'+ico("receipt")+esc(t.print)+'</button><button class="pb o sm" id="rcsv">'+ico("dl")+esc(t.csv)+'</button><button class="pb wa sm" id="rwa">'+ico("wa")+'WhatsApp</button></div></div>'+
- (L>0?'<div class="hnote">'+ico("lock")+'<span>'+esc(fill(L===1?t.limOne:t.limN,{d:L}))+'</span><a href="/home.html#pricing">'+esc(t.upg)+'</a></div>':"")+
+ (L>0?'<div class="hnote">'+ico("lock")+'<span>'+esc(fill(L===1?t.limOne:t.limN,{d:L}))+'</span><a href="/#pricing">'+esc(t.upg)+'</a></div>':"")+
  '<div id="rbody"></div><div class="toast" id="itoast" hidden></div>';
 }
 function initReports(){
@@ -2773,7 +2773,7 @@ function initReports(){
 function ymd(d){return d.getFullYear()+"-"+("0"+(d.getMonth()+1)).slice(-2)+"-"+("0"+d.getDate()).slice(-2)}
 function repLock(){
  var t=rt(),nx=S.plan==="ubuntu"?"ibanze":"iterambere",p=PLAN[nx];
- dlgOpen('<button class="dx" id="dx" aria-label="Close">'+ico("x")+'</button><div class="dh"><span class="di" style="--c:'+p.color+'">'+ico("lock")+'</span><h2>'+esc(t.lockT)+'</h2><p>'+esc(fill(t.lockX,{p:p.label}))+'</p></div><div class="da"><a class="pb p" href="/home.html#pricing">'+ico("bolt")+esc(fill(it().upTo,{p:p.label}))+'</a><button class="pb o" id="dc">'+esc(it().cancel)+'</button></div>');
+ dlgOpen('<button class="dx" id="dx" aria-label="Close">'+ico("x")+'</button><div class="dh"><span class="di" style="--c:'+p.color+'">'+ico("lock")+'</span><h2>'+esc(t.lockT)+'</h2><p>'+esc(fill(t.lockX,{p:p.label}))+'</p></div><div class="da"><a class="pb p" href="/#pricing">'+ico("bolt")+esc(fill(it().upTo,{p:p.label}))+'</a><button class="pb o" id="dc">'+esc(it().cancel)+'</button></div>');
  $("#dc").addEventListener("click",modalClose);
 }
 function repExp(r){
@@ -5298,7 +5298,7 @@ function pfPaint(){
  h+='<section class="panel pfv'+(vf?" ok":"")+'"><div class="pfvh"><span class="pfvi">'+ico(vf?"check":"lock")+'</span><div><h3>'+esc(vf?p.vOk:p.vT)+'</h3><p>'+esc(vf?p.vOkX:(done===4?p.vReady:p.vS))+'</p></div>'+(vf?"":'<span class="pfvn">'+done+'/4</span>')+'</div>'+
   (vf?"":'<div class="cxp w"><i style="width:'+(done*25)+'%"></i></div><div class="pfck">'+ck.map(function(c){return '<div class="'+(c[0]?"ok":"")+'"><span>'+ico(c[0]?"check":"clock")+'</span>'+esc(c[1])+'</div>'}).join("")+'</div><p class="emhint" style="margin:.7rem 0 0">'+esc(p.vPlan)+'</p>'+(ck[0][0]&&ck[1][0]?"":'<button class="pb p" id="pfv" style="margin-top:.9rem">'+ico("edit")+esc(p.cta)+'</button>'))+'</section>';
  h+='<div class="pgrid"><div class="panel"><h3>'+esc(t.ownInfo)+'</h3>'+kv([[t.owner,uname()],[t.phone,u.phone],[t.email,u.email]])+'</div>'+
-  '<div class="panel"><h3>'+esc(t.planInfo)+'</h3><div class="planbox" style="--pc:'+pl.color+'"><b>'+esc(pl.label)+'</b><span>'+esc(ps)+'</span></div>'+(RANK[S.plan]<3?'<p style="margin:.9rem 0 0"><a class="pb p" href="/home.html#pricing">'+ico("bolt")+esc(t.upgrade)+'</a></p>':"")+'</div>'+
+  '<div class="panel"><h3>'+esc(t.planInfo)+'</h3><div class="planbox" style="--pc:'+pl.color+'"><b>'+esc(pl.label)+'</b><span>'+esc(ps)+'</span></div>'+(RANK[S.plan]<3?'<p style="margin:.9rem 0 0"><a class="pb p" href="/#pricing">'+ico("bolt")+esc(t.upgrade)+'</a></p>':"")+'</div>'+
   '<div class="panel" style="grid-column:1/-1"><h3>'+esc(t.bizInfo)+'</h3>'+kv([[t.bizName,b.name],[t.type,BIZT[b.category]||b.category],[t.loc,loc],[t.phone,b.phone],[t.email,b.email],[t.tin,b.tinNumber],[t.vat,b.isVatRegistered?t.yes:t.no],[t.cur,b.currency],[t.since,since]])+'</div>'+
   '<div class="panel" style="grid-column:1/-1"><h3>'+esc(p.ach)+'</h3><div class="pfac">'+ach.map(function(a){return '<div class="'+(a[3]?"on":"")+'" style="--c:'+a[1]+'"><span>'+ico(a[0])+'</span><b>'+esc(a[2])+'</b></div>'}).join("")+'</div></div></div>'+
   '<div class="pfqa"><a class="pb o" href="#/s/settings">'+ico("gear")+esc(tx().sett)+'</a><a class="pb o" href="#/s/reports">'+ico("chart")+esc(p.reports)+'</a></div>';
