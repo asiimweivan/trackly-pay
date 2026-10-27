@@ -174,7 +174,7 @@ select.in:disabled{background-color:var(--bg);color:#9aa4bd;cursor:not-allowed}
     <p class="sub" data-t="sub">Use the phone number and password you signed up with.</p>
     <form id="fLogin" novalidate autocomplete="on">
      <div class="field"><label for="phone" data-t="l_phone">Phone number</label>
-      <div class="phone"><b><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><use href="#flag-rw"/></svg>+250</b><input id="phone" name="username" type="tel" inputmode="numeric" autocomplete="tel-national" placeholder="78X XXX XXX" maxlength="12"></div></div>
+      <div class="phone"><b><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><use href="#flag-rw"/></svg>+250</b><input id="phone" name="username" type="tel" inputmode="numeric" autocomplete="tel-national" placeholder="78X XXX XXX" maxlength="20"></div></div>
      <div class="field"><div class="lbl-row"><label for="pw" data-t="l_pw">Password</label><a href="#" id="toForgot" class="lnk" data-t="forgot">Forgot password?</a></div>
       <div class="pw"><input class="in" id="pw" name="password" type="password" autocomplete="current-password" placeholder="••••••">
        <button type="button" class="eye" data-for="pw" aria-label="Show password"><svg viewBox="0 0 24 24"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></button></div></div>
@@ -195,7 +195,7 @@ select.in:disabled{background-color:var(--bg);color:#9aa4bd;cursor:not-allowed}
     <form id="fJoin" novalidate autocomplete="off">
      <div class="field"><label for="jcode" data-t="j_code">Invite code</label><input class="in" id="jcode" inputmode="numeric" maxlength="6" placeholder="000000" style="letter-spacing:.35em;font-weight:800;font-size:1.2rem"></div>
      <div class="field"><label for="jphone" data-t="l_phone">Phone number</label>
-      <div class="phone"><b><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><use href="#flag-rw"/></svg>+250</b><input id="jphone" type="tel" inputmode="numeric" autocomplete="tel-national" placeholder="78X XXX XXX" maxlength="12"></div></div>
+      <div class="phone"><b><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><use href="#flag-rw"/></svg>+250</b><input id="jphone" type="tel" inputmode="numeric" autocomplete="tel-national" placeholder="78X XXX XXX" maxlength="20"></div></div>
      <div class="field"><label for="jname" data-t="j_name">Full name</label><input class="in" id="jname" autocomplete="name" placeholder="Ingabire Jean Claude"></div>
      <div class="field"><label for="jpw" data-t="j_pw">Create password</label>
       <div class="pw"><input class="in" id="jpw" type="password" autocomplete="new-password" placeholder="••••••">
@@ -213,7 +213,7 @@ select.in:disabled{background-color:var(--bg);color:#9aa4bd;cursor:not-allowed}
     <p class="sub" data-t="rec_sub">Enter the phone number and password of the deleted account. Trackly will review the request and email you.</p>
     <form id="fRecover" novalidate>
      <div class="field"><label for="rphone" data-t="l_phone">Phone number</label>
-      <div class="phone"><b><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><use href="#flag-rw"/></svg>+250</b><input id="rphone" type="tel" inputmode="numeric" autocomplete="tel-national" placeholder="78X XXX XXX" maxlength="12"></div></div>
+      <div class="phone"><b><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><use href="#flag-rw"/></svg>+250</b><input id="rphone" type="tel" inputmode="numeric" autocomplete="tel-national" placeholder="78X XXX XXX" maxlength="20"></div></div>
      <div class="field"><label for="rpw" data-t="l_pw">Password</label>
       <div class="pw"><input class="in" id="rpw" type="password" autocomplete="current-password" placeholder="••••••">
        <button type="button" class="eye" data-for="rpw" aria-label="Show password"><svg viewBox="0 0 24 24"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></button></div></div>
@@ -337,7 +337,7 @@ select.in:disabled{background-color:var(--bg);color:#9aa4bd;cursor:not-allowed}
     var i=$("#"+b.getAttribute("data-for")),t=i.type==="password"?"text":"password";i.type=t;
     if(b.getAttribute("data-for")==="npw")$("#npw2").type=t;eyeLabel(b);
   })});
-  function digits(v){v=(v||"").replace(/\D/g,"");if(v.indexOf("250")===0&&v.length>9)v=v.slice(3);if(v.charAt(0)==="0")v=v.slice(1);return v.slice(0,9)}
+  function digits(v){v=(v||"").replace(/\D/g,"");if(v.indexOf("250")===0&&v.length>9)v=v.slice(3);if(v.charAt(0)==="0")v=v.slice(1);if(v.length>=11)v=v.slice(-9);return v.slice(0,9)}
   $("#phone").addEventListener("input",function(e){e.target.value=digits(e.target.value)});
   $("#otp").addEventListener("input",function(e){e.target.value=e.target.value.replace(/\D/g,"").slice(0,6)});
 

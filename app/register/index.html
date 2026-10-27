@@ -183,7 +183,7 @@ select.in:disabled{background-color:var(--bg);color:#9aa4bd;cursor:not-allowed}
      <section data-step="1">
       <div class="field"><label for="name" data-t="l_name">Full name</label><input class="in" id="name" name="name" autocomplete="name" placeholder="Ingabire Jean Claude"></div>
       <div class="field"><label for="phone" data-t="l_phone">Phone number</label>
-       <div class="phone"><b><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><use href="#flag-rw"/></svg>+250</b><input id="phone" name="phone" type="tel" inputmode="numeric" autocomplete="tel-national" placeholder="78X XXX XXX" maxlength="12"></div>
+       <div class="phone"><b><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><use href="#flag-rw"/></svg>+250</b><input id="phone" name="phone" type="tel" inputmode="numeric" autocomplete="tel-national" placeholder="78X XXX XXX" maxlength="20"></div>
        <p class="hint" data-t="h_phone">9 digits, starting with 7</p></div>
       <div class="field"><label for="email" data-t="l_email">Email</label><input class="in" id="email" name="email" type="email" autocomplete="email" placeholder="email@example.com">
        <p class="hint" data-t="h_email">We use your email to recover your password.</p></div>
@@ -218,7 +218,7 @@ select.in:disabled{background-color:var(--bg);color:#9aa4bd;cursor:not-allowed}
      <section data-step="agent" hidden>
       <div class="field"><label for="aname" data-t="l_name">Full name</label><input class="in" id="aname" autocomplete="name" placeholder="Ingabire Jean Claude"></div>
       <div class="field"><label for="aphone" data-t="l_phone">Phone number</label>
-       <div class="phone"><b><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><use href="#flag-rw"/></svg>+250</b><input id="aphone" type="tel" inputmode="numeric" autocomplete="tel-national" placeholder="78X XXX XXX" maxlength="12"></div></div>
+       <div class="phone"><b><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><use href="#flag-rw"/></svg>+250</b><input id="aphone" type="tel" inputmode="numeric" autocomplete="tel-national" placeholder="78X XXX XXX" maxlength="20"></div></div>
       <div class="field"><label for="aemail" data-t="l_email">Email</label><input class="in" id="aemail" type="email" autocomplete="email" placeholder="email@example.com"></div>
       <div class="field"><label for="apw" data-t="l_pw">Password</label><input class="in" id="apw" type="password" autocomplete="new-password" placeholder="••••••"></div>
       <div class="field"><label for="apw2" data-t="l_pw2">Repeat password</label><input class="in" id="apw2" type="password" autocomplete="new-password" placeholder="••••••"></div>
@@ -422,6 +422,7 @@ select.in:disabled{background-color:var(--bg);color:#9aa4bd;cursor:not-allowed}
     v=(v||"").replace(/\D/g,"");
     if(v.indexOf("250")===0&&v.length>9)v=v.slice(3);
     if(v.charAt(0)==="0")v=v.slice(1);
+    if(v.length>=11)v=v.slice(-9);
     return v.slice(0,9);
   }
   ["#phone","#aphone"].forEach(function(s){$(s).addEventListener("input",function(e){var v=digits(e.target.value);e.target.value=v})});
