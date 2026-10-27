@@ -972,6 +972,13 @@ textarea.inp{resize:vertical}.inp.big{font-size:1.5rem;font-weight:800;min-heigh
 @media (max-width:1100px){.agstats{grid-template-columns:repeat(2,1fr)}.aggrid,.aggrid.even,.aggrid.card2{grid-template-columns:1fr}}
 @media (max-width:560px){.agstats{gap:.7rem}.agst{padding:.9rem}.agcode{padding:.95rem}.agact{width:100%}.agact .agb{flex:1}.agid-p{width:78px;height:96px}.agidc{aspect-ratio:auto;gap:1.2rem}.agsubs{grid-template-columns:1fr}.aglnk{flex-direction:column}.agtwo{gap:1.2rem}}
 @media print{body.agprint *{visibility:hidden}body.agprint #agidc,body.agprint #agidc *{visibility:visible}body.agprint #agidc{position:fixed;left:50%;top:40px;transform:translateX(-50%);width:480px;-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+.pydl .da .pb.p{flex:1.8}.pydl{width:min(520px,calc(100vw - 2rem))}
+.pycy{display:flex;gap:.4rem;background:#eef1f8;border-radius:13px;padding:.25rem;margin:.9rem 0 .8rem}.pycy button{flex:1;border:0;background:transparent;border-radius:10px;padding:.55rem .5rem;font-weight:700;font-size:.88rem;color:var(--mut)}.pycy button[aria-pressed=true]{background:#fff;color:var(--ink);box-shadow:0 1px 4px rgba(15,33,80,.14)}.pycy em{font-style:normal;color:var(--tealD);font-size:.76rem;margin-left:.25rem}
+.pycs{display:grid;gap:.5rem;margin-bottom:1rem}.pyc{display:flex;align-items:center;justify-content:space-between;gap:.8rem;text-align:left;background:#fff;border:1.5px solid var(--line);border-radius:14px;padding:.8rem 1rem;border-left:5px solid var(--c)}.pyc[aria-pressed=true]{border-color:var(--c);box-shadow:0 0 0 3px color-mix(in srgb,var(--c) 18%,transparent)}
+.pyn{font-weight:800}.pyn em{font-style:normal;font-weight:700;font-size:.72rem;color:var(--tealD);background:var(--mint);border-radius:99px;padding:.12rem .5rem;margin-left:.5rem}.pyp{white-space:nowrap;color:var(--mut);font-size:.85rem}.pyp b{font-size:1.1rem;color:var(--ink)}.pyp small{font-size:.78rem}
+.pyph{display:flex;align-items:center;gap:.5rem}.pyph b{padding:.7rem .8rem;border:1.5px solid #dfe5f1;border-radius:12px;background:var(--bg);min-height:46px;display:flex;align-items:center}.pyph .inp{flex:1}.pyn2{display:block;color:var(--mut);margin-top:.4rem;font-size:.8rem}.pyfee{margin:.2rem 0 0;color:var(--mut);font-size:.78rem}
+.pyspin .pysp{width:24px;height:24px;border-radius:50%;border:3px solid color-mix(in srgb,var(--c) 25%,transparent);border-top-color:var(--c);animation:sp .8s linear infinite}.pywn{margin-top:.6rem!important;font-size:.85rem}.pyhelp{margin:0;padding:0 1.5rem 1.2rem;text-align:center;color:var(--mut);font-size:.78rem}
+@media(max-width:420px){.pyc{flex-direction:column;align-items:flex-start;gap:.2rem}}
 </style>
 </head>
 <body>
@@ -1230,7 +1237,7 @@ function load(){
  }).catch(function(e){
   if(e&&e.status===401){clearAll();toLogin();return}
   S.error=true;
- }).then(function(){clearTimeout(wt);S.loading=false;S.loadedAt=Date.now();draw()});
+ }).then(function(){clearTimeout(wt);S.loading=false;S.loadedAt=Date.now();draw();if(!S.error)payIntent()});
 }
 
 /* ---------- sidebar ---------- */
@@ -1296,6 +1303,116 @@ function topbar(){
 function accClose(){$("#acc").hidden=true;$("#accb").setAttribute("aria-expanded","false")}
 $("#accb").addEventListener("click",function(){var o=$("#acc").hidden;$("#acc").hidden=!o;this.setAttribute("aria-expanded",o?"true":"false")});
 window.addEventListener("scroll",function(){$("#top").classList.toggle("sc",window.scrollY>6)},{passive:true});
+
+/* ---------- plan payment (Paypack: MTN MoMo + Airtel Money) ---------- */
+var PYT={
+ en:{t:"Choose your plan",x:"Pay with MTN MoMo or Airtel Money. No contract, cancel anytime.",mo:"Monthly",yr:"Yearly",yrs:"2 months free",pm:"/ month",py:"/ year",cur:"Current plan",ph:"Mobile money number",phx:"We send a payment request to this number. Enter your PIN to approve it.",fee:"A small mobile money fee may be added to the amount.",pay:"Pay {a} RWF",cancel:"Cancel",
+  wt:"Approve on your phone",wx:"We sent a payment request to {p}. Enter your PIN to approve it. This page updates by itself.",wn:"We have not received your payment yet. If you already approved, it can take a few minutes.",chk:"Check again",other:"Use another number",
+  ok:"Plan activated",okx:"{p} is now active on your business.",go:"Go to dashboard",
+  fl:"Payment failed",fx:"The payment was not approved. Check your balance and the number, then try again.",retry:"Try again",
+  eph:"Enter a valid MTN or Airtel number, for example 0788 123 456.",enb:"Create your business first, then choose a plan.",enet:"Cannot reach Trackly. Check your internet and try again.",help:"Paid but the plan did not change? Write to support@ivanexo.com"},
+ rw:{t:"Hitamo gahunda yawe",x:"Ishyura na MTN MoMo cyangwa Airtel Money. Nta masezerano, hagarika igihe cyose.",mo:"Buri kwezi",yr:"Buri mwaka",yrs:"amezi 2 ubuntu",pm:"/ ukwezi",py:"/ umwaka",cur:"Gahunda ikoreshwa",ph:"Nimero ya mobile money",phx:"Turohereza ubusabe bwo kwishyura kuri iyi nimero. Shyiramo PIN yawe ukemeze.",fee:"Hashobora kongerwaho amafaranga make ya mobile money.",pay:"Ishyura {a} RWF",cancel:"Hagarika",
+  wt:"Emeza kuri telefone yawe",wx:"Twohereje ubusabe bwo kwishyura kuri {p}. Shyiramo PIN yawe wemeze. Uru rupapuro ruravugurura rwonyine.",wn:"Ntituragera kubona ubwishyu bwawe. Niba wamaze kwemeza, bishobora gutwara iminota mike.",chk:"Ongera urebe",other:"Koresha indi nimero",
+  ok:"Gahunda yafunguwe",okx:"{p} irakora ubu mu bucuruzi bwawe.",go:"Jya kuri dashboard",
+  fl:"Kwishyura ntibyakunze",fx:"Ubwishyu ntibwemejwe. Reba amafaranga ufite n'inimero, wongere ugerageze.",retry:"Ongera ugerageze",
+  eph:"Injiza nimero ya MTN cyangwa Airtel yemewe, urugero 0788 123 456.",enb:"banza ufungure ubucuruzi, hanyuma uhitemo gahunda.",enet:"Ntidushoboye kugera kuri Trackly. Reba interineti wongere ugerageze.",help:"Wishyuye ariko gahunda ntiyahindutse? Twandikire kuri support@ivanexo.com"},
+ fr:{t:"Choisissez votre plan",x:"Payez avec MTN MoMo ou Airtel Money. Sans engagement, annulez quand vous voulez.",mo:"Mensuel",yr:"Annuel",yrs:"2 mois offerts",pm:"/ mois",py:"/ an",cur:"Plan actuel",ph:"Numéro mobile money",phx:"Nous envoyons une demande de paiement à ce numéro. Entrez votre code PIN pour valider.",fee:"De petits frais mobile money peuvent s'ajouter au montant.",pay:"Payer {a} RWF",cancel:"Annuler",
+  wt:"Validez sur votre téléphone",wx:"Nous avons envoyé une demande de paiement au {p}. Entrez votre code PIN pour valider. Cette page se met à jour toute seule.",wn:"Nous n'avons pas encore reçu votre paiement. Si vous avez déjà validé, cela peut prendre quelques minutes.",chk:"Vérifier à nouveau",other:"Utiliser un autre numéro",
+  ok:"Plan activé",okx:"{p} est maintenant actif sur votre commerce.",go:"Aller au tableau de bord",
+  fl:"Paiement échoué",fx:"Le paiement n'a pas été validé. Vérifiez votre solde et le numéro, puis réessayez.",retry:"Réessayer",
+  eph:"Entrez un numéro MTN ou Airtel valide, par exemple 0788 123 456.",enb:"Créez d'abord votre commerce, puis choisissez un plan.",enet:"Impossible de joindre Trackly. Vérifiez votre connexion et réessayez.",help:"Payé mais le plan n'a pas changé ? Écrivez à support@ivanexo.com"}
+};
+var PY={key:"iterambere",cyc:"monthly",plans:null,busy:false,tm:null,run:0};
+function pyt(k,o){var d=PYT[lang]||PYT.en,v=d[k]!=null?d[k]:PYT.en[k];return o?fill(v,o):v}
+function pyOwner(){var r=String((S.user&&S.user.role)||"");return !S.agent&&!/cashier|manager|agent|admin/i.test(r)}
+function pyList(){
+ var base=[["ibanze",3000,30000],["iterambere",6000,60000],["inkunga",10000,100000]];
+ var api=PY.plans||[];
+ return base.map(function(b){var a=api.filter(function(x){return x.key===b[0]})[0];
+  return{key:b[0],m:a?a.priceMonthly:b[1],y:a?a.priceYearly:b[2]}});
+}
+function pyPrice(k,c){var p=pyList().filter(function(x){return x.key===k})[0];return p?(c==="yearly"?p.y:p.m):0}
+function pyPhone(){var d=String((S.user&&S.user.phone)||"").replace(/\D/g,"");return d.length>=9?d.slice(-9):""}
+function pyClose(){PY.run++;clearTimeout(PY.tm);PY.busy=false;modalClose()}
+function pyOpen(key){
+ if(!S.bizId){dlgOpen('<button class="dx" id="dx" aria-label="Close">'+ico("x")+'</button><div class="dh"><span class="di" style="--c:#d97706">'+ico("alert")+'</span><h2>'+esc(pyt("t"))+'</h2><p>'+esc(pyt("enb"))+'</p></div><div class="da"><button class="pb o" id="dc">'+esc(pyt("cancel"))+'</button></div>','pydl');$("#dc").addEventListener("click",pyClose);return}
+ if(key&&PLAN[key]&&key!=="ubuntu")PY.key=key;
+ PY.run++;clearTimeout(PY.tm);PY.busy=false;
+ pyForm();
+ if(!PY.plans)get("/subscriptions/plans").then(function(r){if(Array.isArray(r)){PY.plans=r;if($("#pyf"))pyForm(true)}}).catch(function(){});
+}
+function pyForm(keep){
+ var ph=keep&&$("#py_p")?$("#py_p").value:pyPhone(),cur=S.sub&&S.sub.isActive?S.plan:"";
+ var cards=pyList().map(function(p){var pl=PLAN[p.key],pr=PY.cyc==="yearly"?p.y:p.m;
+  return '<button type="button" class="pyc" data-k="'+p.key+'" aria-pressed="'+(PY.key===p.key)+'" style="--c:'+pl.color+'"><span class="pyn">'+esc(pl.label)+(cur===p.key?'<em>'+esc(pyt("cur"))+'</em>':"")+'</span><span class="pyp"><b>'+fmtN(pr)+'</b> RWF <small>'+esc(pyt(PY.cyc==="yearly"?"py":"pm"))+'</small></span></button>'}).join("");
+ var amt=pyPrice(PY.key,PY.cyc);
+ dlgOpen('<button class="dx" id="dx" aria-label="Close">'+ico("x")+'</button><div class="dh"><span class="di" style="--c:'+PLAN[PY.key].color+'">'+ico("bolt")+'</span><h2>'+esc(pyt("t"))+'</h2><p>'+esc(pyt("x"))+'</p></div>'+
+ '<form id="pyf" novalidate><div class="dbody"><div class="pycy" role="group"><button type="button" data-c="monthly" aria-pressed="'+(PY.cyc==="monthly")+'">'+esc(pyt("mo"))+'</button><button type="button" data-c="yearly" aria-pressed="'+(PY.cyc==="yearly")+'">'+esc(pyt("yr"))+' <em>'+esc(pyt("yrs"))+'</em></button></div>'+
+ '<div class="pycs">'+cards+'</div>'+
+ '<div class="fld"><label for="py_p">'+esc(pyt("ph"))+'</label><div class="pyph"><b>+250</b><input class="inp" id="py_p" type="tel" inputmode="numeric" autocomplete="tel-national" maxlength="12" placeholder="78X XXX XXX" value="'+esc(ph)+'"></div><small class="pyn2">'+esc(pyt("phx"))+'</small></div>'+
+ '<div class="derr" id="derr" hidden></div><p class="pyfee">'+esc(pyt("fee"))+'</p></div>'+
+ '<div class="da dsticky"><button type="button" class="pb o" id="dc">'+esc(pyt("cancel"))+'</button><button type="submit" class="pb p" id="pygo">'+ico("lock")+esc(pyt("pay",{a:fmtN(amt)}))+'</button></div></form>','pydl');
+ $("#dc").addEventListener("click",pyClose);$("#dx").addEventListener("click",pyClose);
+ $$(".pycs .pyc").forEach(function(b){b.addEventListener("click",function(){PY.key=b.getAttribute("data-k");pyForm(true)})});
+ $$(".pycy button").forEach(function(b){b.addEventListener("click",function(){PY.cyc=b.getAttribute("data-c");pyForm(true)})});
+ $("#py_p").addEventListener("input",function(){var d=this.value.replace(/\D/g,"");if(d.indexOf("250")===0&&d.length>9)d=d.slice(3);if(d.charAt(0)==="0")d=d.slice(1);this.value=d.slice(0,9)});
+ $("#pyf").addEventListener("submit",function(e){e.preventDefault();pyGo()});
+}
+function pyGo(){
+ if(PY.busy)return;
+ var d=$("#py_p").value;if(!/^7[2389]\d{7}$/.test(d)){dlgErr(pyt("eph"));return}
+ dlgErr("");PY.busy=true;var b=$("#pygo");b.disabled=true;b.innerHTML='<span class="spin2"></span>';
+ var prov=/^7[23]/.test(d)?"airtel":"momo",key=PY.key,cyc=PY.cyc,base=S.sub&&S.sub.currentPeriodEnd||null,pf0=!!(S.sub&&S.sub.paymentFailed),run=++PY.run;
+ send("POST","/subscriptions/activate",{businessId:S.bizId,planKey:key,billingCycle:cyc,paymentRef:prov+":+250"+d}).then(function(){
+  PY.busy=false;if(run!==PY.run)return;pyWait(d,key,base,pf0,run,false);
+ }).catch(function(er){
+  PY.busy=false;var b2=$("#pygo");if(!b2)return;b2.disabled=false;b2.innerHTML=ico("lock")+esc(pyt("pay",{a:fmtN(pyPrice(key,cyc))}));
+  if(er&&er.status===401){clearAll();toLogin();return}
+  dlgErr(er&&er.status?(er.msg||pyt("enet")):pyt("enet"));
+ });
+}
+function pyWait(d,key,base,pf0,run,slow){
+ var pl=PLAN[key];
+ dlgOpen('<button class="dx" id="dx" aria-label="Close">'+ico("x")+'</button><div class="dh"><span class="di pyspin" style="--c:'+pl.color+'">'+(slow?ico("clock"):'<span class="pysp"></span>')+'</span><h2>'+esc(pyt("wt"))+'</h2><p>'+esc(pyt("wx",{p:"+250 "+d}))+'</p>'+(slow?'<p class="pywn">'+esc(pyt("wn"))+'</p>':"")+'</div><div class="da"><button class="pb o" id="pyo">'+esc(pyt("other"))+'</button>'+(slow?'<button class="pb p" id="pyk">'+esc(pyt("chk"))+'</button>':"")+'</div><p class="pyhelp">'+esc(pyt("help"))+'</p>','pydl');
+ $("#dx").addEventListener("click",pyClose);$("#pyo").addEventListener("click",function(){PY.run++;clearTimeout(PY.tm);pyForm()});
+ if(slow)$("#pyk").addEventListener("click",function(){pyWait(d,key,base,pf0,run,false)});
+ var n=0;
+ (function tick(){
+  if(run!==PY.run)return;
+  get("/subscriptions/business/"+S.bizId).then(function(r){
+   if(run!==PY.run)return;
+   if(r&&r.status==="active"&&r.isActive&&r.planKey===key&&r.currentPeriodEnd!==base){S.sub=r;S.plan=key;pyDone(key);return}
+   if(r&&r.paymentFailed&&!pf0){pyFail();return}
+   next();
+  }).catch(function(er){if(er&&er.status===401){clearAll();toLogin();return}next()});
+  function next(){if(run!==PY.run)return;if(++n>=40){pyWait(d,key,base,pf0,run,true);return}PY.tm=setTimeout(tick,4500)}
+ })();
+}
+function pyDone(key){
+ var pl=PLAN[key];
+ dlgOpen('<div class="dh"><span class="di" style="--c:#0fa68c">'+ico("check")+'</span><h2>'+esc(pyt("ok"))+'</h2><p>'+esc(pyt("okx",{p:pl.label}))+'</p></div><div class="da"><button class="pb p" id="pyd">'+esc(pyt("go"))+'</button></div>','pydl');
+ $("#pyd").addEventListener("click",function(){pyClose();load()});
+}
+function pyFail(){
+ dlgOpen('<button class="dx" id="dx" aria-label="Close">'+ico("x")+'</button><div class="dh"><span class="di" style="--c:#c0392b">'+ico("alert")+'</span><h2>'+esc(pyt("fl"))+'</h2><p>'+esc(pyt("fx"))+'</p></div><div class="da"><button class="pb o" id="dc">'+esc(pyt("cancel"))+'</button><button class="pb p" id="pyr">'+esc(pyt("retry"))+'</button></div><p class="pyhelp">'+esc(pyt("help"))+'</p>','pydl');
+ $("#dx").addEventListener("click",pyClose);$("#dc").addEventListener("click",pyClose);$("#pyr").addEventListener("click",function(){pyForm()});
+}
+/* plan links inside the dashboard open the payment sheet instead of the pricing page */
+document.addEventListener("click",function(e){
+ var a=e.target.closest&&e.target.closest('a[href="/home.html#pricing"]');
+ if(!a||!pyOwner()||!S.user)return;
+ e.preventDefault();modalClose();var cur=S.plan;pyOpen(cur==="ubuntu"?"ibanze":cur==="ibanze"?"iterambere":cur);
+});
+/* "Get started" on the website: ?pay=<plan>, or a plan picked before signing up */
+function payIntent(){
+ if(!pyOwner()||!S.bizId)return;
+ var k=null;
+ try{var q=new URLSearchParams(location.search).get("pay");if(q){k=q;history.replaceState(null,"",location.pathname+location.hash)}}catch(e){}
+ try{var cy=localStorage.getItem("tk_plan_cycle");localStorage.removeItem("tk_plan_cycle");if(cy==="yearly"||cy==="monthly")PY.cyc=cy}catch(e){}
+ try{var s=localStorage.getItem("tk_plan_intent");if(s){localStorage.removeItem("tk_plan_intent");if(!k)k=s}}catch(e){}
+ k=String(k||"").toLowerCase();
+ if(PLAN[k]&&k!=="ubuntu"&&!(S.sub&&S.sub.isActive&&S.plan===k&&S.sub.currentPeriodEnd))setTimeout(function(){pyOpen(k)},350);
+}
 
 /* ---------- upgrade modal ---------- */
 function modal(dest){
