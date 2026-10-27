@@ -1345,6 +1345,8 @@ function scnFind(code){
  var c=String(code||"").trim().toLowerCase();if(!c)return null;
  return S.products.filter(function(p){return p.isActive!==false&&((p.barcode&&String(p.barcode).trim().toLowerCase()===c)||(p.sku&&String(p.sku).trim().toLowerCase()===c))})[0]||null;
 }
+var PXN={en:["Sugar 1kg","Rice 5kg","Cooking oil 1L","Maize flour 2kg","Bread","School notebook A4","Bar soap","Phone charger","Salt 500g","Milk 500ml"],rw:["Isukari 1kg","Umuceri 5kg","Amavuta yo guteka 1L","Ifu y'ibigori 2kg","Umugati","Ikayi rya A4","Isabune","Charger ya telefone","Umunyu 500g","Amata 500ml"],fr:["Sucre 1 kg","Riz 5 kg","Huile de cuisine 1 L","Farine de maïs 2 kg","Pain","Cahier A4","Savon","Chargeur de téléphone","Sel 500 g","Lait 500 ml"]};
+function pxName(){var l=PXN[lang]||PXN.en;return (lang==="rw"?"Urugero: ":lang==="fr"?"ex. ":"e.g. ")+l[Math.floor(Math.random()*l.length)]}
 function scnStop(){
  SCN.open=false;if(SCN.raf)cancelAnimationFrame(SCN.raf);SCN.raf=0;
  try{if(SCN.reader&&SCN.reader.reset)SCN.reader.reset()}catch(e){}SCN.reader=null;
@@ -2162,7 +2164,7 @@ function openForm(p){
  var cn={};S.products.forEach(function(x){if(x.categoryName)cn[x.categoryName]=1});(INV.cats||[]).forEach(function(c){cn[c.name]=1});
  var fld=function(id,label,val,extra,ph){return '<div class="fld"><label for="'+id+'">'+esc(label)+'</label><input class="inp" id="'+id+'" value="'+esc(val==null?"":val)+'" '+(extra||"")+' placeholder="'+esc(ph||"")+'"></div>'};
  dlgOpen('<button class="dx" id="dx" aria-label="Close">'+ico("x")+'</button><h2 class="dt">'+esc(p?t.editT:t.addT)+'</h2><form id="pf" novalidate><div class="dbody">'+
- fld("f_name",t.fName+" *",f.name,'autocomplete="off" maxlength="120"')+
+ fld("f_name",t.fName+" *",f.name,'autocomplete="off" maxlength="120"',p?"":pxName())+
  '<div class="g2"><div class="fld"><label for="f_cat">'+esc(t.category)+'</label><input class="inp" id="f_cat" list="catl" autocomplete="off" value="'+esc(f.categoryName||"")+'" placeholder="'+esc(t.catPh)+'"><datalist id="catl">'+Object.keys(cn).map(function(c){return '<option value="'+esc(c)+'">'}).join("")+'</datalist><div class="catch" id="catch">'+Object.keys(cn).slice(0,10).map(function(c){return '<button type="button" data-c="'+esc(c)+'" aria-pressed="'+((f.categoryName||"")===c)+'">'+esc(c)+'</button>'}).join("")+'</div></div>'+
  '<div class="fld"><label for="f_unit">'+esc(t.unit)+'</label><select class="sel" id="f_unit">'+(UNITS.indexOf(f.unit)<0&&f.unit?[f.unit]:[]).concat(UNITS).map(function(u){return '<option'+((f.unit||"pieces")===u?" selected":"")+'>'+esc(u)+'</option>'}).join("")+'</select></div></div>'+
  '<div class="g2">'+fld("f_price",t.fPrice+" *",f.sellingPrice,'inputmode="numeric"',"1000")+fld("f_cost",t.fCost,f.buyingPrice||"",'inputmode="numeric"',"700")+'</div>'+
