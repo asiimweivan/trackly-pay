@@ -181,8 +181,28 @@ select.in:disabled{background-color:var(--bg);color:#9aa4bd;cursor:not-allowed}
     <p class="foot"><span data-t="noacc">New to Trackly?</span> <a href="/app/register/" data-t="signup">Create account</a></p>
     <div class="more"><span data-t="m_h">Other ways to join</span>
      <a class="mt" href="/app/register/?role=agent"><i><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.5-3.6 3-5.5 6.5-5.5s6 1.9 6.5 5.5"/><path d="M17 8.5h4M19 6.5v4"/></svg></i><span><b data-t="m_agent">Become an agent</b><small data-t="m_agentx">Earn commission by bringing businesses to Trackly.</small></span><svg class="go" viewBox="0 0 24 24"><path d="m9 6 6 6-6 6"/></svg></a>
+     <a class="mt" href="#" id="toJoin"><i><svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="12" rx="2"/><path d="M8 8V6a4 4 0 0 1 8 0v2"/><circle cx="12" cy="14" r="1.5"/></svg></i><span><b data-t="m_staff">Join as staff</b><small data-t="m_staffx">Got an invite code from your employer? Join their business.</small></span><svg class="go" viewBox="0 0 24 24"><path d="m9 6 6 6-6 6"/></svg></a>
     </div>
     <p class="foot"><a href="#" id="toRecover" data-t="rec_link">Account deleted? Ask Trackly to recover it</a></p>
+   </div>
+
+   <!-- join as staff -->
+   <div id="vJoin" hidden>
+    <h2 data-t="j_title">Join as staff</h2>
+    <p class="sub" data-t="j_sub">Enter the 6-digit code your employer sent you and the phone number they invited.</p>
+    <form id="fJoin" novalidate autocomplete="off">
+     <div class="field"><label for="jcode" data-t="j_code">Invite code</label><input class="in" id="jcode" inputmode="numeric" maxlength="6" placeholder="000000" style="letter-spacing:.35em;font-weight:800;font-size:1.2rem"></div>
+     <div class="field"><label for="jphone" data-t="l_phone">Phone number</label>
+      <div class="phone"><b><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><use href="#flag-rw"/></svg>+250</b><input id="jphone" type="tel" inputmode="numeric" autocomplete="tel-national" placeholder="78X XXX XXX" maxlength="12"></div></div>
+     <div class="field"><label for="jname" data-t="j_name">Full name</label><input class="in" id="jname" autocomplete="name" placeholder="Ingabire Jean Claude"></div>
+     <div class="field"><label for="jpw" data-t="j_pw">Create password</label>
+      <div class="pw"><input class="in" id="jpw" type="password" autocomplete="new-password" placeholder="••••••">
+       <button type="button" class="eye" data-for="jpw" aria-label="Show password"><svg viewBox="0 0 24 24"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></button></div></div>
+     <div class="field"><label for="jpw2" data-t="l_pw2">Repeat password</label>
+      <div class="pw"><input class="in" id="jpw2" type="password" autocomplete="new-password" placeholder="••••••">
+       <button type="button" class="eye" data-for="jpw2" aria-label="Show password"><svg viewBox="0 0 24 24"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></button></div></div>
+     <div class="btns"><button type="button" class="btn btn-ghost" data-back="1" data-t="back">Back</button><button type="submit" class="btn btn-primary" id="goJoin" data-t="j_go">Join business</button></div>
+    </form>
    </div>
 
    <!-- recover a deleted account -->
@@ -257,7 +277,7 @@ select.in:disabled{background-color:var(--bg);color:#9aa4bd;cursor:not-allowed}
    e_phone:"Enter a valid phone number: 9 digits starting with 7.",e_pw:"Enter your password.",e_email:"Enter a valid email address.",e_otp:"Enter the 6-digit code.",e_npw:"Password must have at least 6 characters.",e_npw2:"Passwords do not match.",
    e_cred:"Wrong phone number or password. Try again.",e_deleted:"This account was deleted. Contact support@ivanexo.com if this is a mistake.",e_net:"Cannot reach Trackly. Check your internet and try again.",e_code:"This code is wrong or has expired. Check it or send a new one.",
    wake:"Waking up the server. This can take up to a minute…",sent:"Code sent. Check your email, including spam.",changed:"Password changed. Log in with your new password.",
-   m_h:"Other ways to join",m_agent:"Become an agent",m_agentx:"Earn commission by bringing businesses to Trackly.",rec_link:"Account deleted? Ask Trackly to recover it",rec_title:"Recover your account",rec_sub:"Enter the phone number and password of the deleted account. Trackly will review the request and email you.",rec_go:"Send request",rec_ok:"Request sent. Trackly will email you once it is reviewed.",rec_err:"We could not find a deleted account with these details.",
+   m_staff:"Join as staff",m_staffx:"Got an invite code from your employer? Join their business.",j_title:"Join as staff",j_sub:"Enter the 6-digit code your employer sent you and the phone number they invited.",j_code:"Invite code",j_name:"Full name",j_pw:"Create password",j_go:"Join business",e_jcode:"Enter the 6-digit invite code.",e_jname:"Enter your first and last name.",e_jpw:"Password must have at least 6 characters.",e_jpw2:"The two passwords do not match.",m_h:"Other ways to join",m_agent:"Become an agent",m_agentx:"Earn commission by bringing businesses to Trackly.",rec_link:"Account deleted? Ask Trackly to recover it",rec_title:"Recover your account",rec_sub:"Enter the phone number and password of the deleted account. Trackly will review the request and email you.",rec_go:"Send request",rec_ok:"Request sent. Trackly will email you once it is reviewed.",rec_err:"We could not find a deleted account with these details.",
    ok_t:"Welcome back, ",ok_x:"You are logged in. The web dashboard is coming soon. For now, open the Trackly Android app to run your business.",logout:"Log out",ok_dl:"Download Trackly for Android"},
   rw:{tag:"Business Operating System",h1a:"Murakaza neza nanone.",h1b:"Ubucuruzi bwawe buragutegereje.",lead:"Injira urebe amafaranga yinjiye, stock n'abakiriya b'uyu munsi.",
    noacc:"Uri mushya kuri Trackly?",signup:"Fungura konti",title:"Injira",sub:"Koresha nimero ya telefoni n'ijambo banga wiyandikishijeho.",l_phone:"Nimero ya telefoni",l_pw:"Ijambo banga",forgot:"Wibagiwe ijambo banga?",go:"Injira",going:"Turimo kukwinjiza…",
@@ -267,7 +287,7 @@ select.in:disabled{background-color:var(--bg);color:#9aa4bd;cursor:not-allowed}
    e_phone:"Injiza nimero yemewe: imibare 9 itangira na 7.",e_pw:"Injiza ijambo banga.",e_email:"Injiza imeyili yemewe.",e_otp:"Injiza kode y'imibare 6.",e_npw:"Ijambo banga rigomba kuba rifite nibura inyuguti 6.",e_npw2:"Amagambo banga ntahuje.",
    e_cred:"Nimero cyangwa ijambo banga si byo. Ongera ugerageze.",e_deleted:"Iyi konti yarasibwe. Andikira support@ivanexo.com niba ari ikosa.",e_net:"Ntidushoboye kugera kuri Trackly. Reba interineti ugerageze nanone.",e_code:"Kode si yo cyangwa yarangiye. Yisubiremo cyangwa usabe indi.",
    wake:"Seriveri irimo kubyuka. Bishobora gutwara iminota igera kuri umwe…",sent:"Kode yoherejwe. Reba imeyili yawe, harimo na spam.",changed:"Ijambo banga ryahindutse. Injira ukoresheje irishya.",
-   m_h:"Ubundi buryo bwo kwinjira",m_agent:"Iba umu agent",m_agentx:"Habwa komisiyo uzana ubucuruzi kuri Trackly.",rec_link:"Konti yarasibwe? Saba Trackly kuyigarura",rec_title:"Garura konti yawe",rec_sub:"Andika nimero na ijambo banga bya konti yasibwe. Trackly irasuzuma ubusabe ikwandikire kuri imeri.",rec_go:"Ohereza ubusabe",rec_ok:"Ubusabe bwoherejwe. Trackly izakwandikira kuri imeri nirangiza kubusuzuma.",rec_err:"Ntitwabonye konti yasibwe ifite aya makuru.",
+   m_staff:"Injira nk'umukozi",m_staffx:"Ufite kode y'ubutumire wahawe n'umukoresha? Injira mu bucuruzi bwe.",j_title:"Injira nk'umukozi",j_sub:"Andika kode y'imibare 6 wahawe n'umukoresha wawe na nimero yatumiwe.",j_code:"Kode y'ubutumire",j_name:"Amazina yuzuye",j_pw:"Hitamo ijambo banga",j_go:"Injira mu bucuruzi",e_jcode:"Injiza kode y'ubutumire y'imibare 6.",e_jname:"Andika izina ryawe n'irindi.",e_jpw:"Ijambo banga rigomba kuba rifite nibura inyuguti 6.",e_jpw2:"Amagambo banga ntahuje.",m_h:"Ubundi buryo bwo kwinjira",m_agent:"Iba umu agent",m_agentx:"Habwa komisiyo uzana ubucuruzi kuri Trackly.",rec_link:"Konti yarasibwe? Saba Trackly kuyigarura",rec_title:"Garura konti yawe",rec_sub:"Andika nimero na ijambo banga bya konti yasibwe. Trackly irasuzuma ubusabe ikwandikire kuri imeri.",rec_go:"Ohereza ubusabe",rec_ok:"Ubusabe bwoherejwe. Trackly izakwandikira kuri imeri nirangiza kubusuzuma.",rec_err:"Ntitwabonye konti yasibwe ifite aya makuru.",
    ok_t:"Murakaza neza nanone, ",ok_x:"Winjiye. Dashboard ya web iraza vuba. Ubu koresha porogaramu ya Trackly kuri Android.",logout:"Sohoka",ok_dl:"Kuramo Trackly kuri Android"},
   fr:{tag:"Business Operating System",h1a:"Bon retour.",h1b:"Votre commerce vous attend.",lead:"Connectez-vous pour voir les ventes, le stock et les clients du jour.",
    noacc:"Nouveau sur Trackly ?",signup:"Créer un compte",title:"Se connecter",sub:"Utilisez le numéro et le mot de passe de votre inscription.",l_phone:"Numéro de téléphone",l_pw:"Mot de passe",forgot:"Mot de passe oublié ?",go:"Se connecter",going:"Connexion…",
@@ -277,7 +297,7 @@ select.in:disabled{background-color:var(--bg);color:#9aa4bd;cursor:not-allowed}
    e_phone:"Entrez un numéro valide : 9 chiffres commençant par 7.",e_pw:"Entrez votre mot de passe.",e_email:"Entrez un e-mail valide.",e_otp:"Entrez le code à 6 chiffres.",e_npw:"Le mot de passe doit contenir au moins 6 caractères.",e_npw2:"Les mots de passe ne correspondent pas.",
    e_cred:"Numéro ou mot de passe incorrect. Réessayez.",e_deleted:"Ce compte a été supprimé. Écrivez à support@ivanexo.com en cas d'erreur.",e_net:"Impossible de joindre Trackly. Vérifiez votre connexion et réessayez.",e_code:"Ce code est incorrect ou expiré. Vérifiez-le ou demandez-en un nouveau.",
    wake:"Réveil du serveur. Cela peut prendre jusqu'à une minute…",sent:"Code envoyé. Vérifiez votre e-mail, y compris les spams.",changed:"Mot de passe modifié. Connectez-vous avec le nouveau.",
-   m_h:"Autres façons de rejoindre",m_agent:"Devenir agent",m_agentx:"Gagnez une commission en amenant des commerces sur Trackly.",rec_link:"Compte supprimé ? Demandez sa récupération",rec_title:"Récupérer votre compte",rec_sub:"Entrez le numéro et le mot de passe du compte supprimé. Trackly examinera la demande et vous écrira.",rec_go:"Envoyer la demande",rec_ok:"Demande envoyée. Trackly vous écrira par e-mail après examen.",rec_err:"Aucun compte supprimé trouvé avec ces informations.",
+   m_staff:"Rejoindre comme employé",m_staffx:"Vous avez un code d'invitation de votre employeur ? Rejoignez son commerce.",j_title:"Rejoindre comme employé",j_sub:"Entrez le code à 6 chiffres envoyé par votre employeur et le numéro invité.",j_code:"Code d'invitation",j_name:"Nom complet",j_pw:"Créer un mot de passe",j_go:"Rejoindre",e_jcode:"Entrez le code d'invitation à 6 chiffres.",e_jname:"Entrez votre prénom et votre nom.",e_jpw:"Le mot de passe doit avoir au moins 6 caractères.",e_jpw2:"Les deux mots de passe ne correspondent pas.",m_h:"Autres façons de rejoindre",m_agent:"Devenir agent",m_agentx:"Gagnez une commission en amenant des commerces sur Trackly.",rec_link:"Compte supprimé ? Demandez sa récupération",rec_title:"Récupérer votre compte",rec_sub:"Entrez le numéro et le mot de passe du compte supprimé. Trackly examinera la demande et vous écrira.",rec_go:"Envoyer la demande",rec_ok:"Demande envoyée. Trackly vous écrira par e-mail après examen.",rec_err:"Aucun compte supprimé trouvé avec ces informations.",
    ok_t:"Bon retour, ",ok_x:"Vous êtes connecté. Le tableau de bord web arrive bientôt. Pour l'instant, utilisez l'application Android Trackly.",logout:"Se déconnecter",ok_dl:"Télécharger Trackly pour Android"}
   };
   function $(s){return document.querySelector(s)}
@@ -292,7 +312,7 @@ select.in:disabled{background-color:var(--bg);color:#9aa4bd;cursor:not-allowed}
   }catch(e){}
   function tr(k){return T[lang][k]||T.en[k]||k}
 
-  var views=["vLogin","vForgot","vReset","vRecover","vOk"],busy=false,mail="",user=null;
+  var views=["vLogin","vForgot","vReset","vRecover","vJoin","vOk"],busy=false,mail="",user=null;
   var errBox=$("#errBox"),wakeBox=$("#wake"),info=$("#info");
   function apply(){
     $$("[data-t]").forEach(function(e){var k=e.getAttribute("data-t");if(T[lang][k]!=null)e.textContent=T[lang][k]});
@@ -305,7 +325,7 @@ select.in:disabled{background-color:var(--bg);color:#9aa4bd;cursor:not-allowed}
   function hideErr(){errBox.hidden=true}
   function showInfo(m){hideErr();info.textContent=m;info.hidden=false}
   function sync(){
-    [["goLogin","go","going"],["goForgot","f_send","sending"],["goReset","r_go","going"],["goRecover","rec_go","sending"]].forEach(function(b){
+    [["goLogin","go","going"],["goForgot","f_send","sending"],["goReset","r_go","going"],["goRecover","rec_go","sending"],["goJoin","j_go","sending"]].forEach(function(b){
       var n=$("#"+b[0]);if(busy){n.disabled=true;if(n===cur)n.innerHTML='<span class="spin"></span> '+tr(b[2])}else{n.disabled=false;n.textContent=tr(b[1])}
     });
   }
@@ -336,6 +356,7 @@ select.in:disabled{background-color:var(--bg);color:#9aa4bd;cursor:not-allowed}
   function errText(e){
     if(e.status===0)return tr("e_net");
     if(e.isRec)return tr("rec_err");
+    if(e.isJoin&&e.status!==0&&e.message&&!/^Error \d+$/.test(e.message))return e.message;
     var raw=JSON.stringify(e.data||"")+" "+(e.message||"");
     if(/ACCOUNT_DELETED/i.test(raw))return tr("e_deleted");
     if(e.status===401||e.status===400||e.status===404)return e.isReset?tr("e_code"):tr("e_cred");
@@ -378,6 +399,25 @@ select.in:disabled{background-color:var(--bg);color:#9aa4bd;cursor:not-allowed}
     });
   });
 
+  $("#toJoin").addEventListener("click",function(e){e.preventDefault();info.hidden=true;go("vJoin");$("#jcode").focus()});
+  $("#jphone").addEventListener("input",function(e){e.target.value=digits(e.target.value)});
+  $("#jcode").addEventListener("input",function(e){e.target.value=e.target.value.replace(/\D/g,"").slice(0,6)});
+  $("#fJoin").addEventListener("submit",function(ev){
+    ev.preventDefault();hideErr();
+    var c=$("#jcode").value,p=$("#jphone").value,n=$("#jname").value.trim().replace(/\s+/g," "),pw=$("#jpw").value;
+    if(!/^\d{6}$/.test(c))return showErr(tr("e_jcode"));
+    if(!/^[78]\d{8}$/.test(p))return showErr(tr("e_phone"));
+    if(n.split(" ").length<2)return showErr(tr("e_jname"));
+    if(pw.length<6)return showErr(tr("e_jpw"));
+    if(pw!==$("#jpw2").value)return showErr(tr("e_jpw2"));
+    run($("#goJoin"),function(){
+      return call("/auth/invite/accept",{phone:"+250"+p,fullName:n,password:pw,token:c}).then(function(d){
+        var u={id:d.userId,phone:d.phone,fullName:d.fullName,email:null,role:String(d.role||"cashier").toUpperCase(),appRole:String(d.role||"cashier").toUpperCase(),businessId:d.businessId,isVerified:true,isPinEnabled:false};
+        try{localStorage.setItem(KEYS.a,d.accessToken);localStorage.setItem(KEYS.r,d.refreshToken);localStorage.setItem(KEYS.u,JSON.stringify(u));if(d.businessId)localStorage.setItem(KEYS.b,d.businessId)}catch(e){}
+        location.href="/app/";
+      },function(e){e.isJoin=true;throw e});
+    });
+  });
   /* forgot / reset */
   $("#toForgot").addEventListener("click",function(e){e.preventDefault();info.hidden=true;go("vForgot");$("#femail").focus()});
   $$("[data-back]").forEach(function(b){b.addEventListener("click",function(){info.hidden=true;go("vLogin")})});
@@ -404,7 +444,7 @@ select.in:disabled{background-color:var(--bg);color:#9aa4bd;cursor:not-allowed}
     });
   });
 
-  try{var vw=new URLSearchParams(location.search).get("view");if(vw==="forgot"||vw==="reset")go("vForgot");else if(vw==="recover")go("vRecover")}catch(e){}
+  try{var vw=new URLSearchParams(location.search).get("view");if(vw==="forgot"||vw==="reset")go("vForgot");else if(vw==="recover")go("vRecover");else if(vw==="join"){go("vJoin");var jc=new URLSearchParams(location.search).get("code");if(jc)$("#jcode").value=jc.replace(/\D/g,"").slice(0,6)}}catch(e){}
   apply();
 })();
 </script>
