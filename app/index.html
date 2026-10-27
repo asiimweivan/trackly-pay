@@ -996,6 +996,8 @@ textarea.inp{resize:vertical}.inp.big{font-size:1.5rem;font-weight:800;min-heigh
 .agph .pre{display:flex;align-items:center;gap:.5rem;padding:0 .85rem;background:var(--bg);border-right:1px solid var(--line);font-weight:800}.agph .pre .flg{width:26px;height:18px;border-radius:4px}.agph .inp{border:0;border-radius:0;flex:1;box-shadow:none;min-width:0}.agph .inp:focus{box-shadow:none}
 .pbar .scnb{margin-right:-.5rem}
 @media(max-width:560px){.da:has(#dsv2){flex-wrap:wrap}.da #dsv2{order:3;flex:1 1 100%}}
+.catch button{display:inline-flex;align-items:center;gap:.4rem}.catch button i{width:9px;height:9px;border-radius:50%;background:var(--c,#94a3b8);flex:none}.catch button[aria-pressed=true]{border-color:var(--c,var(--teal));background:color-mix(in srgb,var(--c,#0fa68c) 12%,#fff);color:var(--ink)}.catch button.sg:not([aria-pressed=true]){border-style:dashed}
+.catmore{background:none;border:0;color:var(--tealD);font-weight:700;font-size:.82rem;padding:.5rem 0 0}.catsg{display:block;color:var(--mut);font-size:.76rem;margin-top:.45rem}
 </style>
 </head>
 <body>
@@ -1321,21 +1323,45 @@ function accClose(){$("#acc").hidden=true;$("#accb").setAttribute("aria-expanded
 $("#accb").addEventListener("click",function(){var o=$("#acc").hidden;$("#acc").hidden=!o;this.setAttribute("aria-expanded",o?"true":"false")});
 window.addEventListener("scroll",function(){$("#top").classList.toggle("sc",window.scrollY>6)},{passive:true});
 
+var GRP=[["drinks","Drinks","Ibinyobwa","Boissons","#0EA5E9",["bottle","crate","can","litre","carton","pieces"],"fanta coca cola sprite pepsi mirinda soda juice jus water amazi maji agashya energy drink red bull monster krest tonic ginger sirop squash cocktail smoothie sachet inyange ubushera icyayi tea ikawa coffee"],["alcohol","Beer & Spirits","Inzoga","Bieres & Alcools","#7C2D12",["bottle","crate","can","litre","pieces"],"primus mutzig heineken skol amstel turbo king virunga tusker guinness beer biere inzoga urwagwa wine vin whisky whiskey vodka gin rum brandy cognac liqueur johnnie walker jameson smirnoff bell champagne"],["dairy","Dairy & Eggs","Amata n'amagi","Laitiers & Oeufs","#38BDF8",["litre","pieces","kg","pack","tray","carton"],"amata milk lait yogurt yaourt ikivuguto cheese fromage butter beurre cream amagi egg eggs oeuf oeufs inyange jali"],["bakery","Bakery","Imigati","Boulangerie","#D97706",["pieces","loaf","pack","kg","dozen"],"bread umugati pain cake gateau mandazi biscuit biscuits cookie cookies croissant donut doughnut pastry muffin chapati sambusa samosa bun"],["grains","Grains & Flour","Ibinyampeke","Cereales & Farine","#CA8A04",["kg","bag","sack","tonne","g"],"rice umuceri riz beans ibishyimbo haricots maize ibigori mais flour ifu farine posho sorghum amasaka wheat ingano millet uburo lentils peas amtotal soja"],["pantry","Cooking & Pantry","Ibiribwa byo mu rugo","Epicerie","#EA580C",["pieces","kg","litre","pack","bottle","g"],"sugar isukari sucre salt umunyu sel oil amavuta huile spaghetti pasta macaroni noodles indomie tomato sauce ketchup mayonnaise honey ubuki miel margarine blue band royco knorr cube spice epices jam curry vinegar"],["produce","Fruits & Vegetables","Imbuto n'imboga","Fruits & Legumes","#16A34A",["kg","bunch","piece","bag","crate","sack"],"banana igitoki ibitoki tomato inyanya onion igitunguru carrot karoti cabbage amashu avocado avoka mango orange pomme apple pineapple inanasi potato ibirayi cassava imyumbati sweet potato ibijumba pepper pili pili garlic tungurusumu spinach dodo eggplant lemon watermelon passion fruit tree tomato umuneke vegetables imboga fruits imbuto"],["meat_fish","Meat & Fish","Inyama n'ifi","Viande & Poisson","#DC2626",["kg","pieces","pack","g"],"meat inyama viande beef inka pork ingurube goat ihene chicken inkoko poulet fish ifi poisson tilapia sambaza sausage saucisse bacon ribs fillet minced brochette"],["snacks","Snacks & Sweets","Utuntu two kurya","Snacks & Bonbons","#F43F5E",["pieces","pack","box","bag"],"chips crisps chocolate candy bonbon bombo sweets gum chewing popcorn peanuts nuts ibishyimbo ice cream glace lollipop wafer cracker snack pringles"],["meals","Meals & Fast Food","Ibiryo byateguwe","Plats & Fast Food","#EA580C",["plate","portion","pieces","cup","bowl"],"meal plate ifunguro fries ifiriti burger pizza sandwich shawarma brochette akabenzi isombe ugali matoke pilau fried chicken lunch breakfast dinner portion buffet"],["household","Household","Ibikoresho byo mu rugo","Maison","#3B82F6",["pieces","set","pack","box","roll"],"plate sahani cup igikombe spoon ikiyiko fork knife pot isafuriya pan bucket ndobo basin broom umweyo candle buji matches lighter bulb ampoule battery pile charcoal amakara firewood flask thermos mat blanket umwenda bedsheet towel pillow tupperware jerrycan"],["cleaning","Cleaning","Isuku","Entretien","#06B6D4",["pieces","pack","litre","bottle","kg","bar"],"omo detergent bleach jik javel disinfectant dettol sponge mop brush insecticide raid spray air freshener washing powder laundry isabune y imyenda soap bar toilet cleaner harpic"],["personal_care","Personal Care","Isuku y'umubiri","Soins personnels","#A855F7",["pieces","pack","bottle","tube","box"],"soap isabune savon shampoo toothpaste colgate toothbrush lotion vaseline deodorant perfume parfum pad pads sanitary diaper pampers tissue toilet paper razor comb pomade cream gel body oil sunscreen"],["beauty","Beauty & Hair","Ubwiza n'imisatsi","Beaute & Cheveux","#DB2777",["pieces","pack","bottle","set","bundle"],"lipstick makeup nail polish vernis wig perruque extension braids hair weave relaxer dye gel kohl mascara foundation powder eyelash"],["pharmacy","Medicine & Health","Imiti n'ubuzima","Pharmacie & Sante","#059669",["pieces","box","strip","bottle","pack","tablet"],"paracetamol amoxicillin tablet tablets capsule syrup ibuprofen aspirin imiti medicine bandage plaster gauze mask thermometer vitamin vitamins ors cotton alcohol antibiotic cough malaria test condom condoms mosquito net"],["electronics","Electronics","Ibikoresho by'ikoranabuhanga","Electronique","#1E40AF",["pieces","set","box","pair"],"phone telephone smartphone samsung tecno infinix itel iphone charger cable usb earphone earphones headphone headphones speaker tv television radio laptop computer powerbank power bank flash memory card sd router adapter extension socket torch led solar"],["airtime","Airtime & SIM","Airtime & SIM","Credit & SIM","#F59E0B",["pieces","voucher","card"],"airtime credit sim simcard voucher bundle data mtn airtel tigo"],["clothing","Clothing","Imyambaro","Vetements","#EC4899",["pieces","pair","set","dozen","bundle"],"shirt t-shirt tshirt trouser trousers pantalon jeans dress ikanzu skirt jupe jacket veste sweater pull umupira hoodie sock socks underwear boxer bra cap hat uniform suit costume kitenge pagne igitenge scarf gloves"],["footwear","Shoes","Inkweto","Chaussures","#92400E",["pair","pieces"],"shoe shoes inkweto sandal sandals amasandali boot boots slipper slippers sneaker sneakers heels flip flops crocs chaussure"],["bags_accessories","Bags & Accessories","Amasakoshi n'ibyo kwambara","Sacs & Accessoires","#B45309",["pieces","set","pair"],"bag sac isakoshi backpack handbag wallet portefeuille belt ceinture watch montre jewelry jewellery necklace ring bracelet earring sunglasses lunettes umbrella umutaka"],["stationery","Books & Stationery","Ibitabo n'ibikoresho by'ishuri","Livres & Papeterie","#1D4ED8",["pieces","pack","box","ream","dozen"],"pen ikaramu stylo pencil crayon notebook cahier igitabo book livre ruler eraser sharpener paper ream envelope stapler marker highlighter file folder calculator glue scissors tape geometry bible dictionary exercise"],["hardware","Hardware & Building","Ibikoresho by'ubwubatsi","Quincaillerie","#78350F",["pieces","kg","bag","roll","metre","sheet","box"],"nail nails imisumari screw vis hammer paint peinture cement sima wire fil pipe tuyau tap robinet padlock cadenas saw drill brush tiles carreaux amabati iron sheet bolt nut hinge lock serrure sand gravel brick timber plank wood door window glass switch socket cable bulb pvc"],["farm","Farm Supplies","Ibikoresho by'ubuhinzi","Intrants Agricoles","#15803D",["kg","bag","litre","pieces","sack"],"seed seeds imbuto semence fertilizer ifumbire engrais pesticide herbicide hoe isuka sprayer feed animal cattle chicken feed wheelbarrow vaccine veterinary"],["auto","Auto Parts","Ibyuma by'imodoka","Pieces Auto","#B45309",["pieces","set","litre","pair"],"tyre tire ipine engine oil brake plaquette spark plug filter wiper coolant headlamp battery car motorcycle moto helmet chain bolt bearing clutch gearbox"],["furniture","Furniture","Ibikoresho by'inzu","Meubles","#92400E",["pieces","set"],"chair intebe chaise table ameza bed igitanda lit mattress matelas sofa canape wardrobe armoire shelf desk bureau curtain rideau carpet tapis cupboard"],["baby_toys","Baby & Toys","Abana n'ibikinisho","Bebe & Jouets","#F59E0B",["pieces","pack","set","box"],"toy toys igikinisho jouet doll ball baby bebe feeding bottle biberon stroller pacifier nappy pampers cerelac formula nan lactogen puzzle lego game"],["sports","Sports & Fitness","Siporo","Sport","#B91C1C",["pieces","set","pair"],"football ballon jersey gym dumbbell weights yoga mat boots shin guards net racket skipping rope"],["other","Other","Ibindi","Autres","#607D8B",["pieces","pack","box","kg","litre","set"],""]];
+var GBIZ={"grocery":"pantry","retail":"household","wholesale":"pantry","restaurant":"meals","juice_bar":"drinks","bakery":"bakery","butchery":"meat_fish","fish_seafood":"meat_fish","dairy":"dairy","agriculture":"produce","farming_supply":"farm","livestock":"farm","pharmacy":"pharmacy","clinic":"pharmacy","hospital":"pharmacy","dental":"pharmacy","veterinary":"pharmacy","electronics":"electronics","telecom":"airtime","mobile_money":"airtime","clothing":"clothing","tailoring":"clothing","footwear":"footwear","bookstore":"stationery","school":"stationery","hardware":"hardware","construction":"hardware","auto_repair":"auto","furniture":"furniture","decoration":"furniture","beauty_salon":"beauty","salon_barber":"beauty","cleaning":"cleaning","dry_cleaning":"cleaning","car_wash":"cleaning","florist":"other","fitness":"sports","daycare":"baby_toys","jewelry":"bags_accessories","catering":"meals","hotel":"meals","bar":"alcohol"};
+/* ---------- product groups (same groups, units and name detection as the Trackly phone app) ---------- */
+function gNorm(s){return String(s||"").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"").replace(/[^a-z0-9 ]+/g," ").replace(/\s+/g," ").trim()}
+var GKW=null;
+function gInit(){if(GKW)return;GKW={};GRP.forEach(function(g){var o={};gNorm(g[6]).split(" ").filter(Boolean).forEach(function(w){o[w]=1});GKW[g[0]]=o})}
+function gBy(k){return GRP.filter(function(g){return g[0]===k})[0]||GRP[GRP.length-1]}
+function gLab(g){return g[lang==="rw"?2:lang==="fr"?3:1]}
+function gFromCat(n){if(!n)return null;var x=gNorm(n),y=x.replace(/ /g,"_");return (GRP.filter(function(g){return gNorm(g[1])===x||g[0]===x||g[0]===y})[0]||{})[0]||null}
+function catLbl(n){var k=gFromCat(n);return k?gLab(gBy(k)):n}
+function gDefault(){var c=S.biz&&S.biz.category;return (c&&GBIZ[c])||"other"}
+function gOrder(){var d=gDefault(),all=GRP.map(function(g){return g[0]});var rest=all.filter(function(k){return k!==d&&k!=="other"});return (d!=="other"?[d]:[]).concat(rest,["other"])}
+function gIndex(){var idx={};S.products.forEach(function(p){var k=gFromCat(p.categoryName);if(!k||k==="other")return;gNorm(p.name).split(" ").forEach(function(w){if(w.length<3||/^\d+$/.test(w))return;(idx[w]=idx[w]||{})[k]=((idx[w]||{})[k]||0)+1})});return idx}
+function gDetect(name,n){
+ gInit();var toks=gNorm(name).split(" ").filter(function(w){return w.length>=2});if(!toks.length)return[];
+ var sc={},add=function(g,v){sc[g]=(sc[g]||0)+v},idx=gIndex();
+ toks.forEach(function(t){
+  var c=idx[t];if(c){var b=Object.keys(c).sort(function(a,z){return c[z]-c[a]})[0];add(b,5)}
+  GRP.forEach(function(g){if(g[0]==="other")return;var set=GKW[g[0]];
+   if(set[t])add(g[0],4);else if(t.length>=4){var hit=false;Object.keys(set).forEach(function(k){if(!hit&&k.length>=4&&(t.indexOf(k)===0||k.indexOf(t)===0))hit=true});if(hit)add(g[0],2)}});
+ });
+ return Object.keys(sc).sort(function(a,z){return sc[z]-sc[a]}).slice(0,n||3);
+}
+
 /* ---------- barcode & QR scanning: phone camera, USB / Bluetooth scanners ---------- */
 IC.scan='<path d="M4 8V5a1 1 0 0 1 1-1h3M16 4h3a1 1 0 0 1 1 1v3M20 16v3a1 1 0 0 1-1 1h-3M8 20H5a1 1 0 0 1-1-1v-3"/><path d="M7 12h10"/>';
 var SCT={
  en:{scan:"Scan",t:"Scan a barcode or QR code",x:"Hold the code inside the frame. It is read automatically.",ty:"Or type the code",use:"Use code",close:"Close",start:"Starting the camera…",
   nocam:"The camera is not available here. Type the code, or use a USB or Bluetooth scanner.",deny:"Camera access was blocked. Allow it in your browser, or type the code.",
   bh:"Click here and scan with your scanner, or use the camera button.",dup:"This code is already used by {n}.",nf:"No product with code {c}.",nfT:"Product not found",addNew:"Add as new product",added:"{n} added to the sale",
-  sa:"Save and add another",opt:"optional",catq:"Quick pick",saved2:"Saved. Add the next product.",ready:"Scanner ready",cam:"Scan with camera"},
+  sa:"Save and add another",catAll:"All categories",catLess:"Fewer categories",catSug:"Suggested from the name",opt:"optional",catq:"Quick pick",saved2:"Saved. Add the next product.",ready:"Scanner ready",cam:"Scan with camera"},
  rw:{scan:"Sikana",t:"Sikana barcode cyangwa QR code",x:"Shyira kode mu kadirishya. Irasomwa yonyine.",ty:"Cyangwa yandike kode",use:"Koresha kode",close:"Funga",start:"Kamera irimo gufungura…",
   nocam:"Kamera ntiboneka hano. Andika kode, cyangwa ukoreshe scanner ya USB cyangwa Bluetooth.",deny:"Kamera yangiwe. Yemere muri browser yawe, cyangwa wandike kode.",
   bh:"Kanda hano ukoreshe scanner yawe, cyangwa ukoreshe buto ya kamera.",dup:"Iyi kode isanzwe ikoreshwa na {n}.",nf:"Nta gicuruzwa gifite kode {c}.",nfT:"Igicuruzwa ntikibonetse",addNew:"Kongeraho nk'igishya",added:"{n} cyongewe ku igurisha",
-  sa:"Bika wongereho ikindi",opt:"si ngombwa",catq:"Hitamo vuba",saved2:"Cyabitswe. Ongeraho ikindi gicuruzwa.",ready:"Scanner irahari",cam:"Sikana na kamera"},
+  sa:"Bika wongereho ikindi",catAll:"Ibyiciro byose",catLess:"Ibyiciro bike",catSug:"Byatanzwe bivuye ku izina",opt:"si ngombwa",catq:"Hitamo vuba",saved2:"Cyabitswe. Ongeraho ikindi gicuruzwa.",ready:"Scanner irahari",cam:"Sikana na kamera"},
  fr:{scan:"Scanner",t:"Scanner un code-barres ou un QR code",x:"Placez le code dans le cadre. Il est lu automatiquement.",ty:"Ou saisissez le code",use:"Utiliser le code",close:"Fermer",start:"Démarrage de la caméra…",
   nocam:"La caméra n'est pas disponible ici. Saisissez le code ou utilisez un lecteur USB ou Bluetooth.",deny:"L'accès à la caméra est bloqué. Autorisez-le dans votre navigateur ou saisissez le code.",
   bh:"Cliquez ici et scannez avec votre lecteur, ou utilisez le bouton caméra.",dup:"Ce code est déjà utilisé par {n}.",nf:"Aucun produit avec le code {c}.",nfT:"Produit introuvable",addNew:"Ajouter comme nouveau produit",added:"{n} ajouté à la vente",
-  sa:"Enregistrer et ajouter un autre",opt:"facultatif",catq:"Choix rapide",saved2:"Enregistré. Ajoutez le produit suivant.",ready:"Lecteur prêt",cam:"Scanner avec la caméra"}
+  sa:"Enregistrer et ajouter un autre",catAll:"Toutes les catégories",catLess:"Moins de catégories",catSug:"Suggéré d'après le nom",opt:"facultatif",catq:"Choix rapide",saved2:"Enregistré. Ajoutez le produit suivant.",ready:"Lecteur prêt",cam:"Scanner avec la caméra"}
 };
 function sct(k,o){var d=SCT[lang]||SCT.en,v=d[k]!=null?d[k]:SCT.en[k];return o?fill(v,o):v}
 var SCN={buf:"",last:0,stream:null,raf:0,reader:null,open:false,tm:null};
@@ -2123,14 +2149,14 @@ function renderInvStats(){
 function renderInvList(){
  var t=it(),el=$("#ilist");if(!el)return;
  var cats=[],seen={};S.products.forEach(function(p){var c=p.categoryName;if(c&&!seen[c]){seen[c]=1;cats.push(c)}});cats.sort();
- var sel=$("#icat");sel.hidden=cats.length<2;sel.innerHTML='<option value="">'+esc(t.allCats)+'</option>'+cats.map(function(c){return '<option'+(INV.cat===c?" selected":"")+'>'+esc(c)+'</option>'}).join("");
+ var sel=$("#icat");sel.hidden=cats.length<2;sel.innerHTML='<option value="">'+esc(t.allCats)+'</option>'+cats.map(function(c){return '<option value="'+esc(c)+'"'+(INV.cat===c?" selected":"")+'>'+esc(catLbl(c))+'</option>'}).join("");
  $("#ichips").innerHTML="";
  var l=invFiltered();
  if(!S.products.length){el.innerHTML='<div class="panel emp"><span class="ec">'+ico("cube")+'</span><b>'+esc(t.none0)+'</b><p>'+esc(t.none0x)+'</p><button class="pb p" id="iadd2">'+ico("plus")+esc(t.addFirst)+'</button></div>';$("#iadd2").addEventListener("click",function(){openForm(null)});return}
  if(!l.length){el.innerHTML='<div class="panel emp"><span class="ec">'+ico("search")+'</span><b>'+esc(t.noMatch)+'</b></div>';return}
  el.innerHTML='<div class="itbl"><div class="ith"><span>'+esc(t.product)+'</span><span>'+esc(t.price)+'</span><span>'+esc(t.margin)+'</span><span>'+esc(t.stock)+'</span><span></span></div>'+l.map(function(p){
   var st=prodStatus(p),q=Number(p.stockQuantity||0),m=Number(p.minStockLevel||0),sp=Number(p.sellingPrice||0),bp=Number(p.buyingPrice||0),mg=sp>0&&bp>0?Math.round((sp-bp)/sp*100):null,hue=tint(p.name||"x");
-  var sub=[p.categoryName,p.sku?("SKU "+p.sku):"",p.barcode].filter(Boolean).join(" · ");
+  var sub=[catLbl(p.categoryName),p.sku?("SKU "+p.sku):"",p.barcode].filter(Boolean).join(" · ");
   return '<div class="ir" data-id="'+esc(p.id)+'"><div class="in1"><span class="pt" style="--h:'+hue+'">'+esc((p.name||"?").trim().charAt(0).toUpperCase())+'</span><div><b>'+esc(p.name)+'</b>'+(sub?'<small>'+esc(sub)+'</small>':"")+'</div></div>'+
   '<div class="in2"><span class="ml">'+esc(t.price)+'</span><b>'+fmtN(sp)+' <small>RWF</small></b>'+(bp>0?'<small>'+esc(t.buy)+' '+fmtN(bp)+'</small>':"")+'</div>'+
   '<div class="in3"><span class="ml">'+esc(t.margin)+'</span>'+(mg!==null?'<b class="'+(mg>=0?"gr":"rd")+'">'+(mg>=0?"+":"")+mg+'%</b><small>+'+fmtN(sp-bp)+' RWF</small>':'<b class="mu">—</b>')+'</div>'+
@@ -2165,8 +2191,8 @@ function openForm(p){
  var fld=function(id,label,val,extra,ph){return '<div class="fld"><label for="'+id+'">'+esc(label)+'</label><input class="inp" id="'+id+'" value="'+esc(val==null?"":val)+'" '+(extra||"")+' placeholder="'+esc(ph||"")+'"></div>'};
  dlgOpen('<button class="dx" id="dx" aria-label="Close">'+ico("x")+'</button><h2 class="dt">'+esc(p?t.editT:t.addT)+'</h2><form id="pf" novalidate><div class="dbody">'+
  fld("f_name",t.fName+" *",f.name,'autocomplete="off" maxlength="120"',p?"":pxName())+
- '<div class="g2"><div class="fld"><label for="f_cat">'+esc(t.category)+'</label><input class="inp" id="f_cat" list="catl" autocomplete="off" value="'+esc(f.categoryName||"")+'" placeholder="'+esc(t.catPh)+'"><datalist id="catl">'+Object.keys(cn).map(function(c){return '<option value="'+esc(c)+'">'}).join("")+'</datalist><div class="catch" id="catch">'+Object.keys(cn).slice(0,10).map(function(c){return '<button type="button" data-c="'+esc(c)+'" aria-pressed="'+((f.categoryName||"")===c)+'">'+esc(c)+'</button>'}).join("")+'</div></div>'+
- '<div class="fld"><label for="f_unit">'+esc(t.unit)+'</label><select class="sel" id="f_unit">'+(UNITS.indexOf(f.unit)<0&&f.unit?[f.unit]:[]).concat(UNITS).map(function(u){return '<option'+((f.unit||"pieces")===u?" selected":"")+'>'+esc(u)+'</option>'}).join("")+'</select></div></div>'+
+ '<div class="fld"><span class="lab2">'+esc(t.category)+'</span><input type="hidden" id="f_cat" value="'+esc(f.categoryName||"")+'"><div class="catch" id="catch"></div><small class="catsg" id="catsg" hidden>'+esc(sct("catSug"))+'</small><button type="button" class="catmore" id="catmore"></button></div>'+
+ '<div class="fld"><label for="f_unit">'+esc(t.unit)+'</label><select class="sel" id="f_unit"></select></div>'+
  '<div class="g2">'+fld("f_price",t.fPrice+" *",f.sellingPrice,'inputmode="numeric"',"1000")+fld("f_cost",t.fCost,f.buyingPrice||"",'inputmode="numeric"',"700")+'</div>'+
  '<div id="fm" class="fmg"></div>'+
  '<div class="g2">'+(p?"":fld("f_qty",t.fQty,"",'inputmode="numeric"',"0"))+fld("f_min",t.fMin,p?f.minStockLevel:5,'inputmode="numeric"')+'</div>'+
@@ -2179,8 +2205,30 @@ function openForm(p){
  var fb=$("#f_bar");scnDupCheck();fb.addEventListener("input",scnDupCheck);
  fb.addEventListener("keydown",function(e){if(e.key==="Enter"){e.preventDefault();scnDupCheck();$("#f_sku").focus()}});
  $("#f_scan").addEventListener("click",function(){scnCam(function(c){fb.value=c;scnDupCheck();$("#f_sku").focus()})});
- $$("#catch button").forEach(function(b){b.addEventListener("click",function(){$("#f_cat").value=b.getAttribute("data-c");$$("#catch button").forEach(function(x){x.setAttribute("aria-pressed",x===b)})})});
- $("#f_cat").addEventListener("input",function(){var v=this.value.trim().toLowerCase();$$("#catch button").forEach(function(x){x.setAttribute("aria-pressed",x.getAttribute("data-c").toLowerCase()===v)})});
+ (function(){
+  var st={sel:gFromCat(f.categoryName)||(f.categoryName?"cust:"+f.categoryName:(p?"other":gDefault())),manual:!!p,more:false,unitTouched:!!p,sug:[]};
+  var cust=[];S.products.forEach(function(x){if(x.categoryName&&!gFromCat(x.categoryName)&&cust.indexOf(x.categoryName)<0)cust.push(x.categoryName)});
+  if(st.sel.indexOf("cust:")===0&&cust.indexOf(st.sel.slice(5))<0)cust.push(st.sel.slice(5));
+  var units=function(){var g=st.sel.indexOf("cust:")===0?null:gBy(st.sel);var u=(g?g[5]:UNITS).slice();return u};
+  var fillUnits=function(cur){var u=units();if(cur&&u.indexOf(cur)<0)u.unshift(cur);$("#f_unit").innerHTML=u.map(function(x){return '<option'+(x===(cur||u[0])?" selected":"")+'>'+esc(x)+'</option>'}).join("")};
+  var draw2=function(){
+   var ord=gOrder(),vis=[];st.sug.forEach(function(k){if(vis.indexOf(k)<0)vis.push(k)});
+   (st.more?ord:ord.slice(0,8)).forEach(function(k){if(vis.indexOf(k)<0)vis.push(k)});
+   if(st.sel.indexOf("cust:")!==0&&vis.indexOf(st.sel)<0)vis.push(st.sel);
+   var h=vis.map(function(k){var g=gBy(k);return '<button type="button" class="'+(st.sug.indexOf(k)>-1?"sg":"")+'" data-k="'+k+'" aria-pressed="'+(st.sel===k)+'" style="--c:'+g[4]+'"><i></i>'+esc(gLab(g))+'</button>'}).join("");
+   if(st.more||st.sel.indexOf("cust:")===0)h+=cust.map(function(c){return '<button type="button" data-k="cust:'+esc(c)+'" aria-pressed="'+(st.sel==="cust:"+c)+'"><i></i>'+esc(c)+'</button>'}).join("");
+   $("#catch").innerHTML=h;$("#catsg").hidden=!st.sug.length||st.manual;
+   $("#catmore").textContent=st.more?sct("catLess"):sct("catAll");
+   $("#f_cat").value=st.sel.indexOf("cust:")===0?st.sel.slice(5):gBy(st.sel)[1];
+   $$("#catch button").forEach(function(b){b.addEventListener("click",function(){choose(b.getAttribute("data-k"),true)})});
+  };
+  var choose=function(k,man){st.sel=k;if(man)st.manual=true;if(!st.unitTouched)fillUnits(null);draw2();mg()};
+  window.gForm={set:function(name,unit){var k=gFromCat(name)||(name?"cust:"+name:gDefault());st.sel=k;st.manual=true;fillUnits(unit||null);st.unitTouched=!!unit;draw2()}};
+  fillUnits(p?f.unit:null);draw2();
+  $("#catmore").addEventListener("click",function(){st.more=!st.more;draw2()});
+  $("#f_unit").addEventListener("change",function(){st.unitTouched=true});
+  $("#f_name").addEventListener("input",function(){st.sug=gDetect(this.value,3);if(!st.manual&&st.sug.length){st.sel=st.sug[0];if(!st.unitTouched)fillUnits(null)}draw2();mg()});
+ })();
  if(!p)$("#dsv2").addEventListener("click",function(){saveProduct(null,true)});
  var num=function(id){var e=$(id);if(e)e.addEventListener("input",function(){e.value=e.value.replace(/[^\d.]/g,"");mg()})};
  ["#f_price","#f_cost","#f_qty","#f_min"].forEach(num);
@@ -2220,7 +2268,7 @@ function saveProduct(p,again){
   if(saved&&saved.id){var ix=-1;S.products.forEach(function(x,i){if(String(x.id)===String(saved.id))ix=i});if(!saved.categoryName&&cn)saved.categoryName=cn;if(ix>-1)S.products[ix]=saved;else S.products.unshift(saved)}
   else load();
   renderInvStats();renderInvList();
-  if(again&&!p){openForm(null);if($("#f_cat")){$("#f_cat").value=cat0;$$("#catch button").forEach(function(x){x.setAttribute("aria-pressed",x.getAttribute("data-c")===cat0)})}if($("#f_unit"))$("#f_unit").value=unit0;showToast(sct("saved2"));return}
+  if(again&&!p){openForm(null);if(window.gForm)window.gForm.set(cat0,unit0);showToast(sct("saved2"));return}
   modalClose();showToast(p?t.saved:t.added);
  }).catch(function(e){
   INV.busy=false;var m=errMsg(e);if(m==="__limit"){limitDlg();return}
