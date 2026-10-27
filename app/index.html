@@ -979,6 +979,23 @@ textarea.inp{resize:vertical}.inp.big{font-size:1.5rem;font-weight:800;min-heigh
 .pyph{display:flex;align-items:center;gap:.5rem}.pyph b{padding:.7rem .8rem;border:1.5px solid #dfe5f1;border-radius:12px;background:var(--bg);min-height:46px;display:flex;align-items:center}.pyph .inp{flex:1}.pyn2{display:block;color:var(--mut);margin-top:.4rem;font-size:.8rem}.pyfee{margin:.2rem 0 0;color:var(--mut);font-size:.78rem}
 .pyspin .pysp{width:24px;height:24px;border-radius:50%;border:3px solid color-mix(in srgb,var(--c) 25%,transparent);border-top-color:var(--c);animation:sp .8s linear infinite}.pywn{margin-top:.6rem!important;font-size:.85rem}.pyhelp{margin:0;padding:0 1.5rem 1.2rem;text-align:center;color:var(--mut);font-size:.78rem}
 @media(max-width:420px){.pyc{flex-direction:column;align-items:flex-start;gap:.2rem}}
+.scnb{flex:none;width:40px;height:40px;border-radius:12px;border:0;background:var(--mint);color:var(--tealD);display:grid;place-items:center}.scnb:hover{background:#d3f0e8}.scnb .i{width:22px;height:22px}
+.bcrow{display:flex;gap:.5rem}.bcrow .inp{flex:1;min-width:0}.bcrow .scnb{width:46px;height:46px}.bcrow .pb{flex:none}
+.bch{display:block;margin-top:.35rem;color:var(--mut);font-size:.78rem}.bch.bad{color:var(--err);font-weight:700}
+.catch{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.5rem}.catch button{border:1.5px solid var(--line);background:#fff;border-radius:99px;padding:.3rem .8rem;font-weight:700;font-size:.8rem;color:var(--ink)}.catch button[aria-pressed=true]{background:var(--mint);border-color:var(--teal);color:var(--tealD)}
+#scnov{position:fixed;inset:0;z-index:400;background:rgba(9,20,56,.78);display:flex;align-items:center;justify-content:center;padding:1rem}
+.scnc{position:relative;background:#fff;border-radius:22px;width:min(480px,100%);max-height:calc(100vh - 2rem);overflow:auto;padding:1.4rem 1.3rem 1.3rem;box-shadow:0 30px 70px -20px rgba(9,20,56,.6)}.scnc h2{margin:0 2.4rem .2rem 0;font-size:1.15rem}.scnc p{margin:0 0 .9rem;color:var(--mut);font-size:.88rem}
+.scnc .dx{position:absolute;top:.9rem;right:.9rem}
+.scnv{position:relative;background:#0b1630;border-radius:16px;overflow:hidden;aspect-ratio:4/3;display:grid;place-items:center}.scnv video{width:100%;height:100%;object-fit:cover}
+.scnf{position:absolute;inset:18% 12%;border:3px solid rgba(255,255,255,.85);border-radius:14px;box-shadow:0 0 0 999px rgba(9,20,56,.35);pointer-events:none}
+.scnl{position:absolute;left:14%;right:14%;top:30%;height:2px;background:var(--tealL);box-shadow:0 0 10px var(--tealL);animation:scnl 2s ease-in-out infinite alternate;pointer-events:none}@keyframes scnl{to{top:68%}}@media(prefers-reduced-motion:reduce){.scnl{animation:none}}
+#scnst{position:absolute;color:#fff;font-weight:600;font-size:.88rem;text-align:center;padding:0 1.5rem}#scnst.show{background:rgba(9,20,56,.7);border-radius:12px;padding:.8rem 1rem}
+.scnm{margin-top:1rem}.scnm label{display:block;font-weight:700;font-size:.82rem;color:var(--mut);margin-bottom:.35rem}
+#scntoast{position:fixed;left:50%;bottom:1.4rem;transform:translateX(-50%);z-index:500;background:#0f2150;color:#fff;font-weight:700;font-size:.9rem;padding:.7rem 1.1rem;border-radius:13px;box-shadow:0 12px 30px -10px rgba(9,20,56,.6);max-width:calc(100vw - 2rem)}#scntoast.bad{background:#b3402f}
+.agph{display:flex;align-items:stretch;border:1.5px solid #dfe5f1;border-radius:12px;background:#fff;overflow:hidden;min-height:46px}.agph:focus-within{border-color:var(--teal);box-shadow:0 0 0 3px rgba(15,166,140,.15)}
+.agph .pre{display:flex;align-items:center;gap:.5rem;padding:0 .85rem;background:var(--bg);border-right:1px solid var(--line);font-weight:800}.agph .pre .flg{width:26px;height:18px;border-radius:4px}.agph .inp{border:0;border-radius:0;flex:1;box-shadow:none;min-width:0}.agph .inp:focus{box-shadow:none}
+.pbar .scnb{margin-right:-.5rem}
+@media(max-width:560px){.da:has(#dsv2){flex-wrap:wrap}.da #dsv2{order:3;flex:1 1 100%}}
 </style>
 </head>
 <body>
@@ -1304,6 +1321,99 @@ function accClose(){$("#acc").hidden=true;$("#accb").setAttribute("aria-expanded
 $("#accb").addEventListener("click",function(){var o=$("#acc").hidden;$("#acc").hidden=!o;this.setAttribute("aria-expanded",o?"true":"false")});
 window.addEventListener("scroll",function(){$("#top").classList.toggle("sc",window.scrollY>6)},{passive:true});
 
+/* ---------- barcode & QR scanning: phone camera, USB / Bluetooth scanners ---------- */
+IC.scan='<path d="M4 8V5a1 1 0 0 1 1-1h3M16 4h3a1 1 0 0 1 1 1v3M20 16v3a1 1 0 0 1-1 1h-3M8 20H5a1 1 0 0 1-1-1v-3"/><path d="M7 12h10"/>';
+var SCT={
+ en:{scan:"Scan",t:"Scan a barcode or QR code",x:"Hold the code inside the frame. It is read automatically.",ty:"Or type the code",use:"Use code",close:"Close",start:"Starting the camera…",
+  nocam:"The camera is not available here. Type the code, or use a USB or Bluetooth scanner.",deny:"Camera access was blocked. Allow it in your browser, or type the code.",
+  bh:"Click here and scan with your scanner, or use the camera button.",dup:"This code is already used by {n}.",nf:"No product with code {c}.",nfT:"Product not found",addNew:"Add as new product",added:"{n} added to the sale",
+  sa:"Save and add another",opt:"optional",catq:"Quick pick",saved2:"Saved. Add the next product.",ready:"Scanner ready",cam:"Scan with camera"},
+ rw:{scan:"Sikana",t:"Sikana barcode cyangwa QR code",x:"Shyira kode mu kadirishya. Irasomwa yonyine.",ty:"Cyangwa yandike kode",use:"Koresha kode",close:"Funga",start:"Kamera irimo gufungura…",
+  nocam:"Kamera ntiboneka hano. Andika kode, cyangwa ukoreshe scanner ya USB cyangwa Bluetooth.",deny:"Kamera yangiwe. Yemere muri browser yawe, cyangwa wandike kode.",
+  bh:"Kanda hano ukoreshe scanner yawe, cyangwa ukoreshe buto ya kamera.",dup:"Iyi kode isanzwe ikoreshwa na {n}.",nf:"Nta gicuruzwa gifite kode {c}.",nfT:"Igicuruzwa ntikibonetse",addNew:"Kongeraho nk'igishya",added:"{n} cyongewe ku igurisha",
+  sa:"Bika wongereho ikindi",opt:"si ngombwa",catq:"Hitamo vuba",saved2:"Cyabitswe. Ongeraho ikindi gicuruzwa.",ready:"Scanner irahari",cam:"Sikana na kamera"},
+ fr:{scan:"Scanner",t:"Scanner un code-barres ou un QR code",x:"Placez le code dans le cadre. Il est lu automatiquement.",ty:"Ou saisissez le code",use:"Utiliser le code",close:"Fermer",start:"Démarrage de la caméra…",
+  nocam:"La caméra n'est pas disponible ici. Saisissez le code ou utilisez un lecteur USB ou Bluetooth.",deny:"L'accès à la caméra est bloqué. Autorisez-le dans votre navigateur ou saisissez le code.",
+  bh:"Cliquez ici et scannez avec votre lecteur, ou utilisez le bouton caméra.",dup:"Ce code est déjà utilisé par {n}.",nf:"Aucun produit avec le code {c}.",nfT:"Produit introuvable",addNew:"Ajouter comme nouveau produit",added:"{n} ajouté à la vente",
+  sa:"Enregistrer et ajouter un autre",opt:"facultatif",catq:"Choix rapide",saved2:"Enregistré. Ajoutez le produit suivant.",ready:"Lecteur prêt",cam:"Scanner avec la caméra"}
+};
+function sct(k,o){var d=SCT[lang]||SCT.en,v=d[k]!=null?d[k]:SCT.en[k];return o?fill(v,o):v}
+var SCN={buf:"",last:0,stream:null,raf:0,reader:null,open:false,tm:null};
+function scnBeep(){try{var C=window.AudioContext||window.webkitAudioContext,c=new C(),o=c.createOscillator(),g=c.createGain();o.frequency.value=1100;g.gain.value=.08;o.connect(g);g.connect(c.destination);o.start();setTimeout(function(){o.stop();c.close()},110)}catch(e){}}
+function scnToast(m,bad){var e=document.getElementById("scntoast");if(!e){e=document.createElement("div");e.id="scntoast";e.setAttribute("role","status");document.body.appendChild(e)}e.textContent=m;e.className=bad?"bad":"";e.hidden=false;clearTimeout(SCN.tm);SCN.tm=setTimeout(function(){e.hidden=true},2600)}
+function scnFind(code){
+ var c=String(code||"").trim().toLowerCase();if(!c)return null;
+ return S.products.filter(function(p){return p.isActive!==false&&((p.barcode&&String(p.barcode).trim().toLowerCase()===c)||(p.sku&&String(p.sku).trim().toLowerCase()===c))})[0]||null;
+}
+function scnStop(){
+ SCN.open=false;if(SCN.raf)cancelAnimationFrame(SCN.raf);SCN.raf=0;
+ try{if(SCN.reader&&SCN.reader.reset)SCN.reader.reset()}catch(e){}SCN.reader=null;
+ if(SCN.stream){SCN.stream.getTracks().forEach(function(t){try{t.stop()}catch(e){}});SCN.stream=null}
+ var o=document.getElementById("scnov");if(o)o.remove();
+}
+function scnCam(cb){
+ scnStop();SCN.open=true;
+ var o=document.createElement("div");o.id="scnov";o.setAttribute("role","dialog");o.setAttribute("aria-modal","true");
+ o.innerHTML='<div class="scnc"><button class="dx" id="scnx" type="button" aria-label="'+esc(sct("close"))+'">'+ico("x")+'</button><h2>'+esc(sct("t"))+'</h2><p>'+esc(sct("x"))+'</p>'+
+ '<div class="scnv"><video id="scnvid" playsinline muted></video><i class="scnf"></i><i class="scnl"></i><span id="scnst">'+esc(sct("start"))+'</span></div>'+
+ '<form id="scnman" class="scnm"><label for="scnin">'+esc(sct("ty"))+'</label><div class="bcrow"><input class="inp" id="scnin" autocomplete="off" inputmode="text"><button class="pb p" type="submit">'+esc(sct("use"))+'</button></div></form></div>';
+ document.body.appendChild(o);
+ var done=function(code){code=String(code||"").trim();if(!code)return;scnBeep();scnStop();cb(code)};
+ document.getElementById("scnx").addEventListener("click",scnStop);
+ o.addEventListener("click",function(e){if(e.target===o)scnStop()});
+ document.getElementById("scnman").addEventListener("submit",function(e){e.preventDefault();done(document.getElementById("scnin").value)});
+ var st=document.getElementById("scnst"),v=document.getElementById("scnvid");
+ var fail=function(m){if(st){st.textContent=m;st.className="show"}var i=document.getElementById("scnin");if(i)i.focus()};
+ if(!navigator.mediaDevices||!navigator.mediaDevices.getUserMedia){fail(sct("nocam"));return}
+ navigator.mediaDevices.getUserMedia({video:{facingMode:{ideal:"environment"},width:{ideal:1280}},audio:false}).then(function(stream){
+  if(!SCN.open){stream.getTracks().forEach(function(t){t.stop()});return}
+  SCN.stream=stream;v.srcObject=stream;v.play().catch(function(){});if(st)st.hidden=true;
+  if("BarcodeDetector" in window){
+   var det;try{det=new BarcodeDetector()}catch(e){det=null}
+   if(det){var last=0;var loop=function(ts){if(!SCN.open)return;if(ts-last>180&&v.readyState>=2){last=ts;det.detect(v).then(function(r){if(r&&r.length&&SCN.open)done(r[0].rawValue)}).catch(function(){})}SCN.raf=requestAnimationFrame(loop)};SCN.raf=requestAnimationFrame(loop);return}
+  }
+  var go=function(){try{var rd=new ZXing.BrowserMultiFormatReader();SCN.reader=rd;rd.decodeFromStream(stream,v,function(res){if(res&&SCN.open)done(res.getText())})}catch(e){fail(sct("nocam"))}};
+  if(window.ZXing){go();return}
+  var sc=document.createElement("script");sc.src="https://cdn.jsdelivr.net/npm/@zxing/library@0.21.3/umd/index.min.js";sc.onload=function(){if(SCN.open)go()};sc.onerror=function(){fail(sct("nocam"))};document.head.appendChild(sc);
+ }).catch(function(e){fail(e&&/denied|permission|notallowed/i.test(e.name+" "+e.message)?sct("deny"):sct("nocam"))});
+}
+/* what a scanned code does depends on the screen that is open */
+function scnHit(code){
+ var bar=document.getElementById("f_bar");
+ if(bar){bar.value=code;scnDupCheck();var nx=document.getElementById("f_sku");if(nx)nx.focus();scnBeep();return true}
+ if(document.getElementById("modalRoot")&&document.getElementById("modalRoot").firstChild&&!document.getElementById("c_s"))return false;
+ var p=scnFind(code);
+ if(document.getElementById("pg")&&document.getElementById("cart")){
+  if(p){addItem(p.id);scnBeep();scnToast(sct("added",{n:p.name}))}else scnToast(sct("nf",{c:code}),true);
+  return true}
+ if(document.getElementById("ilist")){
+  if(p){scnBeep();openAdjust(p)}else scnNotFound(code);
+  return true}
+ return false;
+}
+function scnNotFound(code){
+ dlgOpen('<button class="dx" id="dx" aria-label="Close">'+ico("x")+'</button><div class="dh"><span class="di" style="--c:#d97706">'+ico("search")+'</span><h2>'+esc(sct("nfT"))+'</h2><p>'+esc(sct("nf",{c:code}))+'</p></div><div class="da"><button class="pb o" id="dc">'+esc(sct("close"))+'</button><button class="pb p" id="scnnew">'+ico("plus")+esc(sct("addNew"))+'</button></div>');
+ document.getElementById("dc").addEventListener("click",modalClose);
+ document.getElementById("scnnew").addEventListener("click",function(){openForm(null);var b=document.getElementById("f_bar");if(b){b.value=code;scnDupCheck()}});
+}
+function scnDupCheck(){
+ var b=document.getElementById("f_bar"),h=document.getElementById("f_bh");if(!b||!h)return null;
+ var c=b.value.trim().toLowerCase(),me=window.SCNEDIT;
+ var d=c?S.products.filter(function(p){return (!me||String(p.id)!==String(me))&&p.barcode&&String(p.barcode).trim().toLowerCase()===c})[0]:null;
+ h.className="bch"+(d?" bad":"");h.textContent=d?sct("dup",{n:d.name}):sct("bh");return d||null;
+}
+document.addEventListener("keydown",function(e){
+ if(e.key==="Escape"&&SCN.open){scnStop();return}
+ if(e.ctrlKey||e.metaKey||e.altKey)return;
+ var t=e.target,ed=t&&(/^(input|textarea|select)$/i.test(t.tagName)||t.isContentEditable),now=Date.now();
+ if(e.key==="Enter"){
+  if(!ed&&SCN.buf.length>=4){var c=SCN.buf;SCN.buf="";if(scnHit(c))e.preventDefault()}else SCN.buf="";
+  return}
+ if(e.key.length!==1)return;
+ if(now-SCN.last>80)SCN.buf="";
+ SCN.last=now;if(!ed)SCN.buf+=e.key;
+},true);
+
 /* ---------- plan payment (Paypack: MTN MoMo + Airtel Money) ---------- */
 var PYT={
  en:{t:"Choose your plan",x:"Pay with MTN MoMo or Airtel Money. No contract, cancel anytime.",mo:"Monthly",yr:"Yearly",yrs:"2 months free",pm:"/ month",py:"/ year",cur:"Current plan",ph:"Mobile money number",phx:"We send a payment request to this number. Enter your PIN to approve it.",fee:"A small mobile money fee may be added to the amount.",pay:"Pay {a} RWF",cancel:"Cancel",
@@ -1586,7 +1696,7 @@ function agProf(){
  '<div class="aggrid even"><section class="panel"><h3>'+esc(ag("pf"))+'</h3><div class="agkvs">'+row(ag("fname"),p.fullName)+row(ag("fphone"),p.phone)+row(ag("fnid"),p.nationalId)+row(ag("floc"),agLocTxt(p))+row(ag("fapp"),p.approvedAt?agD(p.approvedAt):"")+'</div><p class="emhint">'+esc(ag("photo"))+'</p></section>'+
  '<section class="panel"><h3>'+esc(ag("pay"))+'</h3><form id="agpf" novalidate>'+
  '<div class="fld"><label>'+esc(ag("prov"))+'</label><div class="agseg" role="radiogroup"><button type="button" role="radio" data-m="mtn" aria-checked="'+(mp==="mtn")+'">MTN MoMo</button><button type="button" role="radio" data-m="airtel" aria-checked="'+(mp==="airtel")+'">Airtel Money</button></div></div>'+
- agFld("agmo",ag("momo"),(function(d){return d?"0"+d:""})(String(p.momoNumber||"").replace(/\D/g,"").replace(/^250/,"").replace(/^0/,"")),'inputmode="tel" maxlength="12" placeholder="78 123 4567"')+agFld("agem",ag("mail"),p.email,'type="email" inputmode="email"')+'<p class="emhint" style="margin:-.4rem 0 .9rem">'+esc(ag("mailx"))+'</p>'+
+ '<div class="fld"><label for="agmo">'+esc(ag("momo"))+'</label><div class="agph"><span class="pre">'+flag("rw",true)+'+250</span><input class="inp" id="agmo" inputmode="numeric" autocomplete="tel-national" maxlength="12" placeholder="78X XXX XXX" value="'+esc(String(p.momoNumber||"").replace(/\D/g,"").replace(/^250/,"").replace(/^0/,"").slice(0,9))+'"></div></div>'+agFld("agem",ag("mail"),p.email,'type="email" inputmode="email"')+'<p class="emhint" style="margin:-.4rem 0 .9rem">'+esc(ag("mailx"))+'</p>'+
  '<p class="agerr" id="agerr" role="alert" hidden></p><button class="pb p" id="agsv" type="submit" style="width:100%">'+esc(ag("save"))+'</button></form></section></div>'+
  '<section class="panel" style="margin-top:1rem"><h3>'+esc(ag("lang"))+'</h3><div class="lgg" role="radiogroup" style="display:grid;grid-template-columns:repeat(3,1fr);gap:.7rem">'+["rw","en","fr"].map(function(c){return '<button class="lgc" role="radio" aria-checked="'+(c===lang)+'" data-l="'+c+'">'+flag(c)+'<b>'+({rw:"Kinyarwanda",en:"English",fr:"Français"})[c]+'</b></button>'}).join("")+'</div>'+
  '<button class="pb dng" id="agout" style="margin-top:1rem">'+ico("out")+esc(ag("logout"))+'</button></section>';
@@ -1612,6 +1722,7 @@ function agBind(){
  $$(".agtabs [data-ct]").forEach(function(b){b.addEventListener("click",function(){AG.ct=b.getAttribute("data-ct");draw()})});
  $$(".lgg .lgc").forEach(function(b){b.addEventListener("click",function(){var c=b.getAttribute("data-l");if(c===lang)return;try{localStorage.setItem("tk_lang",c)}catch(e){}lang=c;draw()})});
  var lo=$("#agout");if(lo)lo.addEventListener("click",function(){clearAll();toLogin()});
+ var mi=$("#agmo");if(mi)mi.addEventListener("input",function(){var d=this.value.replace(/\D/g,"");if(d.indexOf("250")===0&&d.length>9)d=d.slice(3);if(d.charAt(0)==="0")d=d.slice(1);this.value=d.slice(0,9)});
  var f=$("#agpf");
  if(f){
   var prov=String((AG.p&&AG.p.momoProvider)||"mtn").toLowerCase();
@@ -1784,10 +1895,11 @@ function vPos(){
  var t=pt();
  if(!posProducts().length&&!S.products.length)return crumb(lbl("new-sale"))+'<div class="soonc"><span class="pi">'+ico("cube")+'</span><h1>'+esc(t.noProd)+'</h1><p>'+esc(t.noProdX)+'</p><div class="bt"><a class="pb p" href="/get">'+ico("dl")+esc(tx().dlA)+'</a></div></div>';
  return '<div class="ph" style="margin-top:1.2rem"><span class="pi">'+ico("cart")+'</span><div><h1>'+esc(lbl("new-sale"))+'</h1><p>'+esc(t.sub)+'</p></div></div>'+
- '<div class="pos"><div class="pos-l"><div class="pbar">'+ico("search")+'<input id="q" type="search" autocomplete="off" placeholder="'+esc(t.search)+'" value="'+esc(POS.q)+'"></div><div class="chips" id="chips"></div><div class="pg" id="pg"></div></div>'+
+ '<div class="pos"><div class="pos-l"><div class="pbar">'+ico("search")+'<input id="q" type="search" autocomplete="off" placeholder="'+esc(t.search)+'" value="'+esc(POS.q)+'"><button type="button" class="scnb" id="qscan" title="'+esc(sct("cam"))+'" aria-label="'+esc(sct("cam"))+'">'+ico("scan")+'</button></div><div class="chips" id="chips"></div><div class="pg" id="pg"></div></div>'+
  '<aside class="pos-r" id="cart" aria-label="'+esc(t.cart)+'"></aside></div><a class="cbar" id="cbar" href="#" aria-label="'+esc(t.cart)+'"></a>';
 }
 function initPos(){
+ var qsb=$("#qscan");if(qsb)qsb.addEventListener("click",function(){scnCam(function(c){scnHit(c)})});
  if(POS.done){bindReceipt();return}
  var q=$("#q");if(!q)return;
  q.addEventListener("input",function(){POS.q=q.value;renderGrid()});
@@ -1985,12 +2097,14 @@ function vInv(){
  '<div class="ph" style="margin-top:1.2rem"><span class="pi">'+ico("cube")+'</span><div><h1>'+esc(lbl("inventory"))+'</h1><p>'+esc(t.sub)+'</p></div><button class="pb p addb" id="iadd">'+ico("plus")+esc(t.add)+'</button></div>'+
  '<div id="istats" class="istats"></div>'+
  (max>0?'<div class="plim"><div><b id="plb">'+esc(fill(t.used,{n:n,max:max}))+'</b><span>'+esc(PLAN[S.plan].label)+'</span></div><div class="bar"><i id="pli" style="width:'+pct+'%"'+(pct>=90?' class="hot"':"")+'></i></div></div>':"")+
- '<div class="itool"><div class="pbar">'+ico("search")+'<input id="iq" type="search" autocomplete="off" placeholder="'+esc(t.search)+'" value="'+esc(INV.q)+'"></div><select id="icat" class="sel" aria-label="'+esc(t.category)+'"></select></div>'+
+ '<div class="itool"><div class="pbar">'+ico("search")+'<input id="iq" type="search" autocomplete="off" placeholder="'+esc(t.search)+'" value="'+esc(INV.q)+'"><button type="button" class="scnb" id="iscan" title="'+esc(sct("cam"))+'" aria-label="'+esc(sct("cam"))+'">'+ico("scan")+'</button></div><select id="icat" class="sel" aria-label="'+esc(t.category)+'"></select></div>'+
  '<div class="chips" id="ichips"></div><div id="ilist"></div><div class="toast" id="itoast" hidden></div>';
 }
 function initInv(){
  if(!$("#iq"))return;
  $("#iadd").addEventListener("click",function(){openForm(null)});
+ $("#iscan").addEventListener("click",function(){scnCam(function(c){scnHit(c)})});
+ $("#iq").addEventListener("keydown",function(e){if(e.key!=="Enter")return;var h=scnFind(this.value);if(h){e.preventDefault();this.value="";INV.q="";renderInvList();openAdjust(h)}});
  $("#iq").addEventListener("input",function(){INV.q=this.value;renderInvList()});
  $("#icat").addEventListener("change",function(){INV.cat=this.value;renderInvList()});
  if(INV.cats===null)send("GET","/businesses/"+S.bizId+"/categories").then(function(l){INV.cats=Array.isArray(l)?l:[]}).catch(function(){INV.cats=[]});
@@ -2049,15 +2163,23 @@ function openForm(p){
  var fld=function(id,label,val,extra,ph){return '<div class="fld"><label for="'+id+'">'+esc(label)+'</label><input class="inp" id="'+id+'" value="'+esc(val==null?"":val)+'" '+(extra||"")+' placeholder="'+esc(ph||"")+'"></div>'};
  dlgOpen('<button class="dx" id="dx" aria-label="Close">'+ico("x")+'</button><h2 class="dt">'+esc(p?t.editT:t.addT)+'</h2><form id="pf" novalidate><div class="dbody">'+
  fld("f_name",t.fName+" *",f.name,'autocomplete="off" maxlength="120"')+
- '<div class="g2"><div class="fld"><label for="f_cat">'+esc(t.category)+'</label><input class="inp" id="f_cat" list="catl" autocomplete="off" value="'+esc(f.categoryName||"")+'" placeholder="'+esc(t.catPh)+'"><datalist id="catl">'+Object.keys(cn).map(function(c){return '<option value="'+esc(c)+'">'}).join("")+'</datalist></div>'+
+ '<div class="g2"><div class="fld"><label for="f_cat">'+esc(t.category)+'</label><input class="inp" id="f_cat" list="catl" autocomplete="off" value="'+esc(f.categoryName||"")+'" placeholder="'+esc(t.catPh)+'"><datalist id="catl">'+Object.keys(cn).map(function(c){return '<option value="'+esc(c)+'">'}).join("")+'</datalist><div class="catch" id="catch">'+Object.keys(cn).slice(0,10).map(function(c){return '<button type="button" data-c="'+esc(c)+'" aria-pressed="'+((f.categoryName||"")===c)+'">'+esc(c)+'</button>'}).join("")+'</div></div>'+
  '<div class="fld"><label for="f_unit">'+esc(t.unit)+'</label><select class="sel" id="f_unit">'+(UNITS.indexOf(f.unit)<0&&f.unit?[f.unit]:[]).concat(UNITS).map(function(u){return '<option'+((f.unit||"pieces")===u?" selected":"")+'>'+esc(u)+'</option>'}).join("")+'</select></div></div>'+
  '<div class="g2">'+fld("f_price",t.fPrice+" *",f.sellingPrice,'inputmode="numeric"',"1000")+fld("f_cost",t.fCost,f.buyingPrice||"",'inputmode="numeric"',"700")+'</div>'+
  '<div id="fm" class="fmg"></div>'+
  '<div class="g2">'+(p?"":fld("f_qty",t.fQty,"",'inputmode="numeric"',"0"))+fld("f_min",t.fMin,p?f.minStockLevel:5,'inputmode="numeric"')+'</div>'+
- '<div class="g2">'+fld("f_bar",t.barcode,f.barcode,'inputmode="numeric" autocomplete="off"',t.opt)+fld("f_sku",t.sku,f.sku,'autocomplete="off"',t.opt)+'</div>'+
+ '<div class="fld"><label for="f_bar">'+esc(t.barcode)+' ('+esc(sct("opt"))+')</label><div class="bcrow"><input class="inp" id="f_bar" value="'+esc(f.barcode||"")+'" autocomplete="off" inputmode="text" placeholder="'+esc(sct("scan"))+'…"><button type="button" class="scnb" id="f_scan" title="'+esc(sct("cam"))+'" aria-label="'+esc(sct("cam"))+'">'+ico("scan")+'</button></div><small class="bch" id="f_bh"></small></div>'+
+ fld("f_sku",t.sku,f.sku,'autocomplete="off"',t.opt)+
  '<div class="fld"><label for="f_desc">'+esc(t.desc)+'</label><textarea class="inp" id="f_desc" rows="2" maxlength="300" placeholder="'+esc(t.opt)+'">'+esc(f.description||"")+'</textarea></div>'+
- '<div class="derr" id="derr" hidden></div></div><div class="da dsticky"><button type="button" class="pb o" id="dc">'+esc(t.cancel)+'</button><button type="submit" class="pb p" id="dsv">'+ico("check")+esc(t.save)+'</button></div></form>',"wide");
+ '<div class="derr" id="derr" hidden></div></div><div class="da dsticky"><button type="button" class="pb o" id="dc">'+esc(t.cancel)+'</button>'+(p?"":'<button type="button" class="pb o" id="dsv2">'+ico("plus")+esc(sct("sa"))+'</button>')+'<button type="submit" class="pb p" id="dsv">'+ico("check")+esc(t.save)+'</button></div></form>',"wide");
  $("#dc").addEventListener("click",modalClose);
+ window.SCNEDIT=p?p.id:null;
+ var fb=$("#f_bar");scnDupCheck();fb.addEventListener("input",scnDupCheck);
+ fb.addEventListener("keydown",function(e){if(e.key==="Enter"){e.preventDefault();scnDupCheck();$("#f_sku").focus()}});
+ $("#f_scan").addEventListener("click",function(){scnCam(function(c){fb.value=c;scnDupCheck();$("#f_sku").focus()})});
+ $$("#catch button").forEach(function(b){b.addEventListener("click",function(){$("#f_cat").value=b.getAttribute("data-c");$$("#catch button").forEach(function(x){x.setAttribute("aria-pressed",x===b)})})});
+ $("#f_cat").addEventListener("input",function(){var v=this.value.trim().toLowerCase();$$("#catch button").forEach(function(x){x.setAttribute("aria-pressed",x.getAttribute("data-c").toLowerCase()===v)})});
+ if(!p)$("#dsv2").addEventListener("click",function(){saveProduct(null,true)});
  var num=function(id){var e=$(id);if(e)e.addEventListener("input",function(){e.value=e.value.replace(/[^\d.]/g,"");mg()})};
  ["#f_price","#f_cost","#f_qty","#f_min"].forEach(num);
  function mg(){var s=parseFloat($("#f_price").value)||0,c=parseFloat($("#f_cost").value)||0,e=$("#fm");
@@ -2073,15 +2195,17 @@ function ensureCat(name){
  if(pc)return Promise.resolve(pc.categoryId);
  return send("POST","/businesses/"+S.bizId+"/categories",{name:name}).then(function(c){if(c){INV.cats=(INV.cats||[]).concat([c]);return c.id}}).catch(function(){return undefined});
 }
-function saveProduct(p){
+function saveProduct(p,again){
  if(INV.busy)return;var t=it();
  var name=$("#f_name").value.trim(),price=parseFloat($("#f_price").value);
  if(!name){dlgErr(t.errName);$("#f_name").focus();return}
  if(!(price>=0)||isNaN(price)){dlgErr(t.errPrice);$("#f_price").focus();return}
  var unit=$("#f_unit").value,bar=$("#f_bar").value.trim(),sku=$("#f_sku").value.trim();
+ var bd=scnDupCheck();if(bd){dlgErr(sct("dup",{n:bd.name}));$("#f_bar").focus();return}
  var dup=!p&&S.products.filter(function(x){return (x.name||"").trim().toLowerCase()===name.toLowerCase()})[0];
  if(dup&&!confirm(fill(t.dup,{n:dup.name,q:dup.stockQuantity,u:dup.unit||""})))return;
- INV.busy=true;dlgErr("");var b=$("#dsv");b.disabled=true;b.innerHTML='<span class="spin2"></span> '+esc(t.saving);
+ INV.busy=true;dlgErr("");var b=$(again?"#dsv2":"#dsv");b.disabled=true;b.innerHTML='<span class="spin2"></span> '+esc(t.saving);
+ var cat0=$("#f_cat").value.trim(),unit0=$("#f_unit").value;
  ensureCat($("#f_cat").value).then(function(cid){
   var req={name:name,sellingPrice:price,buyingPrice:parseFloat($("#f_cost").value)||0,minStockLevel:parseInt($("#f_min").value,10)||5,unit:unit,barcode:bar||undefined,sku:sku||undefined,description:$("#f_desc").value.trim()||undefined};
   if(cid)req.categoryId=cid;
@@ -2093,10 +2217,12 @@ function saveProduct(p){
   var cn=$("#f_cat").value.trim();
   if(saved&&saved.id){var ix=-1;S.products.forEach(function(x,i){if(String(x.id)===String(saved.id))ix=i});if(!saved.categoryName&&cn)saved.categoryName=cn;if(ix>-1)S.products[ix]=saved;else S.products.unshift(saved)}
   else load();
-  modalClose();renderInvStats();renderInvList();showToast(p?t.saved:t.added);
+  renderInvStats();renderInvList();
+  if(again&&!p){openForm(null);if($("#f_cat")){$("#f_cat").value=cat0;$$("#catch button").forEach(function(x){x.setAttribute("aria-pressed",x.getAttribute("data-c")===cat0)})}if($("#f_unit"))$("#f_unit").value=unit0;showToast(sct("saved2"));return}
+  modalClose();showToast(p?t.saved:t.added);
  }).catch(function(e){
   INV.busy=false;var m=errMsg(e);if(m==="__limit"){limitDlg();return}
-  var b=$("#dsv");if(b){b.disabled=false;b.innerHTML=ico("check")+esc(t.save)}dlgErr(m);
+  var b=$("#dsv"),b2=$("#dsv2");if(b){b.disabled=false;b.innerHTML=ico("check")+esc(t.save)}if(b2){b2.disabled=false;b2.innerHTML=ico("plus")+esc(sct("sa"))}dlgErr(m);
  });
 }
 function openAdjust(p,sug){
@@ -3542,7 +3668,7 @@ function crForm(){
  '<div class="seg" id="c_ty" style="grid-template-columns:1fr 1fr">'+["credit","rental"].map(function(k,i){return '<button type="button" data-k="'+k+'" aria-pressed="'+(i===0)+'">'+esc(t.tyL[k])+'</button>'}).join("")+'</div><p class="cxhint" id="c_hint"></p>'+
  '<div class="fld"><label for="c_c">'+esc(t.pick)+'</label><select class="sel" id="c_c"><option value="">'+esc(t.typeIn)+'</option>'+(POS.custs||[]).map(function(c){return '<option value="'+esc(c.id)+'">'+esc(c.name)+(c.phone?' · '+esc(c.phone):"")+'</option>'}).join("")+'</select></div>'+
  '<div class="qo2"><div class="fld"><label for="c_n">'+esc(t.name)+' *</label><input class="inp" id="c_n" maxlength="80" autocomplete="off"></div><div class="fld"><label for="c_p">'+esc(t.phone)+' *</label><input class="inp" id="c_p" inputmode="tel" maxlength="10" autocomplete="off" placeholder="07XXXXXXXX"></div></div>'+
- '<div class="fld"><label for="c_i">'+esc(t.nid)+' *</label><input class="inp" id="c_i" inputmode="numeric" maxlength="16" autocomplete="off" placeholder="1 1990 8 0000000 0 00"></div>'+
+ '<div class="fld"><label for="c_i">'+esc(t.nid)+' ('+esc(sct("opt"))+')</label><input class="inp" id="c_i" inputmode="numeric" maxlength="16" autocomplete="off" placeholder="1 1990 8 0000000 0 00"></div>'+
  '<div class="fld"><label for="c_s">'+esc(t.addItem)+' *</label><div class="pbar" style="height:46px">'+ico("search")+'<input id="c_s" type="search" autocomplete="off" placeholder="'+esc(t.findProd)+'"></div><div class="qopk" id="c_pk" hidden></div></div><div id="c_it"></div>'+
  '<div class="qo2"><div class="fld"><label for="c_d">'+esc(t.deposit)+' (RWF)</label><input class="inp" id="c_d" inputmode="numeric" placeholder="0"></div><div class="fld" id="c_fw" hidden><label for="c_f">'+esc(t.fee)+' (RWF)</label><input class="inp" id="c_f" inputmode="numeric" placeholder="0"></div></div>'+
  '<div class="fld"><label for="c_u" id="c_ul">'+esc(t.dueL)+' *</label><input class="inp" type="date" id="c_u" min="'+ymd(td)+'"><div class="chips" id="c_q" style="margin-top:.5rem">'+[[3,t.q3],[7,t.q7],[14,t.q14],[30,t.q30],[60,t.q60],[90,t.q90]].map(function(q){return '<button type="button" data-d="'+q[0]+'">'+esc(q[1])+'</button>'}).join("")+'</div></div>'+
@@ -3573,12 +3699,11 @@ function crForm(){
    if(ex)ex.qty++;else F.items.push({productId:p.id,name:p.name,qty:1,price:Number(p.sellingPrice||0)});$("#c_s").value="";pk.hidden=true;sync()})})});
  $("#cf").addEventListener("submit",function(e){
   e.preventDefault();if(CR.busy)return;var nm=$("#c_n").value.trim(),ph=$("#c_p").value.trim(),id=$("#c_i").value.trim(),u=$("#c_u").value,rd=$("#c_r").value,dep=parseInt($("#c_d").value||"0",10)||0,fee=parseInt($("#c_f").value||"0",10)||0,sb=F.items.reduce(function(a,i){return a+i.qty*i.price},0);
-  if(!nm){dlgErr(t.errName);return}if(ph.length<10){dlgErr(t.errPhone);return}if(!id){dlgErr(t.errId);return}
-  if(!F.items.length){dlgErr(t.errItems);return}if(F.items.some(function(i){return !(i.price>0)})){dlgErr(t.errPrice);return}
+  if(!nm){dlgErr(t.errName);return}if(ph.length<10){dlgErr(t.errPhone);return}  if(!F.items.length){dlgErr(t.errItems);return}if(F.items.some(function(i){return !(i.price>0)})){dlgErr(t.errPrice);return}
   if(dep>sb){dlgErr(t.errDep);return}if(!u){dlgErr(F.type==="rental"?t.errDueR:t.errDue);return}
-  var body={type:F.type,customerName:nm,customerPhone:ph,customerId:id,items:JSON.stringify(F.items),totalAmount:sb,deposit:dep,rentalFee:F.type==="rental"?fee:0,dueDate:u+"T00:00:00",returnDate:F.type==="rental"&&rd?rd+"T00:00:00":null,notes:$("#c_t").value.trim()};
+  var body={type:F.type,customerName:nm,customerPhone:ph,customerId:id||undefined,items:JSON.stringify(F.items),totalAmount:sb,deposit:dep,rentalFee:F.type==="rental"?fee:0,dueDate:u+"T00:00:00",returnDate:F.type==="rental"&&rd?rd+"T00:00:00":null,notes:$("#c_t").value.trim()};
   CR.busy=true;dlgErr("");var bt=$("#dsv");bt.disabled=true;bt.innerHTML='<span class="spin2"></span> '+esc(it().saving);
-  post("/businesses/"+S.bizId+"/credit-rentals",body).then(function(r){CR.busy=false;
+  post("/businesses/"+S.bizId+"/credit-rentals",body).catch(function(er){if(!id&&er&&er.status===400&&/id|national/i.test(String(er.msg||""))){body.customerId="N/A";return post("/businesses/"+S.bizId+"/credit-rentals",body)}throw er}).then(function(r){CR.busy=false;
    var n=Object.assign({status:"active",createdAt:new Date().toISOString(),issueDate:new Date().toISOString(),payments:[]},body,r&&r.id?r:{id:"tmp"+Date.now()});
    CR.list=[n].concat(CR.list||[]);modalClose();renderCR();showToast(F.type==="rental"?t.savedR:t.savedC)})
   .catch(function(er){CR.busy=false;bt.disabled=false;bt.innerHTML=ico("check")+'<span id="c_sv">'+esc(F.type==="rental"?t.saveR:t.saveC)+'</span>';var m=errMsg(er);dlgErr(m==="__limit"?it().errSave:m||it().errSave)});
