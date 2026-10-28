@@ -582,7 +582,7 @@ select.in:disabled{background-color:var(--bg);color:#9aa4bd;cursor:not-allowed}
     $("#okTitle").textContent=tr("ok_t")+first+"!";
     $("#okText").textContent=tr(agent?"ok_agent":"ok_x");
     $("#okDash").hidden=false;
-    try{var pi=localStorage.getItem("tk_plan_intent");if(pi&&pi!=="ubuntu"&&!agent)setTimeout(function(){location.href="/app/"},1600)}catch(e){}
+    try{if(!agent){localStorage.setItem("tk_choose_plan","1");setTimeout(function(){location.href="/app/"},1600)}}catch(e){}
     window.scrollTo({top:0,behavior:"smooth"});
   }
   var session=null;

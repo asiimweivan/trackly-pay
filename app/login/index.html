@@ -519,6 +519,7 @@ select.in:disabled{background-color:var(--bg);color:#9aa4bd;cursor:not-allowed}
   $("#gsPhone").addEventListener("input",function(e){e.target.value=digits(e.target.value)});
   $("#gsNo").addEventListener("click",function(){$("#gs").hidden=true;gsCred=null;gsSession=null});
   function gsFinish(res){
+    try{localStorage.setItem("tk_choose_plan","1")}catch(e){}
     try{localStorage.setItem(KEYS.a,res.accessToken);localStorage.setItem(KEYS.r,res.refreshToken);localStorage.setItem(KEYS.u,JSON.stringify(res.user))}catch(e){}
     return fetch(API+"/businesses",{headers:{Authorization:"Bearer "+res.accessToken}}).then(function(r){return r.ok?r.json():[]}).then(function(l){if(l&&l.length){try{localStorage.setItem(KEYS.b,l[0].id)}catch(e){}}}).catch(function(){}).then(function(){location.href="/app/"});
   }
