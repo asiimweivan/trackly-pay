@@ -101,6 +101,12 @@ select.in:disabled{background-color:var(--bg);color:#9aa4bd;cursor:not-allowed}
 .gs label{display:block;font-weight:700;font-size:.9rem;color:var(--ink);margin:.9rem 0 .4rem}
 .gs .tin{width:100%;height:54px;border:1.5px solid #d6dcea;border-radius:13px;font:inherit;font-weight:600;font-size:1rem;padding:0 1rem;color:var(--ink);outline:0}
 .gs .tin:focus,.gs .phone:focus-within{border-color:var(--teal);box-shadow:0 0 0 3px rgba(15,166,140,.18)}
+.gs .box{max-height:94vh;overflow-y:auto}
+.gs select.tin{appearance:auto;background:#fff;padding-right:.6rem}
+.gs .two{display:grid;grid-template-columns:1fr 1fr;gap:.6rem}
+.gs .two label{margin-top:.9rem}
+.gs .sug{margin:.35rem 0 0;font-size:.82rem;color:var(--tealD);font-weight:600}
+.gs .fine{margin:1rem 0 0;font-size:.8rem;color:var(--mut);line-height:1.4}.gs .fine a{color:var(--tealD);font-weight:700}
 .gs .row{display:flex;gap:.6rem;margin-top:1.2rem}
 .gs .row .btn{flex:1}
 .gs .gerr{margin:.9rem 0 0}
@@ -172,6 +178,14 @@ select.in:disabled{background-color:var(--bg);color:#9aa4bd;cursor:not-allowed}
 <div class="phone"><b><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><use href="#flag-rw"/></svg>+250</b><input id="gsPhone" type="tel" inputmode="numeric" autocomplete="tel-national" placeholder="78X XXX XXX" maxlength="20"></div>
 <label for="gsBiz" data-t="gs_biz">Business name</label>
 <input class="tin" id="gsBiz" type="text" autocomplete="organization" maxlength="100">
+<label for="gsType" data-t="gs_type">Type of business</label>
+<select class="tin" id="gsType"></select><div class="sug" id="gsSug" hidden></div>
+<div class="two"><div><label for="gsProv" data-t="gs_prov">Province</label><select class="tin" id="gsProv"></select></div>
+<div><label for="gsDist" data-t="gs_dist">District</label><select class="tin" id="gsDist" disabled></select></div></div>
+<div class="two"><div><label for="gsSect" data-t="gs_sect">Sector</label><select class="tin" id="gsSect" disabled></select></div>
+<div><label for="gsCell" data-t="gs_cell">Cell</label><select class="tin" id="gsCell" disabled></select></div></div>
+<label for="gsVill" data-t="gs_vill">Village</label><select class="tin" id="gsVill" disabled></select>
+<p class="fine"><span data-t="gs_acc">By continuing you accept the</span> <a href="/terms.html" target="_blank" rel="noopener" data-t="l_terms">Terms of service</a> <span data-t="gs_and">and</span> <a href="/privacy.html" target="_blank" rel="noopener" data-t="l_priv">Privacy policy</a>.</p>
 <div class="row"><button type="button" class="btn" id="gsNo" style="background:#fff;border-color:#d6dcea;color:var(--ink)" data-t="gs_no">Cancel</button><button type="button" class="btn pri" id="gsGo" style="background:var(--teal);color:#fff" data-t="gs_go">Create my account</button></div>
 </div></div>
 
@@ -311,7 +325,7 @@ select.in:disabled{background-color:var(--bg);color:#9aa4bd;cursor:not-allowed}
   var KEYS={a:"@trackly_access_token_v1",r:"@trackly_refresh_token_v1",u:"@trackly_user_v1",b:"@trackly_business_id_v1"};
   var T={
   en:{home:"Home",tag:"Business Operating System",h1a:"Welcome back.",h1b:"Your business is waiting.",lead:"Log in to see today's sales, stock and customers.",
-   noacc:"New to Trackly?",l_terms:"Terms of service",l_priv:"Privacy policy",g_or:"or",gs_t:"One last step",gs_hi:"Hi {n}. Add your phone number and business name to finish.",gs_ph:"Phone number",gs_biz:"Business name",gs_go:"Create my account",gs_no:"Cancel",gs_e1:"Enter your business name.",gs_e2:"This phone number already has a Trackly account. Log in with it, or use another number.",gs_e3:"Your business could not be saved. Tap Create my account to try again.",g_btn:"Continue with Google",g_err:"Google sign-in did not work. Try again or use your phone number.",signup:"Create account",title:"Log in",sub:"Use the phone number and password you signed up with.",l_phone:"Phone number",l_pw:"Password",forgot:"Forgot password?",go:"Log in",going:"Logging in…",
+   noacc:"New to Trackly?",l_terms:"Terms of service",l_priv:"Privacy policy",g_or:"or",gs_type:"Type of business",gs_prov:"Province",gs_dist:"District",gs_sect:"Sector",gs_cell:"Cell",gs_vill:"Village",gs_pick:"Choose…",gs_sug:"Suggested from your business name. Change it if it is not right.",gs_e4:"Choose your type of business.",gs_e5:"Choose your location: province, district, sector, cell and village.",gs_acc:"By continuing you accept the",gs_and:"and the",gs_geo:"Could not load locations. Check your internet and try again.",gs_prn:["Kigali City","Northern","Southern","Eastern","Western"],gs_t:"One last step",gs_hi:"Hi {n}. Add your phone number and business name to finish.",gs_ph:"Phone number",gs_biz:"Business name",gs_go:"Create my account",gs_no:"Cancel",gs_e1:"Enter your business name.",gs_e2:"This phone number already has a Trackly account. Log in with it, or use another number.",gs_e3:"Your business could not be saved. Tap Create my account to try again.",g_btn:"Continue with Google",g_err:"Google sign-in did not work. Try again or use your phone number.",signup:"Create account",title:"Log in",sub:"Use the phone number and password you signed up with.",l_phone:"Phone number",l_pw:"Password",forgot:"Forgot password?",go:"Log in",going:"Logging in…",
    l_email:"Email",back:"Back",f_title:"Reset your password",f_sub:"Enter the email you used to sign up. We will send you a 6-digit code.",f_send:"Send code",sending:"Sending…",
    r_title:"Enter the code",r_sub:"We sent a 6-digit code to",l_otp:"6-digit code",l_npw:"New password",l_pw2:"Repeat password",r_go:"Change password",resend:"Send the code again",
    show:"Show password",hide:"Hide password",
@@ -321,7 +335,7 @@ select.in:disabled{background-color:var(--bg);color:#9aa4bd;cursor:not-allowed}
    m_staff:"Join as staff",m_staffx:"Got an invite code from your employer? Join their business.",j_title:"Join as staff",j_sub:"Enter the 6-digit code your employer sent you and the phone number they invited.",j_code:"Invite code",j_name:"Full name",j_pw:"Create password",j_go:"Join business",e_jcode:"Enter the 6-digit invite code.",e_jname:"Enter your first and last name.",e_jpw:"Password must have at least 6 characters.",e_jpw2:"The two passwords do not match.",m_h:"Other ways to join",m_agent:"Become an agent",m_agentx:"Earn commission by bringing businesses to Trackly.",rec_link:"Account deleted? Ask Trackly to recover it",rec_title:"Recover your account",rec_sub:"Enter the phone number and password of the deleted account. Trackly will review the request and email you.",rec_go:"Send request",rec_ok:"Request sent. Trackly will email you once it is reviewed.",rec_err:"We could not find a deleted account with these details.",
    ok_t:"Welcome back, ",ok_x:"You are logged in. The web dashboard is coming soon. For now, open the Trackly Android app to run your business.",logout:"Log out",ok_dl:"Download Trackly for Android"},
   rw:{home:"Ahabanza",tag:"Business Operating System",h1a:"Murakaza neza nanone.",h1b:"Ubucuruzi bwawe buragutegereje.",lead:"Injira urebe amafaranga yinjiye, stock n'abakiriya b'uyu munsi.",
-   noacc:"Uri mushya kuri Trackly?",l_terms:"Amabwiriza yo gukoresha",l_priv:"Politiki y'ibanga",g_or:"cyangwa",gs_t:"Intambwe ya nyuma",gs_hi:"Muraho {n}. Andika telefone n'izina ry'ubucuruzi urangize.",gs_ph:"Numero ya telefone",gs_biz:"Izina ry'ubucuruzi",gs_go:"Fungura konti",gs_no:"Bireke",gs_e1:"Andika izina ry'ubucuruzi.",gs_e2:"Iyi telefone isanzwe ifite konti kuri Trackly. Yinjirireho, cyangwa ukoreshe indi.",gs_e3:"Ubucuruzi ntibwabitswe. Kanda Fungura konti ongera ugerageze.",g_btn:"Komeza na Google",g_err:"Kwinjira na Google ntibyakunze. Ongera ugerageze cyangwa ukoreshe nimero ya telefone.",signup:"Fungura konti",title:"Injira",sub:"Koresha nimero ya telefoni n'ijambo banga wiyandikishijeho.",l_phone:"Nimero ya telefoni",l_pw:"Ijambo banga",forgot:"Wibagiwe ijambo banga?",go:"Injira",going:"Turimo kukwinjiza…",
+   noacc:"Uri mushya kuri Trackly?",l_terms:"Amabwiriza yo gukoresha",l_priv:"Politiki y'ibanga",g_or:"cyangwa",gs_type:"Ubwoko bw'ubucuruzi",gs_prov:"Intara",gs_dist:"Akarere",gs_sect:"Umurenge",gs_cell:"Akagari",gs_vill:"Umudugudu",gs_pick:"Hitamo…",gs_sug:"Byatanzwe hakurikijwe izina ry'ubucuruzi. Wabihindura niba atari byo.",gs_e4:"Hitamo ubwoko bw'ubucuruzi.",gs_e5:"Hitamo aho uherereye: intara, akarere, umurenge, akagari n'umudugudu.",gs_acc:"Ukomeje uremera",gs_and:"na",gs_geo:"Ntitwabonye aho ukorera. Reba interineti ugerageze.",gs_prn:["Umujyi wa Kigali","Amajyaruguru","Amajyepfo","Iburasirazuba","Iburengerazuba"],gs_t:"Intambwe ya nyuma",gs_hi:"Muraho {n}. Andika telefone n'izina ry'ubucuruzi urangize.",gs_ph:"Numero ya telefone",gs_biz:"Izina ry'ubucuruzi",gs_go:"Fungura konti",gs_no:"Bireke",gs_e1:"Andika izina ry'ubucuruzi.",gs_e2:"Iyi telefone isanzwe ifite konti kuri Trackly. Yinjirireho, cyangwa ukoreshe indi.",gs_e3:"Ubucuruzi ntibwabitswe. Kanda Fungura konti ongera ugerageze.",g_btn:"Komeza na Google",g_err:"Kwinjira na Google ntibyakunze. Ongera ugerageze cyangwa ukoreshe nimero ya telefone.",signup:"Fungura konti",title:"Injira",sub:"Koresha nimero ya telefoni n'ijambo banga wiyandikishijeho.",l_phone:"Nimero ya telefoni",l_pw:"Ijambo banga",forgot:"Wibagiwe ijambo banga?",go:"Injira",going:"Turimo kukwinjiza…",
    l_email:"Imeyili",back:"Subira inyuma",f_title:"Subiza ijambo banga",f_sub:"Andika imeyili wiyandikishijeho. Turakohereza kode y'imibare 6.",f_send:"Ohereza kode",sending:"Turimo kohereza…",
    r_title:"Andika kode",r_sub:"Twohereje kode y'imibare 6 kuri",l_otp:"Kode y'imibare 6",l_npw:"Ijambo banga rishya",l_pw2:"Subiramo ijambo banga",r_go:"Hindura ijambo banga",resend:"Ohereza kode nanone",
    show:"Erekana ijambo banga",hide:"Hisha ijambo banga",
@@ -331,7 +345,7 @@ select.in:disabled{background-color:var(--bg);color:#9aa4bd;cursor:not-allowed}
    m_staff:"Injira nk'umukozi",m_staffx:"Ufite kode y'ubutumire wahawe n'umukoresha? Injira mu bucuruzi bwe.",j_title:"Injira nk'umukozi",j_sub:"Andika kode y'imibare 6 wahawe n'umukoresha wawe na nimero yatumiwe.",j_code:"Kode y'ubutumire",j_name:"Amazina yuzuye",j_pw:"Hitamo ijambo banga",j_go:"Injira mu bucuruzi",e_jcode:"Injiza kode y'ubutumire y'imibare 6.",e_jname:"Andika izina ryawe n'irindi.",e_jpw:"Ijambo banga rigomba kuba rifite nibura inyuguti 6.",e_jpw2:"Amagambo banga ntahuje.",m_h:"Ubundi buryo bwo kwinjira",m_agent:"Iba umu agent",m_agentx:"Habwa komisiyo uzana ubucuruzi kuri Trackly.",rec_link:"Konti yarasibwe? Saba Trackly kuyigarura",rec_title:"Garura konti yawe",rec_sub:"Andika nimero na ijambo banga bya konti yasibwe. Trackly irasuzuma ubusabe ikwandikire kuri imeri.",rec_go:"Ohereza ubusabe",rec_ok:"Ubusabe bwoherejwe. Trackly izakwandikira kuri imeri nirangiza kubusuzuma.",rec_err:"Ntitwabonye konti yasibwe ifite aya makuru.",
    ok_t:"Murakaza neza nanone, ",ok_x:"Winjiye. Dashboard ya web iraza vuba. Ubu koresha porogaramu ya Trackly kuri Android.",logout:"Sohoka",ok_dl:"Kuramo Trackly kuri Android"},
   fr:{home:"Accueil",tag:"Business Operating System",h1a:"Bon retour.",h1b:"Votre commerce vous attend.",lead:"Connectez-vous pour voir les ventes, le stock et les clients du jour.",
-   noacc:"Nouveau sur Trackly ?",l_terms:"Conditions d'utilisation",l_priv:"Politique de confidentialité",g_or:"ou",gs_t:"Dernière étape",gs_hi:"Bonjour {n}. Ajoutez votre téléphone et le nom de votre commerce pour terminer.",gs_ph:"Numéro de téléphone",gs_biz:"Nom du commerce",gs_go:"Créer mon compte",gs_no:"Annuler",gs_e1:"Saisissez le nom de votre commerce.",gs_e2:"Ce numéro a déjà un compte Trackly. Connectez-vous avec, ou utilisez un autre numéro.",gs_e3:"Votre commerce n'a pas pu être enregistré. Touchez Créer mon compte pour réessayer.",g_btn:"Continuer avec Google",g_err:"La connexion Google a échoué. Réessayez ou utilisez votre numéro de téléphone.",signup:"Créer un compte",title:"Se connecter",sub:"Utilisez le numéro et le mot de passe de votre inscription.",l_phone:"Numéro de téléphone",l_pw:"Mot de passe",forgot:"Mot de passe oublié ?",go:"Se connecter",going:"Connexion…",
+   noacc:"Nouveau sur Trackly ?",l_terms:"Conditions d'utilisation",l_priv:"Politique de confidentialité",g_or:"ou",gs_type:"Type de commerce",gs_prov:"Province",gs_dist:"District",gs_sect:"Secteur",gs_cell:"Cellule",gs_vill:"Village",gs_pick:"Choisir…",gs_sug:"Suggéré d'après le nom du commerce. Modifiez-le si besoin.",gs_e4:"Choisissez le type de commerce.",gs_e5:"Choisissez l'emplacement : province, district, secteur, cellule et village.",gs_acc:"En continuant, vous acceptez les",gs_and:"et la",gs_geo:"Impossible de charger les lieux. Vérifiez votre connexion et réessayez.",gs_prn:["Ville de Kigali","Nord","Sud","Est","Ouest"],gs_t:"Dernière étape",gs_hi:"Bonjour {n}. Ajoutez votre téléphone et le nom de votre commerce pour terminer.",gs_ph:"Numéro de téléphone",gs_biz:"Nom du commerce",gs_go:"Créer mon compte",gs_no:"Annuler",gs_e1:"Saisissez le nom de votre commerce.",gs_e2:"Ce numéro a déjà un compte Trackly. Connectez-vous avec, ou utilisez un autre numéro.",gs_e3:"Votre commerce n'a pas pu être enregistré. Touchez Créer mon compte pour réessayer.",g_btn:"Continuer avec Google",g_err:"La connexion Google a échoué. Réessayez ou utilisez votre numéro de téléphone.",signup:"Créer un compte",title:"Se connecter",sub:"Utilisez le numéro et le mot de passe de votre inscription.",l_phone:"Numéro de téléphone",l_pw:"Mot de passe",forgot:"Mot de passe oublié ?",go:"Se connecter",going:"Connexion…",
    l_email:"E-mail",back:"Retour",f_title:"Réinitialiser le mot de passe",f_sub:"Entrez l'e-mail de votre inscription. Nous vous enverrons un code à 6 chiffres.",f_send:"Envoyer le code",sending:"Envoi…",
    r_title:"Entrez le code",r_sub:"Nous avons envoyé un code à 6 chiffres à",l_otp:"Code à 6 chiffres",l_npw:"Nouveau mot de passe",l_pw2:"Répétez le mot de passe",r_go:"Changer le mot de passe",resend:"Renvoyer le code",
    show:"Afficher le mot de passe",hide:"Masquer le mot de passe",
@@ -459,12 +473,49 @@ select.in:disabled{background-color:var(--bg);color:#9aa4bd;cursor:not-allowed}
 
   /* ---------- Google: one-step sign-up (phone + business name) ---------- */
   var gsCred=null,gsSession=null,gsBusy=false;
-  function gsErr(m){var b=$("#gsErr");b.textContent=m;b.hidden=!m}
+  function gsErr(m){var b=$("#gsErr");b.textContent=m;b.hidden=!m;if(m)try{b.scrollIntoView({block:"nearest"})}catch(e){}}
   function gsOpen(cred){
     gsCred=cred;var d=gDecode(cred),n=(d.given_name||d.name||"").split(" ")[0];
     $("#gsS").textContent=tr("gs_hi").replace("{n}",n);gsErr("");
-    $("#gs").hidden=false;setTimeout(function(){$("#gsPhone").focus()},60);
+    $("#gs").hidden=false;gsInit();setTimeout(function(){$("#gsPhone").focus()},60);
   }
+
+  var GTYPES=[["retail",{en:"Retail / General Store",rw:"Iduka rya Retail",fr:"Commerce de détail"}],["grocery",{en:"Grocery / Supermarket",rw:"Ibiribwa n'Ibinyobwa",fr:"Épicerie / Supermarché"}],["restaurant",{en:"Restaurant / Bar",rw:"Resitora / Bar",fr:"Restaurant / Bar"}],["bakery",{en:"Bakery / Cafe",rw:"Ibigori / Kafe",fr:"Boulangerie / Café"}],["pharmacy",{en:"Pharmacy",rw:"Farumasi",fr:"Pharmacie"}],["clinic",{en:"Clinic / Health",rw:"Ubuvuzi",fr:"Clinique / Santé"}],["salon",{en:"Salon / Beauty",rw:"Salon",fr:"Salon de beauté"}],["boutique",{en:"Boutique / Clothing",rw:"Boutiki",fr:"Boutique / Vêtements"}],["hardware",{en:"Hardware / Construction",rw:"Feramente",fr:"Quincaillerie"}],["electronics",{en:"Electronics",rw:"Elegitoronike",fr:"Électronique"}],["agriculture",{en:"Agriculture",rw:"Ubuhinzi",fr:"Agriculture"}],["auto",{en:"Auto Repair / Garage",rw:"Ivugurura Imodoka",fr:"Garage / Réparation auto"}],["transport",{en:"Transport / Logistics",rw:"Gutwara",fr:"Transport / Logistique"}],["hotel",{en:"Hotel / Guesthouse",rw:"Hoteli",fr:"Hôtel / Auberge"}],["cyber",{en:"Cyber Cafe / IT Services",rw:"Sibernet / IT",fr:"Cybercafé / Services IT"}],["services",{en:"Professional Services",rw:"Serivisi",fr:"Services professionnels"}],["realestate",{en:"Real Estate / Construction",rw:"Inyubako",fr:"Immobilier / Construction"}],["wholesale",{en:"Wholesale / Distribution",rw:"Gucuruza Igicuruzwa",fr:"Vente en gros / Distribution"}],["other",{en:"Other",rw:"Ibindi",fr:"Autre"}]];
+  var GRULES=[["boutique",/fashion|cloth|boutique|dress|shoe|wear|apparel|garment|tailor|couture|mode\b|vetement|vêtement|imyenda|inkweto|sneaker|textile/],["bakery",/bakery|bread|cake|pastry|patisserie|boulang|cafe|café|coffee|ikawa|ibigori/],["pharmacy",/pharm|farumasi|drug/],["clinic",/clinic|clinique|health|dental|hospital|medical|optic|ubuvuzi|santé|sante/],["salon",/salon|beauty|hair|barber|spa\b|coiffure|nail|makeup|massage|cosmetic/],["restaurant",/restaurant|resto|\bbar\b|grill|kitchen|pub\b|lounge|food|pizza|burger|brochette|snack|catering/],["hardware",/hardware|construction|quincaill|feramente|cement|paint|plumb|timber|building/],["electronics",/electronic|phone|computer|laptop|tech\b|gadget|solar|mobile|elegitoronike/],["agriculture",/farm|agri|ubuhinzi|seed|crop|livestock|poultry|dairy|fertili|cooperative|coop\b/],["auto",/garage|auto\b|motor|tyre|tire|car wash|carwash|mechanic|spare part|imodoka/],["transport",/transport|logistic|cargo|taxi|moto\b|courier|delivery|travel|agency/],["hotel",/hotel|guest ?house|lodge|\binn\b|resort|motel|auberge|hoteli/],["cyber",/cyber|software|digital|\bit\b|web\b|computer service|print|photocopy|studio|media|design/],["wholesale",/wholesale|distribut|en gros|\bgros\b|import|export|trading|traders?\b/],["grocery",/supermarket|grocery|market|mart\b|epicerie|épicerie|ibiribwa|fresh|vegetable|fruit|butcher|boucherie|mini ?market/],["realestate",/real estate|property|immobil|inyubako|estate|apartment|rental/],["services",/consult|services?\b|law|account|insurance|security|cleaning|school|training|education/],["retail",/shop|store|duka|iduka|general|retail|boutique|supply|supplies|stock|magasin|commerce/]];
+  var gsTypeTouched=false,gsGeo=null,gsGeoLoading=null,GPROV=["Kigali","Northern","Southern","Eastern","Western"];
+  function gsFill(el,items,lab,keep){
+    var cur=keep?el.value:"";el.innerHTML="";
+    var o=document.createElement("option");o.value="";o.textContent=tr("gs_pick");el.appendChild(o);
+    items.forEach(function(x,i){var op=document.createElement("option");op.value=x;op.textContent=lab?lab(x,i):x;el.appendChild(op)});
+    el.value=items.indexOf(cur)>-1?cur:"";el.disabled=items.length===0;
+  }
+  function gsKeys(o){return o?Object.keys(o).sort(function(a,b){return a.localeCompare(b)}):[]}
+  function gsCascade(keep){
+    var g=gsGeo,p=$("#gsProv").value,dd=g&&p?g[p]:null;
+    gsFill($("#gsDist"),gsKeys(dd),null,keep);var d=$("#gsDist").value;
+    var ss=dd&&d?dd[d]:null;gsFill($("#gsSect"),gsKeys(ss),null,keep);var sc=$("#gsSect").value;
+    var cc=ss&&sc?ss[sc]:null;gsFill($("#gsCell"),gsKeys(cc),null,keep);var c=$("#gsCell").value;
+    var vv=cc&&c?cc[c]:null;gsFill($("#gsVill"),vv?vv.slice().sort(function(a,b){return a.localeCompare(b)}):[],null,keep);
+  }
+  function gsLoadGeo(){
+    if(gsGeo||gsGeoLoading)return;
+    gsGeoLoading=fetch("/app/geo.json").then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(j){gsGeo=j;gsGeoLoading=null;gsCascade(true)}).catch(function(){gsGeoLoading=null;gsErr(tr("gs_geo"))});
+  }
+  function gsInit(){
+    gsFill($("#gsType"),GTYPES.map(function(t){return t[0]}),function(k,i){return GTYPES[i][1][lang]||GTYPES[i][1].en},true);
+    gsFill($("#gsProv"),GPROV,function(k,i){return T[lang].gs_prn[i]},true);
+    gsCascade(true);gsLoadGeo();
+  }
+  $("#gsProv").addEventListener("change",function(){gsLoadGeo();gsCascade(false)});
+  $("#gsDist").addEventListener("change",function(){gsCascade(true)});
+  $("#gsSect").addEventListener("change",function(){gsCascade(true)});
+  $("#gsCell").addEventListener("change",function(){gsCascade(true)});
+  $("#gsType").addEventListener("change",function(){gsTypeTouched=true;$("#gsSug").hidden=true});
+  $("#gsBiz").addEventListener("input",function(e){
+    if(gsTypeTouched)return;var v=e.target.value.toLowerCase(),hit="";
+    for(var i=0;i<GRULES.length;i++){if(GRULES[i][1].test(v)){hit=GRULES[i][0];break}}
+    $("#gsType").value=hit;$("#gsSug").textContent=tr("gs_sug");$("#gsSug").hidden=!hit;
+  });
   $("#gsPhone").addEventListener("input",function(e){e.target.value=digits(e.target.value)});
   $("#gsNo").addEventListener("click",function(){$("#gs").hidden=true;gsCred=null;gsSession=null});
   function gsFinish(res){
@@ -475,12 +526,14 @@ select.in:disabled{background-color:var(--bg);color:#9aa4bd;cursor:not-allowed}
     if(gsBusy)return;var ph=$("#gsPhone").value,biz=$("#gsBiz").value.trim();
     if(!/^[78]\d{8}$/.test(ph))return gsErr(tr("e_phone"));
     if(biz.length<2)return gsErr(tr("gs_e1"));
+    if(!$("#gsType").value)return gsErr(tr("gs_e4"));
+    var gk=["Prov","Dist","Sect","Cell","Vill"];for(var gi=0;gi<5;gi++){if(!$("#gs"+gk[gi]).value)return gsErr(tr("gs_e5"))}
     gsErr("");gsBusy=true;$("#gsGo").disabled=true;
     var phone="+250"+ph;
     var step=gsSession?Promise.resolve(gsSession):call("/auth/google",{idToken:gsCred,phone:phone,role:"business_owner"});
     step.then(function(res){
       gsSession=res;
-      var body={name:biz,category:"retail",phone:phone,email:(res.user&&res.user.email)||"",isVatRegistered:false,annualTurnover:0};
+      var body={name:biz,category:$("#gsType").value,province:$("#gsProv").value,district:$("#gsDist").value,sector:$("#gsSect").value,cell:$("#gsCell").value,village:$("#gsVill").value,phone:phone,email:(res.user&&res.user.email)||"",isVatRegistered:false,annualTurnover:0};
       return fetch(API+"/businesses",{method:"POST",headers:{"Content-Type":"application/json",Authorization:"Bearer "+res.accessToken},body:JSON.stringify(body)}).then(function(r){
         if(!r.ok)throw new ApiErr(r.status,"biz");
       }).then(function(){return gsFinish(res)},function(e){gsErr(tr("gs_e3"));throw {handled:1}});
