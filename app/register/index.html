@@ -539,10 +539,10 @@ select.in:disabled{background-color:var(--bg);color:#9aa4bd;cursor:not-allowed}
   function gReset(){
     state.google=null;$("#email").readOnly=false;$("#email").value="";
     try{sessionStorage.removeItem("tk_gid")}catch(e){}
-    show();gRender($("#gbtn"),function(c){gApply(c,true)});
+    show();gRender($("#gbtn"),function(c){try{sessionStorage.setItem("tk_gid",c)}catch(e){}location.href="/app/login/?g=1"});
   }
   $("#gchange").addEventListener("click",function(e){e.preventDefault();gReset()});
-  gRender($("#gbtn"),function(c){gApply(c,true)});
+  gRender($("#gbtn"),function(c){try{sessionStorage.setItem("tk_gid",c)}catch(e){}location.href="/app/login/?g=1"});
   try{
     var qs=new URLSearchParams(location.search),gid=sessionStorage.getItem("tk_gid");
     if(qs.get("google")==="1"&&gid){gApply(gid,true);var gn=$("#gnoteTx");gn.textContent=tr("g_new");sessionStorage.removeItem("tk_gid")}
