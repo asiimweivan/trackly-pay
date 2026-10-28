@@ -211,7 +211,7 @@ select.in:disabled{background-color:var(--bg);color:#9aa4bd;cursor:not-allowed}
         <button type="button" id="eye" aria-label="Show password"><svg viewBox="0 0 24 24"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></button></div>
        <div class="meter"><i id="mbar"></i></div><div class="meter-l" id="pwl"></div></div>
       <div class="field"><label for="pw2" data-t="l_pw2">Repeat password</label><input class="in" id="pw2" type="password" autocomplete="new-password" placeholder="••••••"></div>
-      <label class="terms"><input type="checkbox" id="agree"><span><span data-t="t_a">I accept the terms and the</span> <a href="/privacy.html" target="_blank" rel="noopener" data-t="t_b">Privacy policy</a>.</span></label>
+      <label class="terms"><input type="checkbox" id="agree"><span><span data-t="t_a">I accept the</span> <a href="/terms.html" target="_blank" rel="noopener" data-t="t_c">Terms of service</a> <span data-t="t_d">and the</span> <a href="/privacy.html" target="_blank" rel="noopener" data-t="t_b">Privacy policy</a>.</span></label>
      </section>
 
      <!-- agent -->
@@ -222,7 +222,7 @@ select.in:disabled{background-color:var(--bg);color:#9aa4bd;cursor:not-allowed}
       <div class="field"><label for="aemail" data-t="l_email">Email</label><input class="in" id="aemail" type="email" autocomplete="email" placeholder="email@example.com"></div>
       <div class="field"><label for="apw" data-t="l_pw">Password</label><input class="in" id="apw" type="password" autocomplete="new-password" placeholder="••••••"></div>
       <div class="field"><label for="apw2" data-t="l_pw2">Repeat password</label><input class="in" id="apw2" type="password" autocomplete="new-password" placeholder="••••••"></div>
-      <label class="terms"><input type="checkbox" id="aagree"><span><span data-t="t_a">I accept the terms and the</span> <a href="/privacy.html" target="_blank" rel="noopener" data-t="t_b">Privacy policy</a>.</span></label>
+      <label class="terms"><input type="checkbox" id="aagree"><span><span data-t="t_a">I accept the</span> <a href="/terms.html" target="_blank" rel="noopener" data-t="t_c">Terms of service</a> <span data-t="t_d">and the</span> <a href="/privacy.html" target="_blank" rel="noopener" data-t="t_b">Privacy policy</a>.</span></label>
      </section>
 
      <div class="btns">
@@ -292,7 +292,7 @@ select.in:disabled{background-color:var(--bg);color:#9aa4bd;cursor:not-allowed}
    have:"Already have an account?",login:"Log in",title:"Create your account",sub:"Free to start. It takes about two minutes.",r_owner:"Business owner",r_agent:"Agent",
    s1:"Personal",s2:"Business",s3:"Security",l_name:"Full name",l_phone:"Phone number",h_phone:"9 digits, starting with 7",l_email:"Email",h_email:"We use your email to recover your password.",
    l_biz:"Business name",l_type:"Type of business",l_prov:"Province",l_dist:"District",l_sect:"Sector",l_cell:"Cell",l_vill:"Village",l_ref:"Agent code",opt:"(optional)",h_ref:"If a Trackly agent gave you a code, enter it here so they get credit.",
-   l_pw:"Password",l_pw2:"Repeat password",t_a:"I accept the terms and the",t_b:"Privacy policy",back:"Back",next:"Continue",create:"Create account",creating:"Creating your account…",pick:"Select",
+   l_pw:"Password",l_pw2:"Repeat password",t_a:"I accept the",t_c:"Terms of service",t_d:"and the",t_b:"Privacy policy",back:"Back",next:"Continue",create:"Create account",creating:"Creating your account…",pick:"Select",
    eye_show:"Show password",eye_hide:"Hide password",
    str_weak:"Weak",str_fair:"Fair",str_good:"Good",str_strong:"Strong",
    e_name:"Enter your full name.",e_name2:"Enter your first and last name.",e_phone:"Enter a valid phone number: 9 digits starting with 7.",e_email:"Enter a valid email address.",
@@ -305,7 +305,7 @@ select.in:disabled{background-color:var(--bg);color:#9aa4bd;cursor:not-allowed}
    have:"Usanzwe ufite konti?",login:"Injira",title:"Fungura konti yawe",sub:"Gutangira ni ubuntu. Bitwara iminota nka ibiri.",r_owner:"Nyiri ubucuruzi",r_agent:"Umukozi (Agent)",
    s1:"Umuntu",s2:"Iduka",s3:"Umutekano",l_name:"Amazina yuzuye",l_phone:"Nimero ya telefoni",h_phone:"Imibare 9, itangira na 7",l_email:"Imeyili",h_email:"Imeyili yawe ikoreshwa mu gusubiza ijambo banga.",
    l_biz:"Izina ry'iduka",l_type:"Ubwoko bw'ubucuruzi",l_prov:"Intara",l_dist:"Akarere",l_sect:"Umurenge",l_cell:"Akagari",l_vill:"Umudugudu",l_ref:"Kode y'umukozi",opt:"(si ngombwa)",h_ref:"Niba umukozi wa Trackly yaguhaye kode, yandike hano kugira ngo ahabwe ibye.",
-   l_pw:"Ijambo banga",l_pw2:"Subiramo ijambo banga",t_a:"Nemeye amabwiriza na",t_b:"Politiki y'ibanga",back:"Subira inyuma",next:"Komeza",create:"Fungura konti",creating:"Turimo gufungura konti yawe…",pick:"Hitamo",
+   l_pw:"Ijambo banga",l_pw2:"Subiramo ijambo banga",t_a:"Nemeye",t_c:"Amabwiriza yo gukoresha",t_d:"na",t_b:"Politiki y'ibanga",back:"Subira inyuma",next:"Komeza",create:"Fungura konti",creating:"Turimo gufungura konti yawe…",pick:"Hitamo",
    eye_show:"Erekana ijambo banga",eye_hide:"Hisha ijambo banga",
    str_weak:"Rinyoroshye",str_fair:"Rirahagije",str_good:"Rirakomeye",str_strong:"Rirakomeye cyane",
    e_name:"Injiza amazina yawe.",e_name2:"Injiza izina rya mbere n'irya nyuma.",e_phone:"Injiza nimero yemewe: imibare 9 itangira na 7.",e_email:"Injiza imeyili yemewe.",
@@ -318,7 +318,7 @@ select.in:disabled{background-color:var(--bg);color:#9aa4bd;cursor:not-allowed}
    have:"Vous avez déjà un compte ?",login:"Se connecter",title:"Créez votre compte",sub:"Gratuit pour commencer. Environ deux minutes.",r_owner:"Propriétaire",r_agent:"Agent",
    s1:"Personnel",s2:"Commerce",s3:"Sécurité",l_name:"Nom complet",l_phone:"Numéro de téléphone",h_phone:"9 chiffres, commençant par 7",l_email:"E-mail",h_email:"Votre e-mail sert à récupérer votre mot de passe.",
    l_biz:"Nom du commerce",l_type:"Type de commerce",l_prov:"Province",l_dist:"District",l_sect:"Secteur",l_cell:"Cellule",l_vill:"Village",l_ref:"Code agent",opt:"(facultatif)",h_ref:"Si un agent Trackly vous a donné un code, saisissez-le ici pour qu'il soit crédité.",
-   l_pw:"Mot de passe",l_pw2:"Répétez le mot de passe",t_a:"J'accepte les conditions et la",t_b:"Politique de confidentialité",back:"Retour",next:"Continuer",create:"Créer le compte",creating:"Création de votre compte…",pick:"Choisir",
+   l_pw:"Mot de passe",l_pw2:"Répétez le mot de passe",t_a:"J'accepte les",t_c:"Conditions d'utilisation",t_d:"et la",t_b:"Politique de confidentialité",back:"Retour",next:"Continuer",create:"Créer le compte",creating:"Création de votre compte…",pick:"Choisir",
    eye_show:"Afficher le mot de passe",eye_hide:"Masquer le mot de passe",
    str_weak:"Faible",str_fair:"Moyen",str_good:"Bon",str_strong:"Fort",
    e_name:"Entrez votre nom complet.",e_name2:"Entrez votre prénom et votre nom.",e_phone:"Entrez un numéro valide : 9 chiffres commençant par 7.",e_email:"Entrez un e-mail valide.",
