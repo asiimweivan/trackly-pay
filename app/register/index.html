@@ -91,6 +91,18 @@ select.in:disabled{background-color:var(--bg);color:#9aa4bd;cursor:not-allowed}
 .terms{display:flex;gap:.75rem;align-items:flex-start;margin:1.2rem 0;font-size:.93rem;color:var(--mut);cursor:pointer}
 .terms input{width:22px;height:22px;flex:none;margin:1px 0 0;accent-color:var(--tealD);cursor:pointer}
 .terms a{color:var(--tealD);font-weight:700}
+.or{display:flex;align-items:center;gap:.8rem;margin:1.1rem 0 .9rem;color:var(--mut);font-size:.85rem;font-weight:600}.or:before,.or:after{content:"";flex:1;height:1px;background:var(--line)}
+.gwrap{display:flex;justify-content:center;min-height:44px}
+.gbox{position:relative;height:52px;margin:0 0 .3rem}
+.gvis{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;gap:.8rem;background:#fff;border:1.5px solid #4285f4;border-radius:14px;font-weight:700;font-size:1rem;color:#1f2430;pointer-events:none;transition:box-shadow .15s,background .15s}
+.gvis svg{width:22px;height:22px;flex:none}
+.gbox:hover .gvis{box-shadow:0 6px 18px rgba(66,133,244,.2);background:#f8fbff}
+.gbox:focus-within .gvis{box-shadow:0 0 0 3px rgba(66,133,244,.3)}
+.gov{position:absolute;inset:0;overflow:hidden;opacity:.01;display:flex;align-items:center;justify-content:center}
+.gov>*{transform:scale(1.05,1.45);transform-origin:center;flex:none}
+
+.gnote{display:flex;align-items:center;justify-content:space-between;gap:.8rem;flex-wrap:wrap;background:#eefaf7;border:1px solid #cfeee6;border-radius:12px;padding:.7rem .95rem;margin:0 0 1.1rem;font-size:.9rem;color:#0a5f53;font-weight:600}.gnote a{color:var(--tealD);font-weight:700}
+
 .err{background:#fdecea;border:1px solid #f5c2bd;color:var(--err);border-radius:12px;padding:.75rem 1rem;font-weight:600;font-size:.93rem;margin:0 0 1rem}
 .wake{background:var(--mint);border:1px solid #bfe9df;color:var(--tealD);border-radius:12px;padding:.75rem 1rem;font-weight:600;font-size:.93rem;margin:0 0 1rem}
 .btns{display:flex;gap:.8rem;margin-top:1.4rem}
@@ -168,6 +180,9 @@ select.in:disabled{background-color:var(--bg);color:#9aa4bd;cursor:not-allowed}
      <button type="button" id="roleOwner" aria-pressed="true" data-t="r_owner">Business owner</button>
      <button type="button" id="roleAgent" aria-pressed="false" data-t="r_agent">Agent</button>
     </div>
+
+    <div id="gwrap"><div class="gbox" id="gbox"><div class="gvis" aria-hidden="true"><svg viewBox="0 0 48 48" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg><span data-t="g_btn">Continue with Google</span></div><div id="gbtn" class="gov"></div></div><div class="or"><span data-t="g_or">or sign up with your phone</span></div></div>
+    <div id="gnote" class="gnote" hidden><span id="gnoteTx"></span><a href="#" id="gchange" data-t="g_change">Use another account</a></div>
 
     <form id="form" novalidate autocomplete="on">
      <div class="steps" id="steps" aria-hidden="true">
@@ -297,7 +312,7 @@ select.in:disabled{background-color:var(--bg);color:#9aa4bd;cursor:not-allowed}
    str_weak:"Weak",str_fair:"Fair",str_good:"Good",str_strong:"Strong",
    e_name:"Enter your full name.",e_name2:"Enter your first and last name.",e_phone:"Enter a valid phone number: 9 digits starting with 7.",e_email:"Enter a valid email address.",
    e_biz:"Enter your business name.",e_type:"Select your type of business.",e_prov:"Select your province.",e_dist:"Select your district.",e_sect:"Select your sector.",e_cell:"Select your cell.",e_vill:"Select your village.",
-   e_pw:"Password must have at least 6 characters.",e_pw2:"Passwords do not match.",e_terms:"Accept the terms to continue.",
+   e_pw:"Password must have at least 6 characters.",e_pw2:"Passwords do not match.",e_terms:"Accept the terms to continue.",g_or:"or sign up with your phone",g_btn:"Continue with Google",g_change:"Use another account",g_note:"Google account:",g_new:"No Trackly account uses this Google email yet. Finish your details to create one.",g_expired:"Your Google sign-in expired. Choose your Google account again.",
    e_mail409:"This email is already used by another account.",e_phone409:"This phone number already has an account.",e_net:"Cannot reach Trackly. Check your internet and try again.",e_geo:"Could not load locations. Refresh the page and try again.",e_biz_fail:"Your account was created, but the business could not be saved. Check the details and press Create account again.",
    wake:"Waking up the server. This can take up to a minute…",
    ok_dl:"Download Trackly for Android",ok_t:"Welcome to Trackly, ",ok_x:"Your account is ready. Open your dashboard on the web, or install the Android app.",ok_agent:"Your agent account is ready. Install the Android app and log in with your phone number and password."},
@@ -310,7 +325,7 @@ select.in:disabled{background-color:var(--bg);color:#9aa4bd;cursor:not-allowed}
    str_weak:"Rinyoroshye",str_fair:"Rirahagije",str_good:"Rirakomeye",str_strong:"Rirakomeye cyane",
    e_name:"Injiza amazina yawe.",e_name2:"Injiza izina rya mbere n'irya nyuma.",e_phone:"Injiza nimero yemewe: imibare 9 itangira na 7.",e_email:"Injiza imeyili yemewe.",
    e_biz:"Injiza izina ry'iduka.",e_type:"Hitamo ubwoko.",e_prov:"Hitamo intara.",e_dist:"Hitamo akarere.",e_sect:"Hitamo umurenge.",e_cell:"Hitamo akagari.",e_vill:"Hitamo umudugudu.",
-   e_pw:"Ijambo banga rigomba kuba rifite nibura inyuguti 6.",e_pw2:"Amagambo banga ntahuje.",e_terms:"Emera amabwiriza kugira ngo ukomeze.",
+   e_pw:"Ijambo banga rigomba kuba rifite nibura inyuguti 6.",e_pw2:"Amagambo banga ntahuje.",e_terms:"Emera amabwiriza kugira ngo ukomeze.",g_or:"cyangwa wiyandikishe ukoresheje telefone",g_btn:"Komeza na Google",g_change:"Koresha indi konti",g_note:"Konti ya Google:",g_new:"Nta konti ya Trackly irakoresha iyi imeyili ya Google. Uzuza amakuru kugira ngo ufungure imwe.",g_expired:"Kwinjira na Google byararangiye. Hitamo konti yawe ya Google bundi bushya.",
    e_mail409:"Imeyili yawe isanzwe ikoreshwa kuri indi konti.",e_phone409:"Nimero yawe isanzwe ifite konti.",e_net:"Ntidushoboye kugera kuri Trackly. Reba interineti ugerageze nanone.",e_geo:"Ntitwabashije kubona aho ubucuruzi buherereye. Ongera ufungure urupapuro.",e_biz_fail:"Konti yawe yafunguwe, ariko iduka ntiryabitswe. Reba amakuru wongere ukande Fungura konti.",
    wake:"Seriveri irimo kubyuka. Bishobora gutwara iminota igera kuri umwe…",
    ok_dl:"Kuramo Trackly kuri Android",ok_t:"Murakaza neza kuri Trackly, ",ok_x:"Konti yawe irahari. Fungura dashboard kuri web, cyangwa ushyire porogaramu ya Android kuri telefoni.",ok_agent:"Konti yawe y'umukozi irahari. Shyira porogaramu ya Android kuri telefoni, winjire ukoresheje nimero yawe n'ijambo banga."},
@@ -323,7 +338,7 @@ select.in:disabled{background-color:var(--bg);color:#9aa4bd;cursor:not-allowed}
    str_weak:"Faible",str_fair:"Moyen",str_good:"Bon",str_strong:"Fort",
    e_name:"Entrez votre nom complet.",e_name2:"Entrez votre prénom et votre nom.",e_phone:"Entrez un numéro valide : 9 chiffres commençant par 7.",e_email:"Entrez un e-mail valide.",
    e_biz:"Entrez le nom de votre commerce.",e_type:"Choisissez le type de commerce.",e_prov:"Choisissez la province.",e_dist:"Choisissez le district.",e_sect:"Choisissez le secteur.",e_cell:"Choisissez la cellule.",e_vill:"Choisissez le village.",
-   e_pw:"Le mot de passe doit contenir au moins 6 caractères.",e_pw2:"Les mots de passe ne correspondent pas.",e_terms:"Acceptez les conditions pour continuer.",
+   e_pw:"Le mot de passe doit contenir au moins 6 caractères.",e_pw2:"Les mots de passe ne correspondent pas.",e_terms:"Acceptez les conditions pour continuer.",g_or:"ou inscrivez-vous avec votre téléphone",g_btn:"Continuer avec Google",g_change:"Utiliser un autre compte",g_note:"Compte Google :",g_new:"Aucun compte Trackly n'utilise encore cet e-mail Google. Complétez vos informations pour en créer un.",g_expired:"Votre connexion Google a expiré. Choisissez à nouveau votre compte Google.",
    e_mail409:"Cet e-mail est déjà utilisé par un autre compte.",e_phone409:"Ce numéro a déjà un compte.",e_net:"Impossible de joindre Trackly. Vérifiez votre connexion et réessayez.",e_geo:"Impossible de charger les lieux. Actualisez la page et réessayez.",e_biz_fail:"Votre compte est créé, mais le commerce n'a pas pu être enregistré. Vérifiez les informations et appuyez de nouveau sur Créer le compte.",
    wake:"Réveil du serveur. Cela peut prendre jusqu'à une minute…",
    ok_dl:"Télécharger Trackly pour Android",ok_t:"Bienvenue sur Trackly, ",ok_x:"Votre compte est prêt. Ouvrez votre tableau de bord sur le web ou installez l'application Android.",ok_agent:"Votre compte agent est prêt. Installez l'application Android et connectez-vous avec votre numéro et votre mot de passe."}
@@ -438,6 +453,9 @@ select.in:disabled{background-color:var(--bg);color:#9aa4bd;cursor:not-allowed}
     $("#steps").hidden=state.role==="agent";
     $$("#steps div").forEach(function(d,i){d.className=i+1===state.step?"on":(i+1<state.step?"done":"")});
     $("#back").hidden=state.role==="agent"||state.step===1;
+    $("#gwrap").hidden=state.role==="agent"||!!state.google||state.step!==1;
+    $("#gnote").hidden=!(state.google&&state.role==="owner");
+    [$("#pw"),$("#pw2")].forEach(function(e){var f=e.closest(".field");if(f)f.style.display=state.google?"none":""});
     syncButtons();
     if(state.step===2&&state.role==="owner")loadGeo();
   }
@@ -474,8 +492,10 @@ select.in:disabled{background-color:var(--bg);color:#9aa4bd;cursor:not-allowed}
     return true;
   }
   function v3(){
-    if($("#pw").value.length<6){showError(tr("e_pw"));return false}
-    if($("#pw").value!==$("#pw2").value){showError(tr("e_pw2"));return false}
+    if(!state.google){
+      if($("#pw").value.length<6){showError(tr("e_pw"));return false}
+      if($("#pw").value!==$("#pw2").value){showError(tr("e_pw2"));return false}
+    }
     if(!$("#agree").checked){showError(tr("e_terms"));return false}
     return true;
   }
@@ -490,6 +510,43 @@ select.in:disabled{background-color:var(--bg);color:#9aa4bd;cursor:not-allowed}
     return true;
   }
 
+
+  /* ---------- Google sign-in ---------- */
+  var GCID="690943599734-3el55ojvq2srdo8j053tv7179ifd7eeq.apps.googleusercontent.com";
+  function gDecode(t){try{var p=String(t).split(".")[1].replace(/-/g,"+").replace(/_/g,"/");return JSON.parse(decodeURIComponent(escape(atob(p))))}catch(e){return {}}}
+  function gLoad(cb){
+    if(window.google&&google.accounts&&google.accounts.id)return cb();
+    var s=document.createElement("script");s.src="https://accounts.google.com/gsi/client";s.async=true;s.onload=cb;s.onerror=function(){};document.head.appendChild(s);
+  }
+  function gRender(el,onCred){
+    gLoad(function(){
+      try{
+        google.accounts.id.initialize({client_id:GCID,callback:function(r){if(r&&r.credential)onCred(r.credential)},auto_select:false,ux_mode:"popup"});
+        el.innerHTML="";
+        google.accounts.id.renderButton(el,{type:"standard",theme:"outline",size:"large",text:"continue_with",shape:"pill",logo_alignment:"left",width:Math.max(240,Math.min(400,($("#gbox").clientWidth||340))),locale:lang==="fr"?"fr":"en"});
+      }catch(e){}
+    });
+  }
+  function gNoteSet(){$("#gnoteTx").textContent=tr("g_note")+" "+(state.google?state.google.email:"")}
+  function gApply(cred,fresh){
+    var p=gDecode(cred);if(!p.email)return;
+    state.google={idToken:cred,email:p.email,name:p.name||""};
+    if(p.name&&!V("#name"))$("#name").value=p.name;
+    $("#email").value=p.email;$("#email").readOnly=true;
+    gNoteSet();hideError();show();
+    if(fresh){state.step=1;show()}
+  }
+  function gReset(){
+    state.google=null;$("#email").readOnly=false;$("#email").value="";
+    try{sessionStorage.removeItem("tk_gid")}catch(e){}
+    show();gRender($("#gbtn"),function(c){gApply(c,true)});
+  }
+  $("#gchange").addEventListener("click",function(e){e.preventDefault();gReset()});
+  gRender($("#gbtn"),function(c){gApply(c,true)});
+  try{
+    var qs=new URLSearchParams(location.search),gid=sessionStorage.getItem("tk_gid");
+    if(qs.get("google")==="1"&&gid){gApply(gid,true);var gn=$("#gnoteTx");gn.textContent=tr("g_new");sessionStorage.removeItem("tk_gid")}
+  }catch(e){}
   /* ---------- API ---------- */
   function ApiErr(status,msg,data){this.status=status;this.message=msg;this.data=data}
   function call(path,body,token){
@@ -514,6 +571,7 @@ select.in:disabled{background-color:var(--bg);color:#9aa4bd;cursor:not-allowed}
     try{localStorage.setItem(KEYS.a,res.accessToken);localStorage.setItem(KEYS.r,res.refreshToken);localStorage.setItem(KEYS.u,JSON.stringify(res.user))}catch(e){}
   }
   function describe(e){
+    if(state.google&&!state.registered&&e.status===401){var t=tr("g_expired");gReset();return t}
     if(e.status===409)return /mail/i.test(e.message||"")?tr("e_mail409"):tr("e_phone409");
     if(e.status===0)return tr("e_net");
     return e.message||tr("e_net");
@@ -530,7 +588,7 @@ select.in:disabled{background-color:var(--bg);color:#9aa4bd;cursor:not-allowed}
   var session=null;
   function submitOwner(){
     var phone="+250"+$("#phone").value,name=V("#name"),email=V("#email"),pw=$("#pw").value;
-    var step1=state.registered?Promise.resolve(session):call("/auth/register",{phone:phone,fullName:name,email:email,password:pw,role:"business_owner"});
+    var step1=state.registered?Promise.resolve(session):(state.google?call("/auth/google",{idToken:state.google.idToken,phone:phone,role:"business_owner"}):call("/auth/register",{phone:phone,fullName:name,email:email,password:pw,role:"business_owner"}));
     return step1.then(function(res){
       session=res;state.registered=true;saveSession(res);
       var ref=V("#ref");
