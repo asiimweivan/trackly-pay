@@ -1124,7 +1124,7 @@ en:{nf:{"sub":"Smart alerts about your stock, sales, suppliers and expenses. The
  lim:"{n} of {m} products used",limR:" · limit reached",limL:" · running low",
  nudgeT:"Upgrade to Iterambere",nudgeS:"Reports, suppliers, cash desk and more from 200 RWF a day.",upgrade:"Upgrade",
  owner:"Business owner",agent:"Agent",
- myacc:"My profile",plans:"Plans & pricing",notif:"Notifications",sett:"Settings",support:"Contact support",logout:"Log out",
+ myacc:"My profile",terms:"Terms of service",privacy:"Privacy policy",plans:"Plans & pricing",notif:"Notifications",sett:"Settings",support:"Contact support",logout:"Log out",
  soonT:"Coming to the web",soonX:"{n} works in the Trackly Android app today. The web version is on the way.",dlA:"Download for Android",back:"Back to home",
  prof:"Profile",bizInfo:"Business",ownInfo:"Owner",planInfo:"Subscription",phone:"Phone",email:"Email",bizName:"Business name",type:"Business type",loc:"Location",tin:"TIN",vat:"VAT registered",yes:"Yes",no:"No",cur:"Currency",since:"Member since",
  status:"Status",active:"Active",free:"Free forever",daysLeft:"{d} days left",editApp:"Edit profile in the Android app",verified:"Verified business",
@@ -1146,7 +1146,7 @@ rw:{nf:{"sub":"Impuruza zikurikirana ububiko, ibyagurishijwe, abaguha ibicuruzwa
  lim:"Umaze gukoresha {n} kuri {m} by'ibicuruzwa",limR:" · warageze ku mupaka",limL:" · biri hafi gushira",
  nudgeT:"Fungura Iterambere",nudgeS:"Raporo, abaranguza, agasanduku n'ibindi guhera kuri 200 RWF ku munsi.",upgrade:"Izamura",
  owner:"Nyiri ubucuruzi",agent:"Umukozi (Agent)",
- myacc:"Konti yanjye",plans:"Gahunda n'ibiciro",notif:"Ubutumwa",sett:"Igenamiterere",support:"Twandikire",logout:"Sohoka",
+ myacc:"Konti yanjye",terms:"Amabwiriza yo gukoresha",privacy:"Politiki y'ibanga",plans:"Gahunda n'ibiciro",notif:"Ubutumwa",sett:"Igenamiterere",support:"Twandikire",logout:"Sohoka",
  soonT:"Biri kuza kuri web",soonX:"{n} ikora muri porogaramu ya Trackly kuri Android uyu munsi. Iya web iraza vuba.",dlA:"Kuramo kuri Android",back:"Subira ahabanza",
  prof:"Umwirondoro",bizInfo:"Ubucuruzi",ownInfo:"Nyiri ubucuruzi",planInfo:"Gahunda",phone:"Telefoni",email:"Imeyili",bizName:"Izina ry'ubucuruzi",type:"Ubwoko bw'ubucuruzi",loc:"Aho buherereye",tin:"TIN",vat:"Yiyandikishije kuri TVA",yes:"Yego",no:"Oya",cur:"Ifaranga",since:"Yiyandikishije",
  status:"Imiterere",active:"Irakora",free:"Ni ubuntu ubuziraherezo",daysLeft:"Hasigaye iminsi {d}",editApp:"Hindura umwirondoro muri porogaramu ya Android",verified:"Ubucuruzi bwemejwe",
@@ -1168,7 +1168,7 @@ fr:{nf:{"sub":"Alertes intelligentes sur votre stock, vos ventes, fournisseurs e
  lim:"{n} sur {m} produits utilisés",limR:" · limite atteinte",limL:" · bientôt plein",
  nudgeT:"Passer à Iterambere",nudgeS:"Rapports, fournisseurs, caisse et plus dès 200 RWF par jour.",upgrade:"Améliorer",
  owner:"Propriétaire",agent:"Agent",
- myacc:"Mon profil",plans:"Offres et tarifs",notif:"Notifications",sett:"Paramètres",support:"Contacter le support",logout:"Se déconnecter",
+ myacc:"Mon profil",terms:"Conditions d'utilisation",privacy:"Politique de confidentialité",plans:"Offres et tarifs",notif:"Notifications",sett:"Paramètres",support:"Contacter le support",logout:"Se déconnecter",
  soonT:"Bientôt sur le web",soonX:"{n} fonctionne dès aujourd'hui dans l'application Android Trackly. La version web arrive.",dlA:"Télécharger pour Android",back:"Retour à l'accueil",
  prof:"Profil",bizInfo:"Commerce",ownInfo:"Propriétaire",planInfo:"Abonnement",phone:"Téléphone",email:"E-mail",bizName:"Nom du commerce",type:"Type de commerce",loc:"Localisation",tin:"TIN",vat:"Assujetti à la TVA",yes:"Oui",no:"Non",cur:"Devise",since:"Membre depuis",
  status:"Statut",active:"Actif",free:"Gratuit pour toujours",daysLeft:"{d} jours restants",editApp:"Modifier le profil dans l'application Android",verified:"Commerce vérifié",
@@ -1314,7 +1314,9 @@ function topbar(){
   '<a href="/#pricing" role="menuitem">'+ico("diamond")+esc(t.plans)+'</a>'+
   '<a href="#/s/notifications" role="menuitem">'+ico("bell")+esc(t.notif)+'</a>'+
   '<a href="#/s/settings" role="menuitem">'+ico("gear")+esc(t.sett)+'</a>'+
-  '<a href="mailto:support@ivanexo.com" role="menuitem">'+ico("chat")+esc(t.support)+'</a><hr>'+
+  '<a href="mailto:support@ivanexo.com" role="menuitem">'+ico("chat")+esc(t.support)+'</a>'+
+  '<a href="/terms.html" target="_blank" rel="noopener" role="menuitem">'+ico("doc")+esc(t.terms)+'</a>'+
+  '<a href="/privacy.html" target="_blank" rel="noopener" role="menuitem">'+ico("lock")+esc(t.privacy)+'</a><hr>'+
   '<button class="row dng" id="lo" role="menuitem">'+ico("out")+esc(t.logout)+'</button>';
  $("#lo").addEventListener("click",function(){clearAll();toLogin()});
  $$("#acc a").forEach(function(a){a.addEventListener("click",accClose)});
