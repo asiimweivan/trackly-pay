@@ -327,36 +327,64 @@ details p{margin:0;padding:0 0 1.2rem;color:var(--mut)}
 .cyc button{font:inherit;font-weight:700;font-size:.98rem;color:var(--mut);background:none;border:0;border-radius:99px;padding:.65rem 1.4rem;cursor:pointer;display:flex;align-items:center;gap:.6rem}
 .cyc button[aria-pressed=true]{background:#fff;color:var(--ink);box-shadow:0 2px 10px rgba(15,33,80,.14)}
 .cyc em{font-style:normal;font-size:.74rem;font-weight:800;background:var(--mint);color:var(--tealD);border-radius:99px;padding:.18rem .6rem}
-.plans{display:grid;grid-template-columns:repeat(4,1fr);gap:1.4rem;align-items:stretch}
-.plan{position:relative;display:flex;flex-direction:column;background:#fff;border:1px solid var(--line);border-radius:28px;padding:2rem 1.8rem 1.9rem;--c:var(--teal);transition:transform .25s,box-shadow .25s}
-.plan:hover{transform:translateY(-5px);box-shadow:0 30px 50px -32px rgba(15,33,80,.4)}
-.plan::before{content:"";position:absolute;left:1.8rem;top:0;width:54px;height:5px;border-radius:0 0 6px 6px;background:var(--c)}
-.plan h3{margin:0;font-size:1.4rem;letter-spacing:-.02em;display:flex;align-items:center;gap:.6rem;flex-wrap:wrap}
-.plan .badge{font-size:.72rem;font-weight:800;border-radius:99px;padding:.18rem .6rem;background:color-mix(in srgb,var(--c) 14%,#fff);color:var(--c)}
-.plan .tag{color:var(--mut);margin:.5rem 0 1.3rem;min-height:3em;font-size:.97rem}
-.plan .price{display:flex;align-items:baseline;gap:.5rem;margin-bottom:.2rem;min-height:2.6rem}
-.plan .price b{font-size:2.5rem;line-height:1;letter-spacing:-.04em;color:var(--c)}
-.plan .price span{color:var(--mut);font-weight:600;font-size:.95rem}
-.plan .sv{min-height:1.5em;font-size:.85rem;font-weight:700;color:var(--tealD);margin-bottom:1.3rem}
-.plan .btn{width:100%;margin-bottom:1.5rem}
-.plan ul{list-style:none;padding:0;margin:0;display:grid;gap:.7rem;font-size:.95rem}
+.plans{display:grid;grid-template-columns:repeat(4,1fr);gap:1.3rem;align-items:stretch}
+.plan{position:relative;display:flex;flex-direction:column;background:#fff;border:1.5px solid color-mix(in srgb,var(--c) 22%,var(--line));border-radius:26px;overflow:hidden;--c:var(--teal);transition:transform .25s,box-shadow .25s}
+.plan:hover{transform:translateY(-5px);box-shadow:0 30px 50px -30px color-mix(in srgb,var(--c) 55%,transparent)}
+.plan.pop{border-color:var(--c);box-shadow:0 0 0 4px color-mix(in srgb,var(--c) 16%,transparent),0 30px 50px -34px color-mix(in srgb,var(--c) 70%,transparent)}
+.plh{position:relative;padding:1.7rem 1.6rem 1.4rem;color:#fff;background:linear-gradient(155deg,var(--c),color-mix(in srgb,var(--c) 58%,#000))}
+.plh::after{content:"";position:absolute;right:-40px;top:-40px;width:150px;height:150px;border-radius:50%;background:rgba(255,255,255,.1)}
+.plh h3{margin:.7rem 0 0;font-size:1.55rem;letter-spacing:-.02em;position:relative}
+.pbadge{display:inline-block;font-size:.72rem;font-weight:800;border-radius:99px;padding:.18rem .65rem;background:rgba(255,255,255,.2);position:relative}
+.ribbon{position:absolute;right:1.1rem;top:1.1rem;z-index:2;background:var(--gold);color:#3b2a00;font-size:.72rem;font-weight:800;border-radius:99px;padding:.22rem .7rem;box-shadow:0 4px 12px rgba(0,0,0,.25)}
+.plan .tag{margin:.3rem 0 1.1rem;min-height:3em;font-size:.95rem;opacity:.92;position:relative}
+.plan .price{display:flex;align-items:baseline;gap:.5rem;flex-wrap:wrap;min-height:2.8rem;position:relative}
+.plan .price b{font-size:2.6rem;line-height:1;letter-spacing:-.04em}
+.plan .price span{font-weight:700;font-size:.9rem;opacity:.9}
+.plan .sv{min-height:1.4em;font-size:.82rem;font-weight:800;margin-top:.3rem;color:#fff;opacity:.95;position:relative}
+.pbd{display:flex;flex-direction:column;flex:1;padding:1.4rem 1.6rem 1.7rem}
+.plan .btn{width:100%;background:var(--c);color:#fff;margin-bottom:1.1rem}
+.plan .btn:hover{filter:brightness(1.1)}
+.pcnt{display:flex;align-items:center;gap:.5rem;font-size:.82rem;font-weight:800;color:var(--c);margin-bottom:.9rem}
+.pcnt i{width:9px;height:9px;border-radius:50%;background:var(--c)}
+.plan ul{list-style:none;padding:0;margin:0;display:grid;gap:.65rem;font-size:.94rem}
 .plan li{display:flex;gap:.65rem;align-items:flex-start}
-.plan li svg{flex:none;width:20px;height:20px;margin-top:2px;fill:none;stroke:var(--c);stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
-.plan li.off{color:#9aa4bd}
-.plan li.off svg{stroke:#c4cbdc;stroke-width:2.2}
-.plan.pop{background:var(--hero);color:#fff;border-color:var(--hero);box-shadow:0 36px 60px -34px rgba(17,40,101,.7)}
-.plan.pop .tag,.plan.pop .price span{color:#b8c4e6}
-.plan.pop .price b{color:#fff}
-.plan.pop .sv{color:var(--tealL)}
-.plan.pop li.off{color:#7f8fbe}
-.plan.pop li.off svg{stroke:#5d6ea6}
-.plan.pop li svg{stroke:var(--tealL)}
-.plan.pop .badge{background:var(--gold);color:#3b2a00}
-.plan.pop .btn-primary{background:var(--tealL);color:#06241e}
-.plan.pop .btn-primary:hover{background:#7ae6d2}
+.plan li svg{flex:none;width:20px;height:20px;margin-top:2px;padding:3px;box-sizing:border-box;border-radius:50%;background:color-mix(in srgb,var(--c) 14%,#fff);fill:none;stroke:var(--c);stroke-width:3.2;stroke-linecap:round;stroke-linejoin:round}
+.new{font-style:normal;font-size:.66rem;font-weight:800;background:var(--gold);color:#3b2a00;border-radius:99px;padding:.1rem .5rem;margin-left:.3rem;vertical-align:1px}
 .pnote{text-align:center;color:var(--mut);font-size:.93rem;margin:2rem 0 0}
-@media (max-width:1180px){.plans{grid-template-columns:1fr 1fr}}
-@media (max-width:640px){.plans{grid-template-columns:1fr}.plan .tag{min-height:0}}
+#pjshow,#passes,#cmp{margin-top:3.4rem}
+.pjs{display:grid;grid-template-columns:1.05fr .95fr;gap:3rem;align-items:center;background:linear-gradient(150deg,#0e2259,#112865 55%,#18357a);color:#fff;border-radius:34px;padding:3.2rem;position:relative;overflow:hidden}
+.pjs::before{content:"";position:absolute;right:-120px;top:-120px;width:380px;height:380px;border-radius:50%;background:radial-gradient(circle,rgba(242,165,15,.35),transparent 70%)}
+.pjs>*{position:relative}
+.pjs-new{display:inline-block;background:var(--gold);color:#3b2a00;font-weight:800;font-size:.76rem;border-radius:99px;padding:.22rem .8rem}
+.pjs h3{font-size:clamp(1.55rem,2.6vw,2.2rem);line-height:1.18;letter-spacing:-.025em;margin:.9rem 0 .8rem}
+.pjs p{color:#c3cdee;margin:0 0 1.2rem}
+.pjs ul{list-style:none;padding:0;margin:0 0 1.6rem;display:grid;gap:.6rem}
+.pjs li{display:flex;gap:.65rem;align-items:flex-start}
+.pjs li svg{flex:none;width:20px;height:20px;margin-top:2px;padding:3px;border-radius:50%;background:rgba(242,165,15,.2);fill:none;stroke:var(--gold);stroke-width:3.2;stroke-linecap:round;stroke-linejoin:round}
+.pjs-cta{background:var(--gold);color:#3b2a00}.pjs-cta:hover{filter:brightness(1.08)}
+.pjs small{display:block;margin-top:.8rem;color:#9fb0e0}
+.pjm{background:#fff;color:var(--ink);border-radius:22px;padding:1.3rem;box-shadow:0 40px 70px -30px rgba(0,0,0,.55);transform:rotate(1.2deg)}
+.pjm-h{display:flex;justify-content:space-between;align-items:center;gap:.6rem;margin-bottom:1rem}.pjm-h b{font-size:1.02rem}
+.pjm-h span{background:var(--mint);color:var(--tealD);font-weight:800;font-size:.74rem;border-radius:99px;padding:.2rem .7rem;white-space:nowrap}
+.pjm-k{display:grid;grid-template-columns:repeat(3,1fr);gap:.6rem;margin-bottom:1rem}
+.pjm-k div,.pjm-i div{background:var(--bg);border-radius:12px;padding:.6rem .7rem}
+.pjm small{display:block;color:var(--mut);font-size:.68rem;font-weight:700}.pjm-k b{font-size:.92rem}.pjm-k b.g{color:var(--tealD)}
+.pjm-b{display:grid;grid-template-columns:78px 1fr 40px;align-items:center;gap:.6rem;margin-bottom:.55rem;font-size:.8rem;font-weight:700}
+.pjm-b div{height:9px;border-radius:9px;background:#e8ecf5;overflow:hidden}.pjm-b i{display:block;height:100%;border-radius:9px;background:#C9982A}.pjm-b i.t{background:var(--teal)}.pjm-b em{font-style:normal;color:var(--mut);text-align:right}
+.pjm-i{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin:.9rem 0}.pjm-i b{font-size:1.15rem;color:var(--tealD)}
+.pjm-r{display:flex;justify-content:space-between;gap:.6rem;padding:.5rem 0;border-top:1px solid var(--line);font-size:.8rem}.pjm-r em{font-style:normal;font-weight:700}.pjm-r.mo{color:var(--mut)}
+.pss{background:var(--bg);border-radius:34px;padding:2.8rem 3rem}
+.pss-h{max-width:44rem;margin-bottom:1.8rem}.pss-h h3{margin:0 0 .5rem;font-size:clamp(1.4rem,2.3vw,1.9rem);letter-spacing:-.02em;line-height:1.2}.pss-h p{margin:0;color:var(--mut)}
+.pss-g{display:grid;grid-template-columns:minmax(0,2.3fr) repeat(3,minmax(0,1fr));background:#fff;border-radius:22px;overflow:hidden;box-shadow:0 14px 30px -22px rgba(15,33,80,.4)}
+.pss-c{padding:1rem .8rem;text-align:center;border-top:1px solid var(--line);display:flex;flex-direction:column;justify-content:center}
+.pss-c.hd{border-top:0;font-weight:800;color:var(--mut);font-size:.88rem;background:#fbfcfe}.pss-c b{font-size:1.3rem;letter-spacing:-.02em}.pss-c small{color:var(--mut);font-weight:700;font-size:.72rem}
+.pss-r{padding:1rem 1.2rem;border-top:1px solid var(--line);display:flex;gap:.8rem;align-items:center}.pss-r i{flex:none;width:12px;height:42px;border-radius:6px;background:var(--c)}.pss-r b{color:var(--c);display:block}.pss-r small{color:var(--mut);font-size:.82rem;line-height:1.35;display:block}
+.pss-f{display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap;margin-top:1.4rem;color:var(--mut);font-weight:600}
+.cmpd{border:1px solid var(--line);border-radius:22px;padding:.2rem 1.4rem;background:#fff}.cmpd summary{cursor:pointer;font-weight:800;padding:1.1rem 0;font-size:1.05rem}
+.cmps{overflow-x:auto;padding-bottom:1.2rem}.cmpd table{border-collapse:collapse;width:100%;min-width:560px}.cmpd th{padding:.6rem;color:var(--c);font-size:.9rem;text-align:center}.cmpd th:first-child,.cmpd td:first-child{text-align:left;color:var(--ink)}.cmpd th i{display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--c);margin-right:.4rem}
+.cmpd td{padding:.55rem .6rem;border-top:1px solid var(--line);text-align:center;font-weight:600;font-size:.94rem}.cmpd td .y{display:inline-flex;width:22px;height:22px;border-radius:50%;background:var(--c);align-items:center;justify-content:center}.cmpd td .y svg{width:14px;height:14px;fill:none;stroke:#fff;stroke-width:3.4;stroke-linecap:round;stroke-linejoin:round}
+@media (max-width:1180px){.plans{grid-template-columns:1fr 1fr}.pjs{grid-template-columns:1fr;padding:2.4rem}.pjm{transform:none}}
+@media (max-width:640px){.plans{grid-template-columns:1fr}.plan .tag{min-height:0}.pjs{padding:1.7rem 1.3rem;border-radius:26px}.pss{padding:1.6rem 1rem;border-radius:26px}.pss-g{grid-template-columns:minmax(0,1.6fr) repeat(3,minmax(0,1fr))}.pss-r{padding:.8rem .6rem}.pss-r i{width:8px}.pss-r small{display:none}.pss-c{padding:.7rem .3rem}.pss-c b{font-size:1rem}.pjm-k{grid-template-columns:1fr 1fr}.pjm-b{grid-template-columns:62px 1fr 36px}}
 
 /* footer */
 footer{background:#0a1a45;color:#b8c4e6;padding-top:4.4rem}
@@ -860,6 +888,7 @@ footer .ivxbtn svg{width:15px;height:15px}
   </div>
   <div class="plans" id="plans"></div>
   <p class="pnote" data-t="p_note">The price you see is the price you pay.</p>
+  <div id="pjshow"></div><div id="passes"></div><div id="cmp"></div>
  </div>
 </section>
 
@@ -1039,7 +1068,7 @@ footer .ivxbtn svg{width:15px;height:15px}
 
   Object.assign(T.en,{"n_serv": "Services", "n_ivx": "Ivanexo", "mg_hi": "25 services in one app", "mg_hp": "Pick a service to see what it does. Create a free account to try it.", "mg_cta": "Create free account", "mg_all": "See all services", "mg_nt": "Create your account to open any service.", "n_biz": "Businesses", "pl_free": "Free", "svc_more": "Show more services", "svc_less": "Show less", "svc_try": "Create account to try", "hero_exp": "Explore services", "hero_have": "Already have an account?", "st1v": "25", "st1": "services, from selling to tax", "st2v": "3", "st2": "screens: phone, tablet and computer", "st3v": "3", "st3": "languages: Kinyarwanda, English, Français", "st4v": "MoMo", "st4": "Cash, MTN MoMo and Airtel Money", "band_h": "Put your whole business in your hands.", "band_p": "Sell, stock, track and report from your phone or your screen. Everything in one place, in your own language.", "band_b1": "Create free account", "band_b2": "Compare plans", "visit_ivx": "Visit ivanexo.com", "c_all": "All", "f_h2": "Every service your business needs.", "f_s2": "From the first sale to tax time. Start free, and unlock more as you grow.", "bg_hi": "Built for every kind of business", "bg_hp": "Point at a business type to see how Trackly helps it. Yours is here, or under Other businesses.", "bg_nt": "Not on the list? Trackly fits any business that sells or keeps stock.", "bg_all": "See business types"});Object.assign(T.rw,{"n_serv": "Serivisi", "n_ivx": "Ivanexo", "mg_hi": "Serivisi 25 muri porogaramu imwe", "mg_hp": "Hitamo serivisi urebe icyo ikora. Fungura konti y'ubuntu uyigerageze.", "mg_cta": "Fungura konti y'ubuntu", "mg_all": "Reba serivisi zose", "mg_nt": "Fungura konti ufungure serivisi iyo ari yo yose.", "n_biz": "Ubucuruzi", "pl_free": "Ubuntu", "svc_more": "Erekana serivisi nyinshi", "svc_less": "Erekana nke", "svc_try": "Fungura konti ugerageze", "hero_exp": "Reba serivisi", "hero_have": "Usanzwe ufite konti?", "st1v": "25", "st1": "serivisi, kuva ku kugurisha kugeza ku misoro", "st2v": "3", "st2": "ecran: telefoni, tablet na mudasobwa", "st3v": "3", "st3": "indimi: Ikinyarwanda, Icyongereza, Igifaransa", "st4v": "MoMo", "st4": "Amafaranga mu ntoki, MTN MoMo na Airtel Money", "band_h": "Ubucuruzi bwawe bwose mu biganza byawe.", "band_p": "Gurisha, ubike ibicuruzwa, ukurikirane kandi ubone raporo kuri telefoni cyangwa kuri mudasobwa. Byose ahantu hamwe, mu rurimi rwawe.", "band_b1": "Fungura konti y'ubuntu", "band_b2": "Gereranya gahunda", "visit_ivx": "Sura ivanexo.com", "c_all": "Byose", "f_h2": "Serivisi zose ubucuruzi bwawe bukeneye.", "f_s2": "Kuva ku igurisha rya mbere kugeza ku gihe cy'imisoro. Tangira ku buntu, ukomeze ufungura izindi uko ukura.", "bg_hi": "Yakorewe buri bwoko bw'ubucuruzi", "bg_hp": "Shyira indanga ku bwoko bw'ubucuruzi urebe uko Trackly ibufasha. Ubwawe buri hano, cyangwa ku Bundi bucuruzi.", "bg_nt": "Ubwawe ntibuhari? Trackly ikwiriye ubucuruzi bwose bugurisha cyangwa bubika ibicuruzwa.", "bg_all": "Reba ubwoko bw'ubucuruzi"});Object.assign(T.fr,{"n_serv": "Services", "n_ivx": "Ivanexo", "mg_hi": "25 services dans une seule application", "mg_hp": "Choisissez un service pour voir ce qu'il fait. Créez un compte gratuit pour l'essayer.", "mg_cta": "Créer un compte gratuit", "mg_all": "Voir tous les services", "mg_nt": "Créez votre compte pour ouvrir n'importe quel service.", "n_biz": "Commerces", "pl_free": "Gratuit", "svc_more": "Afficher plus de services", "svc_less": "Afficher moins", "svc_try": "Créer un compte pour essayer", "hero_exp": "Découvrir les services", "hero_have": "Vous avez déjà un compte ?", "st1v": "25", "st1": "services, de la vente aux impôts", "st2v": "3", "st2": "écrans : téléphone, tablette et ordinateur", "st3v": "3", "st3": "langues : kinyarwanda, anglais, français", "st4v": "MoMo", "st4": "Espèces, MTN MoMo et Airtel Money", "band_h": "Tout votre commerce au creux de la main.", "band_p": "Vendez, gérez le stock, suivez et analysez depuis votre téléphone ou votre écran. Tout au même endroit, dans votre langue.", "band_b1": "Créer un compte gratuit", "band_b2": "Comparer les offres", "visit_ivx": "Visiter ivanexo.com", "c_all": "Tous", "f_h2": "Tous les services dont votre commerce a besoin.", "f_s2": "De la première vente aux impôts. Commencez gratuitement et débloquez plus au fil de votre croissance.", "bg_hi": "Conçu pour chaque type de commerce", "bg_hp": "Survolez un type de commerce pour voir comment Trackly l'aide. Le vôtre est ici, ou dans Autres commerces.", "bg_nt": "Le vôtre n'y est pas ? Trackly convient à tout commerce qui vend ou gère du stock.", "bg_all": "Voir les types de commerces"});
 /* ---- services: shared data for the mega menu and the services grid ---- */
-var SVI={"cash": "<rect x=\"2.5\" y=\"6\" width=\"19\" height=\"12\" rx=\"2\"/><circle cx=\"12\" cy=\"12\" r=\"2.8\"/><path d=\"M6 10h.01M18 14h.01\"/>", "chart": "<path d=\"M3 3v18h18\"/><path d=\"m7 15 4-4 3 3 5-6\"/>", "layers": "<path d=\"m12 3 9 5-9 5-9-5z\"/><path d=\"m3 13 9 5 9-5\"/>", "ret": "<path d=\"M9 14 4 9l5-5\"/><path d=\"M4 9h10a6 6 0 0 1 0 12h-3\"/>", "alarm": "<circle cx=\"12\" cy=\"13\" r=\"8\"/><path d=\"M12 9v4l2.5 1.5M4 5l3-2M20 5l-3-2\"/>", "clock": "<circle cx=\"12\" cy=\"12\" r=\"9\"/><path d=\"M12 7v5l3 2\"/>", "swapv": "<path d=\"M8 20V4M4 8l4-4 4 4\"/><path d=\"M16 4v16m4-4-4 4-4-4\"/>", "swaph": "<path d=\"M4 8h15m-4-4 4 4-4 4\"/><path d=\"M20 16H5m4-4-4 4 4 4\"/>", "home": "<path d=\"m3 11 9-8 9 8\"/><path d=\"M5 10v10h14V10\"/>", "people": "<circle cx=\"9\" cy=\"8\" r=\"3.5\"/><path d=\"M2.5 20a6.5 6.5 0 0 1 13 0\"/><path d=\"M16 4.6a3.5 3.5 0 0 1 0 6.8M18.5 14.3A6.5 6.5 0 0 1 21.5 20\"/>", "teamc": "<circle cx=\"12\" cy=\"12\" r=\"9\"/><circle cx=\"12\" cy=\"10\" r=\"3\"/><path d=\"M6.5 18a6 6 0 0 1 11 0\"/>", "doc": "<path d=\"M6 3h8l5 5v13H6z\"/><path d=\"M14 3v5h5M9 13h7M9 17h5\"/>", "cart": "<circle cx=\"9\" cy=\"20\" r=\"1.5\"/><circle cx=\"18\" cy=\"20\" r=\"1.5\"/><path d=\"M2 3h3l2.7 12.4a1 1 0 0 0 1 .8h8.8a1 1 0 0 0 1-.8L20.5 8H6\"/>", "receipt": "<path d=\"M5 3h14v18l-3-2-2 2-2-2-2 2-2-2-3 2z\"/><path d=\"M9 8h6M9 12h6\"/>", "cube": "<path d=\"m21 8-9-5-9 5 9 5 9-5z\"/><path d=\"M3 8v8l9 5 9-5V8M12 13v8\"/>", "trophy": "<path d=\"M8 4h8v5a4 4 0 0 1-8 0z\"/><path d=\"M8 6H4v1a4 4 0 0 0 4 4M16 6h4v1a4 4 0 0 1-4 4M12 13v4M8 21h8M10 17h4\"/>", "build": "<path d=\"M4 21V5l8-2v18\"/><path d=\"m12 9 8 2v10M8 8h.01M8 12h.01M8 16h.01M16 15h.01M16 18h.01\"/>", "alert": "<circle cx=\"12\" cy=\"12\" r=\"9\"/><path d=\"M12 7.5v5M12 16v.5\"/>", "bag": "<path d=\"M5 8h14l-1 12H6z\"/><path d=\"M9 8V6a3 3 0 0 1 6 0v2\"/>", "bank": "<path d=\"m3 9 9-5 9 5\"/><path d=\"M5 9v9M9.5 9v9M14.5 9v9M19 9v9M3 21h18\"/>", "tag": "<path d=\"M3 12V4h8l10 10-8 8z\"/><circle cx=\"7.5\" cy=\"8.5\" r=\"1.3\"/>", "card": "<rect x=\"2.5\" y=\"5\" width=\"19\" height=\"14\" rx=\"2.5\"/><path d=\"M2.5 10h19M6 15h4\"/>", "trend": "<path d=\"m3 17 6-6 4 4 8-8\"/><path d=\"M15 7h6v6\"/>", "wallet": "<path d=\"M3 7a2 2 0 0 1 2-2h13v4\"/><path d=\"M3 7v11a2 2 0 0 0 2 2h14a1 1 0 0 0 1-1v-9a1 1 0 0 0-1-1H5a2 2 0 0 1-2-2z\"/><circle cx=\"16.5\" cy=\"14.5\" r=\"1\"/>"};
+var SVI={"bag": "<path d=\"M5 8h14l-1 12H6z\"/><path d=\"M9 8V6a3 3 0 0 1 6 0v2\"/>", "ret": "<path d=\"M9 14 4 9l5-5\"/><path d=\"M4 9h10a6 6 0 0 1 0 12h-3\"/>", "doc": "<path d=\"M6 3h8l5 5v13H6z\"/><path d=\"M14 3v5h5M9 13h7M9 17h5\"/>", "build": "<path d=\"M4 21V5l8-2v18\"/><path d=\"m12 9 8 2v10M8 8h.01M8 12h.01M8 16h.01M16 15h.01M16 18h.01\"/>", "bank": "<path d=\"m3 9 9-5 9 5\"/><path d=\"M5 9v9M9.5 9v9M14.5 9v9M19 9v9M3 21h18\"/>", "card": "<rect x=\"2.5\" y=\"5\" width=\"19\" height=\"14\" rx=\"2.5\"/><path d=\"M2.5 10h19M6 15h4\"/>", "layers": "<path d=\"m12 3 9 5-9 5-9-5z\"/><path d=\"m3 13 9 5 9-5\"/>", "alert": "<circle cx=\"12\" cy=\"12\" r=\"9\"/><path d=\"M12 7.5v5M12 16v.5\"/>", "cube": "<path d=\"m21 8-9-5-9 5 9 5 9-5z\"/><path d=\"M3 8v8l9 5 9-5V8M12 13v8\"/>", "people": "<circle cx=\"9\" cy=\"8\" r=\"3.5\"/><path d=\"M2.5 20a6.5 6.5 0 0 1 13 0\"/><path d=\"M16 4.6a3.5 3.5 0 0 1 0 6.8M18.5 14.3A6.5 6.5 0 0 1 21.5 20\"/>", "chart": "<path d=\"M3 3v18h18\"/><path d=\"m7 15 4-4 3 3 5-6\"/>", "cart": "<circle cx=\"9\" cy=\"20\" r=\"1.5\"/><circle cx=\"18\" cy=\"20\" r=\"1.5\"/><path d=\"M2 3h3l2.7 12.4a1 1 0 0 0 1 .8h8.8a1 1 0 0 0 1-.8L20.5 8H6\"/>", "trophy": "<path d=\"M8 4h8v5a4 4 0 0 1-8 0z\"/><path d=\"M8 6H4v1a4 4 0 0 0 4 4M16 6h4v1a4 4 0 0 1-4 4M12 13v4M8 21h8M10 17h4\"/>", "receipt": "<path d=\"M5 3h14v18l-3-2-2 2-2-2-2 2-2-2-3 2z\"/><path d=\"M9 8h6M9 12h6\"/>", "trend": "<path d=\"m3 17 6-6 4 4 8-8\"/><path d=\"M15 7h6v6\"/>", "home": "<path d=\"m3 11 9-8 9 8\"/><path d=\"M5 10v10h14V10\"/>", "tag": "<path d=\"M3 12V4h8l10 10-8 8z\"/><circle cx=\"7.5\" cy=\"8.5\" r=\"1.3\"/>", "clock": "<circle cx=\"12\" cy=\"12\" r=\"9\"/><path d=\"M12 7v5l3 2\"/>", "swapv": "<path d=\"M8 20V4M4 8l4-4 4 4\"/><path d=\"M16 4v16m4-4-4 4-4-4\"/>", "alarm": "<circle cx=\"12\" cy=\"13\" r=\"8\"/><path d=\"M12 9v4l2.5 1.5M4 5l3-2M20 5l-3-2\"/>", "cash": "<rect x=\"2.5\" y=\"6\" width=\"19\" height=\"12\" rx=\"2\"/><circle cx=\"12\" cy=\"12\" r=\"2.8\"/><path d=\"M6 10h.01M18 14h.01\"/>", "wallet": "<path d=\"M3 7a2 2 0 0 1 2-2h13v4\"/><path d=\"M3 7v11a2 2 0 0 0 2 2h14a1 1 0 0 0 1-1v-9a1 1 0 0 0-1-1H5a2 2 0 0 1-2-2z\"/><circle cx=\"16.5\" cy=\"14.5\" r=\"1\"/>", "teamc": "<circle cx=\"12\" cy=\"12\" r=\"9\"/><circle cx=\"12\" cy=\"10\" r=\"3\"/><path d=\"M6.5 18a6 6 0 0 1 11 0\"/>", "swaph": "<path d=\"M4 8h15m-4-4 4 4-4 4\"/><path d=\"M20 16H5m4-4-4 4 4 4\"/>"};
 var SVC=[{"k": "new-sale", "c": "sales", "i": "cart", "p": "ubuntu", "t": [["New Sale", "Ring up a sale in seconds. Cash or Mobile Money, with a receipt your customer can keep."], ["Kugurisha", "Gurisha mu masegonda make. Amafaranga mu ntoki cyangwa Mobile Money, umukiriya ahabwa inyemezabwishyu."], ["Vente", "Enregistrez une vente en quelques secondes. Espèces ou Mobile Money, avec un reçu pour votre client."]]}, {"k": "invoice-history", "c": "sales", "i": "doc", "p": "ubuntu", "t": [["Invoices", "Find any past sale, reprint the receipt and share it on WhatsApp."], ["Amatike", "Shakisha igurisha ryose ryarangiye, usohore inyemezabwishyu kandi uyisangize kuri WhatsApp."], ["Factures", "Retrouvez n'importe quelle vente, réimprimez le reçu et partagez-le sur WhatsApp."]]}, {"k": "customers", "c": "sales", "i": "people", "p": "ubuntu", "t": [["Customers", "Remember who buys from you, who owes you and who to call back."], ["Abakiriya", "Wibuke abaguhaha, abakurimo umwenda n'abo ugomba guhamagara."], ["Clients", "Souvenez-vous de qui achète chez vous, qui vous doit et qui rappeler."]]}, {"k": "quotations", "c": "sales", "i": "doc", "p": "iterambere", "t": [["Quotations", "Send a clear price quote and turn it into a sale once it is accepted."], ["Amaproforma", "Ohereza proforma isobanutse ihinduke igurisha igihe yemewe."], ["Devis", "Envoyez un devis clair et transformez-le en vente dès qu'il est accepté."]]}, {"k": "sales-returns", "c": "sales", "i": "ret", "p": "iterambere", "t": [["Returns", "Take items back and refund the right amount. Stock updates by itself."], ["Ibyagaruwe", "Akira ibyagaruwe usubize amafaranga akwiye. Ububiko buvugurura bwonyine."], ["Retours", "Reprenez des articles et remboursez le bon montant. Le stock se met à jour seul."]]}, {"k": "discounts", "c": "sales", "i": "tag", "p": "iterambere", "t": [["Discounts", "Run promotions that apply automatically at the till."], ["Igabanyirizwa", "Tegura promosiyo zikora ubwazo igihe ugurisha."], ["Remises", "Lancez des promotions qui s'appliquent automatiquement à la caisse."]]}, {"k": "credit-rental", "c": "sales", "i": "card", "p": "ibanze", "t": [["Credit & Rental", "Track credit sales and rentals with the customer's ID and due dates."], ["Inguzanyo & Gukodesha", "Kurikirana ibyatanzwe ku nguzanyo no gukodesha, ufite indangamuntu n'amatariki yo kwishyura."], ["Crédit & Location", "Suivez les ventes à crédit et les locations avec la pièce d'identité et les échéances."]]}, {"k": "layaway", "c": "sales", "i": "clock", "p": "iterambere", "t": [["Layaway", "Let customers pay in instalments and collect when they finish."], ["Kwishyura mu byiciro", "Reka abakiriya bishyure buhoro buhoro bakajyana igicuruzwa bamaze kwishyura."], ["Acomptes", "Laissez vos clients payer par étapes et récupérer l'article une fois soldé."]]}, {"k": "inventory", "c": "inventory", "i": "cube", "p": "ubuntu", "t": [["Inventory", "Know what you have, what is running low and what to order. Add products by scanning."], ["Ububiko", "Menya ibyo ufite, ibigiye gushira n'ibyo ugomba kugura. Ongeramo ibicuruzwa usoma barcode."], ["Stock", "Sachez ce que vous avez, ce qui manque et ce qu'il faut commander. Ajoutez vos produits en scannant."]]}, {"k": "stock-alerts", "c": "inventory", "i": "alert", "p": "ubuntu", "t": [["Stock alerts", "Get a warning before an item runs out, so you reorder in time and never lose a sale."], ["Impuruza z'ububiko", "Menyeshwa mbere y'uko igicuruzwa gishira, ukagitumiza mu gihe ntusige abakiriya."], ["Alertes de stock", "Soyez averti avant la rupture, pour recommander à temps et ne jamais perdre une vente."]]}, {"k": "suppliers", "c": "inventory", "i": "build", "p": "iterambere", "t": [["Suppliers", "Keep supplier details and see what you owe each one."], ["Abaranguza", "Bika amakuru y'abaguha ibicuruzwa urebe umwenda ubabereyemo."], ["Fournisseurs", "Gardez les coordonnées de vos fournisseurs et voyez ce que vous devez à chacun."]]}, {"k": "purchase-orders", "c": "inventory", "i": "bag", "p": "iterambere", "t": [["Purchase orders", "Order from suppliers and receive the stock straight into your inventory."], ["Gutumiza ibicuruzwa", "Tumiza ku baranguza ibicuruzwa bigahita byinjira mu bubiko."], ["Bons de commande", "Commandez auprès de vos fournisseurs et recevez le stock directement dans votre inventaire."]]}, {"k": "stock-transfer", "c": "inventory", "i": "swaph", "p": "inkunga", "t": [["Stock transfer", "Move stock between branches and keep both counts right."], ["Kohereza ububiko", "Kohereza ibicuruzwa hagati y'amashami, imibare yombi igakomeza kuba nyayo."], ["Transfert de stock", "Déplacez du stock entre vos sites en gardant les deux comptes justes."]]}, {"k": "assets", "c": "inventory", "i": "layers", "p": "inkunga", "t": [["Assets", "Track your equipment, what it is worth and when it needs care."], ["Ibikoresho", "Kurikirana ibikoresho byawe, agaciro kabyo n'igihe bikeneye gusanwa."], ["Actifs", "Suivez votre équipement, sa valeur et son entretien."]]}, {"k": "cash-desk", "c": "finance", "i": "cash", "p": "iterambere", "t": [["Cash desk", "Open and close the till and see exactly what should be in the drawer."], ["Agasanduku k'amafaranga", "Fungura ufunge agasanduku, urebe neza amafaranga agomba kuba arimo."], ["Caisse", "Ouvrez et fermez la caisse et voyez exactement ce qu'elle doit contenir."]]}, {"k": "cashflow", "c": "finance", "i": "swapv", "p": "iterambere", "t": [["Cash flow", "See money coming in and going out, day by day."], ["Amafaranga yinjira n'asohoka", "Reba amafaranga yinjira n'asohoka umunsi ku munsi."], ["Trésorerie", "Voyez l'argent qui entre et qui sort, jour après jour."]]}, {"k": "expenses", "c": "finance", "i": "wallet", "p": "iterambere", "t": [["Expenses", "Record rent, salaries and bills so you know your real profit."], ["Ibyasohotse", "Andika ubukode, imishahara n'amafaranga yasohotse umenye inyungu nyayo."], ["Dépenses", "Enregistrez loyer, salaires et factures pour connaître votre vrai bénéfice."]]}, {"k": "loans", "c": "finance", "i": "card", "p": "iterambere", "t": [["Loans", "Track loans you gave or took, with repayments and due dates."], ["Inguzanyo", "Kurikirana inguzanyo watanze cyangwa wafashe, ukwishyura n'amatariki."], ["Prêts", "Suivez les prêts accordés ou reçus, avec remboursements et échéances."]]}, {"k": "tax-vat", "c": "finance", "i": "receipt", "p": "inkunga", "t": [["Tax & VAT", "Keep your tax records ready, without the end-of-month panic."], ["Imisoro & TVA", "Bika imisoro yawe yiteguye, nta mpagarara z'iherezo ry'ukwezi."], ["Taxes & TVA", "Gardez vos dossiers fiscaux prêts, sans la panique de fin de mois."]]}, {"k": "bank-reconciliation", "c": "finance", "i": "bank", "p": "inkunga", "t": [["Bank reconciliation", "Match your records to your bank statement and spot differences."], ["Guhuzisha konti ya Banki", "Huza imibare yawe n'iy'ikarita ya banki ubone itandukaniro."], ["Rapprochement bancaire", "Comparez vos écritures au relevé bancaire et repérez les écarts."]]}, {"k": "reports", "c": "reports", "i": "chart", "p": "ubuntu", "t": [["Reports", "See your profit, best sellers and busiest days. Every day, without a calculator."], ["Raporo", "Reba inyungu yawe, ibicuruzwa bigurishwa cyane n'iminsi irimo akazi. Buri munsi, nta kamashini."], ["Rapports", "Voyez votre bénéfice, vos meilleures ventes et vos jours les plus chargés. Sans calculatrice."]]}, {"k": "profit-loss", "c": "reports", "i": "trend", "p": "iterambere", "t": [["Profit & Loss", "See what you really earned after costs."], ["Inyungu & Igihombo", "Reba icyo wungutse nyuma y'ibyasohotse."], ["Profits & Pertes", "Voyez ce que vous avez réellement gagné après les coûts."]]}, {"k": "goals", "c": "reports", "i": "trophy", "p": "iterambere", "t": [["Goals", "Set sales targets and watch your progress."], ["Intego", "Shyiraho intego z'igurisha ukurikirane aho ugeze."], ["Objectifs", "Fixez des objectifs de vente et suivez vos progrès."]]}, {"k": "employees", "c": "team", "i": "teamc", "p": "ubuntu", "t": [["Employees", "Add your team, mark attendance, see payroll and give each person their own login."], ["Abakozi", "Ongeramo abakozi, ugaragaze abaje, urebe imishahara kandi umuntu wese umuhe konti ye."], ["Employés", "Ajoutez votre équipe, marquez les présences, voyez la paie et donnez à chacun son accès."]]}, {"k": "shift-manager", "c": "team", "i": "alarm", "p": "inkunga", "t": [["Shifts", "Open and close shifts and see each cashier's cash."], ["Ihinduka ry'abakozi", "Fungura ufunge amatsinda y'akazi urebe amafaranga ya buri wese."], ["Équipes", "Ouvrez et fermez les équipes et voyez la caisse de chaque caissier."]]}];
 var SVCATS=[{"k": "sales", "n": ["Sales", "Kugurisha", "Ventes"], "i": "cart", "c": "#0a8577", "b": "#e6f7f2"}, {"k": "inventory", "n": ["Inventory", "Ububiko", "Stock"], "i": "cube", "c": "#2563eb", "b": "#ebf2ff"}, {"k": "finance", "n": ["Finance", "Imari", "Finances"], "i": "wallet", "c": "#dc2626", "b": "#fef2f2"}, {"k": "reports", "n": ["Reports", "Raporo", "Rapports"], "i": "chart", "c": "#7c3aed", "b": "#f3eeff"}, {"k": "team", "n": ["Team", "Abakozi", "Équipe"], "i": "teamc", "c": "#d97706", "b": "#fff4e0"}];
 var SVPL={"ubuntu": ["Free", "Ubuntu", "Gratuit"], "ibanze": ["Ibanze", "Ibanze", "Ibanze"], "iterambere": ["Iterambere", "Iterambere", "Iterambere"], "inkunga": ["Agaciro", "Agaciro", "Agaciro"]};
@@ -1200,7 +1229,9 @@ var PLANS = {
       [T3("Customer records","Urutonde rw'abakiriya","Fiches clients"),1],
       [T3("Credit sales and rentals","Kugurisha ku nguzanyo no gukodesha","Ventes à crédit et locations"),1],
       [T3("Clean receipts, no Trackly footer","Fagitire zitagira ikirango cya Trackly","Reçus sans mention Trackly"),1],
-      [T3("Full reports and profit and loss","Raporo zuzuye n'inyungu (P&L)","Rapports complets et P&L"),0],
+      [T3("Expense tracking","Gukurikirana ibyasohotse","Suivi des dépenses"),1],
+      [T3("Sales returns and discounts","Ibyagaruwe n'igabanyirizwa","Retours de vente et remises"),1],
+      [T3("Profit and loss, cash flow, goals","Inyungu n'igihombo, amafaranga, intego","Profits et pertes, trésorerie, objectifs"),0],
       [T3("Staff accounts","Konti z'abakozi","Comptes employés"),0]
     ]},
   iterambere:{ name:"Iterambere", badge:T3("Growth","Ihitimu","Croissance"), popular:T3("Most popular","Ayakunzwe cyane","Le plus populaire"),
@@ -1209,13 +1240,12 @@ var PLANS = {
       [T3("Everything in Ibanze","Byose biri muri Ibanze","Tout Ibanze inclus"),1],
       [T3("Unlimited products","Ibicuruzwa nta ngano","Produits illimités"),1],
       [T3("Unlimited invoice history","Amateka ya fagitire nta karimbi","Historique illimité"),1],
-      [T3("Reports, profit and loss, cash flow","Raporo, inyungu n'igihombo, amafaranga yinjira n'asohoka","Rapports, P&L et trésorerie"),1],
-      [T3("Expense tracking and business goals","Ibyasohotse n'intego z'ubucuruzi","Suivi des dépenses et objectifs"),1],
+      [T3("Profit and loss, cash flow and goals","Inyungu n'igihombo, amafaranga n'intego","Profits et pertes, trésorerie et objectifs"),1],
       [T3("Suppliers and purchase orders","Abaganaciro n'ubusabe bwo gutumiza","Fournisseurs et bons de commande"),1],
-      [T3("Quotations, returns and discounts","Amaproforma, ibyagaruwe n'igabanyirizwa","Devis, retours et remises"),1],
-      [T3("Layaway, loans and cash desk","Kwishyura mu byiciro, inguzanyo n'agasanduku k'amafaranga","Acomptes, prêts et caisse"),1],
+      [T3("Quotations and layaway","Amaproforma no kwishyura mu byiciro","Devis et acomptes"),1],
+      [T3("Loans and cash desk","Inguzanyo n'agasanduku k'amafaranga","Prêts et caisse"),1],
       [T3("Up to 2 staff accounts","Kugeza ku bakozi 2","Jusqu'à 2 employés"),1],
-      [T3("RRA tax and VAT reports","Raporo z'imisoro RRA na TVA","Rapports fiscaux RRA et TVA"),0],
+      [T3("One-time projects: BOQ and budget","Imishinga: BOQ n'ingengo y'imari","Projets : BOQ et budget"),0],
       [T3("Shifts, assets and stock transfers","Ihinduka ry'abakozi, ibikoresho, kohereza ububiko","Équipes, actifs et transferts de stock"),0]
     ]},
   inkunga:{ name:"Agaciro", badge:T3("Pro","Pro","Pro"),
@@ -1223,6 +1253,7 @@ var PLANS = {
     features:[
       [T3("Everything in Iterambere","Byose biri muri Iterambere","Tout Iterambere inclus"),1],
       [T3("Unlimited staff accounts","Abakozi nta ngano","Employés illimités"),1],
+      [T3("One-time projects: BOQ, budget, deadlines","Imishinga: BOQ, ingengo y'imari, igihe","Projets : BOQ, budget, délais"),1],
       [T3("RRA tax and VAT reports","Raporo z'imisoro RRA na TVA","Rapports fiscaux RRA et TVA"),1],
       [T3("Bank reconciliation","Guhuzisha konti ya Banki","Rapprochement bancaire"),1],
       [T3("Shift management","Gucunga ihinduka ry'abakozi","Gestion des équipes"),1],
@@ -1231,28 +1262,98 @@ var PLANS = {
     ]}
 };
 var PRICE={ubuntu:[0,0],ibanze:[3000,30000],iterambere:[6000,60000],inkunga:[10000,100000]};
-var PCOL={ubuntu:"#7C3AED",ibanze:"#1B2A5A",iterambere:"#1DAA8A",inkunga:"#D4860A"};
+var PCOL={ubuntu:"#64748B",ibanze:"#1B2A5A",iterambere:"#0FA68C",inkunga:"#C9982A"};
 var ORDER=["ubuntu","ibanze","iterambere","inkunga"];
 var cycle="monthly";
 function planHref(k){if(k==="ubuntu")return"/app/register/?plan=ubuntu";var t=null;try{t=localStorage.getItem("@trackly_access_token_v1")}catch(e){}return t?"/app/?pay="+k:"/app/register/?plan="+k}
 document.addEventListener("click",function(e){var a=e.target.closest&&e.target.closest("a[data-pk]");if(a){try{localStorage.setItem("tk_plan_cycle",a.getAttribute("data-cy"))}catch(x){}}});
 function fmt(n){return String(n).replace(/\B(?=(\d{3})+(?!\d))/g,",")}
+/* every service: [en, rw, fr, minimum plan rank] */
+var SV=[
+ ["New sale","Kugurisha","Nouvelle vente",0],["Invoice history","Amateka ya fagitire","Historique des factures",0],["Customers","Abakiriya","Clients",0],["Inventory","Ububiko","Inventaire",0],["Stock alerts","Impuruza z'ububiko","Alertes de stock",0],["Reports","Raporo","Rapports",0],
+ ["Credit and rentals","Inguzanyo no gukodesha","Crédit et locations",1],["Expenses","Ibyasohotse","Dépenses",1],["Sales returns","Ibyagaruwe","Retours de vente",1],["Discounts","Igabanyirizwa","Remises",1],
+ ["Quotations","Amaproforma","Devis",2],["Layaway","Kwishyura mu byiciro","Acomptes",2],["Suppliers","Abaranguza","Fournisseurs",2],["Purchase orders","Gutumiza","Bons de commande",2],["Cash desk","Agasanduku k'amafaranga","Caisse",2],["Cash flow","Amafaranga yinjira n'asohoka","Trésorerie",2],["Loans","Inguzanyo","Prêts",2],["Profit and loss","Inyungu n'igihombo","Profits et pertes",2],["Goals","Intego","Objectifs",2],
+ ["Projects","Imishinga","Projets",3],["Stock transfers","Kohereza ububiko","Transferts de stock",3],["Assets","Ibikoresho","Actifs",3],["Tax and VAT","Imisoro na TVA","Impôts et TVA",3],["Bank reconciliation","Guhuzisha Banki","Rapprochement bancaire",3],["Shifts","Ihinduka ry'abakozi","Équipes",3]
+];
+var PASSP={ibanze:[500,900,1500],iterambere:[1000,1800,3000],inkunga:[2000,3500,6000]};
+var PX={
+en:{n:"{n} services",nw:"New",
+ pj_h:"Projects: run every one-time job from contract to handover.",pj_p:"Building a house, fitting out a shop, delivering a contract? Enter the contract value and your bill of quantities, then follow spending, workers and deadlines against it. Trackly warns you early when a job drifts over budget or behind schedule.",
+ pj_b:["Bill of quantities (BOQ) and expected profit","Spending by category against budget","Workers, daily rates and payments","Milestones, deadlines and extensions, with reasons","A live health signal: on track, watch, or at risk"],
+ pj_cta:"Get Projects with Agaciro",pj_note:"Included in Agaciro. Or open it for 7 days from 2,000 RWF.",
+ m_name:"4-bedroom house, Kicukiro",m_ok:"On track",m_cv:"Contract value",m_bud:"Budget (BOQ)",m_fp:"Forecast profit",m_sp:"Spent",m_rc:"Received",m_pr:"Progress",m_cost:"Cost index",m_sch:"Schedule index",m_more:"+ 24 more lines",
+ ps_h:"Need just one service? Pay only for what you use.",ps_p:"Open any single service for 7, 14 or 30 days, with no plan change. When the time ends it switches off by itself, and you renew in one tap.",
+ ps_d:"{n} days",ps_ex:{ibanze:"Credit and rentals, Expenses, Returns, Discounts",iterambere:"Cash desk, Suppliers, Loans, Profit and loss and more",inkunga:"Projects, Tax and VAT, Bank reconciliation and more"},
+ ps_note:"Pay with MTN MoMo or Airtel Money from your dashboard.",ps_cta:"Create free account",
+ c_h:"Compare every service",c_s:"Service"},
+rw:{n:"Serivisi {n}",nw:"Nshya",
+ pj_h:"Imishinga: cunga buri kazi k'inshuro imwe kuva ku masezerano kugeza ku kuyashyikiriza.",pj_p:"Wubaka inzu, utunganya iduka, cyangwa wakoze isezerano ry'akazi? Andika agaciro k'amasezerano n'urutonde rw'ibikenewe (BOQ), maze ukurikirane ibyakoreshejwe, abakozi n'igihe. Trackly iraguburira hakiri kare igihe akazi karenze ingengo y'imari cyangwa kasubiye inyuma.",
+ pj_b:["BOQ n'inyungu witeze","Ibyakoreshejwe ugereranyije n'ingengo y'imari","Abakozi, igiciro cy'umunsi n'ubwishyu","Ibyiciro, igihe ntarengwa no kongera igihe, hamwe n'impamvu","Ikimenyetso kigaragaza uko akazi kahagaze"],
+ pj_cta:"Fata Imishinga muri Agaciro",pj_note:"Irimo muri Agaciro. Cyangwa uyifungure iminsi 7 guhera kuri 2,000 RWF.",
+ m_name:"Inzu y'ibyumba 4, Kicukiro",m_ok:"Bigenda neza",m_cv:"Agaciro k'amasezerano",m_bud:"Ingengo y'imari (BOQ)",m_fp:"Inyungu iteganyijwe",m_sp:"Yakoreshejwe",m_rc:"Yakiriwe",m_pr:"Aho akazi kageze",m_cost:"Igipimo cy'ibiciro",m_sch:"Igipimo cy'igihe",m_more:"+ indi mirongo 24",
+ ps_h:"Ukeneye serivisi imwe gusa? Ishyura ibyo ukoresheje gusa.",ps_p:"Fungura serivisi imwe y'iminsi 7, 14 cyangwa 30, nta guhindura gahunda. Igihe kirangiye irifunga yonyine, ukongera mu kanya gato.",
+ ps_d:"Iminsi {n}",ps_ex:{ibanze:"Inguzanyo no gukodesha, Ibyasohotse, Ibyagaruwe, Igabanyirizwa",iterambere:"Agasanduku, Abaranguza, Inguzanyo, Inyungu n'igihombo n'izindi",inkunga:"Imishinga, Imisoro na TVA, Guhuzisha Banki n'izindi"},
+ ps_note:"Ishyura na MTN MoMo cyangwa Airtel Money ukoresheje dashboard yawe.",ps_cta:"Fungura konti y'ubuntu",
+ c_h:"Gereranya serivisi zose",c_s:"Serivisi"},
+fr:{n:"{n} services",nw:"Nouveau",
+ pj_h:"Projets : pilotez chaque chantier ponctuel, du contrat à la livraison.",pj_p:"Vous construisez une maison, aménagez une boutique ou exécutez un contrat ? Saisissez la valeur du contrat et votre bordereau de quantités, puis suivez dépenses, ouvriers et délais. Trackly vous alerte tôt quand un chantier dérape en budget ou en retard.",
+ pj_b:["Bordereau de quantités (BOQ) et profit attendu","Dépenses par catégorie face au budget","Ouvriers, tarifs journaliers et paiements","Jalons, délais et prolongations, avec motifs","Un indicateur en direct : dans les temps, à surveiller, à risque"],
+ pj_cta:"Obtenir Projets avec Agaciro",pj_note:"Inclus dans Agaciro. Ou ouvrez-le 7 jours dès 2 000 RWF.",
+ m_name:"Maison 4 chambres, Kicukiro",m_ok:"Dans les temps",m_cv:"Valeur du contrat",m_bud:"Budget (BOQ)",m_fp:"Profit prévu",m_sp:"Dépensé",m_rc:"Reçu",m_pr:"Avancement",m_cost:"Indice de coût",m_sch:"Indice de délai",m_more:"+ 24 lignes de plus",
+ ps_h:"Besoin d'un seul service ? Payez uniquement ce que vous utilisez.",ps_p:"Ouvrez un service pour 7, 14 ou 30 jours, sans changer de plan. À la fin, il se désactive tout seul et vous renouvelez en un geste.",
+ ps_d:"{n} jours",ps_ex:{ibanze:"Crédit et locations, Dépenses, Retours, Remises",iterambere:"Caisse, Fournisseurs, Prêts, Profits et pertes et plus",inkunga:"Projets, Impôts et TVA, Rapprochement bancaire et plus"},
+ ps_note:"Payez avec MTN MoMo ou Airtel Money depuis votre tableau de bord.",ps_cta:"Créer un compte gratuit",
+ c_h:"Comparer tous les services",c_s:"Service"}
+};
+var CK='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>';
 function renderPlans(l){
-  var d=T[l],box=document.getElementById("plans");if(!box)return;box.innerHTML="";
-  ORDER.forEach(function(k){
+  var d=T[l],x=PX[l],box=document.getElementById("plans");if(!box)return;box.innerHTML="";
+  ORDER.forEach(function(k,ri){
     var P=PLANS[k],free=k==="ubuntu",pop=k==="iterambere",yr=cycle==="yearly";
     var card=document.createElement("article");card.className="plan"+(pop?" pop":"");card.style.setProperty("--c",PCOL[k]);
     var price=free?d.p_free:fmt(PRICE[k][yr?1:0]);
     var per=free?"":(d.p_rwf+" "+(yr?d.p_peryr:d.p_permo));
     var save=(!free&&yr)?d.p_saves.replace("{n}",fmt(PRICE[k][0]*12-PRICE[k][1])):"";
-    var html='<h3>'+P.name+'<span class="badge">'+(pop?P.popular[l]:P.badge[l])+'</span></h3><p class="tag">'+P.tagline[l]+'</p>'
-      +'<div class="price"><b>'+price+'</b><span>'+per+'</span></div><div class="sv">'+save+'</div>'
-      +'<a class="btn btn-primary" href="'+planHref(k)+'" data-pk="'+k+'" data-cy="'+cycle+'">'+(free?d.p_cta_free:d.p_cta)+'</a><ul>';
-    P.features.forEach(function(f){html+='<li class="'+(f[1]?"":"off")+'"><svg viewBox="0 0 24 24" aria-hidden="true">'+(f[1]?'<path d="m5 12.5 4.5 4.5L19 7.5"/>':'<path d="M6 6l12 12M18 6 6 18"/>')+'</svg><span>'+f[0][l]+'</span></li>'});
-    card.innerHTML=html+'</ul>';box.appendChild(card);
+    var cnt=SV.filter(function(s){return s[3]<=ri}).length;
+    var html='<div class="plh">'+(pop?'<span class="ribbon">'+P.popular[l]+'</span>':"")+'<span class="pbadge">'+P.badge[l]+'</span><h3>'+P.name+'</h3><p class="tag">'+P.tagline[l]+'</p>'
+      +'<div class="price"><b>'+price+'</b><span>'+per+'</span></div><div class="sv">'+save+'</div></div>'
+      +'<div class="pbd"><a class="btn" href="'+planHref(k)+'" data-pk="'+k+'" data-cy="'+cycle+'">'+(free?d.p_cta_free:d.p_cta)+'</a><div class="pcnt"><i></i>'+x.n.replace("{n}",cnt)+'</div><ul>';
+    P.features.forEach(function(f){if(!f[1])return;var isPj=/projects|imishinga|projets/i.test(f[0].en+f[0][l])&&k==="inkunga";
+      html+='<li>'+CK+'<span>'+f[0][l]+(isPj?' <em class="new">'+x.nw+'</em>':"")+'</span></li>'});
+    card.innerHTML=html+'</ul></div>';box.appendChild(card);
   });
   document.getElementById("cycM").setAttribute("aria-pressed",cycle==="monthly"?"true":"false");
   document.getElementById("cycY").setAttribute("aria-pressed",cycle==="yearly"?"true":"false");
+}
+function renderExtra(l){
+  var x=PX[l],i=l==="rw"?1:l==="fr"?2:0,h="";
+  var pj=document.getElementById("pjshow");
+  if(pj){
+   pj.innerHTML='<div class="pjs"><div class="pjs-t"><span class="pjs-new">'+x.nw+'</span><h3>'+x.pj_h+'</h3><p>'+x.pj_p+'</p><ul>'+x.pj_b.map(function(b){return '<li>'+CK+'<span>'+b+'</span></li>'}).join("")+'</ul>'
+   +'<a class="btn pjs-cta" href="'+planHref("inkunga")+'" data-pk="inkunga" data-cy="'+cycle+'">'+x.pj_cta+'</a><small>'+x.pj_note+'</small></div>'
+   +'<div class="pjm" aria-hidden="true"><div class="pjm-h"><b>'+x.m_name+'</b><span>'+x.m_ok+'</span></div>'
+   +'<div class="pjm-k"><div><small>'+x.m_cv+'</small><b>45,000,000</b></div><div><small>'+x.m_bud+'</small><b>31,200,000</b></div><div><small>'+x.m_fp+'</small><b class="g">+13,800,000</b></div></div>'
+   +'<div class="pjm-b"><span>'+x.m_sp+'</span><div><i style="width:46%"></i></div><em>46%</em></div>'
+   +'<div class="pjm-b"><span>'+x.m_rc+'</span><div><i class="t" style="width:30%"></i></div><em>30%</em></div>'
+   +'<div class="pjm-b"><span>'+x.m_pr+'</span><div><i class="t" style="width:48%"></i></div><em>48%</em></div>'
+   +'<div class="pjm-i"><div><small>'+x.m_cost+'</small><b>1.04</b></div><div><small>'+x.m_sch+'</small><b>1.07</b></div></div>'
+   +'<div class="pjm-r"><span>Cement 50kg</span><em>11,200,000</em></div><div class="pjm-r"><span>Roofing sheets</span><em>5,400,000</em></div><div class="pjm-r"><span>Masons &amp; helpers</span><em>4,800,000</em></div><div class="pjm-r mo"><span>'+x.m_more+'</span></div></div></div>';
+  }
+  var ps=document.getElementById("passes");
+  if(ps){
+   var ks=["ibanze","iterambere","inkunga"];
+   h='<div class="pss"><div class="pss-h"><h3>'+x.ps_h+'</h3><p>'+x.ps_p+'</p></div><div class="pss-g"><div class="pss-c"></div>'+[7,14,30].map(function(n){return '<div class="pss-c hd">'+x.ps_d.replace("{n}",n)+'</div>'}).join("");
+   ks.forEach(function(k){h+='<div class="pss-r" style="--c:'+PCOL[k]+'"><i></i><div><b>'+PLANS[k].name+'</b><small>'+x.ps_ex[k]+'</small></div></div>'+PASSP[k].map(function(v){return '<div class="pss-c"><b>'+fmt(v)+'</b><small>RWF</small></div>'}).join("")});
+   h+='</div><div class="pss-f"><span>'+x.ps_note+'</span><a class="btn btn-primary" href="/app/register/?plan=ubuntu">'+x.ps_cta+'</a></div></div>';
+   ps.innerHTML=h;
+  }
+  var cm=document.getElementById("cmp");
+  if(cm){
+   var open=cm.querySelector("details")&&cm.querySelector("details").open;
+   h='<details class="cmpd"'+(open?" open":"")+'><summary>'+x.c_h+'</summary><div class="cmps"><table><thead><tr><th>'+x.c_s+'</th>'+ORDER.map(function(k){return '<th style="--c:'+PCOL[k]+'"><i></i>'+PLANS[k].name+'</th>'}).join("")+'</tr></thead><tbody>'
+   +SV.map(function(s){return '<tr><td>'+s[i]+'</td>'+ORDER.map(function(k,ri){return '<td style="--c:'+PCOL[k]+'">'+(ri>=s[3]?'<span class="y">'+CK+'</span>':'')+'</td>'}).join("")+'</tr>'}).join("")+'</tbody></table></div></details>';
+   cm.innerHTML=h;
+  }
 }
 
   var curLang="en";
@@ -1262,7 +1363,7 @@ function renderPlans(l){
     $$("[data-t]").forEach(function(e){var k=e.getAttribute("data-t");if(d[k]!=null)e.textContent=d[k]});
     $$("img[data-img]").forEach(function(i){var n=i.getAttribute("data-img");i.src="/img/tk-"+l+"-"+n+".webp";if(d["alt"+n])i.alt=d["alt"+n]});
     $$("[data-chips]").forEach(function(e){var v=d[e.getAttribute("data-chips")];if(v){e.innerHTML="";v.split("|").forEach(function(x){var c=document.createElement("span");c.textContent=x;e.appendChild(c)})}});
-    renderPlans(l);renderSvc(l);
+    renderPlans(l);renderExtra(l);renderSvc(l);
     document.documentElement.lang=l;
     $("#langFlag").innerHTML=FLAGS[l];$("#langCode").textContent=CODE[l];
     $$("#langMenu [data-lang]").forEach(function(b){b.setAttribute("aria-checked",b.getAttribute("data-lang")===l?"true":"false")});
