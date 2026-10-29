@@ -1,0 +1,11 @@
+# Trackly
+> Trackly is a business management app for shops and small businesses in Rwanda and Africa, made by Ivanexo Ltd in Kigali. It records sales and Mobile Money payments, tracks stock, customers, expenses, quotations, purchase orders and projects, and gives daily reports. Works on phone, tablet and computer in English, Kinyarwanda and French. Free plan available; paid plans from RWF 3,000 per month.
+
+## Key pages
+- [Trackly home](https://trackly.ivanexo.com/): overview, plans and prices
+- [About Trackly and Ivanexo](https://trackly.ivanexo.com/about/): facts, pricing, contact
+- [Trackly by business type](https://trackly.ivanexo.com/business/): pages for shops, restaurants, pharmacies, salons, hardware, wholesale and more
+- [Create a free account](https://trackly.ivanexo.com/app/register/)
+
+## Company
+Ivanexo Ltd, Kacyiru, Gasabo, Kigali, Rwanda. info@ivanexo.com. https://www.ivanexo.com

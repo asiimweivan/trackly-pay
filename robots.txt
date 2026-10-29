@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /app/
+Allow: /app/register/
+Allow: /app/login/
+
+Sitemap: https://trackly.ivanexo.com/sitemap.xml
