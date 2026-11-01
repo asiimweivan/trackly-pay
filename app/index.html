@@ -239,6 +239,21 @@ svg.i{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.9;stro
 .nudge .ni2 svg{width:24px;height:24px;fill:#f2a50f;stroke:none}
 .nudge b{display:block}.nudge span{color:var(--mut);font-size:.88rem}.nudge .pb{margin-left:auto}
 
+/* first-sale activation card */
+.fs{margin-top:1rem;border-radius:22px;padding:1.2rem 1.3rem;background:linear-gradient(120deg,#fff8e8,#fff);border:1px solid #f6e2b5;display:grid;gap:.9rem}
+.fs.go{background:linear-gradient(120deg,#e9fbf6,#fff);border-color:#b6ece0}
+.fs .fsh{display:flex;gap:.9rem;align-items:flex-start}
+.fs .fsi{flex:none;width:48px;height:48px;border-radius:15px;background:#fdecc4;color:#c9822a;display:flex;align-items:center;justify-content:center}
+.fs.go .fsi{background:#c9f3ea;color:#0a8577}
+.fs .fsi svg{width:24px;height:24px}
+.fs h3{font-size:1.08rem;line-height:1.3;margin:0}
+.fs p{margin:.25rem 0 0;color:var(--mut);font-size:.9rem}
+.fs .fss{display:flex;flex-wrap:wrap;gap:.45rem}
+.fs .fss span{display:inline-flex;align-items:center;gap:.35rem;padding:.35rem .7rem;border-radius:99px;background:#fff;border:1px solid var(--line);font-size:.8rem;font-weight:700;color:var(--mut)}
+.fs .fss span.on{color:#0a8577;border-color:#b6ece0;background:#f1fcf9}
+.fs .fss svg{width:14px;height:14px}
+.fs .pb{justify-self:start}
+@media(max-width:560px){.fs .pb{justify-self:stretch}}
 /* pages */
 .crumb{display:flex;align-items:center;gap:.4rem;margin:1.2rem 0 .8rem;font-size:.88rem;color:var(--mut);font-weight:600}
 .crumb a:hover{color:var(--ink)}
@@ -1174,6 +1189,9 @@ en:{nf:{"sub":"Smart alerts about your stock, sales, suppliers and expenses. The
  svc:"services",avail:"{u} of {t} available",
  lim:"{n} of {m} products used",limR:" · limit reached",limL:" · running low",
  nudgeT:"Upgrade to Iterambere",nudgeS:"Reports, suppliers, cash desk and more from 200 RWF a day.",upgrade:"Upgrade",
+ fsT0:"Set up your products to start selling",fsX0:"Add at least 3 products with prices and stock. It takes about 2 minutes.",fsB0:"Add products",
+ fsT1:"Your products are ready. Make your first sale!",fsX1:"{n} products are set up. Record a sale in under 30 seconds.",fsB1:"Make first sale",
+ fsS1:"Add products",fsS2:"First sale",fsS3:"See your report",
  owner:"Business owner",agent:"Agent",
  myacc:"My profile",terms:"Terms of service",privacy:"Privacy policy",plans:"Plans & pricing",notif:"Notifications",sett:"Settings",support:"Contact support",logout:"Log out",
  soonT:"Coming to the web",soonX:"{n} works in the Trackly Android app today. The web version is on the way.",dlA:"Download for Android",back:"Back to home",
@@ -1196,6 +1214,9 @@ rw:{nf:{"sub":"Impuruza zikurikirana ububiko, ibyagurishijwe, abaguha ibicuruzwa
  svc:"serivisi",avail:"{u} kuri {t} birahari",
  lim:"Umaze gukoresha {n} kuri {m} by'ibicuruzwa",limR:" · warageze ku mupaka",limL:" · biri hafi gushira",
  nudgeT:"Fungura Iterambere",nudgeS:"Raporo, abaranguza, agasanduku n'ibindi guhera kuri 200 RWF ku munsi.",upgrade:"Izamura",
+ fsT0:"Tegura ibicuruzwa byawe kugira ngo utangire kugurisha",fsX0:"Shyiramo nibura ibicuruzwa 3 hamwe n'ibiciro n'ibiri mu bubiko. Bifata iminota nka 2.",fsB0:"Ongeramo ibicuruzwa",
+ fsT1:"Ibicuruzwa byawe biriteguye. Gurisha bwa mbere!",fsX1:"Ibicuruzwa {n} byateguwe. Andika igurisha mu masegonda atarenga 30.",fsB1:"Gurisha bwa mbere",
+ fsS1:"Ongeramo ibicuruzwa",fsS2:"Igurisha rya mbere",fsS3:"Reba raporo yawe",
  owner:"Nyiri ubucuruzi",agent:"Umukozi (Agent)",
  myacc:"Konti yanjye",terms:"Amabwiriza yo gukoresha",privacy:"Politiki y'ibanga",plans:"Gahunda n'ibiciro",notif:"Ubutumwa",sett:"Igenamiterere",support:"Twandikire",logout:"Sohoka",
  soonT:"Biri kuza kuri web",soonX:"{n} ikora muri porogaramu ya Trackly kuri Android uyu munsi. Iya web iraza vuba.",dlA:"Kuramo kuri Android",back:"Subira ahabanza",
@@ -1218,6 +1239,9 @@ fr:{nf:{"sub":"Alertes intelligentes sur votre stock, vos ventes, fournisseurs e
  svc:"services",avail:"{u} sur {t} disponibles",
  lim:"{n} sur {m} produits utilisés",limR:" · limite atteinte",limL:" · bientôt plein",
  nudgeT:"Passer à Iterambere",nudgeS:"Rapports, fournisseurs, caisse et plus dès 200 RWF par jour.",upgrade:"Améliorer",
+ fsT0:"Préparez vos produits pour commencer à vendre",fsX0:"Ajoutez au moins 3 produits avec prix et stock. Cela prend environ 2 minutes.",fsB0:"Ajouter des produits",
+ fsT1:"Vos produits sont prêts. Faites votre première vente !",fsX1:"{n} produits sont prêts. Enregistrez une vente en moins de 30 secondes.",fsB1:"Faire ma première vente",
+ fsS1:"Ajouter des produits",fsS2:"Première vente",fsS3:"Voir votre rapport",
  owner:"Propriétaire",agent:"Agent",
  myacc:"Mon profil",terms:"Conditions d'utilisation",privacy:"Politique de confidentialité",plans:"Offres et tarifs",notif:"Notifications",sett:"Paramètres",support:"Contacter le support",logout:"Se déconnecter",
  soonT:"Bientôt sur le web",soonX:"{n} fonctionne dès aujourd'hui dans l'application Android Trackly. La version web arrive.",dlA:"Télécharger pour Android",back:"Retour à l'accueil",
@@ -2058,6 +2082,12 @@ function vHome(){
   (loc?'<div class="loc">'+ico("pin")+esc(loc)+'</div>':"")+'</div>'+
   '<div class="hr-r"><div class="dte">'+esc(now.toLocaleDateString(lang==="rw"?"en-GB":lang,{weekday:"long",day:"numeric",month:"long"}))+'</div><a class="pill" href="#/profile">'+ico("diamond")+esc(p.label)+'</a></div></div>'+
   '<div class="tabs" role="group">'+["today","week","month"].map(function(k){return '<button data-tab="'+k+'" aria-pressed="'+(tab===k)+'">'+esc(t[k])+'</button>'}).join("")+'</div></section>';
+ if(!sales.length&&!S.error){
+  var okP=real.filter(function(p){return Number(p.sellingPrice)>0&&Number(p.stockQuantity)>0}).length,rd=okP>=3;
+  h+='<section class="fs'+(rd?" go":"")+'"><div class="fsh"><span class="fsi">'+ico(rd?"cart":"cube")+'</span><div><h3>'+esc(rd?t.fsT1:t.fsT0)+'</h3><p>'+esc(rd?fill(t.fsX1,{n:okP}):t.fsX0)+'</p></div></div>'+
+   '<div class="fss"><span class="'+(rd?"on":"")+'">'+(rd?ico("check"):"")+esc(t.fsS1)+'</span><span>'+esc(t.fsS2)+'</span><span>'+esc(t.fsS3)+'</span></div>'+
+   '<a class="pb p" href="'+(rd?"#/s/new-sale":"#/s/inventory")+'">'+esc(rd?t.fsB1:t.fsB0)+'</a></section>';
+ }
  if((S.plan==="ubuntu"||S.plan==="ibanze")&&lp>=.7)h+='<a class="ban w" href="/#pricing"><span class="bi">'+ico("alert")+'</span><span style="flex:1"><span>'+esc(fill(t.lim,{n:P.length,m:lim})+(lp>=1?t.limR:t.limL))+'</span><span class="tr" style="display:block"><i style="display:block;width:'+Math.min(lp*100,100)+'%;'+(lp>=1?"background:#ef4444":"")+'"></i></span></span><span class="go">'+ico("chev")+'</span></a>';
  if(out.length)h+='<a class="ban r" href="#/s/inventory"><span class="bi">'+ico("alert")+'</span><span>'+esc(out.length+" × "+t.out)+'</span><span class="go">'+ico("chev")+'</span></a>';
  function stat(ic,a,l,v,u,extra){return '<div class="stat" style="--a:'+a+'">'+(extra||"")+'<span class="ti">'+ico(ic)+'</span><div class="v">'+v+'</div><div class="u">'+u+'</div><div class="l">'+esc(l)+'</div></div>'}
