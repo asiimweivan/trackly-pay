@@ -1009,6 +1009,11 @@ textarea.inp{resize:vertical}.inp.big{font-size:1.5rem;font-weight:800;min-heigh
 .agpre{margin:.9rem 0 0;white-space:pre-wrap;word-break:break-word;font:inherit;font-size:.86rem;color:var(--ink);background:#f4f6fb;border:1px solid var(--line);border-radius:14px;padding:.9rem 1rem}
 .agkvs{display:grid}.agkv{display:flex;justify-content:space-between;gap:1rem;padding:.75rem 0;border-top:1px solid #eef1f8}.agkv:first-child{border-top:0}.agkv small{color:var(--mut);font-weight:700}.agkv b{text-align:right;overflow-wrap:anywhere}
 .agseg{display:grid;grid-template-columns:1fr 1fr;gap:.5rem}.agseg button{display:flex;align-items:center;gap:.7rem;justify-content:flex-start;padding:.55rem .8rem;text-align:left;border:2px solid #dfe5f1;background:#fff;font:inherit;font-weight:700;color:var(--ink);border-radius:12px;min-height:46px;cursor:pointer}.agseg button[aria-checked=true]{border-color:var(--teal);background:var(--mint);color:var(--tealD)}
+.apw{max-width:560px;margin:1rem auto}.apw h1{font-size:1.4rem;margin:0 0 .3rem}.apw>p{margin:0;color:var(--mut)}
+.apst{display:flex;gap:.4rem;margin:1rem 0 .4rem}.apst i{flex:1;height:6px;border-radius:9px;background:#dfe5f1}.apst i.on{background:var(--teal)}
+.apsl{font-weight:800;font-size:.85rem;margin:0 0 1rem;color:var(--tealD)}
+.apph{display:flex;align-items:center;gap:1rem;flex-wrap:wrap}.apph img,.apph .nop{width:84px;height:84px;border-radius:14px;object-fit:cover;border:2px solid #dfe5f1;background:#f4f6fb}.apph .nop{display:grid;place-items:center;border-style:dashed;color:#7a86a3}
+.apbt{display:flex;gap:.7rem;margin-top:1rem}.apbt .pb{flex:1}
 .agerr{margin:0 0 .8rem;color:var(--err);font-weight:700;font-size:.88rem}
 .agtoast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,20px);background:var(--ink);color:#fff;font-weight:700;padding:.7rem 1.2rem;border-radius:99px;box-shadow:0 14px 30px -10px rgba(9,20,56,.6);opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;z-index:200}.agtoast.on{opacity:1;transform:translate(-50%,0)}
 @media (max-width:1100px){.agstats{grid-template-columns:repeat(2,1fr)}.aggrid,.aggrid.even,.aggrid.card2{grid-template-columns:1fr}}
@@ -1902,7 +1907,119 @@ function agView(r){
  var a=agCur();
  return (a==="subs"?agSubs:a==="earn"?agEarn:a==="card"?agCardV:a==="prof"?agProf:agOv)();
 }
-function agNone(){return '<div class="soonc"><span class="pi">'+ico("user")+'</span><h1>'+esc(ag("none"))+'</h1><p>'+esc(ag("nonex"))+'</p><div class="bt"><a class="pb p" href="/get">'+ico("dl")+esc(ag("getapp"))+'</a><button class="pb o" id="agrf">'+ico("up")+esc(ag("refresh"))+'</button></div></div>'}
+/* ---------- agent application on the web ---------- */
+(function(){
+ var T={
+  ap_h:["Become a Trackly agent","Aba umukozi wa Trackly","Devenir agent Trackly"],
+  ap_hx:["Fill in your details to apply. We reply within 48 hours.","Uzuza amakuru yawe usabe. Turasubiza mu masaha 48.","Remplissez vos informations. Nous répondons sous 48 heures."],
+  ap_step:["Step","Intambwe","Étape"],
+  ap_t0:["Your identity","Umwirondoro wawe","Votre identité"],
+  ap_t1:["Where you work","Aho ukorera","Où vous travaillez"],
+  ap_t2:["About you and payment","Wowe n'ubwishyu","Vous et le paiement"],
+  ap_name:["Full name (as on your ID)","Amazina yombi (nk'ari ku ndangamuntu)","Nom complet (comme sur la pièce d'identité)"],
+  ap_nid:["National ID number (16 digits)","Nomero y'indangamuntu (imibare 16)","Numéro de carte d'identité (16 chiffres)"],
+  ap_phone:["Phone number","Numero ya telefone","Numéro de téléphone"],
+  ap_photo:["Passport photo (white background)","Ifoto ya pasiporo (inyuma handuye)","Photo d'identité (fond blanc)"],
+  ap_pick:["Choose photo","Hitamo ifoto","Choisir une photo"],
+  ap_change:["Change photo","Hindura ifoto","Changer la photo"],
+  ap_upl:["Uploading…","Iri koherezwa…","Envoi en cours…"],
+  ap_dist:["District","Akarere","District"],
+  ap_pickd:["Select district","Hitamo akarere","Choisir le district"],
+  ap_sec:["Sector","Umurenge","Secteur"],
+  ap_cell:["Cell (optional)","Akagari (si ngombwa)","Cellule (facultatif)"],
+  ap_why:["Why do you want to be a Trackly agent?","Kuki ushaka kuba umukozi wa Trackly?","Pourquoi voulez-vous devenir agent Trackly ?"],
+  ap_whyph:["Tell us about your experience meeting business owners.","Tubwire uburambe ufite mu guhura n'ba nyir'ubucuruzi.","Parlez-nous de votre expérience auprès des commerçants."],
+  ap_next:["Continue","Komeza","Continuer"],
+  ap_back:["Back","Subira inyuma","Retour"],
+  ap_sub:["Submit application","Ohereza ubusabe","Envoyer la demande"],
+  ap_e_name:["Enter your full name.","Andika amazina yombi.","Saisissez votre nom complet."],
+  ap_e_nid:["National ID must be exactly 16 digits.","Indangamuntu igomba kuba imibare 16.","La carte d'identité doit avoir 16 chiffres."],
+  ap_e_phone:["Enter a valid MTN or Airtel number.","Andika nimero ya MTN cyangwa Airtel yemewe.","Saisissez un numéro MTN ou Airtel valide."],
+  ap_e_photo:["Add your passport photo.","Shyiramo ifoto yawe ya pasiporo.","Ajoutez votre photo d'identité."],
+  ap_e_dist:["Select your district.","Hitamo akarere.","Choisissez votre district."],
+  ap_e_sec:["Enter your sector.","Andika umurenge.","Saisissez votre secteur."],
+  ap_e_why:["Write at least 20 characters.","Andika nibura inyuguti 20.","Écrivez au moins 20 caractères."],
+  ap_upf:["Photo upload failed. Try again.","Kohereza ifoto byanze. Ongera ugerageze.","Échec de l'envoi de la photo. Réessayez."],
+  ap_fail:["Could not send your application. Try again.","Ntibyakunze kohereza ubusabe. Ongera ugerageze.","Impossible d'envoyer la demande. Réessayez."],
+  photo:["To change your ID photo, contact support@ivanexo.com.","Guhindura ifoto, andikira support@ivanexo.com.","Pour changer votre photo, écrivez à support@ivanexo.com."]
+ };
+ for(var k in T)AGT[k]=T[k];
+})();
+var APF={st:0,v:null,up:false,busy:false,err:""};
+function apV(){if(!APF.v){var u=S.user||{},ph=rwDigits(u.phone||"");APF.v={name:u.fullName||u.name||"",nid:"",phone:ph,photo:"",district:"",sector:"",cell:"",why:"",prov:netOf(ph)||"mtn",momo:ph,email:u.email||""}}return APF.v}
+function apProvince(d){var i=STD.indexOf(d);return i<0?"":i<3?"Kigali City":i<8?"Northern Province":i<16?"Southern Province":i<23?"Eastern Province":"Western Province"}
+function apRead(){
+ var v=apV(),m={apn:"name",apid:"nid",apph:"phone",apmo:"momo",apem:"email",apdi:"district",apse:"sector",apce:"cell",apwh:"why"};
+ for(var id in m){var e=document.getElementById(id);if(e)v[m[id]]=e.value}
+}
+function apCheck(st){
+ var v=apV();
+ if(st===0){
+  if(String(v.name).trim().length<3)return ag("ap_e_name");
+  if(!/^\d{16}$/.test(String(v.nid).replace(/\s/g,"")))return ag("ap_e_nid");
+  var d=rwDigits(v.phone);if(d.length!==9||!netOf(d))return ag("ap_e_phone");
+  if(!v.photo)return ag("ap_e_photo");
+ }else if(st===1){
+  if(STD.indexOf(v.district)<0)return ag("ap_e_dist");
+  if(String(v.sector).trim().length<2)return ag("ap_e_sec");
+ }else{
+  if(String(v.why).trim().length<20)return ag("ap_e_why");
+  var m=agMomoOk(v.momo,v.prov);if(m)return m;
+  if(v.email&&!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(String(v.email).trim()))return ag("bademail");
+ }
+ return "";
+}
+function apHtml(){
+ var v=apV(),st=APF.st,h='<div class="apw" id="apw"><h1>'+esc(ag("ap_h"))+'</h1><p>'+esc(ag("ap_hx"))+'</p><div class="apst">';
+ for(var i=0;i<3;i++)h+='<i class="'+(i<=st?"on":"")+'"></i>';
+ h+='</div><p class="apsl">'+esc(ag("ap_step"))+' '+(st+1)+'/3 - '+esc(ag("ap_t"+st))+'</p><section class="panel">';
+ if(st===0){
+  h+=agFld("apn",ag("ap_name"),v.name,'autocomplete="name"')+agFld("apid",ag("ap_nid"),v.nid,'inputmode="numeric" maxlength="19"');
+  h+='<div class="fld"><label for="apph">'+esc(ag("ap_phone"))+'</label><div class="agph"><span class="pre">'+flag("rw",true)+'+250</span><input class="inp" id="apph" inputmode="numeric" autocomplete="tel-national" maxlength="20" placeholder="78X XXX XXX" value="'+esc(v.phone)+'"></div></div>';
+  h+='<div class="fld"><label>'+esc(ag("ap_photo"))+'</label><div class="apph">'+(v.photo?'<img src="'+esc(v.photo)+'" alt="">':'<span class="nop">'+ico("user")+'</span>')+'<div><button type="button" class="pb o" id="appk"'+(APF.up?" disabled":"")+'>'+ico("up")+esc(APF.up?ag("ap_upl"):v.photo?ag("ap_change"):ag("ap_pick"))+'</button><input type="file" id="appf" accept="image/*" hidden></div></div></div>';
+ }else if(st===1){
+  h+='<div class="fld"><label for="apdi">'+esc(ag("ap_dist"))+'</label><select class="inp" id="apdi"><option value="">'+esc(ag("ap_pickd"))+'</option>'+STD.map(function(d){return '<option value="'+esc(d)+'"'+(d===v.district?" selected":"")+'>'+esc(d)+'</option>'}).join("")+'</select></div>';
+  h+=agFld("apse",ag("ap_sec"),v.sector)+agFld("apce",ag("ap_cell"),v.cell);
+ }else{
+  h+='<div class="fld"><label for="apwh">'+esc(ag("ap_why"))+'</label><textarea class="inp" id="apwh" rows="4" maxlength="2000" placeholder="'+esc(ag("ap_whyph"))+'">'+esc(v.why)+'</textarea></div>';
+  h+='<div class="fld"><label>'+esc(ag("prov"))+'</label><div class="agseg" role="radiogroup"><button type="button" role="radio" data-apm="mtn" aria-checked="'+(v.prov==="mtn")+'"><img src="'+NETLOGO.mtn+'" alt="" width="44" height="44"><span>MTN MoMo</span></button><button type="button" role="radio" data-apm="airtel" aria-checked="'+(v.prov==="airtel")+'"><img src="'+NETLOGO.airtel+'" alt="" width="44" height="44"><span>Airtel Money</span></button></div></div>';
+  h+='<div class="fld"><label for="apmo">'+esc(ag("momo"))+'</label><div class="agph"><span class="pre">'+flag("rw",true)+'+250</span><input class="inp" id="apmo" inputmode="numeric" maxlength="20" placeholder="78X XXX XXX" value="'+esc(v.momo)+'"></div></div>';
+  h+=agFld("apem",ag("mail"),v.email,'type="email" inputmode="email"')+'<p class="emhint" style="margin:-.4rem 0 .9rem">'+esc(ag("mailx"))+'</p>';
+ }
+ h+='<p class="agerr" id="aperr" role="alert"'+(APF.err?"":" hidden")+'>'+esc(APF.err)+'</p><div class="apbt">'+(st>0?'<button type="button" class="pb o" id="apbk">'+esc(ag("ap_back"))+'</button>':'')+'<button type="button" class="pb p" id="apnx"'+(APF.busy||APF.up?" disabled":"")+'>'+esc(st===2?ag("ap_sub"):ag("ap_next"))+'</button></div></section></div>';
+ return h;
+}
+function apBind(){
+ var go=function(n){APF.err="";APF.st=n;draw();window.scrollTo(0,0)};
+ var bk=$("#apbk");if(bk)bk.addEventListener("click",function(){apRead();go(APF.st-1)});
+ $$("[data-apm]").forEach(function(b){b.addEventListener("click",function(){apRead();apV().prov=b.getAttribute("data-apm");APF.err="";draw()})});
+ ["apph","apmo"].forEach(function(id){var e=document.getElementById(id);if(e)e.addEventListener("input",function(){this.value=rwDigits(this.value)})});
+ var idn=$("#apid");if(idn)idn.addEventListener("input",function(){this.value=this.value.replace(/\D/g,"").slice(0,16)});
+ var pk=$("#appk"),pf=$("#appf");
+ if(pk&&pf){
+  pk.addEventListener("click",function(){pf.click()});
+  pf.addEventListener("change",function(){
+   var f=pf.files&&pf.files[0];if(!f)return;
+   apRead();APF.up=true;APF.err="";draw();
+   phUpload(f).then(function(r){if(!r||!r.remote)throw new Error("up");apV().photo=r.url;APF.up=false;draw()}).catch(function(){APF.up=false;APF.err=ag("ap_upf");draw()});
+  });
+ }
+ var nx=$("#apnx");
+ if(nx)nx.addEventListener("click",function(){
+  apRead();var m=apCheck(APF.st),er=$("#aperr");
+  if(m){APF.err=m;er.textContent=m;er.hidden=false;return}
+  if(APF.st<2){go(APF.st+1);return}
+  var v=apV(),body={fullName:String(v.name).trim(),phone:rwDigits(v.phone),nationalId:String(v.nid).replace(/\s/g,""),province:apProvince(v.district),district:v.district,sector:String(v.sector).trim(),motivation:String(v.why).trim(),momoNumber:rwDigits(v.momo),momoProvider:v.prov,photoUrl:v.photo};
+  if(String(v.cell).trim())body.cell=String(v.cell).trim();
+  if(String(v.email).trim())body.email=String(v.email).trim();
+  APF.busy=true;APF.err="";nx.disabled=true;
+  send("POST","/agents/apply",body).then(function(){APF.busy=false;APF.st=0;APF.v=null;agLoad()}).catch(function(x){
+   APF.busy=false;if(x&&x.status===401){clearAll();toLogin();return}
+   APF.err=(x&&x.msg)||ag("ap_fail");draw();
+  });
+ });
+}
+function agNone(){return apHtml()}
 function agBlocked(p){
  var s=p.status,t=s==="rejected"?ag("rejt"):s==="suspended"?ag("suspt"):ag("revt"),x=s==="suspended"?ag("suspx"):s==="rejected"?(p.rejectedReason?ag("reason")+": "+p.rejectedReason:""):ag("revx");
  return '<div class="soonc"><span class="pi">'+ico(s==="rejected"||s==="suspended"?"lock":"clock")+'</span>'+agChip()+'<h1 style="margin-top:.8rem">'+esc(t)+'</h1><p>'+esc(x)+'</p><div class="bt"><button class="pb p" id="agrf">'+ico("up")+esc(ag("refresh"))+'</button><a class="pb o" href="mailto:support@ivanexo.com">'+ico("chat")+esc(ag("contact"))+'</a></div></div>';
@@ -1998,7 +2115,7 @@ function agCopy(txt,done){
 }
 function agFb(t){var a=document.createElement("textarea");a.value=t;a.style.position="fixed";a.style.opacity="0";document.body.appendChild(a);a.select();try{document.execCommand("copy")}catch(e){}a.remove()}
 function agMomoOk(n,pr){var d=String(n||"").replace(/\D/g,"").replace(/^250/,"").replace(/^0/,"");if(d.length!==9)return ag("badmomo");var f=d.slice(0,2);if(pr==="mtn"&&f!=="78"&&f!=="79")return ag("mtnerr");if(pr==="airtel"&&f!=="72"&&f!=="73")return ag("airerr");return""}
-function agBind(){
+function agBind(){if($("#apw"))apBind();
  var mr=$("#agmore");if(mr)mr.addEventListener("click",function(){AG.more=!AG.more;draw()});
  var rf=$("#agrf");if(rf)rf.addEventListener("click",agLoad);
  $$("#agcp").forEach(function(b){b.addEventListener("click",function(){agCopy(agCode())})});
@@ -5858,7 +5975,7 @@ function smClockIn(){
 }
 
 /* ---------- Account: photo, profile, settings, notifications ---------- */
-var CLD={name:"",preset:""};
+var CLD={name:"bfpfnyh5",preset:"trackly_profiles"};
 var NF={sup:null,exp:null,tried:false,f:"all"};
 var PF={staff:null,tried:false};
 function nft(){return tx().nf}
